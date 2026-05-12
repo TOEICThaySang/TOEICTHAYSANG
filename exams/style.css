@@ -2072,6 +2072,7 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
   font-size: 13.5px;
   line-height: 1.75;
   border-bottom: 1px solid rgba(0,0,0,0.06);
+  white-space: pre-wrap;
 }
 .biGrid-en               { color: #1e3a5f; background: #f8faff; border-right: 1.5px solid var(--border); }
 .biGrid-vi               { color: #78350f; font-style: italic; background: #fffdf5; }
@@ -2099,6 +2100,7 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
   padding: 10px 14px; font-size: 13.5px; color: #1e3a5f; line-height: 1.75;
   cursor: pointer; display: flex; gap: 8px; align-items: flex-start;
   background: #f8faff; transition: background 0.15s; user-select: none;
+  white-space: pre-wrap;
 }
 .biAccord-en:hover { background: #eff6ff; }
 .bi-accord-icon {
@@ -2110,6 +2112,7 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
   padding: 8px 14px 12px 36px; font-size: 13px; color: #78350f;
   font-style: italic; line-height: 1.75; background: #fffbeb;
   border-left: 3px solid #fde68a;
+  white-space: pre-wrap;
 }
 
 /* ══════════════════════════════════════════════════════
