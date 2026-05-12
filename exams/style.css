@@ -2036,6 +2036,19 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
   line-height: 1.55;
 }
 
+/* Ghi chú câu hỏi Part 7 — ngay dưới q-trans */
+.q-note {
+  font-size: calc(var(--ef) - 2px);
+  font-style: italic;
+  color: #4338ca;
+  background: #eef2ff;
+  border-left: 3px solid #a5b4fc;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 4px 10px;
+  margin: 2px 0 8px;
+  line-height: 1.55;
+}
+
 /* ══════════════════════════════════════════════════════
    OPT-TRANS / OPT-NOTE: bên dưới mỗi đáp án
 ══════════════════════════════════════════════════════ */

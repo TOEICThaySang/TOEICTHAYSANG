@@ -889,9 +889,13 @@ function renderScreen(idx) {
         if(!solShown7) qtr7.style.display = 'none';
         qw.appendChild(qtr7);
       }
+      // noteOpts[0] = ghi chú câu hỏi; noteOpts[1..4] = ghi chú đáp án A/B/C/D
+      const notes7raw = q.noteOpts?.some(Boolean) ? q.noteOpts : null;
+      const noteQ7    = notes7raw?.[0] || null;
+      const noteOpts7 = notes7raw?.length > 1 ? notes7raw.slice(1) : null;
+      if (noteQ7 && solShown7) qw.appendChild(make('div','q-note', escHtml(noteQ7)));
       const viOpts7 = q.viOpts?.some(Boolean) ? q.viOpts : null;
-      const notes7  = q.noteOpts?.some(Boolean) ? q.noteOpts : null;
-      const optList7 = buildOptionsAll(q.q,['A','B','C','D'],sk,null,viOpts7,notes7);
+      const optList7 = buildOptionsAll(q.q,['A','B','C','D'],sk,null,viOpts7, noteOpts7?.some(Boolean) ? noteOpts7 : null);
       if (!solShown7) optList7.querySelectorAll('.opt-trans,.opt-note').forEach(el => el.style.display='none');
       qw.appendChild(optList7);
       right.appendChild(qw);
