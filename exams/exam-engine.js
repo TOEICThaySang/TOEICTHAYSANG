@@ -845,24 +845,27 @@ function renderScreen(idx) {
   }
   if (sc.type==='p5') {
     const q=sc.q;
-    if (showSol && state.showSolution['q'+q.q] && q.videoUrl) {
+    const solShown = showSol && !!state.showSolution['q'+q.q];
+    if (solShown && q.videoUrl) {
       const vw=make('div','video-wrap'); vw.innerHTML=`<iframe src="${youtubeEmbed(q.videoUrl,autoplayQ===q.q)}" allow="autoplay" allowfullscreen></iframe>`; left.appendChild(vw);
     } else { left.classList.add('empty'); }
     right.appendChild(buildQHeader(q.q,5,sk,showSol));
     if (q.enQ) right.appendChild(make('div','q-text', q.enQ.replace(/ (---+)/g,'&nbsp;<span style="white-space:nowrap">$1</span>')));
-    right.appendChild(buildOptions(q.q,['A','B','C','D'],sk));
-    if (showSol && state.showSolution['q'+q.q]) { const vb=buildViBlock(q,['A','B','C','D']); if(vb) right.appendChild(vb); }
+    if (solShown && q.fullSent)  right.appendChild(make('div','full-sent-en', escHtml(q.fullSent)));
+    if (solShown && q.transSent) right.appendChild(make('div','full-sent-vi', escHtml(q.transSent)));
+    right.appendChild(buildOptionsWithNotes(q.q,['A','B','C','D'],sk,null,solShown?q.noteOpts:null));
   }
   if (sc.type==='p6') {
     const g=sc.group;
     buildLeftTabs(left,g,sk,false);
     g.questions.forEach(q=>{
       const qKey='q'+q.q;
+      const solShown6 = showSol && !!state.showSolution[qKey];
       const qw=make('div','q-block'); qw.style.cssText='padding-bottom:8px';
       if (q.q === state.scrollToQ) qw.dataset.autoq = '1';
       qw.appendChild(buildQHeader(q.q,6,sk,showSol));
-      qw.appendChild(buildOptions(q.q,['A','B','C','D'],sk,[q.enQ,...(q.enOpts||[])]));
-      if (showSol && state.showSolution[qKey]) { const vb=buildViBlock(q,['A','B','C','D']); if(vb) qw.appendChild(vb); }
+      qw.appendChild(buildOptionsWithNotes(q.q,['A','B','C','D'],sk,[q.enQ,...(q.enOpts||[])],solShown6?q.noteOpts:null));
+      if (solShown6) { const vb=buildViBlock(q,['A','B','C','D']); if(vb) qw.appendChild(vb); }
       right.appendChild(qw);
     });
   }
@@ -871,12 +874,13 @@ function renderScreen(idx) {
     buildLeftTabs(left,g,sk,true);
     g.questions.forEach(q=>{
       const qKey='q'+q.q;
+      const solShown7 = showSol && !!state.showSolution[qKey];
       const qw=make('div','q-block'); qw.style.cssText='padding-bottom:8px';
       if (q.q === state.scrollToQ) qw.dataset.autoq = '1';
       qw.appendChild(buildQHeader(q.q,7,sk,showSol));
       if(q.enQ) qw.appendChild(make('div','q-text',q.enQ));
-      qw.appendChild(buildOptions(q.q,['A','B','C','D'],sk));
-      if (showSol && state.showSolution[qKey]) { const vb=buildViBlock(q,['A','B','C','D']); if(vb) qw.appendChild(vb); }
+      qw.appendChild(buildOptionsWithNotes(q.q,['A','B','C','D'],sk,null,solShown7?q.noteOpts:null));
+      if (solShown7) { const vb=buildViBlock(q,['A','B','C','D']); if(vb) qw.appendChild(vb); }
       right.appendChild(qw);
     });
   }
@@ -935,12 +939,16 @@ function renderScreen(idx) {
 }
 
 function buildLeftTabs(left, g, sk, isP7) {
+  const hasBi     = !!(g.fullPassEN || g.fullPassVI);
   const activeTab = state.leftTab[sk] || 'passage';
 
   const tabBar = make('div','left-tab-bar');
-  const tabPassageBtn = make('button','left-tab-btn'+(activeTab!=='video'?' active':''),'Đề bài');
+  const tabPassageBtn = make('button','left-tab-btn'+(activeTab==='passage'?' active':''),'Đề bài');
+  const tabBiBtn      = hasBi ? make('button','left-tab-btn'+(activeTab==='bilingual'?' active':''),'Song ngữ') : null;
   const tabVideoBtn   = make('button','left-tab-btn'+(activeTab==='video'?' active':''),'Video giải');
-  tabBar.appendChild(tabPassageBtn); tabBar.appendChild(tabVideoBtn);
+  tabBar.appendChild(tabPassageBtn);
+  if (tabBiBtn) tabBar.appendChild(tabBiBtn);
+  tabBar.appendChild(tabVideoBtn);
 
   const tabSep = make('div','left-tab-sep'); tabBar.appendChild(tabSep);
 
@@ -960,7 +968,7 @@ function buildLeftTabs(left, g, sk, isP7) {
 
   // Pane: đề bài
   const passagePane = make('div','left-tab-pane');
-  passagePane.style.display = activeTab==='video' ? 'none' : '';
+  passagePane.style.display = activeTab==='passage' ? '' : 'none';
   if (g.title) passagePane.appendChild(make('p','passage-title',g.title));
   if (isP7 && g.imgs && g.imgs.length>0) {
     const cnt=g.imgs.filter(Boolean).length;
@@ -972,6 +980,27 @@ function buildLeftTabs(left, g, sk, isP7) {
     passagePane.appendChild(img);
   }
   left.appendChild(passagePane);
+
+  // Pane: song ngữ
+  let biPane = null;
+  if (hasBi) {
+    biPane = make('div','left-tab-pane bilingual-pane');
+    biPane.style.display = activeTab==='bilingual' ? '' : 'none';
+    const colEN = make('div','bilingual-col bilingual-en');
+    const colVI = make('div','bilingual-col bilingual-vi');
+    (g.fullPassEN||'').split('\n').forEach(line => {
+      const p = document.createElement('p');
+      p.innerHTML = line.trim() ? escHtml(line) : '';
+      colEN.appendChild(p);
+    });
+    (g.fullPassVI||'').split('\n').forEach(line => {
+      const p = document.createElement('p');
+      p.innerHTML = line.trim() ? escHtml(line) : '';
+      colVI.appendChild(p);
+    });
+    biPane.appendChild(colEN); biPane.appendChild(colVI);
+    left.appendChild(biPane);
+  }
 
   // Pane: video
   const videoPane = make('div','left-tab-pane');
@@ -987,20 +1016,30 @@ function buildLeftTabs(left, g, sk, isP7) {
   }
   left.appendChild(videoPane);
 
+  const showPane = (tab) => {
+    passagePane.style.display = tab==='passage'   ? '' : 'none';
+    if (biPane) biPane.style.display = tab==='bilingual' ? '' : 'none';
+    videoPane.style.display   = tab==='video'     ? '' : 'none';
+    tabPassageBtn.classList.toggle('active', tab==='passage');
+    if (tabBiBtn) tabBiBtn.classList.toggle('active', tab==='bilingual');
+    tabVideoBtn.classList.toggle('active', tab==='video');
+  };
+
   tabPassageBtn.addEventListener('click',()=>{
     const iframe = videoPane.querySelector('iframe');
     if (iframe) try { iframe.contentWindow.postMessage(JSON.stringify({event:'command',func:'pauseVideo',args:[]}), '*'); } catch(e) {}
-    state.leftTab[sk]='passage';
-    passagePane.style.display=''; videoPane.style.display='none';
-    tabPassageBtn.classList.add('active'); tabVideoBtn.classList.remove('active');
+    state.leftTab[sk]='passage'; showPane('passage');
+  });
+  if (tabBiBtn) tabBiBtn.addEventListener('click',()=>{
+    const iframe = videoPane.querySelector('iframe');
+    if (iframe) try { iframe.contentWindow.postMessage(JSON.stringify({event:'command',func:'pauseVideo',args:[]}), '*'); } catch(e) {}
+    state.leftTab[sk]='bilingual'; showPane('bilingual');
   });
   tabVideoBtn.addEventListener('click',()=>{
-    state.leftTab[sk]='video';
-    passagePane.style.display='none'; videoPane.style.display='';
-    tabPassageBtn.classList.remove('active'); tabVideoBtn.classList.add('active');
+    state.leftTab[sk]='video'; showPane('video');
   });
 
-  leftTabRefs[sk] = { passagePane, videoPane, tabPassageBtn, tabVideoBtn, g };
+  leftTabRefs[sk] = { passagePane, biPane, videoPane, tabPassageBtn, tabBiBtn, tabVideoBtn, g };
 }
 
 function switchToVideoTab(sk, qNum) {
@@ -1020,18 +1059,26 @@ function switchToVideoTab(sk, qNum) {
       videoPane.appendChild(make('div','video-placeholder',`Bấm ${IC.lightbulb}Xem video giải để xem video giải thích.`));
     }
   }
-  passagePane.style.display = 'none'; videoPane.style.display = '';
+  passagePane.style.display = 'none';
+  const refs2 = leftTabRefs[sk];
+  if (refs2?.biPane) refs2.biPane.style.display = 'none';
+  if (refs2?.tabBiBtn) refs2.tabBiBtn.classList.remove('active');
+  videoPane.style.display = '';
   tabPassageBtn.classList.remove('active'); tabVideoBtn.classList.add('active');
   state.leftTab[sk] = 'video'; state.videoQ[sk] = qNum;
 }
 
 function switchToPassageTab(sk) {
   const refs = leftTabRefs[sk]; if (!refs) return;
-  const { passagePane, videoPane, tabPassageBtn, tabVideoBtn } = refs;
+  const { passagePane, biPane, videoPane, tabPassageBtn, tabBiBtn, tabVideoBtn } = refs;
   const iframe = videoPane.querySelector('iframe');
   if (iframe) try { iframe.contentWindow.postMessage(JSON.stringify({event:'command',func:'pauseVideo',args:[]}), '*'); } catch(e) {}
-  passagePane.style.display = ''; videoPane.style.display = 'none';
-  tabPassageBtn.classList.add('active'); tabVideoBtn.classList.remove('active');
+  passagePane.style.display = '';
+  if (biPane) biPane.style.display = 'none';
+  videoPane.style.display = 'none';
+  tabPassageBtn.classList.add('active');
+  if (tabBiBtn) tabBiBtn.classList.remove('active');
+  tabVideoBtn.classList.remove('active');
   state.leftTab[sk] = 'passage';
 }
 
@@ -1276,6 +1323,14 @@ function buildOptions(qNum, letters, sk, optsOverride) {
   return list;
 }
 
+function buildOptionsWithNotes(qNum, letters, sk, optsOverride, noteOpts) {
+  const list = buildOptions(qNum, letters, sk, optsOverride);
+  if (!noteOpts || !noteOpts.length) return list;
+  list.querySelectorAll('.option-item').forEach((item, i) => {
+    if (noteOpts[i]) item.appendChild(make('div','opt-note', escHtml(noteOpts[i])));
+  });
+  return list;
+}
 
 // ══════════════════════════════════════════════════════════════
 // PHIẾU TÔ
