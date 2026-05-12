@@ -865,8 +865,11 @@ function renderScreen(idx) {
       if (q.q === state.scrollToQ) qw.dataset.autoq = '1';
       qw.appendChild(buildQHeader(q.q,6,sk,showSol));
       const rawViTrans6 = [q.viQ||'',...(q.viOpts||[])];
-      const viTrans6 = (solShown6 && rawViTrans6.some(Boolean)) ? rawViTrans6 : null;
-      qw.appendChild(buildOptionsAll(q.q,['A','B','C','D'],sk,[q.enQ,...(q.enOpts||[])],viTrans6,solShown6?q.noteOpts:null));
+      const viTrans6 = rawViTrans6.some(Boolean) ? rawViTrans6 : null;
+      const notes6   = q.noteOpts?.some(Boolean) ? q.noteOpts : null;
+      const optList6 = buildOptionsAll(q.q,['A','B','C','D'],sk,[q.enQ,...(q.enOpts||[])],viTrans6,notes6);
+      if (!solShown6) optList6.querySelectorAll('.opt-trans,.opt-note').forEach(el => el.style.display='none');
+      qw.appendChild(optList6);
       right.appendChild(qw);
     });
   }
@@ -880,9 +883,17 @@ function renderScreen(idx) {
       if (q.q === state.scrollToQ) qw.dataset.autoq = '1';
       qw.appendChild(buildQHeader(q.q,7,sk,showSol));
       if(q.enQ) qw.appendChild(make('div','q-text',q.enQ));
-      if(solShown7 && q.viQ) qw.appendChild(make('div','q-trans',escHtml(q.viQ)));
-      const viOpts7 = (solShown7 && q.viOpts && q.viOpts.some(Boolean)) ? q.viOpts : null;
-      qw.appendChild(buildOptionsAll(q.q,['A','B','C','D'],sk,null,viOpts7,solShown7?q.noteOpts:null));
+      if(q.viQ) {
+        const qtr7 = make('div','q-trans',escHtml(q.viQ));
+        qtr7.dataset.vifor = String(q.q);
+        if(!solShown7) qtr7.style.display = 'none';
+        qw.appendChild(qtr7);
+      }
+      const viOpts7 = q.viOpts?.some(Boolean) ? q.viOpts : null;
+      const notes7  = q.noteOpts?.some(Boolean) ? q.noteOpts : null;
+      const optList7 = buildOptionsAll(q.q,['A','B','C','D'],sk,null,viOpts7,notes7);
+      if (!solShown7) optList7.querySelectorAll('.opt-trans,.opt-note').forEach(el => el.style.display='none');
+      qw.appendChild(optList7);
       right.appendChild(qw);
     });
   }
@@ -1271,6 +1282,9 @@ function buildQHeader(qNum, part, sk, showSolBtn, groupQNums=null) {
             state.showSolution['q'+otherQn] = false;
             const otherBtn = document.querySelector(`[data-solq="${otherQn}"]`);
             if (otherBtn) otherBtn.innerHTML = solHtml(false);
+            const otherQtr = document.querySelector(`.q-trans[data-vifor="${otherQn}"]`);
+            if (otherQtr) otherQtr.style.display = 'none';
+            document.querySelectorAll(`.options-list[data-qlist="${otherQn}"] .opt-trans,.options-list[data-qlist="${otherQn}"] .opt-note`).forEach(el => el.style.display='none');
             const otherOpts = document.querySelector(`.options-list[data-qlist="${otherQn}"]`);
             if (otherOpts) applyOptionColors(otherOpts, state.answers[otherQn], getQuestionData(otherQn)?.q.answer, false);
           });
@@ -1290,6 +1304,9 @@ function buildQHeader(qNum, part, sk, showSolBtn, groupQNums=null) {
         } else    switchToPassageTab(sk);
         keys.forEach(k => {
           const qn = parseInt(k.slice(1));
+          const qtr = document.querySelector(`.q-trans[data-vifor="${qn}"]`);
+          if (qtr) qtr.style.display = next ? '' : 'none';
+          document.querySelectorAll(`.options-list[data-qlist="${qn}"] .opt-trans,.options-list[data-qlist="${qn}"] .opt-note`).forEach(el => el.style.display = next ? '' : 'none');
           const optList = document.querySelector(`.options-list[data-qlist="${qn}"]`);
           if (optList) applyOptionColors(optList, state.answers[qn], getQuestionData(qn)?.q.answer, next);
         });
