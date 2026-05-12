@@ -2022,9 +2022,32 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
 }
 
 /* ══════════════════════════════════════════════════════
-   OPT-NOTE: ghi chú bên dưới mỗi đáp án
+   Q-TRANS: dịch câu hỏi — ngay dưới q-text (amber)
+══════════════════════════════════════════════════════ */
+.q-trans {
+  font-size: calc(var(--ef) - 2px);
+  font-style: italic;
+  color: #78350f;
+  background: #fffbeb;
+  border-left: 3px solid #fde68a;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 4px 10px;
+  margin: 2px 0 8px;
+  line-height: 1.55;
+}
+
+/* ══════════════════════════════════════════════════════
+   OPT-TRANS / OPT-NOTE: bên dưới mỗi đáp án
 ══════════════════════════════════════════════════════ */
 .option-item { flex-wrap: wrap; }
+.opt-trans {
+  flex-basis: 100%;
+  padding: 2px 0 2px 56px;
+  font-size: 12px;
+  font-style: italic;
+  color: #92400e;
+  line-height: 1.5;
+}
 .opt-note {
   flex-basis: 100%;
   padding: 3px 0 2px 56px;
@@ -2035,7 +2058,62 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
 }
 
 /* ══════════════════════════════════════════════════════
-   SONG NGỮ TAB (P6/P7)
+   TAB SONG NGỮ — COLT ĐÔI (biGrid)
+══════════════════════════════════════════════════════ */
+.biGrid-pane {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  overflow-y: auto;
+  height: 100%;
+  align-content: start;
+}
+.biGrid-cell {
+  padding: 10px 14px;
+  font-size: 13.5px;
+  line-height: 1.75;
+  border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+.biGrid-en               { color: #1e3a5f; background: #f8faff; border-right: 1.5px solid var(--border); }
+.biGrid-vi               { color: #78350f; font-style: italic; background: #fffdf5; }
+.biGrid-stripe.biGrid-en { background: #eff6ff; }
+.biGrid-stripe.biGrid-vi { background: #fffbeb; }
+
+/* ══════════════════════════════════════════════════════
+   TAB SONG NGỮ — THEO ĐOẠN (biAccord)
+══════════════════════════════════════════════════════ */
+.biAccord-pane { overflow-y: auto; height: 100%; }
+.biAccord-controls {
+  padding: 8px 14px;
+  border-bottom: 1px solid var(--border);
+  position: sticky; top: 0;
+  background: var(--white); z-index: 2;
+}
+.biAccord-btn-all {
+  font-size: 12px; padding: 4px 14px; border-radius: 20px;
+  border: 1.5px solid #fde68a; background: #fffbeb; color: #78350f;
+  cursor: pointer; font-weight: 600; transition: background 0.15s;
+}
+.biAccord-btn-all:hover { background: #fef3c7; }
+.biAccord-para { border-bottom: 1px solid var(--border); }
+.biAccord-en {
+  padding: 10px 14px; font-size: 13.5px; color: #1e3a5f; line-height: 1.75;
+  cursor: pointer; display: flex; gap: 8px; align-items: flex-start;
+  background: #f8faff; transition: background 0.15s; user-select: none;
+}
+.biAccord-en:hover { background: #eff6ff; }
+.bi-accord-icon {
+  flex-shrink: 0; color: #94a3b8; font-size: 12px; margin-top: 3px;
+  transition: transform 0.2s; display: inline-block;
+}
+.biAccord-en.open .bi-accord-icon { transform: rotate(180deg); }
+.biAccord-vi {
+  padding: 8px 14px 12px 36px; font-size: 13px; color: #78350f;
+  font-style: italic; line-height: 1.75; background: #fffbeb;
+  border-left: 3px solid #fde68a;
+}
+
+/* ══════════════════════════════════════════════════════
+   SONG NGỮ TAB (P6/P7) — legacy
 ══════════════════════════════════════════════════════ */
 .bilingual-pane {
   display: flex;

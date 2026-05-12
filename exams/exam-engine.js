@@ -853,7 +853,7 @@ function renderScreen(idx) {
     if (q.enQ) right.appendChild(make('div','q-text', q.enQ.replace(/ (---+)/g,'&nbsp;<span style="white-space:nowrap">$1</span>')));
     if (solShown && q.fullSent)  right.appendChild(make('div','full-sent-en', escHtml(q.fullSent)));
     if (solShown && q.transSent) right.appendChild(make('div','full-sent-vi', escHtml(q.transSent)));
-    right.appendChild(buildOptionsWithNotes(q.q,['A','B','C','D'],sk,null,solShown?q.noteOpts:null));
+    right.appendChild(buildOptionsAll(q.q,['A','B','C','D'],sk,null,null,solShown?q.noteOpts:null));
   }
   if (sc.type==='p6') {
     const g=sc.group;
@@ -864,8 +864,9 @@ function renderScreen(idx) {
       const qw=make('div','q-block'); qw.style.cssText='padding-bottom:8px';
       if (q.q === state.scrollToQ) qw.dataset.autoq = '1';
       qw.appendChild(buildQHeader(q.q,6,sk,showSol));
-      qw.appendChild(buildOptionsWithNotes(q.q,['A','B','C','D'],sk,[q.enQ,...(q.enOpts||[])],solShown6?q.noteOpts:null));
-      if (solShown6) { const vb=buildViBlock(q,['A','B','C','D']); if(vb) qw.appendChild(vb); }
+      const rawViTrans6 = [q.viQ||'',...(q.viOpts||[])];
+      const viTrans6 = (solShown6 && rawViTrans6.some(Boolean)) ? rawViTrans6 : null;
+      qw.appendChild(buildOptionsAll(q.q,['A','B','C','D'],sk,[q.enQ,...(q.enOpts||[])],viTrans6,solShown6?q.noteOpts:null));
       right.appendChild(qw);
     });
   }
@@ -879,8 +880,9 @@ function renderScreen(idx) {
       if (q.q === state.scrollToQ) qw.dataset.autoq = '1';
       qw.appendChild(buildQHeader(q.q,7,sk,showSol));
       if(q.enQ) qw.appendChild(make('div','q-text',q.enQ));
-      qw.appendChild(buildOptionsWithNotes(q.q,['A','B','C','D'],sk,null,solShown7?q.noteOpts:null));
-      if (solShown7) { const vb=buildViBlock(q,['A','B','C','D']); if(vb) qw.appendChild(vb); }
+      if(solShown7 && q.viQ) qw.appendChild(make('div','q-trans',escHtml(q.viQ)));
+      const viOpts7 = (solShown7 && q.viOpts && q.viOpts.some(Boolean)) ? q.viOpts : null;
+      qw.appendChild(buildOptionsAll(q.q,['A','B','C','D'],sk,null,viOpts7,solShown7?q.noteOpts:null));
       right.appendChild(qw);
     });
   }
@@ -938,16 +940,32 @@ function renderScreen(idx) {
   }
 }
 
+function splitParas(text) {
+  const paras = [];
+  let cur = [];
+  for (const line of (text||'').split('\n')) {
+    if (line.trim() === '') {
+      if (cur.length) { paras.push(cur.join('\n')); cur = []; }
+    } else {
+      cur.push(line);
+    }
+  }
+  if (cur.length) paras.push(cur.join('\n'));
+  return paras;
+}
+
 function buildLeftTabs(left, g, sk, isP7) {
   const hasBi     = !!(g.fullPassEN || g.fullPassVI);
   const activeTab = state.leftTab[sk] || 'passage';
 
   const tabBar = make('div','left-tab-bar');
-  const tabPassageBtn = make('button','left-tab-btn'+(activeTab==='passage'?' active':''),'Đề bài');
-  const tabBiBtn      = hasBi ? make('button','left-tab-btn'+(activeTab==='bilingual'?' active':''),'Song ngữ') : null;
-  const tabVideoBtn   = make('button','left-tab-btn'+(activeTab==='video'?' active':''),'Video giải');
+  const tabPassageBtn  = make('button','left-tab-btn'+(activeTab==='passage'?' active':''),'Đề bài');
+  const tabGridBtn     = hasBi ? make('button','left-tab-btn'+(activeTab==='grid'?' active':''),'Cột đôi') : null;
+  const tabAccordBtn   = hasBi ? make('button','left-tab-btn'+(activeTab==='accord'?' active':''),'Theo đoạn') : null;
+  const tabVideoBtn    = make('button','left-tab-btn'+(activeTab==='video'?' active':''),'Video giải');
   tabBar.appendChild(tabPassageBtn);
-  if (tabBiBtn) tabBar.appendChild(tabBiBtn);
+  if (tabGridBtn)   tabBar.appendChild(tabGridBtn);
+  if (tabAccordBtn) tabBar.appendChild(tabAccordBtn);
   tabBar.appendChild(tabVideoBtn);
 
   const tabSep = make('div','left-tab-sep'); tabBar.appendChild(tabSep);
@@ -981,25 +999,77 @@ function buildLeftTabs(left, g, sk, isP7) {
   }
   left.appendChild(passagePane);
 
-  // Pane: song ngữ
-  let biPane = null;
+  // Pane: cột đôi (grid) + theo đoạn (accordion)
+  let gridPane = null, accordPane = null;
   if (hasBi) {
-    biPane = make('div','left-tab-pane bilingual-pane');
-    biPane.style.display = activeTab==='bilingual' ? '' : 'none';
-    const colEN = make('div','bilingual-col bilingual-en');
-    const colVI = make('div','bilingual-col bilingual-vi');
-    (g.fullPassEN||'').split('\n').forEach(line => {
-      const p = document.createElement('p');
-      p.innerHTML = line.trim() ? escHtml(line) : '';
-      colEN.appendChild(p);
+    const enParas = splitParas(g.fullPassEN||'');
+    const viParas = splitParas(g.fullPassVI||'');
+    const maxLen  = Math.max(enParas.length, viParas.length);
+
+    // --- Grid pane ---
+    gridPane = make('div','left-tab-pane biGrid-pane');
+    gridPane.style.display = activeTab==='grid' ? '' : 'none';
+    for (let i = 0; i < maxLen; i++) {
+      const stripe = i % 2 === 1 ? ' biGrid-stripe' : '';
+      const enCell = make('div','biGrid-cell biGrid-en'+stripe);
+      const viCell = make('div','biGrid-cell biGrid-vi'+stripe);
+      enCell.textContent = enParas[i] || '';
+      viCell.textContent = viParas[i] || '';
+      gridPane.appendChild(enCell);
+      gridPane.appendChild(viCell);
+    }
+    left.appendChild(gridPane);
+
+    // --- Accordion pane ---
+    accordPane = make('div','left-tab-pane biAccord-pane');
+    accordPane.style.display = activeTab==='accord' ? '' : 'none';
+
+    const controls = make('div','biAccord-controls');
+    const allBtn = make('button','biAccord-btn-all','Mở hết');
+    controls.appendChild(allBtn);
+    accordPane.appendChild(controls);
+
+    const paraEls = [];
+    let allOpen = false;
+
+    const updateAllBtn = () => {
+      const openCount = paraEls.filter(p => p.viEl.style.display !== 'none').length;
+      allBtn.textContent = openCount === paraEls.length ? 'Đóng hết' : 'Mở hết';
+    };
+
+    for (let i = 0; i < maxLen; i++) {
+      const paraWrap = make('div','biAccord-para');
+      const enEl = make('div','biAccord-en');
+      const icon = make('span','bi-accord-icon','▾');
+      enEl.appendChild(icon);
+      enEl.appendChild(document.createTextNode(enParas[i] || ''));
+      const viEl = make('div','biAccord-vi');
+      viEl.textContent = viParas[i] || '';
+      viEl.style.display = 'none';
+
+      enEl.addEventListener('click', () => {
+        const isOpen = viEl.style.display !== 'none';
+        viEl.style.display = isOpen ? 'none' : '';
+        enEl.classList.toggle('open', !isOpen);
+        updateAllBtn();
+      });
+
+      paraWrap.appendChild(enEl);
+      paraWrap.appendChild(viEl);
+      accordPane.appendChild(paraWrap);
+      paraEls.push({ enEl, viEl });
+    }
+
+    allBtn.addEventListener('click', () => {
+      allOpen = !allOpen;
+      paraEls.forEach(({ enEl, viEl }) => {
+        viEl.style.display = allOpen ? '' : 'none';
+        enEl.classList.toggle('open', allOpen);
+      });
+      allBtn.textContent = allOpen ? 'Đóng hết' : 'Mở hết';
     });
-    (g.fullPassVI||'').split('\n').forEach(line => {
-      const p = document.createElement('p');
-      p.innerHTML = line.trim() ? escHtml(line) : '';
-      colVI.appendChild(p);
-    });
-    biPane.appendChild(colEN); biPane.appendChild(colVI);
-    left.appendChild(biPane);
+
+    left.appendChild(accordPane);
   }
 
   // Pane: video
@@ -1017,11 +1087,13 @@ function buildLeftTabs(left, g, sk, isP7) {
   left.appendChild(videoPane);
 
   const showPane = (tab) => {
-    passagePane.style.display = tab==='passage'   ? '' : 'none';
-    if (biPane) biPane.style.display = tab==='bilingual' ? '' : 'none';
-    videoPane.style.display   = tab==='video'     ? '' : 'none';
+    passagePane.style.display  = tab==='passage' ? '' : 'none';
+    if (gridPane)   gridPane.style.display   = tab==='grid'    ? '' : 'none';
+    if (accordPane) accordPane.style.display = tab==='accord'  ? '' : 'none';
+    videoPane.style.display    = tab==='video'   ? '' : 'none';
     tabPassageBtn.classList.toggle('active', tab==='passage');
-    if (tabBiBtn) tabBiBtn.classList.toggle('active', tab==='bilingual');
+    if (tabGridBtn)   tabGridBtn.classList.toggle('active',   tab==='grid');
+    if (tabAccordBtn) tabAccordBtn.classList.toggle('active', tab==='accord');
     tabVideoBtn.classList.toggle('active', tab==='video');
   };
 
@@ -1030,16 +1102,21 @@ function buildLeftTabs(left, g, sk, isP7) {
     if (iframe) try { iframe.contentWindow.postMessage(JSON.stringify({event:'command',func:'pauseVideo',args:[]}), '*'); } catch(e) {}
     state.leftTab[sk]='passage'; showPane('passage');
   });
-  if (tabBiBtn) tabBiBtn.addEventListener('click',()=>{
+  if (tabGridBtn) tabGridBtn.addEventListener('click',()=>{
     const iframe = videoPane.querySelector('iframe');
     if (iframe) try { iframe.contentWindow.postMessage(JSON.stringify({event:'command',func:'pauseVideo',args:[]}), '*'); } catch(e) {}
-    state.leftTab[sk]='bilingual'; showPane('bilingual');
+    state.leftTab[sk]='grid'; showPane('grid');
+  });
+  if (tabAccordBtn) tabAccordBtn.addEventListener('click',()=>{
+    const iframe = videoPane.querySelector('iframe');
+    if (iframe) try { iframe.contentWindow.postMessage(JSON.stringify({event:'command',func:'pauseVideo',args:[]}), '*'); } catch(e) {}
+    state.leftTab[sk]='accord'; showPane('accord');
   });
   tabVideoBtn.addEventListener('click',()=>{
     state.leftTab[sk]='video'; showPane('video');
   });
 
-  leftTabRefs[sk] = { passagePane, biPane, videoPane, tabPassageBtn, tabBiBtn, tabVideoBtn, g };
+  leftTabRefs[sk] = { passagePane, gridPane, accordPane, videoPane, tabPassageBtn, tabGridBtn, tabAccordBtn, tabVideoBtn, g };
 }
 
 function switchToVideoTab(sk, qNum) {
@@ -1060,9 +1137,10 @@ function switchToVideoTab(sk, qNum) {
     }
   }
   passagePane.style.display = 'none';
-  const refs2 = leftTabRefs[sk];
-  if (refs2?.biPane) refs2.biPane.style.display = 'none';
-  if (refs2?.tabBiBtn) refs2.tabBiBtn.classList.remove('active');
+  if (refs.gridPane)    refs.gridPane.style.display    = 'none';
+  if (refs.accordPane)  refs.accordPane.style.display  = 'none';
+  if (refs.tabGridBtn)  refs.tabGridBtn.classList.remove('active');
+  if (refs.tabAccordBtn) refs.tabAccordBtn.classList.remove('active');
   videoPane.style.display = '';
   tabPassageBtn.classList.remove('active'); tabVideoBtn.classList.add('active');
   state.leftTab[sk] = 'video'; state.videoQ[sk] = qNum;
@@ -1070,14 +1148,16 @@ function switchToVideoTab(sk, qNum) {
 
 function switchToPassageTab(sk) {
   const refs = leftTabRefs[sk]; if (!refs) return;
-  const { passagePane, biPane, videoPane, tabPassageBtn, tabBiBtn, tabVideoBtn } = refs;
+  const { passagePane, videoPane, tabPassageBtn, tabVideoBtn } = refs;
   const iframe = videoPane.querySelector('iframe');
   if (iframe) try { iframe.contentWindow.postMessage(JSON.stringify({event:'command',func:'pauseVideo',args:[]}), '*'); } catch(e) {}
   passagePane.style.display = '';
-  if (biPane) biPane.style.display = 'none';
+  if (refs.gridPane)    refs.gridPane.style.display    = 'none';
+  if (refs.accordPane)  refs.accordPane.style.display  = 'none';
   videoPane.style.display = 'none';
   tabPassageBtn.classList.add('active');
-  if (tabBiBtn) tabBiBtn.classList.remove('active');
+  if (refs.tabGridBtn)   refs.tabGridBtn.classList.remove('active');
+  if (refs.tabAccordBtn) refs.tabAccordBtn.classList.remove('active');
   tabVideoBtn.classList.remove('active');
   state.leftTab[sk] = 'passage';
 }
@@ -1107,19 +1187,23 @@ function buildMediaLeft(left, g, isPractice, sk, isP7) {
 }
 
 function buildGroupQBlock(q, part, isPractice, sk, showSolBtn, groupQNums=null) {
-  const qKey='q'+q.q;
-  const wrap=make('div','q-block'); wrap.style.cssText='padding-bottom:8px';
+  const qKey = 'q'+q.q;
+  const solShown = isPractice && !!state.showSolution[qKey];
+  const wrap = make('div','q-block'); wrap.style.cssText='padding-bottom:8px';
   wrap.appendChild(buildQHeader(q.q,part,sk,showSolBtn,showSolBtn?groupQNums:null));
   if (q.enQ) wrap.appendChild(make('div','q-text',q.enQ));
-  wrap.appendChild(buildOptions(q.q,['A','B','C','D'],sk));
-  if (isPractice) {
-    const vb=buildViBlock(q,['A','B','C','D']);
-    if (vb) {
-      vb.dataset.viblock = String(q.q);
-      if (!state.showSolution[qKey]) vb.style.display='none';
-      wrap.appendChild(vb);
-    }
+  if (isPractice && q.viQ) {
+    const qtr = make('div','q-trans', escHtml(q.viQ));
+    qtr.dataset.vifor = String(q.q);
+    if (!solShown) qtr.style.display = 'none';
+    wrap.appendChild(qtr);
   }
+  const viOpts = (isPractice && q.viOpts && q.viOpts.some(Boolean)) ? q.viOpts : null;
+  const optList = buildOptionsAll(q.q,['A','B','C','D'],sk,null,viOpts,null);
+  if (isPractice && !solShown && viOpts) {
+    optList.querySelectorAll('.opt-trans').forEach(el => el.style.display='none');
+  }
+  wrap.appendChild(optList);
   return wrap;
 }
 
@@ -1216,8 +1300,9 @@ function buildQHeader(qNum, part, sk, showSolBtn, groupQNums=null) {
           const qn = parseInt(k.slice(1));
           const btn = document.querySelector(`[data-solq="${qn}"]`);
           if (btn) btn.innerHTML = solHtml(next);
-          const vb = document.querySelector(`.vi-block[data-viblock="${qn}"]`);
-          if (vb) vb.style.display = next ? '' : 'none';
+          const qtr = document.querySelector(`.q-trans[data-vifor="${qn}"]`);
+          if (qtr) qtr.style.display = next ? '' : 'none';
+          document.querySelectorAll(`.options-list[data-qlist="${qn}"] .opt-trans`).forEach(el => el.style.display = next ? '' : 'none');
           const optList = document.querySelector(`.options-list[data-qlist="${qn}"]`);
           if (optList) applyOptionColors(optList, state.answers[qn], getQuestionData(qn)?.q.answer, next);
         });
@@ -1324,10 +1409,15 @@ function buildOptions(qNum, letters, sk, optsOverride) {
 }
 
 function buildOptionsWithNotes(qNum, letters, sk, optsOverride, noteOpts) {
+  return buildOptionsAll(qNum, letters, sk, optsOverride, null, noteOpts);
+}
+
+function buildOptionsAll(qNum, letters, sk, optsOverride, viTrans, noteOpts) {
+  const stripPfx = s => String(s).replace(/^(?:\([A-D]\)|[A-D][.)]\s*)/, '').trim();
   const list = buildOptions(qNum, letters, sk, optsOverride);
-  if (!noteOpts || !noteOpts.length) return list;
   list.querySelectorAll('.option-item').forEach((item, i) => {
-    if (noteOpts[i]) item.appendChild(make('div','opt-note', escHtml(noteOpts[i])));
+    if (viTrans && viTrans[i])  item.appendChild(make('div','opt-trans', escHtml(stripPfx(viTrans[i]))));
+    if (noteOpts && noteOpts[i]) item.appendChild(make('div','opt-note',  escHtml(stripPfx(noteOpts[i]))));
   });
   return list;
 }
