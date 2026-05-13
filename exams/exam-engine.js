@@ -893,7 +893,12 @@ function renderScreen(idx) {
       const notes7raw = q.noteOpts?.some(Boolean) ? q.noteOpts : null;
       const noteQ7    = notes7raw?.[0] || null;
       const noteOpts7 = notes7raw?.length > 1 ? notes7raw.slice(1) : null;
-      if (noteQ7 && solShown7) qw.appendChild(make('div','q-note', escHtml(noteQ7)));
+      if (noteQ7) {
+        const qnote7 = make('div','q-note', escHtml(noteQ7));
+        qnote7.dataset.vifor = String(q.q);
+        if (!solShown7) qnote7.style.display = 'none';
+        qw.appendChild(qnote7);
+      }
       const viOpts7 = q.viOpts?.some(Boolean) ? q.viOpts : null;
       const optList7 = buildOptionsAll(q.q,['A','B','C','D'],sk,null,viOpts7, noteOpts7?.some(Boolean) ? noteOpts7 : null);
       if (!solShown7) optList7.querySelectorAll('.opt-trans,.opt-note').forEach(el => el.style.display='none');
@@ -1288,6 +1293,8 @@ function buildQHeader(qNum, part, sk, showSolBtn, groupQNums=null) {
             if (otherBtn) otherBtn.innerHTML = solHtml(false);
             const otherQtr = document.querySelector(`.q-trans[data-vifor="${otherQn}"]`);
             if (otherQtr) otherQtr.style.display = 'none';
+            const otherQnote = document.querySelector(`.q-note[data-vifor="${otherQn}"]`);
+            if (otherQnote) otherQnote.style.display = 'none';
             document.querySelectorAll(`.options-list[data-qlist="${otherQn}"] .opt-trans,.options-list[data-qlist="${otherQn}"] .opt-note`).forEach(el => el.style.display='none');
             const otherOpts = document.querySelector(`.options-list[data-qlist="${otherQn}"]`);
             if (otherOpts) applyOptionColors(otherOpts, state.answers[otherQn], getQuestionData(otherQn)?.q.answer, false);
@@ -1310,6 +1317,8 @@ function buildQHeader(qNum, part, sk, showSolBtn, groupQNums=null) {
           const qn = parseInt(k.slice(1));
           const qtr = document.querySelector(`.q-trans[data-vifor="${qn}"]`);
           if (qtr) qtr.style.display = next ? '' : 'none';
+          const qnote = document.querySelector(`.q-note[data-vifor="${qn}"]`);
+          if (qnote) qnote.style.display = next ? '' : 'none';
           document.querySelectorAll(`.options-list[data-qlist="${qn}"] .opt-trans,.options-list[data-qlist="${qn}"] .opt-note`).forEach(el => el.style.display = next ? '' : 'none');
           const optList = document.querySelector(`.options-list[data-qlist="${qn}"]`);
           if (optList) applyOptionColors(optList, state.answers[qn], getQuestionData(qn)?.q.answer, next);
