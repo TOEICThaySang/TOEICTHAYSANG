@@ -1,56 +1,56 @@
 const EXAM_DATA = {
   "id": "ets_de2",
-  "title": "ETS 2023 – Đề 2",
+  "title": "ETS 2024 – Đề 2",
   "parts": {
     "1": {
       "questions": [
         {
           "q": 1,
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/1.mp3",
-          "img": "https://2023.toeicthaysang.com/de2/1.png",
-          "script": "(A) A woman is holding a power tool.\n(B) A woman is opening a drawer.\n(C) A printer is being unplugged.\n(D) Office supplies are being put into a box.",
-          "trans": "(A) Một người phụ nữ đang cầm một dụng cụ điện.\n(B) Một người phụ nữ đang mở ngăn kéo.\n(C) Một chiếc máy in đang được rút phích cắm điện.\n(D) Văn phòng phẩm đang được cho vào hộp.",
-          "answer": "B"
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-1.mp3",
+          "img": "https://2024.toeicthaysang.com/de2/1.png",
+          "script": "(A) She’s inserting a cord into an outlet.\n(B) She’s pressing a button on a machine.\n(C) She’s gripping the handle of a drawer.\n(D) She’s tacking a notice onto the wall.",
+          "trans": "(A) Cô ấy đang cắm dây vào ổ cắm.\n(B) Cô ấy đang nhấn nút trên máy.\n(C) Cô ấy đang nắm chặt tay cầm của ngăn kéo.\n(D) Cô ấy đang dán một thông báo lên tường.",
+          "answer": "A"
         },
         {
           "q": 2,
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/2.mp3",
-          "img": "https://2023.toeicthaysang.com/de2/2.png",
-          "script": "(A) Plants are on top of a cart.\n(B) A watering can is next to some trees.\n(C) A man is digging in a garden.\n(D) A man is near a display of potted plants.",
-          "trans": "(A) Cây cối ở phía trên một chiếc xe đẩy.\n(B) Một chiếc bình tưới nước ở cạnh một vài cái cây.\n(C) Một người đàn ông đang đào đất trong vườn.\n(D) Một người đàn ông đang ở gần khu trưng bày các chậu cây.",
-          "answer": "D"
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-2.mp3",
+          "img": "https://2024.toeicthaysang.com/de2/2.png",
+          "script": "(A) Some window shutters are being replaced.\n(B) A pillow is being arranged on a seat.\n(C) An outdoor table is being cleared off.\n(D) Some wooden boards are being painted.",
+          "trans": "(A) Một số cửa chớp đang được thay thế.\n(B) Một chiếc gối đang được đặt trên ghế.\n(C) Một chiếc bàn ngoài trời đang được dọn sạch.\n(D) Một số tấm gỗ đang được sơn.",
+          "answer": "B"
         },
         {
           "q": 3,
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/3.mp3",
-          "img": "https://2023.toeicthaysang.com/de2/3.png",
-          "script": "(A) The man is fixing a machine.\n(B) The man is buying some equipment.\n(C) The man is lifting a weight.\n(D) The man is looking at the ceiling.",
-          "trans": "(A) Người đàn ông đang sửa chữa một chiếc máy.\n(B) Người đàn ông đang mua một số thiết bị.\n(C) Người đàn ông đang nâng một quả tạ.\n(D) Người đàn ông đang nhìn lên trần nhà.",
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-3.mp3",
+          "img": "https://2024.toeicthaysang.com/de2/3.png",
+          "script": "(A) Some utensils have been discarded in a bin.\n(B) Some bottles are being emptied into a sink.\n(C) A rolling chair has been placed next to a counter.\n(D) Some drawers have been left open.",
+          "trans": "(A) Một số đồ dùng đã bị bỏ vào thùng rác.\n(B) Một số chai đang được đổ vào bồn rửa.\n(C) Một chiếc ghế lăn đã được đặt cạnh quầy tính tiền.\n(D) Một số ngăn kéo đã bị mở.",
           "answer": "C"
         },
         {
           "q": 4,
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/4.mp3",
-          "img": "https://2023.toeicthaysang.com/de2/4.png",
-          "script": "(A) A wall is decorated with various items.\n(B) Two chairs are blocking a doorway.\n(C) A door has been propped open with a statue.\n(D) A painting is hanging next to a window.",
-          "trans": "(A) Một bức tường được trang trí với nhiều vật dụng khác nhau.\n(B) Hai chiếc ghế đang chặn một lối đi.\n(C) một cánh cửa đã được dựng mở bằng một bức tượng.\n(D) Một bức tranh đang treo cạnh một cửa sổ.",
-          "answer": "A"
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-4.mp3",
+          "img": "https://2024.toeicthaysang.com/de2/4.png",
+          "script": "(A) A man is chopping some wood into pieces.\n(B) Leaves are scattered across the grass.\n(C) A man is closing a window.\n(D) Wood is piled near a fence.",
+          "trans": "(A) Một người đàn ông đang chặt gỗ thành từng mảnh.\n(B) Lá nằm rải rác trên bãi cỏ.\n(C) Một người đàn ông đang đóng cửa sổ.\n(D) Gỗ được chất gần hàng rào.",
+          "answer": "D"
         },
         {
           "q": 5,
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/5.mp3",
-          "img": "https://2023.toeicthaysang.com/de2/5.png",
-          "script": "(A) Some people are browsing in a shop.\n(B) Some people are exchanging gifts.\n(C) A customer is paying for some goods.\n(D) Some salespeople are preparing a display.",
-          "trans": "(A) Một số người đang xem hàng trong một cửa hàng.\n(B) Một số người đang trao đổi quà tặng.\n(C) Một khách hàng đang thanh toán cho một số hàng hóa.\n(D) Một số nhân viên bán hàng đang chuẩn bị một khu trưng bày.",
-          "answer": "A"
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-5.mp3",
+          "img": "https://2024.toeicthaysang.com/de2/5.png",
+          "script": "(A) People are standing in line in a lobby.\n(B) Items are being loaded into shopping bags.\n(C) Tents have been set up in a parking area.\n(D) A worker is putting up a canopy.",
+          "trans": "(A) Mọi người đang xếp hàng ở sảnh.\n(B) Các mặt hàng đang được chất vào túi mua sắm.\n(C) Lều đã được dựng ở khu vực đỗ xe.\n(D) Một công nhân đang dựng mái che.",
+          "answer": "C"
         },
         {
           "q": 6,
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/6.mp3",
-          "img": "https://2023.toeicthaysang.com/de2/6.png",
-          "script": "(A) Cones are blocking access to a road.\n(B) Some soil is in a pile on the ground.\n(C) Some bushes have been planted in front of a building.\n(D) A tree is lying in the roadway.",
-          "trans": "(A) Những chiếc cọc tiêu đang chặn lối vào một con đường.\n(B) Một ít đất đang chất thành đống trên mặt đất.\n(C) Một số bụi cây đã được trồng phía trước một tòa nhà.\n(D) Một cái cây đang nằm trên lòng đường.",
-          "answer": "B"
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-6.mp3",
+          "img": "https://2024.toeicthaysang.com/de2/6.png",
+          "script": "(A) Some luggage is stacked next to an escalator.\n(B) A suitcase is being lifted onto a shuttle bus.\n(C) Some suitcases are displayed in a shop window.\n(D) A luggage rack has two levels.",
+          "trans": "(A) Một số hành lý được xếp cạnh thang cuốn.\n(B) Một chiếc vali đang được nâng lên một chiếc xe buýt đưa đón.\n(C) Một số vali được trưng bày trong cửa sổ cửa hàng.\n(D) Giá để hành lý có hai tầng.",
+          "answer": "D"
         }
       ]
     },
@@ -58,984 +58,985 @@ const EXAM_DATA = {
       "questions": [
         {
           "q": 7,
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/7.mp3",
-          "script": "Who’s responsible for hiring at our fitness center?\n(A) Mr. Gonzalez is going to get a membership.\n(B) I forgot to sign in at reception.\n(C) Mr. Lin and Ms. Weiss are.",
-          "trans": "Ai chịu trách nhiệm tuyển dụng tại trung tâm thể hình của chúng ta?\n(A) Ông Gonzalez định mua một thẻ thành viên.\n(B) Tôi đã quên đăng ký tại quầy lễ tân.\n(C) Là ông Lin và bà Weiss.",
-          "answer": "C"
-        },
-        {
-          "q": 8,
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/8.mp3",
-          "script": "Where do you usually purchase office supplies?\n(A) We put them in the hallway cabinets.\n(B) At the store on Maple Avenue.\n(C) A manager’s approval.",
-          "trans": "Bạn thường mua văn phòng phẩm ở đâu?\n(A) Chúng tôi đặt chúng trong các tủ ở hành lang.\n(B) Tại cửa hàng trên đại lộ Maple.\n(C) Một sự chấp thuận của quản lý.",
-          "answer": "B"
-        },
-        {
-          "q": 9,
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/9.mp3",
-          "script": "What time does Mr. Park usually leave?\n(A) Around six o’clock in the evening.\n(B) He left everything we need.\n(C) We’ve had many interns over the years.",
-          "trans": "Ông Park thường rời đi lúc mấy giờ?\n(A) Khoảng sáu giờ tối.\n(B) Anh ấy đã để lại mọi thứ chúng ta cần.\n(C) Chúng ta đã có nhiều thực tập sinh trong suốt những năm qua.",
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-7.mp3",
+          "script": "Have the machines on the factory floor been cleaned?\n(A) No, not yet.\n(B) It’s in the shipping container.\n(C) I just put it in the trash bin.",
+          "trans": "Máy móc trên sàn nhà xưởng đã được vệ sinh chưa?\n(A) Chưa, chưa làm.\n(B) Nó ở trong thùng vận chuyển.\n(C) Tôi vừa bỏ nó vào thùng rác.",
           "answer": "A"
         },
         {
+          "q": 8,
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-8.mp3",
+          "script": "How much will the budget increase next year?\n(A) About 10 percent.\n(B) Three hours, I think.\n(C) At the bank’s main branch.",
+          "trans": "Ngân sách sẽ tăng bao nhiêu trong năm tới?\n(A) Khoảng 10 phần trăm.\n(B) Tôi nghĩ là ba giờ.\n(C) Tại chi nhánh chính của ngân hàng.",
+          "answer": "A"
+        },
+        {
+          "q": 9,
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-9.mp3",
+          "script": "You’re going to water the plants before you leave, aren’t you?\n(A) I walked the whole way.\n(B) Yes, right after lunch.\n(C) In the breakroom.",
+          "trans": "Bạn sẽ tưới cây trước khi đi phải không?\n(A) Tôi đi bộ suốt quãng đường.\n(B) Vâng, ngay sau bữa trưa.\n(C) Trong phòng nghỉ.",
+          "answer": "B"
+        },
+        {
           "q": 10,
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/10.mp3",
-          "script": "Do you want to present your research to the marketing team?\n(A) That’s what I’ve heard as well.\n(B) If we can find the time for it.\n(C) Yes, I received the gift.",
-          "trans": "Bạn có muốn thuyết trình nghiên cứu của mình với nhóm marketing không?\n(A) Đó cũng là những gì tôi đã nghe.\n(B) Nếu chúng ta có thể sắp xếp thời gian cho việc đó.\n(C) Vâng, tôi đã nhận được món quà.",
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-10.mp3",
+          "script": "Aren’t you going to schedule an eye doctor appointment?\n(A) Those glasses look nice on you.\n(B) I already scheduled one.\n(C) The seminar is three days long.",
+          "trans": "Bạn không định đặt lịch hẹn với bác sĩ nhãn khoa à?\n(A) Cặp kính đó trông rất đẹp với bạn.\n(B) Tôi đã lên lịch rồi.\n(C) Hội thảo kéo dài ba ngày.",
           "answer": "B"
         },
         {
           "q": 11,
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/11.mp3",
-          "script": "Our company picnic is on Friday, isn’t it?\n(A) Those times are both booked.\n(B) Only if you can find them easily.\n(C) Right—in two days.",
-          "trans": "Buổi dã ngoại của công ty chúng ta là vào thứ Sáu, phải không?\n(A) Cả hai khung giờ đó đều đã được đặt chỗ.\n(B) Chỉ khi bạn có thể tìm thấy chúng một cách dễ dàng.\n(C) Đúng vậy—trong hai ngày nữa.",
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-11.mp3",
+          "script": "I’m going to try to fix this printer.\n(A) You're right, it doesn’t fit.\n(B) Double-sided copies.\n(C) Are you sure it can be repaired?",
+          "trans": "Tôi đang cố gắng sửa cái máy in này.\n(A) Bạn nói đúng, nó không vừa.\n(B) Bản sao hai mặt.\n(C) Bạn có chắc nó có thể sửa được không?",
           "answer": "C"
         },
         {
           "q": 12,
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/12.mp3",
-          "script": "Isn’t the bus supposed to stop here?\n(A) Yes, according to the schedule.\n(B) I’m on my way now.\n(C) It listed several potential clients.",
-          "trans": "Chẳng phải xe buýt nên dừng ở đây sao?\n(A) Đúng vậy, theo lịch trình.\n(B) Tôi đang trên đường đến đây.\n(C) Nó đã liệt kê một vài khách hàng tiềm năng.",
-          "answer": "A"
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-12.mp3",
+          "script": "What should we do with these brochures?\n(A) A trip to the seashore.\n(B) Yes, I found it already.\n(C) I’ll leave them at the front desk.",
+          "trans": "Chúng ta nên làm gì với những tài liệu quảng cáo này?\n(A) Một chuyến đi đến bờ biển.\n(B) Vâng, tôi đã tìm thấy nó rồi.\n(C) Tôi sẽ để chúng ở quầy lễ tân.",
+          "answer": "C"
         },
         {
           "q": 13,
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/13.mp3",
-          "script": "We should fill this order quickly, shouldn’t we?\n(A) No, I haven’t yet.\n(B) Yes, it’s for an important client.\n(C) Try using this key.",
-          "trans": "Chúng ta nên hoàn thành đơn hàng này nhanh chóng, đúng không?\n(A) Không, tôi vẫn chưa làm.\n(B) Đúng vậy, nó dành cho một khách hàng quan trọng.\n(C) Hãy thử dùng chiếc chìa khóa này.",
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-13.mp3",
+          "script": "Has the policy meeting been rescheduled?\n(A) We have lots of desk calendar designs.\n(B) Yes, it’s happening tomorrow instead.\n(C) This soup I ordered is delicious.",
+          "trans": "Cuộc họp chính sách đã được dời lại chưa?\n(A) Chúng tôi có rất nhiều mẫu lịch để bàn.\n(B) Rồi, thay vào đó nó sẽ diễn ra vào ngày mai.\n(C) Món súp tôi gọi rất ngon.",
           "answer": "B"
         },
         {
           "q": 14,
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/14.mp3",
-          "script": "How do you like your new job?\n(A) I can work from home quite often.\n(B) A career in electrical engineering.\n(C) My sister helped me apply.",
-          "trans": "Bạn thấy công việc mới của mình thế nào?\n(A) Tôi có thể làm việc tại nhà khá thường xuyên.\n(B) Một sự nghiệp trong ngành kỹ thuật điện.\n(C) Em gái tôi đã giúp tôi nộp đơn.",
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-14.mp3",
+          "script": "Why don’t we stop by the office cafeteria on our way to the workshop?\n(A) Sure, we have time for that.\n(B) A full-service buffet.\n(C) The topic is professional networking.",
+          "trans": "Tại sao chúng ta không ghé qua quán cà phê văn phòng trên đường đến xưởng nhỉ?\n(A) Chắc chắn rồi, chúng ta có thời gian cho việc đó.\n(B) Một bữa tiệc buffet đầy đủ dịch vụ.\n(C) Chủ đề là mạng lưới chuyên nghiệp.",
           "answer": "A"
         },
         {
           "q": 15,
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/15.mp3",
-          "script": "Let’s go to the cafeteria for lunch today.\n(A) There should be one in the filing cabinet.\n(B) Which local restaurant do you prefer?\n(C) I don’t think I can take a break.",
-          "trans": "Hôm nay chúng ta hãy đến căn tin để ăn trưa đi.\n(A) Nên có một cái trong tủ đựng hồ sơ.\n(B) Bạn thích nhà hàng địa phương nào hơn?\n(C) Tôi không nghĩ mình có thể nghỉ ngơi được.",
-          "answer": "C"
-        },
-        {
-          "q": 16,
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/16.mp3",
-          "script": "When will we hire the new interns?\n(A) Mr. Wyeth is handling that.\n(B) With more time to spare than usual.\n(C) The highest available salary.",
-          "trans": "Khi nào chúng ta sẽ tuyển thực tập sinh mới?\n(A) Ông Wyeth đang xử lý việc đó.\n(B) Với nhiều thời gian rảnh rỗi hơn bình thường.\n(C) Mức lương cao nhất có thể.",
-          "answer": "A"
-        },
-        {
-          "q": 17,
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/17.mp3",
-          "script": "How often should I mail these statements?\n(A) Yes, you can buy one online.\n(B) The post office on Grant Street.\n(C) We send them out once a month.",
-          "trans": "Tôi nên gửi các bản sao kê này qua thư bao lâu một lần?\n(A) Có, bạn có thể mua một cái trực tuyến.\n(B) Bưu điện trên đường Grant.\n(C) Chúng tôi gửi chúng đi mỗi tháng một lần.",
-          "answer": "C"
-        },
-        {
-          "q": 18,
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/18.mp3",
-          "script": "Why did you put that food in the freezer?\n(A) It’s not working well currently.\n(B) I meant to put it in the refrigerator.\n(C) Let’s start making dinner soon.",
-          "trans": "Tại sao bạn lại để thức ăn đó vào ngăn đông?\n(A) Hiện tại nó hoạt động không tốt lắm.\n(B) Tôi đã định để nó vào ngăn mát tủ lạnh.\n(C) Hãy sớm bắt đầu chuẩn bị bữa tối đi.",
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-15.mp3",
+          "script": "Have you tried our famous pasta dish?\n(A) We need a table for five.\n(B) Yes, it was delicious.\n(C) I'll try to make it on time.",
+          "trans": "Bạn đã thử món mì ống nổi tiếng của chúng tôi chưa?\n(A) Chúng tôi cần một bàn cho năm người.\n(B) Vâng, nó rất ngon.\n(C) Tôi sẽ cố gắng đến đúng giờ.",
           "answer": "B"
         },
         {
-          "q": 19,
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/19.mp3",
-          "script": "Could you print the agenda for the meeting?\n(A) It’s already on your desk.\n(B) No, the other printer.\n(C) Was that a client?",
-          "trans": "Bạn có thể in chương trình nghị sự cho cuộc họp được không?\n(A) Nó đã ở trên bàn của bạn rồi.\n(B) Không, chiếc máy in kia cơ.\n(C) Đó có phải là một khách hàng không?",
+          "q": 16,
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-16.mp3",
+          "script": "Who’s the opening act at tonight’s concert?\n(A) Could you turn up the volume?\n(B) A jazz singer from France.\n(C) The position has been filled.",
+          "trans": "Ai là người biểu diễn mở màn buổi hòa nhạc tối nay?\n(A) Bạn có thể tăng âm lượng lên được không?\n(B) Một ca sĩ nhạc jazz đến từ Pháp.\n(C) Vị trí đã được lấp đầy.",
+          "answer": "B"
+        },
+        {
+          "q": 17,
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-17.mp3",
+          "script": "When do the product demonstrations start?\n(A) The schedule was e-mailed last Friday.\n(B) Some innovative features.\n(C) In room 202, I think.",
+          "trans": "Khi nào buổi giới thiệu sản phẩm bắt đầu?\n(A) Lịch trình đã được gửi qua email vào thứ Sáu tuần trước.\n(B) Một số tính năng cải tiến.\n(C) Tôi nghĩ là ở phòng 202.",
           "answer": "A"
+        },
+        {
+          "q": 18,
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-18.mp3",
+          "script": "I tried updating the Web site, but it didn't work.\n(A) That date works for me.\n(B) Usually our online reviews.\n(C) Just send me the changes you want.",
+          "trans": "Tôi đã thử cập nhật trang Web nhưng không được.\n(A) Ngày đó phù hợp với tôi.\n(B) Thông thường chúng tôi đánh giá trực tuyến.\n(C) Chỉ cần gửi cho tôi những thay đổi mà bạn muốn.",
+          "answer": "C"
+        },
+        {
+          "q": 19,
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-19.mp3",
+          "script": "Did you hire a new welding specialist?\n(A) The part's back-ordered.\n(B) Yes, he starts tomorrow.\n(C) No, it should be higher.",
+          "trans": "Bạn đã thuê một chuyên gia hàn mới phải không?\n(A) Bộ phận được đặt hàng trước.\n(B) Vâng, anh ấy sẽ bắt đầu vào ngày mai.\n(C) Không, nó phải cao hơn.",
+          "answer": "B"
         },
         {
           "q": 20,
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/20.mp3",
-          "script": "How far are you from the clinic?\n(A) I’m close enough to walk.\n(B) I need to see the doctor.\n(C) It’s a well-known clinic.",
-          "trans": "Bạn cách phòng khám bao xa?\n(A) Tôi ở đủ gần để có thể đi bộ.\n(B) Tôi cần gặp bác sĩ.\n(C) Đó là một phòng khám nổi tiếng.",
-          "answer": "A"
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-20.mp3",
+          "script": "How was the color palette for the lobby chosen?\n(A) Blue and orange.\n(B) It was fine, thanks.\n(C) I wasn't involved.",
+          "trans": "Bảng màu cho tiền sảnh được chọn như thế nào?\n(A) Màu xanh và màu cam.\n(B) Không sao đâu, cảm ơn.\n(C) Tôi không liên quan.",
+          "answer": "C"
         },
         {
           "q": 21,
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/21.mp3",
-          "script": "Didn’t you get a printout of the company newsletter from Emiko?\n(A) She started working here three years ago.\n(B) I was out of town last week.\n(C) Yes, I do like to write.",
-          "trans": "Bạn không nhận được bản in bản tin công ty từ Emiko sao?\n(A) Cô ấy đã bắt đầu làm việc ở đây từ ba năm trước.\n(B) Tôi đã đi khỏi thành phố vào tuần trước.\n(C) Có, tôi thực sự thích viết lách.",
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-21.mp3",
+          "script": "When are we ordering more supplies for the office?\n(A) In the storage closet.\n(B) Next week on Monday.\n(C) The new desk looks great!",
+          "trans": "Khi nào chúng ta đặt hàng thêm đồ dùng cho văn phòng?\n(A) Trong tủ đựng đồ.\n(B) Tuần tới vào thứ Hai.\n(C) Chiếc bàn mới trông thật tuyệt!",
           "answer": "B"
         },
         {
           "q": 22,
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/22.mp3",
-          "script": "When do you need to renew your passport?\n(A) Be careful not to lose your tickets.\n(B) A brand-new type of microchip.\n(C) Soon, because it's about to expire.",
-          "trans": "Khi nào bạn cần gia hạn hộ chiếu?\n(A) Hãy cẩn thận đừng để mất vé của bạn.\n(B) Một loại vi mạch hoàn toàn mới.\n(C) Sớm thôi, vì nó sắp hết hạn rồi.",
-          "answer": "C"
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-22.mp3",
+          "script": "The battery for the water pump is going to be solar powered, right?\n(A) We're still in the planning stages.\n(B) A hundred and forty dollars per year.\n(C) Yes, I'd love a glass of water.",
+          "trans": "Pin của máy bơm nước sẽ chạy bằng năng lượng mặt trời phải không?\n(A) Chúng tôi vẫn đang trong giai đoạn lập kế hoạch.\n(B) Một trăm bốn mươi đô la mỗi năm.\n(C) Vâng, tôi muốn một cốc nước.",
+          "answer": "A"
         },
         {
           "q": 23,
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/23.mp3",
-          "script": "Who can help me find replacement parts for my computer?\n(A) Here are all the latest statements.\n(B) I can help you look through the inventory.\n(C) Put these on that shelf.",
-          "trans": "Ai có thể giúp tôi tìm linh kiện thay thế cho máy tính của mình?\n(A) Đây là tất cả các bản sao kê mới nhất.\n(B) Tôi có thể giúp bạn kiểm tra trong kho hàng.\n(C) Hãy đặt những thứ này lên chiếc kệ đó.",
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-23.mp3",
+          "script": "Where can I buy a charger for this laptop?\n(A) Around three o'clock.\n(B) I can order one for you.\n(C) A limited return policy.",
+          "trans": "Tôi có thể mua sạc cho laptop này ở đâu?\n(A) Khoảng ba giờ.\n(B) Tôi có thể đặt một cái cho bạn.\n(C) Chính sách hoàn trả có giới hạn.",
           "answer": "B"
         },
         {
           "q": 24,
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/24.mp3",
-          "script": "I can’t make it to the company dinner tonight.\n(A) Managers expect everyone to be there.\n(B) A buffet-style restaurant.\n(C) A meeting once a week.",
-          "trans": "Tôi không thể đến dự bữa tối của công ty tối nay.\n(A) Các quản lý mong đợi mọi người đều có mặt.\n(B) Một nhà hàng kiểu buffet.\n(C) Một cuộc họp mỗi tuần một lần.",
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-24.mp3",
+          "script": "Do l need to reserve a meeting room?\n(A) Yes, let me show you how.\n(B) The service is good.\n(C) My slide presentation.",
+          "trans": "Tôi có cần đặt phòng họp không?\n(A) Vâng, để tôi chỉ cho bạn cách thực hiện.\n(B) Dịch vụ này rất tốt.\n(C) Bài thuyết trình của tôi.",
           "answer": "A"
         },
         {
           "q": 25,
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/25.mp3",
-          "script": "Do you work in this neighborhood?\n(A) Yes, I’d like to.\n(B) No, my office isn’t nearby.\n(C) There aren’t any of those here.",
-          "trans": "Bạn có làm việc ở khu vực lân cận này không?\n(A) Có, tôi muốn thế.\n(B) Không, văn phòng của tôi không ở gần đây.\n(C) Không có cái nào như thế ở đây cả.",
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-25.mp3",
+          "script": "When’s the new department director supposed to start?\n(A) It’s an hour long.\n(B) Ms. Pavlova isn’t retiring for several weeks.\n(C) No, that department’s upstairs.",
+          "trans": "Khi nào giám đốc bộ phận mới sẽ bắt đầu?\n(A) Nó dài một giờ.\n(B) Cô Pavlova sẽ không nghỉ hưu trong vài tuần nữa.\n(C) Không, phòng đó ở trên lầu.",
           "answer": "B"
         },
         {
           "q": 26,
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/26.mp3",
-          "script": "It’s time for our quarterly earnings report, isn’t it?\n(A) Was there an e-mail reminder about it?\n(B) To pay for a new advertising campaign.\n(C) No, a different pair of earrings.",
-          "trans": "Đã đến lúc báo cáo doanh thu hàng quý của chúng ta rồi, phải không?\n(A) Có email nhắc nhở nào về việc đó không?\n(B) Để chi trả cho một chiến dịch quảng cáo mới.\n(C) Không, một đôi khuyên tai khác.",
-          "answer": "A"
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-26.mp3",
+          "script": "Should I deliver these pizzas, or will you?\n(A) No thanks—I’m not hungry.\n(B) Ten dollars for two.\n(C) They’re being picked up.",
+          "trans": "Tôi có nên giao những chiếc pizza này không, hay bạn sẽ giao?\n(A) Không, cảm ơn—tôi không đói.\n(B) Mười đô la cho hai người.\n(C) Chúng sẽ được đến lấy trực tiếp.",
+          "answer": "C"
         },
         {
           "q": 27,
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/27.mp3",
-          "script": "What did you do with the guest list that I sent you?\n(A) After everyone received it.\n(B) I passed it along to everyone who needed it.\n(C) We’re supposed to leave soon.",
-          "trans": "Bạn đã làm gì với danh sách khách mời mà tôi gửi cho bạn?\n(A) Sau khi mọi người đã nhận được nó.\n(B) Tôi đã chuyển nó cho tất cả những người cần nó.\n(C) Chúng ta nên rời đi sớm.",
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-27.mp3",
+          "script": "This month’s shipment schedule has been revised.\n(A) I couldn’t find them either.\n(B) Which dates have been changed?\n(C) Two dollars per pound.",
+          "trans": "Lịch vận chuyển tháng này đã được điều chỉnh lại.\n(A) Tôi cũng không thể tìm thấy chúng.\n(B) Những ngày nào đã được thay đổi?\n(C) Hai đô la một pound.",
           "answer": "B"
         },
         {
           "q": 28,
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/28.mp3",
-          "script": "Did you see the announcement about Emily’s promotion?\n(A) All the technology’s been upgraded.\n(B) Perhaps a good career counselor.\n(C) I’ve been busy all morning.",
-          "trans": "Bạn có thấy thông báo về việc thăng chức của Emily không?\n(A) Tất cả công nghệ đã được nâng cấp.\n(B) Có lẽ là một người tư vấn nghề nghiệp giỏi.\n(C) Tôi đã bận rộn suốt cả buổi sáng.",
-          "answer": "C"
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-28.mp3",
+          "script": "How much will the repairs cost?\n(A) The work is covered under the warranty plan.\n(B) Yes, it’s also available in red.\n(C) In about two weeks.",
+          "trans": "Chi phí sửa chữa là bao nhiêu?\n(A) Công việc được áp dụng kế hoạch bảo hành.\n(B) Vâng, nó cũng có màu đỏ.\n(C) Trong khoảng hai tuần.",
+          "answer": "A"
         },
         {
           "q": 29,
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/29.mp3",
-          "script": "Let’s try our best to finish the project on time.\n(A) All except the first one.\n(B) We may need a few more days.\n(C) I think over time it will.",
-          "trans": "Hãy cố gắng hết sức để hoàn thành dự án đúng hạn.\n(A) Tất cả ngoại trừ cái đầu tiên.\n(B) Chúng ta có lẽ cần thêm một vài ngày nữa.\n(C) Tôi nghĩ theo thời gian thì nó sẽ như vậy.",
-          "answer": "B"
-        },
-        {
-          "q": 30,
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/30.mp3",
-          "script": "Where’s the store manager?\n(A) A recent hiring decision.\n(B) I enjoy shopping at that store.\n(C) She went out for lunch.",
-          "trans": "Quản lý cửa hàng ở đâu rồi?\n(A) Một quyết định tuyển dụng gần đây.\n(B) Tôi thích mua sắm tại cửa hàng đó.\n(C) Cô ấy đã đi ra ngoài ăn trưa.",
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-29.mp3",
+          "script": "Why don’t we provide more samples of the wallpaper patterns?\n(A) The newspaper is delivered daily.\n(B) An interior design course.\n(C) There are plenty in the binders.",
+          "trans": "Tại sao chúng ta không cung cấp thêm mẫu hoạ tiết giấy dán tường?\n(A) Báo được giao hàng ngày.\n(B) Một khóa học thiết kế nội thất.\n(C) Có rất nhiều trong tập tài liệu.",
           "answer": "C"
         },
         {
+          "q": 30,
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-30.mp3",
+          "script": "Can you give me a tour of the property this afternoon?\n(A) Sorry, I won’t have time until tomorrow.\n(B) It has a very modern design.\n(C) A house on Maple Street.",
+          "trans": "Bạn có thể dẫn tôi đi tham quan khu nhà chiều nay được không?\n(A) Xin lỗi, tôi không có thời gian cho đến ngày mai.\n(B) Nó có thiết kế rất hiện đại.\n(C) Một ngôi nhà trên đường Maple.",
+          "answer": "A"
+        },
+        {
           "q": 31,
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/31.mp3",
-          "script": "The software you’re using isn't very reliable.\n(A) These chairs aren’t very comfortable.\n(B) I've been using it for years with no problems.\n(C) I saw that computer at the store.",
-          "trans": "Phần mềm bạn đang sử dụng không đáng tin cậy lắm.\n(A) Những chiếc ghế này không thoải mái lắm.\n(B) Tôi đã sử dụng nó nhiều năm mà không gặp vấn đề gì.\n(C) Tôi đã thấy chiếc máy tính đó ở cửa hàng.",
-          "answer": "B"
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-31.mp3",
+          "script": "Who’s scheduled to test the product today?\n(A) We’re waiting for confirmation.\n(B) It’s a great album, right?\n(C) About six weeks ago.",
+          "trans": "Ai có lịch kiểm tra sản phẩm hôm nay?\n(A) Chúng tôi đang chờ xác nhận.\n(B) Đó là một album tuyệt vời phải không?\n(C) Khoảng sáu tuần trước.",
+          "answer": "A"
         }
       ]
     },
     "3": {
       "groups": [
         {
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/32-34.mp3",
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-32-34.mp3",
           "img": "",
-          "script": "W: (32) Hello, Forest Grove Photography Services. How can I help you?\nM: Hi, (32) l'd like to get a photographer to cover our event. (33) lt's a charity basketball game next Tuesday night. I was hoping to get Thomas Zukowski. He works for you, right?\nW: Yes, but unfortunately, (33) Thomas doesn't usually work evenings.\nM: Oh, too bad. (34) Could you recommend somebody else?\nW: (34) Before I do that, let me talk to him. He might make an exception. Tom does love basketball.",
-          "trans": "W: (32) Xin chào, Dịch vụ chụp ảnh Forest Grove xin nghe. Tôi có thể giúp gì cho bạn?\nM: Chào bạn, (32) Tôi muốn thuê một nhiếp ảnh gia chụp cho sự kiện của chúng tôi. (33) Một trận đấu bóng rổ từ thiện sẽ diễn ra vào tối thứ Ba tới. Tôi mong muốn thuê anh Thomas Zukowski. Anh ấy làm việc cho bên bạn, phải không?\nM: Vâng, nhưng không may là (33) Thomas thường không làm việc vào buổi tối.\nM: Ồ, buồn quá. (34) Bạn có thể giới thiệu người khác cho tôi với không?\nW: (34) Trước khi hỏi người khác, để tôi nói chuyện với anh ấy xem. Anh ấy có thể có ngoại lệ. Tom rất thích bóng rổ luôn ấy.",
+          "script": "M: (32) Good morning, captain. We'll be docking at the port in Kolkata this evening, right?\nW: (33) Actually, we had to change course overnight to avoid a storm, so we're running behind schedule. But we should arrive early tomorrow.\nM: Well, that’s not too bad.\nW: Oh, Hector has the day off today, so (34) I'll need you to do the morning rounds— starting with checking the machinery in the engine room.\nM: (34) Of course—I'll head there now",
+          "trans": "M: (32) Chào buổi sáng, đội trưởng. Tối nay chúng ta sẽ cập cảng ở Kolkata phải không?\nW: (33) Thật ra, chúng tôi phải đổi hướng trong đêm để tránh bão nên đã chậm tiến độ. Nhưng ngày mai chúng ta sẽ đến sớm.\nM: Chà, điều đó cũng không tệ lắm.\nW: Ồ, hôm nay Hector được nghỉ nên (34) Tôi cần bạn làm công việc buổi sáng— bắt đầu bằng việc kiểm tra máy móc trong phòng máy.\nM: (34) Tất nhiên—tôi sẽ đến đó ngay bây giờ",
           "questions": [
             {
               "q": 32,
-              "enQ": "Why is the man calling?",
+              "enQ": "Where does the conversation most likely take place?",
               "enOpts": [
-                "(A) To rent a facility",
-                "(B) To hire a photographer",
-                "(C) To request a price list",
-                "(D) To schedule a repair"
+                "(A) On a train",
+                "(B) On a boat",
+                "(C) At a factory",
+                "(D) At an airport"
               ],
-              "viQ": "Lý do người đàn ông gọi là gì?",
+              "viQ": "Cuộc trò chuyện có nhiều khả năng diễn ra ở đâu nhất?",
               "viOpts": [
-                "(A) Để thuê một cơ sở",
-                "(B) Để thuê một nhiếp ảnh gia",
-                "(C) Để yêu cầu một bảng giá",
-                "(D) Để lên lịch sửa chữa"
+                "(A) Trên một chuyến tàu",
+                "(B) Trên một chiếc thuyền",
+                "(C) Tại một nhà máy",
+                "(D) Tại một sân bay"
               ],
               "answer": "B"
             },
             {
               "q": 33,
-              "enQ": "What problem does the woman mention?",
+              "enQ": "What caused a delay?",
               "enOpts": [
-                "(A) Her employee does not have transportation.",
-                "(B) Her service does not cover sports events.",
-                "(C) The weather will be bad on Tuesday.",
-                "(D) The time the man requested is too late."
+                "(A) An electrical failure occurred.",
+                "(B) A worker was unavailable.",
+                "(C) Some information was incorrect.",
+                "(D) The weather was bad."
               ],
-              "viQ": "Người phụ nữ đề cập đến vấn đề gì?",
+              "viQ": "Điều gì gây ra sự chậm trễ?",
               "viOpts": [
-                "(A) Nhân viên của cô ấy không có phương tiện đi lại.",
-                "(B) Dịch vụ của cô ấy không bao gồm các sự kiện thể thao.",
-                "(C) Thời tiết sẽ xấu vào thứ Ba.",
-                "(D) Thời gian người đàn ông yêu cầu là quá muộn."
+                "(A) Đã xảy ra sự cố về điện.",
+                "(B) Một công nhân không có mặt.",
+                "(C) Một số thông tin không chính xác.",
+                "(D) Thời tiết xấu."
               ],
               "answer": "D"
             },
             {
               "q": 34,
-              "enQ": "What does the woman say she will do?",
+              "enQ": "What will the man do next?",
               "enOpts": [
-                "(A) Issue a refund",
-                "(B) Cancel an order",
-                "(C) Talk to an employee",
-                "(D) E-mail her manager"
+                "(A) Confirm a schedule",
+                "(B) Speak to a coworker",
+                "(C) Check some machinery",
+                "(D) Clean a storage room"
               ],
-              "viQ": "Người phụ nữ nói cô ấy sẽ làm gì?",
+              "viQ": "Người đàn ông sẽ làm gì tiếp theo?",
               "viOpts": [
-                "(A) Hoàn lại tiền",
-                "(B) Hủy đơn đặt hàng",
-                "(C) Nói chuyện với một nhân viên",
-                "(D) Gửi email cho người quản lý của cô ấy"
+                "(A) Xác nhận lịch trình",
+                "(B) Nói chuyện với đồng nghiệp",
+                "(C) Kiểm tra một số máy móc",
+                "(D) Dọn dẹp phòng chứa đồ"
               ],
               "answer": "C"
             }
           ]
         },
         {
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/35-37.mp3",
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-35-37.mp3",
           "img": "",
-          "script": "W: Good morning. (35) It looks like we received a lot of new orders online last night.\nW: Yes, I saw that when I got in this morning. Can you package all of them by yourself?\nM: Well, there are so many, I may not be able to finish everything today.\nW: OK. (36) I’ll call Maria Jeong and ask if she can come in early today to help.\nM: (36) That’d be great. (37) We also have to pack that big shipment for the Henderson order. We finally got all of the items in.\nW: Oh, yes, do that first.",
-          "trans": "W: Chào buổi sáng. (35) Có vẻ như chúng ta đã nhận được rất nhiều đơn đặt hàng trực tuyến mới vào đêm qua.\nW: Ừ, tôi đã thấy khi tôi đến sáng nay. Bạn có thể tự đóng gói tất cả chúng không?\nM: Ừm thì, có nhiều đơn quá, tôi không thể hoàn thành tất cả mọi thứ trong ngày hôm nay.\nW: OK. (36) Tôi sẽ gọi cho Maria Jeong và hỏi xem cô ấy có thể đến sớm hôm nay để giúp được không.\nM: (36) Thật tuyệt vời. (37) Chúng ta còn phải đóng gói lô hàng lớn đó cho đơn đặt hàng của Henderson. Chúng ta đã có được tất cả các mặt hàng đó rồi.\nW: Ồ, hãy làm việc đấy đầu tiên.",
+          "script": "M: Hi. (35) I’m here to schedule some personal training sessions.\nW: OK. (35) What are your fitness goals?\nM: I’d like to lift weights and build strength.\nW: I can work with you on that. Are you currently a member here?\nM: No, I'll also need to sign up for a membership. (36) I saw online that you're running a special for new members—fifty percent off the first month’s membership. Can I sign up for that?\nW: Absolutely. (37) But before I get you signed up, let me show you around our facility.",
+          "trans": "M: Xin chào. (35) Tôi đến đây để sắp xếp một số buổi huấn luyện cá nhân.\nW: OK. (35) Mục tiêu tập thể dục của bạn là gì?\nM: Tôi muốn nâng tạ và tăng cường sức mạnh.\nW: Tôi có thể làm việc với bạn về vấn đề đó. Bạn hiện có phải là thành viên ở đây không?\nM: Không, tôi cũng cần đăng ký làm thành viên. (36) Tôi thấy trên mạng rằng bạn đang thực hiện chương trình đặc biệt dành cho thành viên mới—giảm 50% phí thành viên của tháng đầu tiên. Tôi có thể đăng ký cái đó không?\nW: Chắc chắn rồi. (37) Nhưng trước khi tôi giúp bạn đăng ký, hãy để tôi dẫn bạn đi tham quan cơ sở của chúng tôi.",
           "questions": [
             {
               "q": 35,
-              "enQ": "Where most likely are the speakers?",
+              "enQ": "Where does the woman most likely work?",
               "enOpts": [
-                "(A) In a restaurant",
-                "(B) In a school",
-                "(C) In a warehouse",
-                "(D) In a library"
+                "(A) At a sports stadium",
+                "(B) At a fitness center",
+                "(C) At a doctor’s office",
+                "(D) At a library"
               ],
-              "viQ": "Những người nói có khả năng ở đâu nhất?",
+              "viQ": "Người phụ nữ có khả năng làm việc ở đâu nhất?",
               "viOpts": [
-                "(A) Trong một nhà hàng",
-                "(B) Trong một trường học",
-                "(C) Trong nhà kho",
-                "(D) Trong thư viện"
-              ],
-              "answer": "C"
-            },
-            {
-              "q": 36,
-              "enQ": "Why do the speakers mention Maria Jeong?",
-              "enOpts": [
-                "(A) She placed a very large order.",
-                "(B) She wants to replace a product.",
-                "(C) She is unable to work today.",
-                "(D) She may be able to help with a task."
-              ],
-              "viQ": "Tại sao những người nói lại nhắc đến Maria Jeong?",
-              "viOpts": [
-                "(A) Cô ấy đã đặt một đơn đặt hàng rất lớn.",
-                "(B) Cô ấy muốn thay thế một sản phẩm.",
-                "(C) Cô ấy không thể làm việc hôm nay.",
-                "(D) Cô ấy có thể giúp đỡ với một nhiệm vụ."
-              ],
-              "answer": "D"
-            },
-            {
-              "q": 37,
-              "enQ": "What will the man probably do next?",
-              "enOpts": [
-                "(A) Pack an order",
-                "(B) Call a colleague",
-                "(C) Process a refund",
-                "(D) Write to a customer"
-              ],
-              "viQ": "Người đàn ông có thể sẽ làm gì tiếp theo?",
-              "viOpts": [
-                "(A) Đóng gói một đơn đặt hàng",
-                "(B) Gọi cho một đồng nghiệp",
-                "(C) Xử lý hoàn tiền",
-                "(D) Viết thư cho khách hàng"
-              ],
-              "answer": "A"
-            }
-          ]
-        },
-        {
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/38-40.mp3",
-          "img": "",
-          "script": "M: Haruna, we've planned most of the details for the corporate retreat, including housing and most activities, but (38) we still need to decide where to go for Saturday's closing dinner.\nW: (38) Yes, I sent you several menus. Did you like any of the places? McNally's is close by.\nM: (39) Yes, that would be convenient. We could even walk there from the hotel. But the prices are a little high.\nW: I agree. But (40) I could see if they can offer us a reduced catering rate, rather than ordering off the regular menu.",
-          "trans": "M: Haruna, chúng tôi đã lên kế hoạch hầu hết các chi tiết cho buổi đi chơi của công ty, bao gồm nơi lưu trú và hầu hết các hoạt động, nhưng (38) chúng ta vẫn cần phải quyết định đi đâu cho bữa tiệc ăn mừng vào tối thứ Bảy.\nW: (38) Vâng, tôi đã gửi cho bạn một số thực đơn. Bạn có thích chỗ nào không? Nhà hàng McNally's ở gần đây đó.\nM: (39) Được đó, ăn ở đấy sẽ tiện. Chúng ta thậm chí có thể đi bộ đến đó từ khách sạn. Nhưng giá hơi cao.\nW: Tôi đồng ý. Nhưng (40) để tôi xem liệu họ có thể giảm giá phục vụ cho suất ăn hay không, thay vì gọi món ngoài thực đơn thông thường.",
-          "questions": [
-            {
-              "q": 38,
-              "enQ": "What do the speakers need to choose?",
-              "enOpts": [
-                "(A) An introductory activity for a retreat",
-                "(B) A residential site for a retreat",
-                "(C) Decorations for a party",
-                "(D) A location for a dinner"
-              ],
-              "viQ": "Người nói cần chọn những gì?",
-              "viOpts": [
-                "(A) Một hoạt động giới thiệu cho một khóa tu",
-                "(B) Một khu dân cư để tĩnh tâm",
-                "(C) Đồ trang trí cho một bữa tiệc",
-                "(D) Địa điểm ăn tối"
-              ],
-              "answer": "D"
-            },
-            {
-              "q": 39,
-              "enQ": "What do the speakers like about McNally’s?",
-              "enOpts": [
-                "(A) It is nearby.",
-                "(B) It is open late.",
-                "(C) It is highly recommended.",
-                "(D) It has been remodeled."
-              ],
-              "viQ": "Những người nói thích điều gì về McNally’s?",
-              "viOpts": [
-                "(A) Nó ở gần.",
-                "(B) Nó mở cửa muộn.",
-                "(C) Nó rất được khuyến khích.",
-                "(D) Nó đã được tu sửa lại."
-              ],
-              "answer": "A"
-            },
-            {
-              "q": 40,
-              "enQ": "What does the woman offer to do?",
-              "enOpts": [
-                "(A) See what the retreat attendees prefer",
-                "(B) Find an alternative site",
-                "(C) Discuss pricing options",
-                "(D) Contact a hotel"
-              ],
-              "viQ": "Người phụ nữ xung phong làm gì?",
-              "viOpts": [
-                "(A) Xem những người tham dự kỳ nghỉ thích gì hơn",
-                "(B) Tìm một địa điểm thay thế",
-                "(C) Thảo luận về các lựa chọn giá cả",
-                "(D) Liên hệ với một khách sạn"
-              ],
-              "answer": "C"
-            }
-          ]
-        },
-        {
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/41-43.mp3",
-          "img": "",
-          "script": "W: (41) Janelie and Rico, could you give me an update on how our new medical records software is coming?\nW: Sure. Per the customer's request, I've updated the logo and changed the font.\nM: (42) The customer has communicated with us a lot on this project. Having their feedback at every stage of the process has been helpful.\nW: Excellent. (43) lt sounds like we're on schedule for completing our beta version. Then we can hand it off to our marketing team.",
-          "trans": "W: (41) Janelie và Rico, bạn có thể cập nhật cho tôi về tiến độ phần mềm hồ sơ y tế mới của chúng ta không?\nW: Chắc chắn rồi. Theo yêu cầu của khách hàng, tôi đã cập nhật logo và thay đổi phông chữ.\nM: (42) Khách hàng đã liên lạc với chúng ta rất nhiều về dự án này. Có phản hồi của họ ở mọi giai đoạn của quá trình thật là hữu ích.\nW: Xuất sắc. (43) Có vẻ như chúng ta đang trong kế hoạch hoàn thành phiên bản beta. Sau đó, chúng ta có thể giao nó cho đội marketing.",
-          "questions": [
-            {
-              "q": 41,
-              "enQ": "What does the speakers’ company produce?",
-              "enOpts": [
-                "(A) Computers",
-                "(B) Software",
-                "(C) Web sites",
-                "(D) Medical equipment"
-              ],
-              "viQ": "Công ty của người nói sản xuất cái gì?",
-              "viOpts": [
-                "(A) Máy vi tính",
-                "(B) Phần mềm",
-                "(C) Các trang web",
-                "(D) Thiết bị y tế"
+                "(A) Tại một sân vận động thể thao",
+                "(B) Tại một trung tâm thể dục",
+                "(C) Tại văn phòng bác sĩ",
+                "(D) Tại một thư viện"
               ],
               "answer": "B"
             },
             {
-              "q": 42,
-              "enQ": "What does the man say has been helpful?",
+              "q": 36,
+              "enQ": "What does the man ask about?",
               "enOpts": [
-                "(A) Focus group data",
-                "(B) An engineering consultant",
-                "(C) A search engine",
-                "(D) Customer feedback"
+                "(A) A discount",
+                "(B) A form",
+                "(C) A business location",
+                "(D) A parking policy"
               ],
-              "viQ": "Điều gì người đàn ông nói là hữu ích?",
+              "viQ": "Người đàn ông hỏi về điều gì?",
               "viOpts": [
-                "(A) Dữ liệu nhóm tập trung",
-                "(B) Một nhà tư vấn kỹ thuật",
-                "(C) Một công cụ tìm kiếm",
-                "(D) Phản hồi của khách hàng"
+                "(A) Giảm giá",
+                "(B) Một biểu mẫu",
+                "(C) Địa điểm kinh doanh",
+                "(D) Quy định đỗ xe"
+              ],
+              "answer": "A"
+            },
+            {
+              "q": 37,
+              "enQ": "What will the woman do next?",
+              "enOpts": [
+                "(A) Post a sign",
+                "(B) Confirm an account number",
+                "(C) Provide a tour",
+                "(D) Look at a schedule"
+              ],
+              "viQ": "Người phụ nữ sẽ làm gì tiếp theo?",
+              "viOpts": [
+                "(A) Dán một biển báo",
+                "(B) Xác nhận số tài khoản",
+                "(C) Cung cấp chuyến tham quan",
+                "(D) Nhìn vào lịch trình"
+              ],
+              "answer": "C"
+            }
+          ]
+        },
+        {
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-38-40.mp3",
+          "img": "",
+          "script": "W: As you can see, this Renaissance landscape painting we acquired is in bad condition. We can’t display it yet.\nM: Hmm, yes. (38) This painting will need significant restoration work.\nW: (38;39) I’ll begin by investigating the artist's color palette and style to see how we should repair the damaged areas.\nM: You know, (40) this would be a stunning piece to unveil at our anniversary dinner in June. And, since it’s a big project to finish by then, we should get started right away.",
+          "trans": "W: Như bạn có thể thấy, bức tranh phong cảnh thời Phục hưng mà chúng tôi mua được này đang trong tình trạng tồi tệ. Chúng tôi chưa thể trưng bày nó.\nM: Hmm, vâng. (38) Bức tranh này sẽ cần được phục hồi đáng kể.\nW: (38;39) Tôi sẽ bắt đầu bằng việc nghiên cứu bảng màu và phong cách của nghệ sĩ để xem chúng tôi nên sửa chữa những phần bị hư hỏng như thế nào.\nM: Bạn biết đấy, (40) đây sẽ là một tác phẩm tuyệt vời để ra mắt tại bữa tối kỷ niệm của chúng tôi vào tháng Sáu. Và vì đây là một dự án lớn cần hoàn thành trước thời điểm đó nên chúng ta nên bắt đầu ngay.",
+          "questions": [
+            {
+              "q": 38,
+              "enQ": "Who most likely are the speakers?",
+              "enOpts": [
+                "(A) Art restorers",
+                "(B) Event planners",
+                "(C) Photographers",
+                "(D) Interior designers"
+              ],
+              "viQ": "Người nói có khả năng nhất là ai?",
+              "viOpts": [
+                "(A) Người phục chế nghệ thuật",
+                "(B) Người tổ chức sự kiện",
+                "(C) Nhiếp ảnh gia",
+                "(D) Nhà thiết kế nội thất"
+              ],
+              "answer": "A"
+            },
+            {
+              "q": 39,
+              "enQ": "What does the woman say she will do?",
+              "enOpts": [
+                "(A) Hire an intern",
+                "(B) Review a contract",
+                "(C) Take some measurements",
+                "(D) Investigate a problem"
+              ],
+              "viQ": "Người phụ nữ nói cô ấy sẽ làm gì?",
+              "viOpts": [
+                "(A) Thuê một thực tập sinh",
+                "(B) Xem lại hợp đồng",
+                "(C) Thực hiện một số phép đo",
+                "(D) Điều tra một vấn đề"
+              ],
+              "answer": "D"
+            },
+            {
+              "q": 40,
+              "enQ": "Why does the man suggest beginning a project quickly?",
+              "enOpts": [
+                "(A) Payment has already been made.",
+                "(B) Staff will be on vacation.",
+                "(C) An important event is approaching.",
+                "(D) Aclient is in town for a limited time."
+              ],
+              "viQ": "Tại sao người đàn ông đề nghị bắt đầu một dự án một cách nhanh chóng?",
+              "viOpts": [
+                "(A) Thanh toán đã được thực hiện.",
+                "(B) Nhân viên sẽ đi nghỉ.",
+                "(C) Một sự kiện quan trọng đang đến gần.",
+                "(D) Một khách hàng đến thành phố trong một thời gian giới hạn."
+              ],
+              "answer": "C"
+            }
+          ]
+        },
+        {
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-41-43.mp3",
+          "img": "",
+          "script": "W: Hi, Ozan. (41) Do you have time to review some slides I’m presenting at a meeting on Thursday?\nM: Oh. (42) Is that the meeting with Smith Incorporated?\nW: (42) Yes. I'm presenting them with our updated marketing plan for their chain of bookstores.\nM: You know, (43) Smith Incorporated prefers informal meetings. I think just a handout highlighting how our marketing plan will positively impact their book sales would be enough.\nW: Really? Thilo, you've worked with this client before. What do you think?\nM: (43) Ozan is right. I think they’d prefer a meeting that was more of a conversation than a presentation.",
+          "trans": "W: Chào Ozan. (41) Bạn có thời gian xem lại một số slide tôi sẽ trình bày tại cuộc họp vào thứ năm không?\nM: Ồ. (42) Đó có phải là cuộc gặp với Smith Incorporated không?\nW: (42) Có. Tôi đang trình bày với họ kế hoạch tiếp thị cập nhật của chúng tôi cho chuỗi hiệu sách của họ.\nM: Bạn biết đấy, (43) Smith Incorporated thích những cuộc gặp gỡ thân mật hơn. Tôi nghĩ chỉ cần một tài liệu nêu bật kế hoạch tiếp thị của chúng tôi sẽ tác động tích cực đến doanh số bán sách của họ như thế nào là đủ.\nC-Br Thật sao? Thilo, trước đây bạn đã từng làm việc với khách hàng này. Bạn nghĩ sao?\nM: (43) Ozan đã đúng. Tôi nghĩ họ thích một cuộc họp mang tính trò chuyện hơn là thuyết trình.",
+          "questions": [
+            {
+              "q": 41,
+              "enQ": "What is the woman preparing?",
+              "enOpts": [
+                "(A) A slide presentation",
+                "(B) A travel itinerary",
+                "(C) A guest list",
+                "(D) A sales contract"
+              ],
+              "viQ": "Người phụ nữ đang chuẩn bị gì?",
+              "viOpts": [
+                "(A) Bản trình bày slide",
+                "(B) Hành trình du lịch",
+                "(C) Danh sách khách mời",
+                "(D) Hợp đồng mua bán"
+              ],
+              "answer": "A"
+            },
+            {
+              "q": 42,
+              "enQ": "What kind of business is Smith Incorporated?",
+              "enOpts": [
+                "(A) A law firm",
+                "(B) A construction company",
+                "(C) A pharmaceutical manufacturer",
+                "(D) A bookstore chain"
+              ],
+              "viQ": "Smith Incorporated là loại hình kinh doanh gì?",
+              "viOpts": [
+                "(A) Một công ty luật",
+                "(B) Một công ty xây dựng",
+                "(C) Một nhà sản xuất dược phẩm",
+                "(D) Một chuỗi cửa hàng sách"
               ],
               "answer": "D"
             },
             {
               "q": 43,
-              "enQ": "What is the next step in the project that the speakers are discussing?",
+              "enQ": "What do the men agree about?",
               "enOpts": [
-                "(A) Giving a presentation to the client",
-                "(B) Sending a product to another group in the company",
-                "(C) Creating a schedule for the next phase of development",
-                "(D) Determining the price of a product"
+                "(A) A subscription should be canceled.",
+                "(B) An advertising campaign should be delayed.",
+                "(C) A training session should be mandatory.",
+                "(D) A meeting should be casual."
               ],
-              "viQ": "Bước tiếp theo trong dự án mà các người nói đang thảo luận là gì?",
+              "viQ": "Những người đàn ông đồng ý về điều gì?",
               "viOpts": [
-                "(A) Thuyết trình trước khách hàng",
-                "(B) Gửi sản phẩm cho một nhóm khác trong công ty",
-                "(C) Lập kế hoạch cho giai đoạn phát triển tiếp theo",
-                "(D) Xác định giá của sản phẩm"
+                "(A) Nên hủy đăng ký.",
+                "(B) Một chiến dịch quảng cáo nên bị trì hoãn.",
+                "(C) Một buổi đào tạo là bắt buộc.",
+                "(D) Một cuộc họp nên diễn ra không trịnh trọng."
               ],
-              "answer": "B"
+              "answer": "D"
             }
           ]
         },
         {
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/44-46.mp3",
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-44-46.mp3",
           "img": "",
-          "script": "M: Hello, this is Ian Nelson from Regal Bathrooms. (44) I'm following up to make sure that you're pleased with the job our workers did in your house.\nW: Thank you for calling. Yes. They did a great job. The bathroom floor was replaced, and the new tile looks great. I'm very happy with the job.\nM: That's good to hear. If there are other jobs you need done, I hope you'll reach out to us again.\nW: That reminds me. (45) I was thinking of replacing my kitchen cabinets. Is that something you'd possibly do?\nM: (45) We don't, but (46) l can recommend a company I often work with. Their customers have been very satisfied. (46) Let me get their phone number. One second.\nW: Thanks.",
-          "trans": "M: Xin chào, đây là Ian Nelson từ Regal Bathrooms. (44) Tôi đang theo dõi để đảm bảo rằng bạn hài lòng với công việc mà công nhân của chúng tôi đã làm cho ngôi nhà của bạn.\nW: Cảm ơn bạn đã gọi. Đúng. Họ đã làm rất tốt. Sàn phòng tắm đã được thay thế, và gạch mới trông rất tuyệt. Tôi rất hài lòng với kết quả.\nM: Thật tốt khi nghe điều đó ạ. Nếu có những việc khác mà bạn cần hoàn thiện, tôi hy vọng bạn sẽ liên hệ lại với chúng tôi.\nW: Tôi nhớ ra 1 điều. (45) Tôi đã nghĩ đến việc thay thế tủ bếp của tôi. Bên bạn có thể làm không?\nM: (45) Chúng tôi không rồi, nhưng (46) Tôi có thể giới thiệu một công ty mà tôi thường làm việc cùng. Khách hàng của họ đã rất hài lòng. (46) Cho tôi xin số điện thoại của họ. Đợi tôi 1 giây nhé.\nW: -Tôi cảm ơn.",
+          "script": "W: (44) I heard that the results of your experiment were better than you expected. Congratulations!\nM: Thanks! I thought we’d have to run that reaction ten times before we got a positive result. But we got it on the third try.\nW: (45) You'll have to write up your results and submit them to the research director. That’s Esra, right?\nM: Oh, Esra’s leaving the company next week.\nW: Oh, I didn’t know that. I wonder if you'll be promoted to fill her position.\nM: I don’t think so. (46) I’ve never managed an entire research group. I hope to get some experience doing that next quarter.",
+          "trans": "W: (44) Tôi nghe nói rằng kết quả thí nghiệm của bạn tốt hơn bạn mong đợi. Chúc mừng!\nM: Cảm ơn! Tôi nghĩ chúng tôi phải thực hiện phản ứng đó mười lần trước khi có được kết quả khả quan. Nhưng chúng tôi đã thành công ở lần thử thứ ba.\nW: (45) Bạn sẽ phải viết kết quả của mình và gửi cho giám đốc nghiên cứu. Đó là Esra phải không?\nM: Ồ, Esra sẽ rời công ty vào tuần tới.\nW: Ồ, tôi không biết điều đó. Tôi tự hỏi liệu bạn có được thăng chức để đảm nhận vị trí của cô ấy không.\nM: Tôi không nghĩ vậy. (46) Tôi chưa bao giờ quản lý toàn bộ nhóm nghiên cứu. Tôi hy vọng sẽ có được một số kinh nghiệm làm việc đó trong quý tới.",
           "questions": [
             {
               "q": 44,
-              "enQ": "What is the purpose of the phone call?",
+              "enQ": "Why does the woman congratulate the man?",
               "enOpts": [
-                "(A) To help a customer choose a product",
-                "(B) To check on a customer's satisfaction",
-                "(C) To inform a customer of a price estimate",
-                "(D) To advertise a special offer"
+                "(A) He finished a road race.",
+                "(B) He won a publishing award.",
+                "(C) His experiment was successful.",
+                "(D) His research funding was extended."
               ],
-              "viQ": "Mục đích của cuộc điện thoại là gì?",
+              "viQ": "Tại sao người phụ nữ chúc mừng người đàn ông?",
               "viOpts": [
-                "(A) Để giúp khách hàng chọn sản phẩm",
-                "(B) Để kiểm tra sự hài lòng của khách hàng",
-                "(C) Để thông báo cho khách hàng về ước tính giá",
-                "(D) Để quảng cáo một ưu đãi đặc biệt"
-              ],
-              "answer": "B"
-            },
-            {
-              "q": 45,
-              "enQ": "What does the man say about replacing kitchen cabinets?",
-              "enOpts": [
-                "(A) He guarantees his company will do a good job.",
-                "(B) His company is too busy to do the work.",
-                "(C) His company does not do that type of work.",
-                "(D) He thinks it will be an expensive job."
-              ],
-              "viQ": "Người đàn ông nói gì về việc thay tủ bếp?",
-              "viOpts": [
-                "(A) Anh ấy đảm bảo rằng công ty của anh ấy sẽ hoạt động tốt.",
-                "(B) Công ty của anh ấy quá bận để làm việc.",
-                "(C) Công ty của anh ấy không làm loại công việc đó.",
-                "(D) Anh ấy nghĩ đó sẽ là một công việc tốn kém."
+                "(A) Anh ấy đã hoàn thành một cuộc đua đường trường.",
+                "(B) Anh ấy đã giành được giải thưởng xuất bản.",
+                "(C) Thí nghiệm của anh ấy đã thành công.",
+                "(D) Nguồn tài trợ nghiên cứu của anh ấy đã được gia hạn."
               ],
               "answer": "C"
             },
             {
-              "q": 46,
-              "enQ": "What will the man most likely do next?",
+              "q": 45,
+              "enQ": "What does the man imply when he says, “Esra’s leaving the company next week”?",
               "enOpts": [
-                "(A) Send workers to the woman’s house",
-                "(B) Find a telephone number for the woman",
-                "(C) Check kitchen cabinet prices",
-                "(D) Discuss a new product with some workers"
+                "(A) He needs assistance planning a party for Esra.",
+                "(B) He will not submit a report to Esra.",
+                "(C) He will apply for a new position.",
+                "(D) A larger office has become available."
               ],
-              "viQ": "Người đàn ông rất có thể sẽ làm gì tiếp theo?",
+              "viQ": "Người đàn ông có ý gì khi nói, “Esra sẽ rời công ty vào tuần tới”?",
               "viOpts": [
-                "(A) Gửi công nhân đến nhà của người phụ nữ",
-                "(B) Tìm một số điện thoại cho người phụ nữ",
-                "(C) Kiểm tra giá tủ bếp",
-                "(D) Thảo luận về một sản phẩm mới với một số công nhân"
+                "(A) Anh ấy cần hỗ trợ lập kế hoạch tổ chức tiệc cho Esra.",
+                "(B) Anh ấy sẽ không gửi báo cáo cho Esra.",
+                "(C) Anh ấy sẽ ứng tuyển vào một vị trí mới.",
+                "(D) Một văn phòng lớn hơn đã sẵn sàng."
               ],
               "answer": "B"
+            },
+            {
+              "q": 46,
+              "enQ": "What does the man hope to do next quarter?",
+              "enOpts": [
+                "(A) Receive a research grant",
+                "(B) Publish a book",
+                "(C) Replace some furniture",
+                "(D) Gain management experience"
+              ],
+              "viQ": "Người đàn ông hy vọng làm gì trong quý tới?",
+              "viOpts": [
+                "(A) Nhận trợ cấp nghiên cứu",
+                "(B) Xuất bản một cuốn sách",
+                "(C) Thay thế một số đồ nội thất",
+                "(D) Tích lũy kinh nghiệm quản lý"
+              ],
+              "answer": "D"
             }
           ]
         },
         {
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/47-49.mp3",
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-47-49.mp3",
           "img": "",
-          "script": "W: My name is Laura. (47) l refill my medication here at this pharmacy once a month. But on Monday I'm going to travel abroad for work for two months, and I wonder if I can get a two-month refill this time.\nM: It shouldn't be a problem. However, your doctor must send us the two-month prescription, so you need to contact her first.\nW: Oh, I see. (48) l'll give her a call during my lunch break today. When are you open until today?\nM: Until nine p.m. But once we receive your doctor's prescription, (49) we can deliver the medication directly to your home.",
-          "trans": "W: Tên tôi là Laura. (47) Tôi mua thêm thuốc tại hiệu thuốc này mỗi tháng một lần. Nhưng vào thứ Hai, tôi sẽ đi công tác nước ngoài trong hai tháng, và tôi tự hỏi liệu lần này tôi có thể nhận thêm hai tháng nữa không.\nM: Không vấn đề gì. Tuy nhiên, bác sĩ của bạn phải gửi cho chúng tôi đơn thuốc hai tháng, vì vậy bạn cần liên hệ với cô ấy trước.\nW: Oh, tôi hiểu rồi. (48) Tôi sẽ gọi cho cô ấy trong giờ nghỉ trưa hôm nay. Hôm nay cửa hàng bạn mở tới mấy giờ?\nM: Đến chín giờ tối. Nhưng khi chúng tôi nhận được đơn thuốc của bác sĩ, (49) chúng tôi có thể giao thuốc trực tiếp đến nhà bạn.",
+          "script": "W: Now we'll move on to a special segment of our news program where we highlight new local businesses for our viewers. Today I’m talking with Dhruv Bajaj—a personal trainer and gym owner. (47) Thanks for coming into the studio today, Dhruv!\nM: Thanks for having me! (48) I’m excited to tell you about the gym I just opened last month. It has state-of-the-art equipment, and my trainers can work with clients at any stage in their fitness journey.\nW: Sounds great. (49) How did you get started in this line of work?\nM: Well, I was an athlete in school, and when I stopped competing, I wanted to continue doing something fitness-related. So I started working as a trainer.",
+          "trans": "W: Bây giờ chúng ta sẽ chuyển sang phần đặc biệt của chương trình tin tức, nơi chúng tôi nêu bật các doanh nghiệp địa phương mới cho người xem. Hôm nay tôi đang nói chuyện với Dhruv Bajaj—một huấn luyện viên cá nhân và chủ phòng tập thể dục. (47) Cảm ơn vì đã đến studio hôm nay, Dhruv!\nM: Cảm ơn vì đã mời tôi! (48) Tôi rất vui được kể cho bạn nghe về phòng tập thể dục mà tôi mới mở vào tháng trước. Nó có trang thiết bị hiện đại và huấn luyện viên của tôi có thể làm việc với khách hàng ở bất kỳ giai đoạn nào trong hành trình tập thể dục của họ.\nW: Nghe thật tuyệt vời. (49) Bạn bắt đầu công việc này như thế nào?\nM: À, tôi là một vận động viên ở trường, và khi tôi ngừng thi đấu, tôi muốn tiếp tục làm việc gì đó liên quan đến thể dục. Thế là tôi bắt đầu làm huấn luyện viên.",
           "questions": [
             {
               "q": 47,
-              "enQ": "Where is the conversation taking place?",
+              "enQ": "Where most likely are the speakers?",
               "enOpts": [
-                "(A) At a travel agency",
-                "(B) At a pharmacy",
-                "(C) At a mobile phone store",
-                "(D) At a hotel"
+                "(A) At a sporting goods store",
+                "(B) At a television studio",
+                "(C) At a sports arena",
+                "(D) At a gym"
               ],
-              "viQ": "Cuộc trò chuyện diễn ra ở đâu?",
+              "viQ": "Người nói có thể ở đâu nhất?",
               "viOpts": [
-                "(A) Tại một công ty du lịch",
-                "(B) Tại hiệu thuốc",
-                "(C) Tại một cửa hàng điện thoại di động",
-                "(D) Tại một khách sạn"
+                "(A) Tại một cửa hàng bán đồ thể thao",
+                "(B) Tại một studio truyền hình",
+                "(C) Tại một sân vận động thể thao",
+                "(D) Tại phòng tập thể dục"
               ],
               "answer": "B"
             },
             {
               "q": 48,
-              "enQ": "What does the woman say she will do at lunch today?",
+              "enQ": "What does the man say he recently did?",
               "enOpts": [
-                "(A) Go to the airport",
-                "(B) Print out a ticket",
-                "(C) Register for a giveaway",
-                "(D) Call a doctor"
+                "(A) He retired from his job.",
+                "(B) He designed a Web site.",
+                "(C) He opened a new facility.",
+                "(D) He competed in a sports event."
               ],
-              "viQ": "Người phụ nữ nói cô ấy sẽ làm gì vào bữa trưa hôm nay?",
+              "viQ": "Người đàn ông nói gần đây anh ta đã làm gì?",
               "viOpts": [
-                "(A) Đến sân bay",
-                "(B) In ra một vé",
-                "(C) Đăng ký nhận quà tặng",
-                "(D) Gọi bác sĩ"
+                "(A) Anh ấy đã nghỉ việc.",
+                "(B) Anh ấy đã thiết kế một trang web.",
+                "(C) Anh ấy đã mở một cơ sở mới.",
+                "(D) Anh ấy thi đấu trong một sự kiện thể thao."
               ],
-              "answer": "D"
+              "answer": "C"
             },
             {
               "q": 49,
-              "enQ": "What does the man offer to do?",
+              "enQ": "What does the woman ask the man to talk about?",
               "enOpts": [
-                "(A) Arrange a delivery",
-                "(B) Postpone an appointment",
-                "(C) Check a discount rate",
-                "(D) Download an application"
+                "(A) His career path",
+                "(B) His mentors",
+                "(C) His future goals",
+                "(D) His hobbies"
               ],
-              "viQ": "Người đàn ông đề nghị làm gì?",
+              "viQ": "Người phụ nữ yêu cầu người đàn ông nói về điều gì?",
               "viOpts": [
-                "(A) Sắp xếp giao hàng",
-                "(B) Hoãn một cuộc hẹn",
-                "(C) Kiểm tra tỷ lệ chiết khấu",
-                "(D) Tải xuống một ứng dụng"
+                "(A) Con đường sự nghiệp của anh ấy",
+                "(B) Người cố vấn của anh ấy",
+                "(C) Mục tiêu tương lai của anh ấy",
+                "(D) Sở thích của anh ấy"
               ],
               "answer": "A"
             }
           ]
         },
         {
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/50-52.mp3",
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-50-52.mp3",
           "img": "",
-          "script": "M: Miller's Sporting Goods. Joey speaking.\nW: Hello, (50) I'm calling from West End High School. (51) We're looking to make a big purchase for our student baseball teams. Our equipment is getting old, and we would like to get new uniforms too. (51) We have budget restrictions, though.\nM: Well, we do offer discounts for bulk purchases. And we have a number of price ranges for uniforms; many are very reasonable. (52) Let me get the manager on the phone, and you can discuss the specifics.",
-          "trans": "M: Đồ thể thao của Miller. Joey đang nói ạ.\nW: Xin chào, (50) Tôi đang gọi từ trường trung học West End. (51) Chúng tôi đang tìm kiếm nơi cung cấp thiết bị để chi một khoản lớn cho việc mua đồ cho các đội bóng chày sinh viên của chúng tôi. Thiết bị của chúng tôi đã cũ và chúng tôi cũng muốn có đồng phục mới. (51) Tuy nhiên, chúng tôi có những hạn chế về ngân sách.\nM: Vâng, chúng tôi có giảm giá khi mua số lượng lớn. Và chúng tôi có một số loại giá cho đồng phục; nhiều loại có giá rất hợp lý.(52) Để tôi gọi cho quản lý và bạn có thể thảo luận chi tiết cụ thể.",
+          "script": "M: (51) As director, I’m delighted to welcome you to the Redmond Aquatic Institute. We're happy you'll be producing content for our Web site.\nW: (50) I'm looking forward to writing about Redmond’s initiatives in marine biology.\nM: Yes, the more articles the public can read about threats to aquatic ecosystems, the better. (51) Public awareness will help us get funding to meet our aim of preserving these ecosystems. This is Roberto. He’s working on our mangrove research project, which is the first one you'll cover.\nM: It’s an interesting project. And (52) what’s exciting is that we've started using drones to photograph the area with the mangroves. So we have some great images you could use.",
+          "trans": "M: (51) Là giám đốc, tôi rất vui mừng được chào đón bạn đến với Viện Thủy sản Redmond. Chúng tôi rất vui vì bạn sẽ sản xuất nội dung cho trang Web của chúng tôi.\nW: (50) Tôi rất mong được viết về những sáng kiến ​​của Redmond trong sinh học biển.\nM: Vâng, công chúng càng đọc được nhiều bài báo về các mối đe dọa đối với hệ sinh thái dưới nước thì càng tốt. (51) Nhận thức của công chúng sẽ giúp chúng ta có được nguồn tài trợ để đáp ứng mục tiêu bảo tồn các hệ sinh thái này. Đây là Roberto. Anh ấy đang thực hiện dự án nghiên cứu rừng ngập mặn của chúng tôi, đây là dự án đầu tiên bạn sẽ thực hiện.\nM: Đó là một dự án thú vị. Và (52) điều thú vị là chúng tôi đã bắt đầu sử dụng máy bay không người lái để chụp ảnh khu vực có rừng ngập mặn. Vì vậy, chúng tôi có một số hình ảnh tuyệt vời mà bạn có thể sử dụng.",
           "questions": [
             {
               "q": 50,
-              "enQ": "Where does the woman work?",
+              "enQ": "What has the woman been hired to do?",
               "enOpts": [
-                "(A) At a baseball stadium",
-                "(B) At a fitness center",
-                "(C) At a shipping warehouse",
-                "(D) At a school"
+                "(A) Write articles",
+                "(B) Update some software",
+                "(C) Organize a fund-raiser",
+                "(D) Manage office staff"
               ],
-              "viQ": "Người phụ nữ làm việc ở đâu?",
+              "viQ": "Người phụ nữ được thuê để làm gì?",
               "viOpts": [
-                "(A) Tại một sân vận động bóng chày",
-                "(B) Tại một trung tâm thể hình",
-                "(C) Tại một nhà kho vận chuyển",
-                "(D) Tại một trường học"
+                "(A) Viết bài",
+                "(B) Cập nhật một số phần mềm",
+                "(C) Tổ chức gây quỹ",
+                "(D) Quản lý nhân viên văn phòng"
+              ],
+              "answer": "A"
+            },
+            {
+              "q": 51,
+              "enQ": "According to the director, what is the organization’s goal?",
+              "enOpts": [
+                "(A) To hire professionals in the field",
+                "(B) To create educational programs",
+                "(C) To collect data from other scientific institutes",
+                "(D) To protect aquatic environments"
+              ],
+              "viQ": "Theo giám đốc, mục tiêu của tổ chức là gì?",
+              "viOpts": [
+                "(A) Thuê các chuyên gia trong lĩnh vực này",
+                "(B) Để tạo ra các chương trình giáo dục",
+                "(C) Thu thập dữ liệu từ các viện khoa học khác",
+                "(D) Để bảo vệ môi trường nước"
               ],
               "answer": "D"
             },
             {
-              "q": 51,
-              "enQ": "What is the woman concerned about?",
-              "enOpts": [
-                "(A) A store’s closing time",
-                "(B) Overall costs",
-                "(C) When an order will be received",
-                "(D) The color of some uniforms"
-              ],
-              "viQ": "Người phụ nữ lo lắng về điều gì?",
-              "viOpts": [
-                "(A) Thời gian đóng cửa của một cửa hàng",
-                "(B) Tổng chi phí",
-                "(C) Khi nào một đơn đặt hàng sẽ được nhận",
-                "(D) Màu sắc của một số đồng phục"
-              ],
-              "answer": "B"
-            },
-            {
               "q": 52,
-              "enQ": "What will the man do next?",
+              "enQ": "What does Roberto say is exciting?",
               "enOpts": [
-                "(A) Look up some prices",
-                "(B) Package an order",
-                "(C) Call a manager",
-                "(D) Check the store’s inventory"
+                "(A) The use of some equipment",
+                "(B) The results of a survey",
+                "(C) The public response to a project",
+                "(D) A recent donation to the institute"
               ],
-              "viQ": "Người đàn ông sẽ làm gì tiếp theo?",
+              "viQ": "Roberto nói điều gì thú vị?",
               "viOpts": [
-                "(A) Tra cứu một số giá",
-                "(B) Đóng gói một đơn hàng",
-                "(C) Gọi cho người quản lý",
-                "(D) Kiểm tra hàng trong kho của cửa hàng"
+                "(A) Việc sử dụng một số thiết bị",
+                "(B) Kết quả của một cuộc khảo sát",
+                "(C) Phản hồi của công chúng đối với một dự án",
+                "(D) Khoản quyên góp gần đây cho viện"
               ],
-              "answer": "C"
+              "answer": "A"
             }
           ]
         },
         {
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/53-55.mp3",
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-53-55.mp3",
           "img": "",
-          "script": "W: Hi, this is Gemini Flowers. (53) I'm calling about the order you placed for your award luncheon on July twelfth. Unfortunately, our supplier is Out of pink roses.\nM: Oh, no! (54) Pink matches our corporate logo! I ordered them especially for this occasion!\nW: I understand your disappointment, sir. (55) I can offer a ten percent discount on the total cost of your order and replace the pink roses with yellow ones.\nM: Well, (55) l didn't tell anyone about the roses. I suppose no one will really be disappointed.",
-          "trans": "W: Xin chào, đây là Hoa Song Tử. (53) Tôi đang gọi về đơn đặt hàng mà bạn đã đặt cho bữa tiệc trưa trao thưởng vào ngày 12 tháng Bảy. Thật không may, nhà cung cấp của chúng tôi đã hết hoa hồng màu hồng.\nM: Ồ, không! (54) Màu hồng phù hợp với logo công ty của chúng tôi! Tôi đã đặt hàng đặc biệt là cho dịp này!\nW: Tôi hiểu sự thất vọng của bạn, thưa bạn. (55) Tôi có thể giảm giá mười phần trăm trên tổng chi phí đặt hàng của bạn và thay thế những bông hồng màu hồng bằng những bông hồng màu vàng.\nM: Vâng, (55) tôi chưa nói với bất cứ ai về hoa hồng. Tôi cho rằng sẽ không có ai thực sự thất vọng.",
+          "script": "W: Matthew, (54) you’re not planning to cancel Wednesday’s budget meeting, are you?\nM: I haven’t sent out the cancellation yet, but (53) our research partners in China are off this week for a national holiday, so there’s no point in meeting. Why?\nW: Well, (54) I’ve been looking at the draft budget, and We didn’t allocate funds for a project leader.\nM: Uh-oh. I wonder how that happened. You're right. (55) We need to discuss how to fix that.\nW: You know, (55) we allocated money for a trip to Singapore to present our preliminary findings. We don't really need to do that.",
+          "trans": "W: Matthew, (54) bạn không định hủy cuộc họp ngân sách vào thứ Tư phải không?\nM: Tôi vẫn chưa gửi thông báo hủy, nhưng (53) các đối tác nghiên cứu của chúng ta ở Trung Quốc tuần này sẽ nghỉ lễ quốc gia nên chẳng có ích gì khi họp cả. Tại sao?\nW: Well, (54) Tôi đã xem dự thảo ngân sách và chúng ta không phân bổ ngân sách cho người lãnh đạo dự án.\nM: Uh-oh. Tôi tự hỏi làm thế nào điều đó xảy ra. Bạn đúng. (55) Chúng ta cần thảo luận cách khắc phục điều đó.\nW: Bạn biết đấy, (55) chúng ta đã phân bổ tiền cho một chuyến đi đến Singapore để trình bày những phát hiện sơ bộ của mình. Chúng ta không thực sự cần phải làm điều đó.",
           "questions": [
             {
               "q": 53,
-              "enQ": "What problem does the woman mention?",
+              "enQ": "What does the man say about some contacts in China?",
               "enOpts": [
-                "(A) There is no time to create centerpieces.",
-                "(B) The shop never received the man’s order.",
-                "(C) A supplier cannot fulfill an order.",
-                "(D) The wrong date is on the order form."
+                "(A) They submitted some preliminary results.",
+                "(B) They requested help with a presentation.",
+                "(C) They are celebrating a holiday.",
+                "(D) They are coming to visit soon."
               ],
-              "viQ": "Người phụ nữ đề cập đến vấn đề gì?",
+              "viQ": "Người đàn ông nói gì về một số mối liên hệ ở Trung Quốc?",
               "viOpts": [
-                "(A) Không có thời gian để tạo đồ trang trí trung tâm",
-                "(B) Cửa hàng chưa bao giờ nhận được đơn đặt hàng của người đàn ông.",
-                "(C) Nhà cung cấp không thể thực hiện đơn hàng.",
-                "(D) Sai ngày trên đơn đặt hàng."
+                "(A) Họ đã nộp một số kết quả sơ bộ.",
+                "(B) Họ yêu cầu trợ giúp về bài thuyết trình.",
+                "(C) Họ đang ăn mừng một ngày lễ.",
+                "(D) Họ sẽ sớm đến thăm."
               ],
               "answer": "C"
             },
             {
               "q": 54,
-              "enQ": "What does the man say about his company's logo?",
+              "enQ": "What does the woman imply when she says, “we didn’t allocate funds for a project leader”?",
               "enOpts": [
-                "(A) It was designed many years ago.",
-                "(B) It contains the color pink.",
-                "(C) It won an award.",
-                "(D) It features a drawing of flowers."
+                "(A) She thinks a project deadline should be extended.",
+                "(B) She is surprised by a suggestion.",
+                "(C) A scheduled meeting should take place.",
+                "(D) A project leader will not be hired."
               ],
-              "viQ": "Người đàn ông nói gì về logo của công ty mình?",
+              "viQ": "Người phụ nữ có ý gì khi nói “chúng ta không phân bổ ngân sách cho người lãnh đạo dự án”?",
               "viOpts": [
-                "(A) Nó được thiết kế từ nhiều năm trước.",
-                "(B) Nó có màu hồng.",
-                "(C) Nó đã giành được một giải thưởng.",
-                "(D) Nó có hình vẽ những bông hoa."
+                "(A) Cô ấy nghĩ thời hạn dự án nên được gia hạn.",
+                "(B) Cô ấy ngạc nhiên trước một lời đề nghị.",
+                "(C) Cuộc họp theo lịch trình sẽ diễn ra.",
+                "(D) Người lãnh đạo dự án sẽ không được thuê."
               ],
-              "answer": "B"
+              "answer": "C"
             },
             {
               "q": 55,
-              "enQ": "What does the man mean when he says, “I suppose no one will really be disappointed”?",
+              "enQ": "What does the woman say about some travel expenses?",
               "enOpts": [
-                "(A) He will postpone the luncheon.",
-                "(B) He will accept the woman’s offer.",
-                "(C) He will find a replacement award.",
-                "(D) He will modify the company’s logo."
+                "(A) They are unnecessary.",
+                "(B) They have been refunded.",
+                "(C) They require receipts.",
+                "(D) They were charged to the company credit card."
               ],
-              "viQ": "Người đàn ông có ý gì khi nói: “Tôi cho rằng sẽ không có ai thực sự thất vọng”?",
+              "viQ": "Người phụ nữ nói gì về một số chi phí đi lại?",
               "viOpts": [
-                "(A) Anh ấy sẽ hoãn bữa ăn trưa.",
-                "(B) Anh ấy sẽ chấp nhận lời đề nghị của người phụ nữ.",
-                "(C) Anh ấy sẽ tìm một giải thưởng thay thế.",
-                "(D) Anh ấy sẽ sửa đổi logo của công ty."
+                "(A) Chúng không cần thiết.",
+                "(B) Họ đã được hoàn lại tiền.",
+                "(C) Họ yêu cầu biên lai.",
+                "(D) Họ đã bị tính phí vào thẻ tín dụng của công ty."
               ],
-              "answer": "B"
+              "answer": "A"
             }
           ]
         },
         {
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/56-58.mp3",
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-56-58.mp3",
           "img": "",
-          "script": "W: Unfortunately, our development team has some bad news. It turns out (56),(57) we’li need to push back the shipment of the prototype motor we’ve been developing for our client.\nM: Uh-oh. (57) Why will there be a delay?\nW: Well, some of the components we received to build the prototype are failing initial tests, so we won’t be able to make the delivery deadline. Janet, could you let the client know?\nW: Yes, I’ll contact them right away.\nM: And (58) l’d like the development team to start giving me daily briefings about progress on this issue.",
-          "trans": "W: Thật không may, nhóm phát triển của chúng tôi có một số tin tệ. Hóa ra (56),(57) chúng tôi cần đẩy lùi việc giao hàng động cơ nguyên mẫu mà chúng tôi đang phát triển cho khách hàng của mình.\nM: Uh-oh. (57) Tại sao sẽ có sự chậm trễ?\nW: Vâng, một số thành phần chúng tôi nhận được để xây dựng nguyên mẫu không đạt các thử nghiệm ban đầu, vì vậy chúng tôi sẽ không thể hoàn thành thời hạn giao hàng. Janet, bạn có thể cho khách hàng biết không?\nW: Vâng, tôi sẽ liên lạc với họ ngay.\nM: Và (58) Tôi muốn nhóm phát triển bắt đầu cung cấp cho tôi thông tin tóm tắt hàng ngày về tiến độ của vấn đề này.",
+          "script": "M: Hello, you've reached tech support.\nW: (56) I’m calling from Rubin Restaurant Equipment. (57) I recently purchased your software to keep track of my warehouse inventory, and I have a question about setting alerts.\nM: Sure. How can I help?\nW: Well, we've been getting an alert whenever the inventory for our deep fryers drops below ten. But we usually don’t stock many of those because restaurants don’t often need to replace them. So, can I lower the alert level for just those items?\nM: Yes. (58) In the system, if you click on that product, you'll see a link that says, “Set Custom Alert.” And you can set it to any number from there.\nW: I see it. Thanks for your help.",
+          "trans": "M: Xin chào, bạn đã liên hệ với bộ phận hỗ trợ kỹ thuật.\nW: (56) Tôi đang gọi từ Thiết bị Nhà hàng Rubin. (57) Gần đây tôi đã mua phần mềm của bạn để theo dõi hàng tồn kho trong kho và tôi có câu hỏi về cách đặt cảnh báo.\nM: Chắc chắn rồi. Tôi có thể giúp gì?\nW: Chà, chúng tôi đã nhận được cảnh báo bất cứ khi nào lượng hàng tồn kho cho nồi chiên ngập dầu của chúng tôi giảm xuống dưới mười. Nhưng chúng tôi thường không dự trữ nhiều những thứ đó vì các nhà hàng thường không cần thay thế chúng. Vì vậy, tôi có thể hạ mức cảnh báo chỉ cho những mặt hàng đó không?\nM: Vâng. (58) Trong hệ thống, nếu bạn nhấp vào sản phẩm đó, bạn sẽ thấy liên kết có nội dung “Đặt cảnh báo tùy chỉnh”. Và bạn có thể đặt nó thành bất kỳ số nào từ đó.\nW: Tôi thấy rồi. Cảm ơn bạn đã giúp đỡ.",
           "questions": [
             {
               "q": 56,
-              "enQ": "What kind of company do the speakers most likely work for?",
+              "enQ": "Where is the woman calling from?",
               "enOpts": [
-                "(A) Manufacturing",
-                "(B) Financial",
-                "(C) Publishing",
-                "(D) Educational"
+                "(A) A clothing store",
+                "(B) A furniture store",
+                "(C) A restaurant supply company",
+                "(D) A graphic design firm"
               ],
-              "viQ": "Người nói có khả năng làm việc cho công ty nào nhất?",
+              "viQ": "Người phụ nữ gọi từ đâu?",
               "viOpts": [
-                "(A) Sản xuất",
-                "(B) Tài chính",
-                "(C) Xuất bản",
-                "(D) Giáo dục"
+                "(A) Một cửa hàng quần áo",
+                "(B) Một cửa hàng đồ nội thất",
+                "(C) Một công ty cung cấp đồ cho nhà hàng",
+                "(D) Một công ty thiết kế đồ họa"
+              ],
+              "answer": "C"
+            },
+            {
+              "q": 57,
+              "enQ": "What is some software being used for?",
+              "enOpts": [
+                "(A) Inventory management",
+                "(B) Employee performance reviews",
+                "(C) Sales forecasting",
+                "(D) Web site design"
+              ],
+              "viQ": "Một số phần mềm đang được sử dụng để làm gì?",
+              "viOpts": [
+                "(A) Quản lý hàng tồn kho",
+                "(B) Đánh giá hiệu suất của nhân viên",
+                "(C) Dự báo doanh số",
+                "(D) Thiết kế trang web"
               ],
               "answer": "A"
             },
             {
-              "q": 57,
-              "enQ": "What problem are the speakers discussing?",
+              "q": 58,
+              "enQ": "What does the man help the woman do?",
               "enOpts": [
-                "(A) A pause while more funding is obtained",
-                "(B) A delay in making a delivery",
-                "(C) A need for the company to relocate",
-                "(D) The loss of some experienced staff"
+                "(A) Return a purchase",
+                "(B) Customize a setting",
+                "(C) Repair an engine",
+                "(D) Inspect a shipment"
               ],
-              "viQ": "Người nói đang thảo luận về vấn đề gì?",
+              "viQ": "Người đàn ông giúp người phụ nữ làm gì?",
               "viOpts": [
-                "(A) Tạm dừng trong khi thu được nhiều tiền hơn",
-                "(B) Giao hàng chậm trễ",
-                "(C) Công ty cần di dời",
-                "(D) Mất một số nhân viên có kinh nghiệm"
+                "(A) Trả lại hàng đã mua",
+                "(B) Tùy chỉnh cài đặt",
+                "(C) Sửa chữa động cơ",
+                "(D) Kiểm tra lô hàng"
               ],
               "answer": "B"
-            },
-            {
-              "q": 58,
-              "enQ": "What does the man request?",
-              "enOpts": [
-                "(A) A report from the client",
-                "(B) A faster pace of work",
-                "(C) Additional employees",
-                "(D) Daily updates from the team"
-              ],
-              "viQ": "Người đàn ông yêu cầu gì?",
-              "viOpts": [
-                "(A) Một báo cáo từ khách hàng",
-                "(B) Tốc độ làm việc nhanh hơn",
-                "(C) Nhân viên bổ sung",
-                "(D) Cập nhật hàng ngày từ nhóm"
-              ],
-              "answer": "D"
             }
           ]
         },
         {
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/59-61.mp3",
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-59-61.mp3",
           "img": "",
-          "script": "W: Good evening. Legend Hotel. How may I help you?\nM: Hello. I'm at the local airport. Does the hotel run shuttle buses to here?\nW: We usually don't, but... was your flight originally scheduled for Central Airport?\nM: It was, but apparently (59) there's a problem at Central.\nW: Yes, (59) there's a personnel shortage, but several flights have been rerouted to the local airport. (60) We have started running an airport shuttle this morning.\nM: OK. That’s good news. When is the next shuttle?\nW: Buses run every half hour. What's your reservation number? (61) I’ll ensure that your room is ready for you when you arrive.",
-          "trans": "W: Chào buổi tối. Khách sạn huyền thoại xin nghe. Tôi có thể giúp gì cho bạn?\nM: Xin chào. Tôi đang ở sân bay địa phương. Cho hỏi khách sạn có xe đưa đón đến đây không?\nW: Chúng tôi thường không làm vậy, nhưng... chuyến bay của bạn ban đầu được lên lịch đến Sân bay Trung tâm phải không?\nM: Ban đầu là vậy, nhưng dường như (59) có vấn đề ở Central.\nW: Vâng, (59) do thiếu hụt nhân sự, một số chuyến bay đã được định tuyến lại đến sân bay địa phương. (60) Chúng tôi đã bắt đầu chạy xe đưa đón sân bay sáng nay.\nM: OK. Đó là tin tốt. Khi nào có chuyến tiếp theo hả bạn?\nW: Xe buýt chạy luân phiên nửa giờ. Số đặt phòng của bạn là gì? (61) Để tôi đảm bảo rằng phòng của bạn đã sẵn sàng cho bạn khi bạn đến.",
+          "script": "M: (59) I just spoke to the garden director. (59,60) He wants us to install an irrigation system in the rose garden as well as the magnolia grove. He wants to be sure the flowers get plenty of water during the hot summer months.\nW: OK, let’s walk over there now and take some measurements. Then we can figure out what materials we'll need.\nM: Sure. (61) We have some extra parts left over from when we worked on the cherry trees. I'll check what we have left after we finish measuring the rose garden.",
+          "trans": "M: (59) Tôi vừa nói chuyện với giám đốc vườn. (59,60) Anh ấy muốn chúng ta lắp đặt hệ thống tưới tiêu cho vườn hoa hồng cũng như rừng mộc lan. Anh ấy muốn đảm bảo hoa nhận được nhiều nước trong những tháng hè nóng bức.\nW: Được rồi, bây giờ chúng ta hãy đến đó và thực hiện một số phép đo. Sau đó chúng ta có thể tìm ra những vật liệu chúng ta sẽ cần.\nM: Chắc chắn rồi. (61) Chúng ta có một số bộ phận thừa còn sót lại khi chúng tôi làm việc trên cây anh đào. Tôi sẽ kiểm tra xem chúng ta còn lại những gì sau khi đo xong vườn hồng.",
           "questions": [
             {
               "q": 59,
-              "enQ": "What does the woman say about Central Airport?",
+              "enQ": "Where are the speakers most likely working?",
               "enOpts": [
-                "(A) The airport operates two shuttles.",
-                "(B) There are not enough people working there.",
-                "(C) It is not far from the Legend Hotel.",
-                "(D) It is more modern than the local airport."
+                "(A) At a flower shop",
+                "(B) At a botanical garden",
+                "(C) At a fruit orchard",
+                "(D) At a hardware store"
               ],
-              "viQ": "Người phụ nữ nói gì về Sân bay Trung tâm?",
+              "viQ": "Các người nói có khả năng làm việc ở đâu nhất?",
               "viOpts": [
-                "(A) Sân bay vận hành hai xe đưa đón.",
-                "(B) Không có đủ người làm việc ở đó.",
-                "(C) Nó không xa khách sạn Legend.",
-                "(D) Nó hiện đại hơn sân bay địa phương."
+                "(A) Tại một cửa hàng hoa",
+                "(B) Tại một vườn bách thảo",
+                "(C) Tại một vườn cây ăn quả",
+                "(D) Tại một cửa hàng phần cứng"
               ],
               "answer": "B"
             },
             {
               "q": 60,
-              "enQ": "Why does the man say, “That’s good news”?",
+              "enQ": "What have the speakers been asked to do?",
               "enOpts": [
-                "(A) He will be able to take a shuttle to the hotel.",
-                "(B) His flight was rescheduled.",
-                "(C) Central Airport will reopen soon.",
-                "(D) He will be able to change his hotel reservation."
+                "(A) Arrange some flowers",
+                "(B) Deliver some tools",
+                "(C) Install a watering system",
+                "(D) Repair a lawn mower"
               ],
-              "viQ": "Tại sao người đàn ông nói, “Đó là tin tốt lành”?",
+              "viQ": "Các người nói đã được yêu cầu làm gì?",
               "viOpts": [
-                "(A) Anh ấy sẽ có thể đi xe đưa đón đến khách sạn.",
-                "(B) Chuyến bay của anh ấy đã được lên lịch lại.",
-                "(C) Sân bay Trung tâm sẽ sớm mở cửa trở lại.",
-                "(D) Anh ấy sẽ có thể thay đổi đặt phòng khách sạn của mình"
-              ],
-              "answer": "A"
-            },
-            {
-              "q": 61,
-              "enQ": "What will the woman do for the man?",
-              "enOpts": [
-                "(A) Give him the shuttle company’s phone number",
-                "(B) Find information about Central Airport",
-                "(C) Give him a discount on his reservation",
-                "(D) Make sure that his room has been prepared"
-              ],
-              "viQ": "Người phụ nữ sẽ làm gì cho người đàn ông?",
-              "viOpts": [
-                "(A) Cho anh ta số điện thoại của công ty đưa đón",
-                "(B) Tìm thông tin về Sân bay Trung tâm",
-                "(C) Giảm giá đặt phòng cho anh ấy",
-                "(D) Đảm bảo rằng phòng của anh ấy đã được chuẩn bị"
-              ],
-              "answer": "D"
-            }
-          ]
-        },
-        {
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/62-64.mp3",
-          "img": "https://2023.toeicthaysang.com/de2/62.png",
-          "script": "M: Hi, Marla. (62) I'm calling to check whether you received my outline of the design project for your apartment remodeling. I e-mailed it to you yesterday.\nW: Yes. Thank you for doing such a great job. (63) l really liked your idea of opening up the kitchen and creating an open space with the living room.\nM: Great. If everything looks good to you, 1 can start ordering the supplies tomorrow.\nW: Actually, (64) l don't like the ceramic tiles you picked for the kitchen. I like the marble ones much better. I know they are more expensive, but it's a small space.",
-          "trans": "M-Ồ Chào, Marla.(62) Tôi đang gọi để kiểm tra xem bạn đã nhận được bản phác thảo của tôi về dự án thiết kế cho việc tu sửa căn hộ của bạn chưa. Tôi đã gửi email cho bạn ngày hôm qua.\nT-Vâng. Cảm ơn bạn đã làm một công việc tuyệt vời như vậy. (63) Tôi thực sự thích ý tưởng mở bếp và tạo không gian mở với phòng khách của bạn.\nM: Tuyệt vời. Nếu mọi thứ đều ổn với bạn, tôi có thể bắt đầu đặt hàng vào ngày mai.\nW: Thật ra, (64) Tôi không thích gạch men bạn chọn cho nhà bếp. Tôi thích những cái bằng đá cẩm thạch tốt hơn nhiều. Tôi biết chúng đắt hơn, nhưng đó là một không gian nhỏ.",
-          "questions": [
-            {
-              "q": 62,
-              "enQ": "What did the man do yesterday?",
-              "enOpts": [
-                "(A) He visited a property.",
-                "(B) He contacted a supplier.",
-                "(C) He sent a plan.",
-                "(D) He took some measurements."
-              ],
-              "viQ": "Người đàn ông đã làm gì ngày hôm qua?",
-              "viOpts": [
-                "(A) Anh ấy đã đến thăm một cơ sở kinh doanh.",
-                "(B) Anh ấy đã liên hệ với một nhà cung cấp.",
-                "(C) Anh ấy đã gửi một kế hoạch.",
-                "(D) Anh ấy đã thực hiện một số phép đo."
+                "(A) Sắp xếp một số bông hoa",
+                "(B) Cung cấp một số dụng cụ",
+                "(C) Lắp đặt hệ thống tưới nước",
+                "(D) Sửa máy cắt cỏ"
               ],
               "answer": "C"
             },
             {
-              "q": 63,
-              "enQ": "What does the woman say she likes?",
+              "q": 61,
+              "enQ": "What does the man offer to do?",
               "enOpts": [
-                "(A) The cost the man has estimated",
-                "(B) The open-space design",
-                "(C) The colors the man has selected",
-                "(D) The remodeling timeline"
+                "(A) Look for some materials",
+                "(B) Train an assistant",
+                "(C) Transplant some trees",
+                "(D) Work extra hours"
               ],
-              "viQ": "Người phụ nữ nói cô ấy thích gì?",
+              "viQ": "Người đàn ông đề nghị làm gì?",
               "viOpts": [
-                "(A) Chi phí mà người đàn ông đã ước tính",
-                "(B) Thiết kế không gian mở",
-                "(C) Màu sắc mà người đàn ông đã chọn",
-                "(D) Dòng thời gian tu sửa"
+                "(A) Tìm một số vật liệu",
+                "(B) Đào tạo trợ lý",
+                "(C) Cấy một số cây",
+                "(D) Làm thêm giờ"
+              ],
+              "answer": "A"
+            }
+          ]
+        },
+        {
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-62-64.mp3",
+          "img": "https://2024.toeicthaysang.com/de2/62.png",
+          "script": "M: Good morning, Ms. Aljohani. (62) Sorry I'm a little late. Traffic was terrible.\nW: That's OK, but (63) our rental office will be very busy this morning. There’s a big education convention in town starting today, and a lot of attendees from out of town have reserved cars to get to the conference center.\nM: Right. (64) What do you want me to do first?\nW: (64) I'd like you to start by checking the batteries in our electric cars. We want to be sure they’re all fully charged.",
+          "trans": "M: Chào buổi sáng, cô Aljohani. (62) Xin lỗi tôi đến hơi muộn. Giao thông thật khủng khiếp.\nW: Không sao đâu, nhưng (63) văn phòng cho thuê của chúng ta sáng nay sẽ rất bận rộn. Hôm nay có một hội nghị giáo dục lớn trong thị trấn bắt đầu và rất nhiều người tham dự từ ngoài thị trấn đã đặt xe để đến trung tâm hội nghị.\nM: Đúng rồi. (64) Bạn muốn tôi làm gì trước?\nW: (64) Tôi muốn bạn bắt đầu bằng việc kiểm tra pin trong ô tô điện của chúng ta. Chúng tôi muốn chắc chắn rằng tất cả chúng đều được sạc đầy.",
+          "questions": [
+            {
+              "q": 62,
+              "enQ": "Why does the man apologize?",
+              "enOpts": [
+                "(A) He lost a key.",
+                "(B) He arrived late.",
+                "(C) He turned off some equipment.",
+                "(D) He forgot an instruction manual."
+              ],
+              "viQ": "Tại sao người đàn ông lại xin lỗi?",
+              "viOpts": [
+                "(A) Anh ấy bị mất chìa khóa.",
+                "(B) Anh ấy đến muộn.",
+                "(C) Anh ấy đã tắt một số thiết bị.",
+                "(D) Anh ấy quên sách hướng dẫn sử dụng."
               ],
               "answer": "B"
             },
             {
-              "q": 64,
-              "enQ": "Look at the graphic. How much will the woman pay for each tile?",
+              "q": 63,
+              "enQ": "According to the woman, why will the speakers be very busy today?",
               "enOpts": [
-                "(A) $12.00",
-                "(B) $6.50",
-                "(C) $4.99",
-                "(D) $2.50",
-                "(A) $12,00",
-                "(B) $6,50",
-                "(C) $4,99",
-                "(D) $2,50"
+                "(A) The agency is offering a discount.",
+                "(B) A new rental office is opening.",
+                "(C) There is a conference in town.",
+                "(D) A sporting event will take place."
               ],
-              "viQ": "Nhìn vào đồ họa. Người phụ nữ sẽ trả bao nhiêu tiền cho mỗi viên gạch?",
-              "viOpts": [],
+              "viQ": "Theo người phụ nữ, tại sao hôm nay các người nói sẽ rất bận rộn?",
+              "viOpts": [
+                "(A) Cơ quan này đang giảm giá.",
+                "(B) Một văn phòng cho thuê mới sắp khai trương.",
+                "(C) Có một hội nghị trong thị trấn.",
+                "(D) Một sự kiện thể thao sẽ diễn ra."
+              ],
+              "answer": "C"
+            },
+            {
+              "q": 64,
+              "enQ": "Look at the graphic. Where will the man go first?",
+              "enOpts": [
+                "(A) Area 1",
+                "(B) Area 2",
+                "(C) Area 3",
+                "(D) Area 4"
+              ],
+              "viQ": "Nhìn vào hình. Người đàn ông sẽ đi đâu đầu tiên?",
+              "viOpts": [
+                "(A) Khu vực 1",
+                "(B) Khu vực 2",
+                "(C) Khu vực 3",
+                "(D) Khu vực 4"
+              ],
               "answer": "B"
             }
           ]
         },
         {
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/65-67.mp3",
-          "img": "https://2023.toeicthaysang.com/de2/65.png",
-          "script": "M: Hi. (65) l'd like to make a reservation for a group of clients that will be visiting our company from the first to the sixth of June. I need eight rooms.\nW: We do have availability for that period. (66) The type of room I recommend for you is normally 99 euros per night, but we can offer a group discount.\nM: That'll work. Also, on June fifth, we want to take our clients on a tour of the local attractions. Could you help arrange that?\nW: (67) We have an event planner here who'll be able to help you. His name is Pablo Gonzales. I'll connect you to his office once I've completed your reservation.",
-          "trans": "M: Chào bạn. (65) Tôi muốn đặt chỗ cho một nhóm khách hàng sẽ đến thăm công ty của chúng tôi từ ngày 1 đến ngày 6 tháng 6. Tôi cần tám phòng.\nW: Chúng tôi có phòng trống cho khoảng thời gian đó. (66) Loại phòng tôi giới thiệu cho bạn thường là 99 euro một đêm, nhưng chúng tôi có thể giảm giá theo nhóm.\nM: Tốt đó. Ngoài ra, vào ngày 5 tháng 6, chúng tôi muốn đưa khách hàng của mình đi tham quan các điểm tham quan địa phương. Bạn có thể giúp sắp xếp điều đó?\nW: (67) Chúng tôi có một người lập kế hoạch sự kiện ở đây, người sẽ có thể giúp bạn. Tên anh ta là Pablo Gonzales. Tôi sẽ kết nối bạn với văn phòng của mình một lần Tôi đã hoàn thành đặt phòng của bạn.",
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-65-67.mp3",
+          "img": "https://2024.toeicthaysang.com/de2/65.png",
+          "script": "M: I’ve been on vacation, so I missed our department’s meeting. Can you give me an update?\nW: Well, (65) all our public programs and community events are on schedule.\nM: Great! How about the Jannis Park project? We're still planning on planting trees best suited for residential areas, right?\nW: That’s right. I’m working on the public education part now. (66) There'll be a children’s poster competition next month, which the city mayor will judge.\nM: Interesting. Is there a prize?\nW: The winner will get a ribbon. But all participants will get a seedling to plant at home. (67) We'll be giving away the tallest of these four varieties, since it was the most popular in a survey of our residents.",
+          "trans": "M: Tôi đã đi nghỉ nên đã bỏ lỡ cuộc họp của bộ phận chúng ta. Bạn có thể cho tôi một bản cập nhật?\nW: Vâng, (65) tất cả các chương trình công cộng và sự kiện cộng đồng của chúng ta đều đúng tiến độ.\nM: Tuyệt vời! Còn dự án Jannis Park thì sao? Chúng ta vẫn đang lên kế hoạch trồng những loại cây phù hợp nhất cho khu dân cư phải không?\nW: Đúng vậy. Bây giờ tôi đang làm việc về phần giáo dục công cộng. (66) Sẽ có một cuộc thi vẽ tranh dành cho trẻ em vào tháng tới, cuộc thi này thị trưởng thành phố sẽ đánh giá.\nM: Thú vị. Có giải thưởng không?\nW: Người chiến thắng sẽ nhận được một dải ruy băng. Nhưng tất cả những người tham gia sẽ nhận được một cây giống để trồng tại nhà. (67) Chúng ta sẽ tặng loại cao nhất trong số bốn giống này, vì nó là giống phổ biến nhất trong một cuộc khảo sát với cư dân của chúng ta.",
           "questions": [
             {
               "q": 65,
-              "enQ": "Why is the man calling?",
+              "enQ": "Where do the speakers most likely work?",
               "enOpts": [
-                "(A) To request a room change",
-                "(B) To make a group reservation",
-                "(C) To order room service",
-                "(D) To complain about noise"
+                "(A) At a landscaping company",
+                "(B) At a local government office",
+                "(C) At a garden store",
+                "(D) At a lumber yard"
               ],
-              "viQ": "Tại sao người đàn ông gọi?",
+              "viQ": "Những người nói có khả năng hoạt động ở đâu nhất?",
               "viOpts": [
-                "(A) Để yêu cầu đổi phòng",
-                "(B) Để đặt chỗ theo nhóm",
-                "(C) Để đặt dịch vụ phòng",
-                "(D) Để phàn nàn về tiếng ồn"
+                "(A) Tại một công ty cảnh quan",
+                "(B) Tại văn phòng chính quyền địa phương",
+                "(C) Tại một cửa hàng làm vườn",
+                "(D) Tại một bãi gỗ"
               ],
               "answer": "B"
             },
             {
               "q": 66,
-              "enQ": "Look at the graphic. Which room type does the woman mention?",
+              "enQ": "What does the woman say will take place next month?",
               "enOpts": [
-                "(A) Executive suite",
-                "(B) Deluxe double",
-                "(C) Standard king",
-                "(D) Single basic"
+                "(A) A seasonal promotion",
+                "(B) A product demonstration",
+                "(C) A poster contest",
+                "(D) A lecture series"
               ],
-              "viQ": "Nhìn vào đồ họa. Người phụ nữ đề cập đến loại phòng nào?",
+              "viQ": "Người phụ nữ nói điều gì sẽ diễn ra vào tháng tới?",
               "viOpts": [
-                "(A) Phòng điều hành",
-                "(B) Deluxe giường đôi",
-                "(C) Vua tiêu chuẩn",
-                "(D) Đơn cơ bản"
+                "(A) Khuyến mãi theo mùa",
+                "(B) Trình diễn sản phẩm",
+                "(C) Cuộc thi áp phích",
+                "(D) Một loạt bài giảng"
               ],
               "answer": "C"
             },
             {
               "q": 67,
-              "enQ": "Who is Pablo Gonzales?",
+              "enQ": "Look at the graphic. What kind of seedlings will be given away?",
               "enOpts": [
-                "(A) An accountant",
-                "(B) A client",
-                "(C) A bus driver",
-                "(D) An event planner"
+                "(A) Eastern redbud",
+                "(B) Japanese maple",
+                "(C) White fringe tree",
+                "(D) Panicle hydrangea"
               ],
-              "viQ": "Pablo Gonzales là ai?",
+              "viQ": "Nhìn vào hình. Những loại cây giống nào sẽ được tặng?",
               "viOpts": [
-                "(A) Một kế toán viên",
-                "(B) Một khách hàng",
-                "(C) Một tài xế xe buýt",
-                "(D) Một người lập kế hoạch sự kiện"
+                "(A) Cây nụ đỏ phương Đông",
+                "(B) Cây phong Nhật Bản",
+                "(C) Cây viền trắng",
+                "(D) Hoa cẩm tú cầu"
               ],
-              "answer": "D"
+              "answer": "A"
             }
           ]
         },
         {
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/68-70.mp3",
-          "img": "https://2023.toeicthaysang.com/de2/68.png",
-          "script": "M: Hi, Joanna. (68) The management group needs to submit nominees for this year's award for outstanding employee. My supervisor wants to know if any managers have nominated anyone yet.\nW: Not yet, Charles. I e-mailed everyone about it a week ago, but I haven't heard anything yet. (69) l'll have to follow up with the managers and let them know the deadline is coming up.\nM: OK, well, (70) l printed out a breakdown of the customer service representatives with the most five-star reviews from customers last year. We had someone who was really outstanding.\nW: Those are excellent numbers. Could you go ahead and submit a nomination?",
-          "trans": "M: Chào, Joanna. (68) Nhóm quản lý cần gửi đề cử cho giải thưởng nhân viên xuất sắc của năm nay. Người giám sát của tôi muốn biết liệu có người quản lý nào đã đề cử ai chưa.\nW: Chưa, Charles. Tôi đã gửi e-mail cho mọi người về nó một tuần trước, nhưng tôi vẫn chưa nhận được bất cứ điều gì. (69) tôi sẽ phải liên lạc với các nhà quản lý và cho họ biết thời hạn sắp đến.\nM: OK, tốt, (70) Tôi đã in ra bảng phân tích về các đại diện dịch vụ khách hàng có nhiều đánh giá năm sao nhất từ khách hàng vào năm ngoái. Chúng tôi đã có một người thực sự nổi bật.\nW: Đó là những con số tuyệt vời. Bạn có thể đi trước bằng cách gửi một đề cử chứ?",
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-68-70.mp3",
+          "img": "https://2024.toeicthaysang.com/de2/68.png",
+          "script": "M: Hi, (68) I'd like a large black coffee and an egg-and-cheese croissant, please.\nW: Sure. That'll be eight dollars. Are you a Shelby’s preferred customer?\nM: Uh, no I'm not. But (69) I do have an EZ-Cash card.\nW: (69) Great. Let me ring that up for you.\nM: By the way, I’d like to order breakfast for my team tomorrow morning. Can I place that order ahead of time?\nW: Sure. Would you like to do that now?\nM: No, (70) I’ll call you later today when I know what everyone wants. Thanks for the information.",
+          "trans": "M: Xin chào, (68) Tôi muốn một cốc cà phê đen cỡ lớn và một chiếc bánh sừng bò trứng và phô mai.\nW: Chắc chắn rồi. Đó sẽ là tám đô la. Bạn có phải là khách hàng ưa thích của Shelby không?\nM: Uh, không, tôi không. Nhưng (69) Tôi có thẻ EZ-Cash.\nW: (69) Tuyệt vời. Hãy để tôi gọi cho bạn.\nM: Nhân tiện, tôi muốn đặt bữa sáng cho đội của mình vào sáng mai. Tôi có thể đặt hàng trước thời hạn được không?\nW: Chắc chắn rồi. Bạn có muốn làm điều đó bây giờ không?\nM: Không, (70) Hôm nay tôi sẽ gọi cho bạn sau khi tôi biết mọi người muốn gì. Cảm ơn vì thông tin.",
           "questions": [
             {
               "q": 68,
-              "enQ": "What is the conversation mainly about?",
+              "enQ": "Where does the conversation most likely take place?",
               "enOpts": [
-                "(A) A sales strategy",
-                "(B) An improvement in customer service",
-                "(C) A new manager",
-                "(D) An award"
+                "(A) At a café",
+                "(B) At an electronics shop",
+                "(C) At a stationery store",
+                "(D) At a clothing store"
               ],
-              "viQ": "Nội dung chủ yếu của cuộc trò chuyện là gì?",
+              "viQ": "Cuộc trò chuyện có nhiều khả năng diễn ra ở đâu nhất?",
               "viOpts": [
-                "(A) Một chiến lược bán hàng",
-                "(B) Một cải tiến trong dịch vụ khách hàng",
-                "(C) Một người quản lý mới",
-                "(D) Một giải thưởng"
-              ],
-              "answer": "D"
-            },
-            {
-              "q": 69,
-              "enQ": "Who does the woman say she will send a reminder to?",
-              "enOpts": [
-                "(A) The management team",
-                "(B) The customer service representatives",
-                "(C) A magazine editor",
-                "(D) A repair technician"
-              ],
-              "viQ": "Người phụ nữ nói rằng cô ấy sẽ gửi lời nhắc tới ai?",
-              "viOpts": [
-                "(A) Đội ngũ quản lý",
-                "(B) Các đại diện dịch vụ khách hàng",
-                "(C) Một biên tập viên tạp chí",
-                "(D) Một kỹ thuật viên sửa chữa"
+                "(A) Tại một quán cà phê",
+                "(B) Tại cửa hàng điện tử",
+                "(C) Tại cửa hàng văn phòng phẩm",
+                "(D) Tại cửa hàng quần áo"
               ],
               "answer": "A"
             },
             {
-              "q": 70,
-              "enQ": "Look at the graphic. Which representative is the man most likely talking about?",
+              "q": 69,
+              "enQ": "Look at the graphic. How much will the man save on his purchase?",
               "enOpts": [
-                "(A) Jorge",
-                "(B) Rebecca",
-                "(C) Jada",
-                "(D) Kent",
-                "(A) Jorge",
-                "(B) Rebecca",
-                "(C) Jada",
-                "(D) Kent"
+                "(A) 5%",
+                "(B) 3%",
+                "(C) 7%",
+                "(D) 2%",
+                "(A) 5%",
+                "(B) 3%",
+                "(C) 7%",
+                "(D) 2%"
               ],
-              "viQ": "Nhìn vào đồ họa. Đại diện nào mà người đàn ông có nhiều khả năng nói đến nhất?",
+              "viQ": "Nhìn vào hình. Người đàn ông sẽ tiết kiệm được bao nhiêu khi mua hàng?",
               "viOpts": [],
-              "answer": "B"
+              "answer": "D"
+            },
+            {
+              "q": 70,
+              "enQ": "What does the man say he will do later today?",
+              "enOpts": [
+                "(A) Call a business",
+                "(B) Return some merchandise",
+                "(C) Fill out an online survey",
+                "(D) Hang up some posters"
+              ],
+              "viQ": "Người đàn ông nói anh ta sẽ làm gì sau ngày hôm nay?",
+              "viOpts": [
+                "(A) Gọi cho một doanh nghiệp",
+                "(B) Trả lại một số hàng hóa",
+                "(C) Điền vào một khảo sát",
+                "(D) Treo một số áp phích"
+              ],
+              "answer": "A"
             }
           ]
         }
@@ -1044,620 +1045,620 @@ const EXAM_DATA = {
     "4": {
       "groups": [
         {
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/71-73.mp3",
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-71-73.mp3",
           "img": "",
-          "script": "W: Looking for an interesting activity to celebrate the coming of spring? (71) Winford Gardens offers an escape filled with calm, peace, and quiet just a few miles from the downtown area. Winford Gardens has acres of outdoor gardens filled with plants you won't typically find anywhere near here. (72) This weekend we will have an exhibition of Mexican blue palms. If you have never seen these striking and unique plants, now is your chance! (73) Winford's cafe is a converted building that used to be a greenhouse. The surrounding tropical plants and flowers help make dining there a pleasure.",
-          "trans": "W: Bạn đang tìm một hoạt động thú vị để chào mừng mùa xuân đang đến? (71) Winford Gardens mang đến một cách trốn thoát tràn ngập sự nhẹ nhàng, thanh bình và yên tĩnh chỉ cách khu vực trung tâm thành phố vài dặm. Winford Gardens có những khu vườn ngoài trời rộng hàng mẫu mà bạn thường không tìm thấy ở bất kỳ đâu gần đây.(72) Cuối tuần này chúng tôi sẽ có một cuộc triển lãm về cọ xanh Mexico. Nếu bạn chưa bao giờ nhìn thấy những loài thực vật nổi bật và độc đáo này, thì bây giờ là cơ hội của bạn! (73) Quán cà phê của Winford là một tòa nhà được chuyển đổi từng là nhà kính. Các loại cây và hoa nhiệt đới xung quanh giúp cho việc ăn uống ở đó trở nên thú vị.",
+          "script": "W: Hi, Amina. This is Sabine calling from Blue Drop Creations. (71) I just put the earrings and necklaces that you ordered from me in the mail. (72) Because you've been a customer for over ten years, I've also included a special gift in the package for you. It’s a case for your jewelry. This is a new product that I’m starting to offer, (73) so please call me back after you receive it. I'd really like to hear your thoughts on it.",
+          "trans": "Xin chào, Amina. Đây là Sabine đang gọi từ Blue Drop Creations. (71) Tôi vừa gửi đôi bông tai và dây chuyền mà bạn đặt hàng qua đường bưu điện. (72) Vì bạn đã là khách hàng hơn mười năm nên tôi cũng gửi kèm một món quà đặc biệt trong gói hàng dành cho bạn. Đó là một hộp đựng đồ trang sức của bạn. Đây là sản phẩm mới mà tôi sắp cung cấp, (73) vì vậy vui lòng gọi lại cho tôi sau khi nhận được. Tôi thực sự muốn nghe suy nghĩ của bạn về nó.",
           "questions": [
             {
               "q": 71,
-              "enQ": "What is being advertised?",
+              "enQ": "Who most likely is the speaker?",
               "enOpts": [
-                "(A) A trip to Mexico",
-                "(B) A city tour",
-                "(C) A farm visit",
-                "(D) A botanical garden"
+                "(A) An art gallery owner",
+                "(B) A hairstylist",
+                "(C) A clothing designer",
+                "(D) A jewelry maker"
               ],
-              "viQ": "Cái gì đang được quảng cáo?",
+              "viQ": "Người nói rất có thể là ai?",
               "viOpts": [
-                "(A) Chuyến đi đến Mexico",
-                "(B) Một chuyến tham quan thành phố",
-                "(C) Một chuyến thăm trang trại",
-                "(D) Vườn thực vật"
+                "(A) Chủ phòng trưng bày nghệ thuật",
+                "(B) Một nhà tạo mẫu tóc",
+                "(C) Một nhà thiết kế quần áo",
+                "(D) Một nhà sản xuất đồ trang sức"
               ],
               "answer": "D"
             },
             {
               "q": 72,
-              "enQ": "What event is happening this weekend?",
+              "enQ": "Why did the speaker include a special gift?",
               "enOpts": [
-                "(A) A competition will be held.",
-                "(B) Special plants will be on display.",
-                "(C) Crops will be planted.",
-                "(D) A special sale will take place."
+                "(A) Because the listener is a new customer",
+                "(B) Because the listener is celebrating a special occasion",
+                "(C) Because the listener is a loyal customer",
+                "(D) Because the listener placed a large order"
               ],
-              "viQ": "Sự kiện gì đang diễn ra vào cuối tuần này?",
+              "viQ": "Tại sao người nói lại tặng kèm một món quà đặc biệt?",
               "viOpts": [
-                "(A) Một cuộc thi sẽ được tổ chức.",
-                "(B) Những cây đặc biệt sẽ được trưng bày.",
-                "(C) Cây trồng sẽ được trồng.",
-                "(D) Một đợt giảm giá đặc biệt sẽ diễn ra."
-              ],
-              "answer": "B"
-            },
-            {
-              "q": 73,
-              "enQ": "What does the speaker say about a cafe building?",
-              "enOpts": [
-                "(A) It will soon be repainted.",
-                "(B) It was once a greenhouse.",
-                "(C) It is located near public transportation.",
-                "(D) It is closed this spring."
-              ],
-              "viQ": "Người nói nói gì về việc xây dựng quán cà phê?",
-              "viOpts": [
-                "(A) Nó sẽ sớm được sơn lại.",
-                "(B) Nó đã từng là một nhà kính.",
-                "(C) Nó nằm gần phương tiện giao thông công cộng.",
-                "(D) Nó đóng cửa vào mùa xuân này."
-              ],
-              "answer": "B"
-            }
-          ]
-        },
-        {
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/74-76.mp3",
-          "img": "",
-          "script": "M: Good afternoon. (74) Welcome to this week's managers' meeting here at South Truck Deliveries. As you know, we've always written performance evaluations for our drivers and other employees on paper. I am pleased to announce some important changes. (75) Beginning this year, we will use a software application called Personnel Profile to enter performance appraisals. Let me introduce Ms. Hwa Young Lee, the head of our IT department. (76) She will walk you through how to enroll in a training course on using Personnel Profile, and you will complete your enrollment by the end of this meeting.",
-          "trans": "M: Chào buổi chiều. (74) Chào mừng bạn đến với cuộc họp của các nhà quản lý tuần này tại South Truck Deliveries. Như bạn đã biết, chúng tôi luôn viết các bản đánh giá hiệu suất cho các tài xế và nhân viên khác của chúng tôi trên giấy. Tôi vui mừng thông báo một số thay đổi quan trọng. (75) Bắt đầu từ năm nay, chúng tôi sẽ sử dụng một ứng dụng phần mềm có tên là Hồ sơ nhân sự để đánh giá hiệu suất. Hãy để tôi giới thiệu cô Hwa Young Lee, trưởng bộ phận CNTT của chúng tôi. (76) Cô ấy sẽ hướng dẫn bạn cách đăng ký khóa đào tạo về cách sử dụng Hồ sơ nhân sự và bạn sẽ hoàn thành việc đăng ký của mình vào cuối cuộc họp này.",
-          "questions": [
-            {
-              "q": 74,
-              "enQ": "Who most likely is the speaker?",
-              "enOpts": [
-                "(A) A salesperson",
-                "(B) A manager",
-                "(C) A safety inspector",
-                "(D) A software developer"
-              ],
-              "viQ": "Ai có khả năng nhất là người nói?",
-              "viOpts": [
-                "(A) Một nhân viên bán hàng",
-                "(B) Một người quản lý",
-                "(C) Một thanh tra an toàn",
-                "(D) Một nhà phát triển phần mềm"
-              ],
-              "answer": "B"
-            },
-            {
-              "q": 75,
-              "enQ": "What is the main topic of the talk?",
-              "enOpts": [
-                "(A) A delivery route",
-                "(B) A corporate merger",
-                "(C) Performance reviews",
-                "(D) Hiring procedures"
-              ],
-              "viQ": "Chủ đề chính của bài nói là gì?",
-              "viOpts": [
-                "(A) Một lộ trình giao hàng",
-                "(B) Sáp nhập công ty",
-                "(C) Đánh giá hiệu suất",
-                "(D) Thủ tục tuyển dụng"
+                "(A) Bởi vì người nghe là khách hàng mới",
+                "(B) Bởi vì người nghe đang kỷ niệm một dịp đặc biệt",
+                "(C) Bởi vì người nghe là khách hàng trung thành",
+                "(D) Bởi vì người nghe đã đặt hàng lớn"
               ],
               "answer": "C"
             },
             {
-              "q": 76,
-              "enQ": "What does the speaker ask the listeners to do?",
+              "q": 73,
+              "enQ": "Why is the listener asked to return a phone call?",
               "enOpts": [
-                "(A) Pass along some information to workers",
-                "(B) Sign up for a training course",
-                "(C) Get some information from customers",
-                "(D) Talk with employees about their goals for the year"
+                "(A) To give feedback",
+                "(B) To confirm receipt of an order",
+                "(C) To update a payment method",
+                "(D) To provide an address"
               ],
-              "viQ": "Người nói yêu cầu người nghe làm gì?",
+              "viQ": "Tại sao người nghe được yêu cầu trả lại cuộc gọi điện thoại?",
               "viOpts": [
-                "(A) Chuyển một số thông tin cho công nhân",
-                "(B) Đăng ký một khóa đào tạo",
-                "(C) Lấy một số thông tin từ khách hàng",
-                "(D) Nói chuyện với nhân viên về mục tiêu của họ trong năm"
+                "(A) Để đưa ra phản hồi",
+                "(B) Để xác nhận việc nhận đơn đặt hàng",
+                "(C) Để cập nhật phương thức thanh toán",
+                "(D) Để cung cấp một địa chỉ"
               ],
-              "answer": "B"
+              "answer": "A"
             }
           ]
         },
         {
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/77-79.mp3",
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-74-76.mp3",
           "img": "",
-          "script": "W: Hi. This is Ms. Mitra. (77) You're scheduled to move my furniture to my new apartment tomorrow morning at eight. (78) I'm calling because I just learned that the freight elevator in my building is broken, and my apartment is on a very high floor. I will check first thing tomorrow morning to see what the situation is. But please give me a call as soon as you can. (79) l have an overseas trip coming up next week, so this work will have to happen soon.",
-          "trans": "W: Xin chào. Mitra đây. (77) Công ty bạn sẽ chuyển đồ đạc của tôi đến căn hộ mới của tôi vào sáng mai lúc 8 giờ.(78) Tôi gọi vì tôi mới biết rằng thang máy chở hàng trong tòa nhà của tôi bị hỏng, và căn hộ của tôi đang ở trên một lầu rất cao. Tôi sẽ kiểm tra nó vào sáng mai để xem tình hình thế nào. Nhưng hãy gọi cho tôi ngay khi bạn có thể. (79) Tôi có một chuyến đi nước ngoài vào tuần tới, vì vậy công việc này sẽ phải được thực hiện sớm.",
+          "script": "M: Good morning, this is Brandon from Dakota Framing Company, returning your call. (74) We received your voicemail about wanting to frame a wedding picture. There is no need to print the photo yourself. We prefer that you e-mail us a digital copy. So, to answer your question, (75) you can complete the whole order online. Just visit our Web site, where you'll fill in your choices for photo size and the frame and upload your photo. And (76) for a small extra cost, we'll guarantee to replace your frame in case of damage. Please be sure to check that box when you order.",
+          "trans": "M: Chào buổi sáng, đây là Brandon từ Công ty Dakota Framing, đang trả lời cuộc gọi của bạn. (74) Chúng tôi đã nhận được thư thoại của bạn về việc muốn đóng khung một bức ảnh cưới. Không cần phải tự in ảnh. Chúng tôi muốn bạn gửi bản sao kỹ thuật số qua email cho chúng tôi. Vì vậy, để trả lời câu hỏi của bạn, (75) bạn có thể hoàn thành toàn bộ đơn hàng trực tuyến. Chỉ cần truy cập trang Web của chúng tôi, nơi bạn sẽ điền các lựa chọn về kích thước ảnh và khung rồi tải ảnh của mình lên. Và (76) với một khoản chi phí bổ sung nhỏ, chúng tôi đảm bảo sẽ thay thế khung của bạn trong trường hợp bị hư hỏng. Hãy chắc chắn đánh dấu vào ô đó khi bạn đặt hàng.",
+          "questions": [
+            {
+              "q": 74,
+              "enQ": "What does the listener want to do?",
+              "enOpts": [
+                "(A) Hire a caterer",
+                "(B) Purchase a painting",
+                "(C) Have a printer repaired",
+                "(D) Have a photograph framed"
+              ],
+              "viQ": "Người nghe muốn làm gì?",
+              "viOpts": [
+                "(A) Thuê một người cung cấp thực phẩm",
+                "(B) Mua một bức tranh",
+                "(C) Sửa máy in",
+                "(D) Đóng khung một bức ảnh"
+              ],
+              "answer": "D"
+            },
+            {
+              "q": 75,
+              "enQ": "What does the speaker expect the listener to do on a Web site?",
+              "enOpts": [
+                "(A) View a list of prices",
+                "(B) Place an order",
+                "(C) Schedule a time to meet",
+                "(D) Read customer reviews"
+              ],
+              "viQ": "Người nói mong đợi người nghe làm gì trên một trang Web?",
+              "viOpts": [
+                "(A) Xem giá",
+                "(B) Đặt hàng",
+                "(C) Lên lịch gặp mặt",
+                "(D) Đọc đánh giá của khách hàng"
+              ],
+              "answer": "B"
+            },
+            {
+              "q": 76,
+              "enQ": "What is included for an extra fee?",
+              "enOpts": [
+                "(A) Shipping",
+                "(B) An artist’s signature",
+                "(C) A newsletter",
+                "(D) A warranty"
+              ],
+              "viQ": "Những gì được bao gồm trong một khoản phí bổ sung?",
+              "viOpts": [
+                "(A) Vận chuyển",
+                "(B) Chữ ký của một nghệ sĩ",
+                "(C) Một bản tin",
+                "(D) Bảo hành"
+              ],
+              "answer": "D"
+            }
+          ]
+        },
+        {
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-77-79.mp3",
+          "img": "",
+          "script": "M: (77) Welcome all to this week’s training in our series of patient care programs. Our physical therapy center is known for the excellent care we provide to our patients, and that’s because of you, our staff. The training today will be about ways to engage the patients who reside in our facility through playing games. (78,79) I've prepared different types of activities for us to try out, including some games that involve mental stimulation as well as physical exercises. But, I have to let you know that today I must leave at noon. (79) Next week we'll try out more of the games.",
+          "trans": "M: (77) Chào mừng tất cả các bạn đến với buổi đào tạo tuần này về chuỗi chương trình chăm sóc bệnh nhân của chúng tôi. Trung tâm vật lý trị liệu của chúng tôi được biết đến với sự chăm sóc tuyệt vời mà chúng tôi cung cấp cho bệnh nhân của mình và đó là nhờ các bạn, nhân viên của chúng tôi. Khóa đào tạo hôm nay sẽ nói về những cách thu hút bệnh nhân cư trú tại cơ sở của chúng tôi thông qua việc chơi trò chơi. (78,79) Tôi đã chuẩn bị nhiều loại hoạt động khác nhau để chúng ta thử, bao gồm một số trò chơi liên quan đến kích thích tinh thần cũng như các bài tập thể chất. Nhưng tôi phải báo cho bạn biết rằng hôm nay tôi phải đi vào buổi trưa. (79) Tuần tới chúng tôi sẽ thử nhiều trò chơi hơn.",
           "questions": [
             {
               "q": 77,
-              "enQ": "Who is the speaker most likely calling?",
+              "enQ": "Who are the listeners?",
               "enOpts": [
-                "(A) A real estate firm",
-                "(B) A moving company",
-                "(C) A travel agency",
-                "(D) A furniture store"
+                "(A) Hotel receptionists",
+                "(B) Health-care staff",
+                "(C) Customer-service representatives",
+                "(D) Fitness trainers"
               ],
-              "viQ": "Người nói có thể đang gọi cho ai nhất?",
+              "viQ": "Người nghe là ai?",
               "viOpts": [
-                "(A) Một công ty bất động sản",
-                "(B) Một công ty chuyển nhà",
-                "(C) Một công ty du lịch",
-                "(D) Một cửa hàng nội thất"
+                "(A) Nhân viên lễ tân khách sạn",
+                "(B) Nhân viên chăm sóc sức khỏe",
+                "(C) Đại diện dịch vụ khách hàng",
+                "(D) Huấn luyện viên thể hình"
               ],
               "answer": "B"
             },
             {
               "q": 78,
-              "enQ": "Why does the speaker say, ''my apartment is on a very high floor”?",
+              "enQ": "What has the speaker prepared?",
               "enOpts": [
-                "(A) To correct a misunderstanding",
-                "(B) To negotiate a price",
-                "(C) To ask about a property's value",
-                "(D) To warn about a situation"
+                "(A) Activities",
+                "(B) Food",
+                "(C) Certificates",
+                "(D) A video"
               ],
-              "viQ": "Tại sao người nói nói, ''căn hộ của tôi ở tầng rất cao''?",
+              "viQ": "Người nói đã chuẩn bị những gì?",
               "viOpts": [
-                "(A) Để sửa chữa một sự hiểu lầm",
-                "(B) Để thương lượng giá cả",
-                "(C) Để hỏi về giá trị của một tài sản",
-                "(D) Để cảnh báo về một tình huống"
+                "(A) Hoạt động",
+                "(B) Thức ăn",
+                "(C) Chứng chỉ",
+                "(D) Một đoạn video"
               ],
-              "answer": "D"
+              "answer": "A"
             },
             {
               "q": 79,
-              "enQ": "What will the speaker do next week?",
+              "enQ": "What does the speaker imply when he says, “I must leave at noon”?",
               "enOpts": [
-                "(A) Host an event",
-                "(B) Make a payment",
-                "(C) Travel abroad",
-                "(D) Begin a new job"
+                "(A) He would like permission to leave.",
+                "(B) He cannot join a luncheon.",
+                "(C) A colleague will fill in for him.",
+                "(D) Some material will not be covered today."
               ],
-              "viQ": "Người nói sẽ làm gì vào tuần tới?",
+              "viQ": "Người nói có ý gì khi nói, “Tôi phải rời đi vào buổi trưa”?",
               "viOpts": [
-                "(A) Tổ chức một sự kiện",
-                "(B) Thanh toán",
-                "(C) Du lịch nước ngoài",
-                "(D) Bắt đầu một công việc mới"
+                "(A) Anh ấy muốn được phép rời đi.",
+                "(B) Anh ấy không thể tham gia bữa trưa.",
+                "(C) Một đồng nghiệp sẽ điền thông tin cho anh ấy.",
+                "(D) Một số tài liệu sẽ không được đề cập ngày hôm nay."
               ],
-              "answer": "C"
+              "answer": "D"
             }
           ]
         },
         {
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/80-82.mp3",
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-80-82.mp3",
           "img": "",
-          "script": "M: Good evening, everyone! Welcome to a new season of City Opera. I bring some bad news, I'm afraid. (80) Soprano Lisa Gornicka informed me earlier today that she will not be able to perform tonight. I know how disappointing this is. But I also have good news! Soprano Rita Marks is in town and has agreed to step in for Ms. Gornicka. (81) Not only is Ms. Marks familiar with the role of Laura, but she also knows the choreography, since she worked with our director when this production premiered in Toronto. (82) Wondering what her voice is like? Well, judge for yourself, but I saw the reviews from Toronto. (82) l can guarantee that we are in for a treat!",
-          "trans": "M: Chào buổi tối mọi người! Chào mừng đến với một mùa mới của City Opera. Tôi e rằng tôi mang đến một số tin xấu. (80) Giọng nữ cao Lisa Gornicka đã thông báo với tôi vào hôm nay rằng cô ấy sẽ không thể biểu diễn tối nay. Tôi biết điều này đáng thất vọng như thế nào. Nhưng tôi cũng có một tin tốt! Giọng nữ cao Rita Marks đang ở trong thị trấn và đã đồng ý thế chỗ cho cô Gornicka. (81) Cô Marks không chỉ quen thuộc với vai Laura mà còn biết vũ đạo, vì cô ấy đã làm việc với đạo diễn của chúng tôi khi sản phẩm này được công chiếu ở Toronto.(82) Tự hỏi giọng nói của cô ấy như thế nào? Chà, hãy tự đánh giá, nhưng tôi đã xem các bài đánh giá từ Toronto. (82) Tôi có thể đảm bảo rằng chúng ta sẽ được đãi ngộ tuyệt vời!!",
+          "script": "M: Are you a certified commercial truck driver? (80) Hoffman Oversized Haulers is currently looking for experienced truck drivers to join our team. As our name suggests, we transport oversized cargo throughout the region. (81) With Hoffman, drivers enjoy flexible scheduling. In fact, we're the only company in the region that allows employees to determine their own work hours. If you don’t have experience working with oversized loads, training is available. (82) Please check out our Web site to learn more about our open positions. We can’t wait to work with you.",
+          "trans": "M: Bạn có phải là tài xế xe tải thương mại được chứng nhận không? (80) Hoffman Oversized Haulers hiện đang tìm kiếm những tài xế xe tải có kinh nghiệm để gia nhập đội ngũ của chúng tôi. Đúng như tên gọi của chúng tôi, chúng tôi vận chuyển hàng hóa quá khổ trên khắp khu vực. (81) Với Hoffman, người lái xe có thể lên lịch linh hoạt. Trên thực tế, chúng tôi là công ty duy nhất trong khu vực cho phép nhân viên tự quyết định giờ làm việc của mình. Nếu bạn không có kinh nghiệm làm việc với tải trọng quá khổ, bạn có thể được đào tạo. (82) Vui lòng xem trang web của chúng tôi để tìm hiểu thêm về các vị trí đang tuyển dụng của chúng tôi. Chúng tôi rất mong được làm việc với bạn.",
           "questions": [
             {
               "q": 80,
-              "enQ": "Why might the listeners be disappointed?",
+              "enQ": "What is the purpose of the advertisement?",
               "enOpts": [
-                "(A) A performance has been canceled.",
-                "(B) A performer will not be appearing.",
-                "(C) A new production will be delayed.",
-                "(D) A production is not new."
+                "(A) To announce a contest",
+                "(B) To promote an upcoming sale",
+                "(C) To introduce new services",
+                "(D) To recruit employees"
               ],
-              "viQ": "Tại sao người nghe có thể thất vọng?",
+              "viQ": "Mục đích của quảng cáo là gì?",
               "viOpts": [
-                "(A) Một buổi biểu diễn đã bị hủy bỏ.",
-                "(B) Một nghệ sĩ biểu diễn sẽ không xuất hiện.",
-                "(C) Một sản phẩm mới sẽ bị trì hoãn.",
-                "(D) Sản xuất không phải là mới."
+                "(A) Để thông báo một cuộc thi",
+                "(B) Để quảng bá đợt giảm giá sắp tới",
+                "(C) Để giới thiệu các dịch vụ mới",
+                "(D) Để tuyển dụng nhân viên"
               ],
-              "answer": "B"
+              "answer": "D"
             },
             {
               "q": 81,
-              "enQ": "What does the speaker indicate about Rita Marks?",
+              "enQ": "How is the speaker’s company different from its competitors?",
               "enOpts": [
-                "(A) She has flown in from Toronto.",
-                "(B) She taught the speaker.",
-                "(C) She has experience with a role.",
-                "(D) She is a good friend of the speaker’s."
+                "(A) It is dependable.",
+                "(B) It produces innovative products.",
+                "(C) It offers flexible schedules.",
+                "(D) It pays employees well."
               ],
-              "viQ": "Người nói chỉ ra điều gì về Rita Marks?",
+              "viQ": "Công ty của người nói khác biệt như thế nào so với các đối thủ cạnh tranh?",
               "viOpts": [
-                "(A) Cô ấy đã bay đến từ Toronto.",
-                "(B) Cô ấy đã dạy người nói.",
-                "(C) Cô ấy có kinh nghiệm với một vai diễn.",
-                "(D) Cô ấy là bạn tốt của người nói."
+                "(A) Nó đáng tin cậy.",
+                "(B) Nó tạo ra các sản phẩm sáng tạo.",
+                "(C) Nó cung cấp lịch trình linh hoạt.",
+                "(D) Nó trả lương cho nhân viên rất tốt."
               ],
               "answer": "C"
             },
             {
               "q": 82,
-              "enQ": "What does the speaker imply when he says, “I saw the reviews from Toronto''?",
+              "enQ": "What does the speaker encourage the listeners to do?",
               "enOpts": [
-                "(A) He attended the opera in Toronto.",
-                "(B) An audience disliked Lisa Gornicka.",
-                "(C) Critics disagree about Rita Marks’s performance.",
-                "(D) Rita Marks has been praised for her singing."
+                "(A) Complete a survey",
+                "(B) Fill out an application",
+                "(C) Place an order",
+                "(D) Get more information"
               ],
-              "viQ": "Người nói ngụ ý gì khi nói, “Tôi đã xem các bài đánh giá từ Toronto”?",
+              "viQ": "Người nói khuyến khích người nghe làm gì?",
               "viOpts": [
-                "(A) Anh ấy đã tham dự vở opera ở Toronto.",
-                "(B) Một khán giả không thích Lisa Gornicka.",
-                "(C) Các nhà phê bình không đồng ý về hiệu suất của Rita Marks.",
-                "(D) Rita Marks đã được ca ngợi vì giọng hát của cô ấy."
+                "(A) Hoàn thành khảo sát",
+                "(B) Điền đơn đăng ký",
+                "(C) Đặt hàng",
+                "(D) Nhận thêm thông tin"
               ],
               "answer": "D"
             }
           ]
         },
         {
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/83-85.mp3",
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-83-85.mp3",
           "img": "",
-          "script": "W: Thank you for inviting me and other members of the marketing department to this meeting of the research and development team.\n(83) We always welcome the opportunity to share customer information about our toys with you. I'd like to start off with some information about the remote-control car that we launched in department stores and toy stores one month ago. It's been a mixed bag. (84) Customers love the smooth action of the car and the high speed it can achieve. However, they are somewhat disappointed with the rechargeable battery the car comes with. (85) i encourage your team to find ways to make the battery charge faster and last longer.",
-          "trans": "W: Cảm ơn bạn đã mời tôi và các thành viên khác của bộ phận tiếp thị đến cuộc họp này của nhóm nghiên cứu phát triển.\n(83) Chúng tôi luôn hoan nghênh cơ hội để chia sẻ thông tin khách hàng về đồ chơi với các bạn. Tôi muốn bắt đầu với một số thông tin về ô tô điều khiển từ xa mà chúng tôi đã ra mắt tại các cửa hàng bách hóa và cửa hàng đồ chơi một tháng trước. Đã có rất nhiều ý kiến khác nhau. (84) Khách hàng yêu thích khả năng vận hành mượt mà của chiếc xe và tốc độ cao mà nó có thể đạt được. Tuy nhiên, họ hơi thất vọng với cục pin sạc đi kèm theo xe.(85) Tôi khuyến khích nhóm của bạn tìm cách sạc pin nhanh hơn và lâu hơn.",
+          "script": "w: Hi, Jinyu. I have some exciting news! (83) The Farmer's Table television program wants to feature our restaurant in an upcoming episode. (84) They’ll be coming on Wednesday to film everyone at work in the kitchen during our dinner service. Since you're the executive chef, I'll need you to come in earlier than usual to get everything prepped and set up. And just as a reminder, (85) I'm still planning to be out of town next week for the Springdale Pastry and Dessert Festival. Thanks!",
+          "trans": "w: Xin chào, Jinyu. Tôi có một số tin tức thú vị! (83) Chương trình truyền hình Farmer's Table muốn giới thiệu nhà hàng của chúng tôi trong tập sắp tới. (84) Họ sẽ đến vào thứ Tư để quay phim mọi người đang làm việc trong bếp trong thời gian phục vụ bữa tối của chúng tôi. Vì bạn là bếp trưởng nên tôi cần bạn đến sớm hơn thường lệ để chuẩn bị và sắp xếp mọi thứ. Và như một lời nhắc nhở, (85) tôi vẫn đang có kế hoạch ra khỏi thành phố vào tuần tới để tham dự Lễ hội Bánh ngọt và Món tráng miệng Springdale. Cảm ơn.",
           "questions": [
             {
               "q": 83,
-              "enQ": "Where does the speaker most likely work?",
+              "enQ": "What is the message mainly about?",
               "enOpts": [
-                "(A) At an automobile company",
-                "(B) At a data analysis company",
-                "(C) At a toy manufacturer",
-                "(D) At a department store",
-                "* explanation:"
+                "(A) Revising a restaurant menu",
+                "(B) Filming for a television show",
+                "(C) Launching an advertising campaign",
+                "(D) Renovating a kitchen"
               ],
-              "viQ": "Người nói có khả năng làm việc ở đâu nhất?",
+              "viQ": "Tin nhắn chủ yếu nói về điều gì?",
               "viOpts": [
-                "(A) Tại một công ty ô tô",
-                "(B) Tại một công ty phân tích dữ liệu",
-                "(C) Tại một nhà sản xuất đồ chơi",
-                "(D) Tại một cửa hàng bách hóa"
+                "(A) Sửa lại thực đơn nhà hàng",
+                "(B) Quay phim cho một chương trình truyền hình",
+                "(C) Khởi động một chiến dịch quảng cáo",
+                "(D) Cải tạo nhà bếp"
               ],
-              "answer": "C"
+              "answer": "B"
             },
             {
               "q": 84,
-              "enQ": "What does the speaker mean when she says, ''It’s been a mixed bag”?",
+              "enQ": "What does the speaker ask the listener to do on Wednesday?",
               "enOpts": [
-                "(A) The product she is discussing cannot be returned for a refund.",
-                "(B) Customers often purchase more than one of the product.",
-                "(C) A competitor has developed a similar product.",
-                "(D) A product has had both positive and negative reviews."
+                "(A) Come to work early",
+                "(B) Experiment with new ingredients",
+                "(C) Train an employee",
+                "(D) Prepare for a safety inspection"
               ],
-              "viQ": "Ý của người nói là gì khi cô ấy nói, ''It’s been a mixed bag”?",
+              "viQ": "Người nói yêu cầu người nghe làm gì vào thứ Tư?",
               "viOpts": [
-                "(A) Không thể trả lại sản phẩm mà cô ấy đang thảo luận để được hoàn lại tiền.",
-                "(B) Khách hàng thường mua nhiều hơn một sản phẩm.",
-                "(C) Một đối thủ cạnh tranh đã phát triển một sản phẩm tương tự.",
-                "(D) Một sản phẩm đã có cả đánh giá tích cực và tiêu cực."
-              ],
-              "answer": "D"
-            },
-            {
-              "q": 85,
-              "enQ": "What does the speaker ask the listeners to do?",
-              "enOpts": [
-                "(A) Try using the product she is discussing",
-                "(B) Improve one part of the product",
-                "(C) Get more information from customers",
-                "(D) Collaborate with the marketing team"
-              ],
-              "viQ": "Người nói yêu cầu người nghe làm gì?",
-              "viOpts": [
-                "(A) Hãy thử sử dụng sản phẩm mà cô ấy đang thảo luận",
-                "(B) Cải thiện một phần của sản phẩm",
-                "(C) Nhận thêm thông tin từ khách hàng",
-                "(D) Phối hợp với nhóm tiếp thị"
-              ],
-              "answer": "B"
-            }
-          ]
-        },
-        {
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/86-88.mp3",
-          "img": "",
-          "script": "W: (86) Attention, Shopsmart shoppers! (87) ln case you didn't pick up our flyer, we are kicking off a Shopsmart giveaway event. (86) For every two cans of Shopsmart soup or vegetables that you buy, you will be entered in a drawing to win a gift certificate that can be used at any Shopsmart location. (88) Gift certificates worth $100 each will be awarded to three lucky shoppers on May first. This offer is good only for Shopsmart-brand canned goods. Act now! Stock up and join the giveaway! The more you buy, the more chances you have to win!",
-          "trans": "W: (86) Chú ý, người mua sắm tại Shopsmart!(87) Trong trường hợp bạn không nhận được tờ rơi của chúng tôi, chúng tôi sẽ khởi động sự kiện tặng quà Shopsmart.(86) Cứ hai hộp súp hoặc rau Shopsmart mà bạn mua, bạn sẽ được tham gia rút thăm để giành được phiếu quà tặng có thể được sử dụng tại bất kỳ địa điểm nào của Shopsmart. (88) Mỗi phiếu quà tặng trị giá $100 sẽ được trao cho ba người mua sắm may mắn vào ngày đầu tiên của tháng Năm. Ưu đãi này chỉ áp dụng cho hàng đóng hộp thương hiệu Shopsmart. Diễn! Dự trữ và tham gia nhận quà! Bạn càng mua nhiều, bạn càng có nhiều cơ hội giành chiến thắng!",
-          "questions": [
-            {
-              "q": 86,
-              "enQ": "Where is the announcement most likely being made?",
-              "enOpts": [
-                "(A) At a supermarket",
-                "(B) At a community center",
-                "(C) At a restaurant",
-                "(D) At a shopping mall"
-              ],
-              "viQ": "Thông báo có nhiều khả năng được thực hiện nhất ở đâu?",
-              "viOpts": [
-                "(A) Tại một siêu thị",
-                "(B) Tại một trung tâm cộng đồng",
-                "(C) Tại một nhà hàng",
-                "(D) Tại một trung tâm mua sắm"
+                "(A) Hãy đến làm việc sớm",
+                "(B) Thử nghiệm với các nguyên liệu mới",
+                "(C) Đào tạo nhân viên",
+                "(D) Chuẩn bị cho cuộc kiểm tra an toàn"
               ],
               "answer": "A"
             },
             {
-              "q": 87,
-              "enQ": "What is the main topic of the announcement?",
+              "q": 85,
+              "enQ": "Where will the speaker go next week?",
               "enOpts": [
-                "(A) A discount offer",
-                "(B) A new product",
-                "(C) A giveaway",
-                "(D) A volunteer opportunity"
+                "(A) To a food festival",
+                "(B) To a cooking class",
+                "(C) To a farmers market",
+                "(D) To a bakery opening"
               ],
-              "viQ": "Chủ đề chính của thông báo là gì?",
+              "viQ": "Người nói sẽ đi đâu vào tuần tới?",
               "viOpts": [
-                "(A) Một đề nghị giảm giá",
-                "(B) Một sản phẩm mới",
-                "(C) Quà tặng",
-                "(D) Một cơ hội tình nguyện"
+                "(A) Đến lễ hội ẩm thực",
+                "(B) Đến lớp học nấu ăn",
+                "(C) Đến chợ nông sản",
+                "(D) Đến cửa hàng bánh mì"
+              ],
+              "answer": "A"
+            }
+          ]
+        },
+        {
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-86-88.mp3",
+          "img": "",
+          "script": "M: Good evening and thank you for watching Channel Four News. I’m here in Rockville, a suburb in the metropolitan area. (86) Rockville was recently chosen as the site of a multimillion-dollar electric vehicle battery factory. This project promises to bring thousands of jobs, both directly and indirectly, to the surrounding community. (87) At a recent well-attended public comment meeting, residents had a chance to voice any opposition to the project. No one made any comments. To learn more about this exciting development, (88) artist- rendered images of the project are on display at the city hall building.",
+          "trans": "M: Chào buổi tối và cảm ơn các bạn đã xem Channel Four News. Tôi đang ở Rockville, một vùng ngoại ô trong khu vực đô thị. (86) Rockville gần đây đã được chọn làm địa điểm xây dựng nhà máy sản xuất pin xe điện trị giá hàng triệu đô la. Dự án này hứa hẹn sẽ mang lại hàng ngàn việc làm, cả trực tiếp và gián tiếp, cho cộng đồng xung quanh. (87) Tại một cuộc họp lấy ý kiến ​​công chúng có sự tham dự đông đảo gần đây, người dân đã có cơ hội lên tiếng về bất kỳ sự phản đối nào đối với dự án. Không ai đưa ra bất kỳ bình luận nào. Để tìm hiểu thêm về sự phát triển thú vị này, (88) các hình ảnh do nghệ sĩ thể hiện của dự án đang được trưng bày tại tòa nhà tòa thị chính.",
+          "questions": [
+            {
+              "q": 86,
+              "enQ": "What is the speaker mainly discussing?",
+              "enOpts": [
+                "(A) A job fair",
+                "(B) A factory",
+                "(C) Some traffic patterns",
+                "(D) A prototype electric vehicle"
+              ],
+              "viQ": "Người nói chủ yếu thảo luận về vấn đề gì?",
+              "viOpts": [
+                "(A) Một hội chợ việc làm",
+                "(B) Một nhà máy",
+                "(C) Một số kiểu giao thông",
+                "(D) Một mẫu xe điện"
+              ],
+              "answer": "B"
+            },
+            {
+              "q": 87,
+              "enQ": "What does the speaker imply when he says, “No one made any comments”?",
+              "enOpts": [
+                "(A) Few people were in attendance.",
+                "(B) Another meeting will be scheduled.",
+                "(C) A project has community support.",
+                "(D) A public comment period has ended."
+              ],
+              "viQ": "Người nói có ý gì khi nói, “Không ai đưa ra bất kỳ bình luận nào.”?",
+              "viOpts": [
+                "(A) Rất ít người tham dự.",
+                "(B) Một cuộc họp khác sẽ được lên lịch.",
+                "(C) Một dự án có sự ủng hộ của cộng đồng.",
+                "(D) Thời gian lấy ý kiến ​​công chúng đã kết thúc."
               ],
               "answer": "C"
             },
             {
               "q": 88,
-              "enQ": "What does the speaker say about some Shopsmart products?",
+              "enQ": "What can the public view at the city hall building?",
               "enOpts": [
-                "(A) They are not available at all Shopsmart locations.",
-                "(B) They are acquired from overseas distributors.",
-                "(C) They are currently on sale.",
-                "(D) They are the only products that qualify for an event."
+                "(A) An official contract",
+                "(B) Some images",
+                "(C) A list of companies",
+                "(D) Some facts about local politicians"
               ],
-              "viQ": "Người nói nói gì về một số sản phẩm của Shopsmart?",
+              "viQ": "Công chúng có thể xem gì tại tòa nhà tòa thị chính?",
               "viOpts": [
-                "(A) Chúng không có sẵn ở tất cả các địa điểm Shopsmart.",
-                "(B) Chúng được mua lại từ các nhà phân phối ở nước ngoài.",
-                "(C) Chúng hiện đang được bán.",
-                "(D) Chúng là những sản phẩm duy nhất đủ điều kiện tham gia một sự kiện."
+                "(A) Một hợp đồng chính thức",
+                "(B) Một số hình ảnh",
+                "(C) Danh sách các công ty",
+                "(D) Một số sự thật về các chính trị gia địa phương"
               ],
-              "answer": "D"
+              "answer": "B"
             }
           ]
         },
         {
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/89-91.mp3",
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-89-91.mp3",
           "img": "",
-          "script": "M: Hi, Mr. Collins. I'm calling from Silva's Flooring. (89) l was about to place your order for the maple floors that you wanted me to put in, but I decided to call you first. (90) '(91) l just found out that the hardwood distributor has lowered the price of the oak flooring. (91) l think you originally preferred oak but decided it was too expensive. The reduction looks to be about fifteen percent. Please call me back and let me know if I should still order the maple for you or if you would prefer that I order the oak.",
-          "trans": "M: Chào anh Collins. Tôi đang gọi từ Silva's Flooring. (89) Tôi định đặt hàng sàn gỗ thích mà bạn muốn tôi đặt, nhưng tôi quyết định gọi cho bạn trước.(90) '(91) Tôi vừa phát hiện ra rằng nhà phân phối gỗ cứng đã hạ giá sàn gỗ sồi. (91) Tôi nghĩ rằng ban đầu bạn thích gỗ sồi nhưng quyết định rằng nó quá đắt. Mức giảm có vẻ là khoảng mười lăm phần trăm. Vui lòng gọi lại cho tôi và cho tôi biết liệu tôi có nên đặt gỗ phong cho bạn hay bạn muốn tôi đặt gỗ sồi.",
+          "script": "W: Tired of losing things on your desk because it’s too cluttered? If so, (89) the Optimum Space Organizer is the perfect product for you. Designed with office employees like you in mind, (89) this product can make even the messiest of desks look neat again. (90) Best of all, the organizer adjusts to any sized space you may have on your desk. It can be as narrow or as wide as you need it to be—within seconds! (91) If you call in the next ten minutes, you'll receive a 30 percent discount!",
+          "trans": "W: Bạn mệt mỏi vì mất đồ trên bàn vì quá bừa bộn? Nếu vậy, (89) bộ sắp xếp không gian tối ưu chính là sản phẩm hoàn hảo dành cho bạn. Được thiết kế dành cho những nhân viên văn phòng như bạn, (89) sản phẩm này có thể khiến ngay cả những chiếc bàn bừa bộn nhất cũng trông gọn gàng trở lại. (90) Điều tuyệt vời nhất là người tổ chức có thể điều chỉnh theo bất kỳ kích thước không gian nào bạn có thể có trên bàn làm việc của mình. Nó có thể hẹp hoặc rộng tùy theo nhu cầu của bạn—trong vòng vài giây! (91) Nếu bạn gọi trong mười phút tới, bạn sẽ được giảm giá 30%!",
           "questions": [
             {
               "q": 89,
-              "enQ": "What work was the speaker hired to do?",
+              "enQ": "What type of product is being advertised?",
               "enOpts": [
-                "(A) Deliver firewood",
-                "(B) Repair a roof",
-                "(C) Install flooring",
-                "(D) Complete a landscaping job"
+                "(A) A floor lamp",
+                "(B) A bookshelf",
+                "(C) An office chair",
+                "(D) A desk organizer"
               ],
-              "viQ": "Diễn giả được thuê để làm công việc gì?",
+              "viQ": "Loại sản phẩm nào đang được quảng cáo?",
               "viOpts": [
-                "(A) Giao củi",
-                "(B) Sửa mái nhà",
-                "(C) Lắp đặt sàn",
-                "(D) Hoàn thành công việc làm vườn"
+                "(A) Một chiếc đèn sàn",
+                "(B) Một giá sách",
+                "(C) Một chiếc ghế văn phòng",
+                "(D) Một bộ sắp xếp bàn làm việc"
               ],
-              "answer": "C"
+              "answer": "D"
             },
             {
               "q": 90,
-              "enQ": "What does the speaker say about the distributor?",
+              "enQ": "What special feature does the speaker emphasize?",
               "enOpts": [
-                "(A) It lowered a price.",
-                "(B) It is no longer in business.",
-                "(C) It expects a delay.",
-                "(D) It has not responded to his request."
+                "(A) It is durable.",
+                "(B) It is adjustable.",
+                "(C) It is easy to assemble.",
+                "(D) It is available in many colors."
               ],
-              "viQ": "Người nói nói gì về nhà phân phối?",
+              "viQ": "Người nói nhấn mạnh đặc điểm gì?",
               "viOpts": [
-                "(A) Nó hạ giá.",
-                "(B) Nó không còn kinh doanh nữa.",
-                "(C) Nó mong đợi một sự chậm trễ.",
-                "(D) Nó đã không đáp ứng yêu cầu của anh ấy."
+                "(A) Nó bền.",
+                "(B) Nó có thể điều chỉnh được.",
+                "(C) Nó rất dễ lắp ráp.",
+                "(D) Nó có nhiều màu sắc."
+              ],
+              "answer": "B"
+            },
+            {
+              "q": 91,
+              "enQ": "How can the listeners receive a discount?",
+              "enOpts": [
+                "(A) By calling within a time limit",
+                "(B) By entering an e-mail address",
+                "(C) By referring a product to a friend",
+                "(D) By using a mobile phone application"
+              ],
+              "viQ": "Làm thế nào người nghe có thể nhận được giảm giá?",
+              "viOpts": [
+                "(A) Bằng cách gọi trong thời gian giới hạn",
+                "(B) Bằng cách nhập địa chỉ email",
+                "(C) Bằng cách giới thiệu sản phẩm cho bạn bè",
+                "(D) Bằng cách sử dụng ứng dụng điện thoại di động"
+              ],
+              "answer": "A"
+            }
+          ]
+        },
+        {
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-92-94.mp3",
+          "img": "",
+          "script": "W: Thanks for listening to this episode of Fabulous Foods. (92) Every week, we discuss a different vegetable and ways to cook with it to maximize flavor. Now, before we get started, (93) I’m excited to announce that I've been collaborating with Cartwell Kitchen Supplies to develop a new line of cookware. It'll be released in November, but it’s available for preorder right now. Keep in mind, this product line will not be available for long. OK, let’s move on to our program. With us today is renowned chef Rebecca Murray to talk about this week’s vegetable: eggplant! (94) Rebecca recently launched a vegetarian restaurant in New York that is getting rave reviews so far.",
+          "trans": "W: Cảm ơn bạn đã nghe tập này của Fabulous Foods. (92) Mỗi tuần, chúng tôi thảo luận về một loại rau khác nhau và cách nấu với nó để tối đa hóa hương vị. Bây giờ, trước khi chúng ta bắt đầu, (93) Tôi vui mừng thông báo rằng tôi đang cộng tác với Cartwell Kitchen Supplies để phát triển một dòng dụng cụ nấu ăn mới. Nó sẽ được phát hành vào tháng 11 nhưng hiện đã có sẵn để đặt hàng trước. Hãy nhớ rằng, dòng sản phẩm này sẽ không có hàng quá lâu. Được rồi, hãy chuyển sang chương trình của chúng ta. Cùng chúng tôi hôm nay, đầu bếp nổi tiếng Rebecca Murray sẽ nói về món rau của tuần này: cà tím! (94) Rebecca gần đây đã khai trương một nhà hàng chay ở New York và cho đến nay vẫn nhận được nhiều lời khen ngợi.",
+          "questions": [
+            {
+              "q": 92,
+              "enQ": "According to the speaker, what is the purpose of the podcast?",
+              "enOpts": [
+                "(A) To discuss the restaurant industry",
+                "(B) To review new cooking equipment",
+                "(C) To share information about nutrition",
+                "(D) To showcase individual ingredients"
+              ],
+              "viQ": "Theo diễn giả, mục đích của podcast là gì?",
+              "viOpts": [
+                "(A) Để thảo luận về ngành nhà hàng",
+                "(B) Để xem xét thiết bị nấu ăn mới",
+                "(C) Để chia sẻ thông tin về dinh dưỡng",
+                "(D) Để giới thiệu các thành phần riêng lẻ"
+              ],
+              "answer": "D"
+            },
+            {
+              "q": 93,
+              "enQ": "Why does the speaker say, “this product line will not be available for long”?",
+              "enOpts": [
+                "(A) To encourage the listeners to place an order",
+                "(B) To apologize to the listeners for a product shortage",
+                "(C) To justify a high price",
+                "(D) To criticize a business decision"
+              ],
+              "viQ": "Tại sao người nói lại nói “dòng sản phẩm này sẽ không có hàng quá lâu”?",
+              "viOpts": [
+                "(A) Để khuyến khích người nghe đặt hàng",
+                "(B) Để xin lỗi người nghe về một sản phẩm thiếu",
+                "(C) Để biện minh cho mức giá cao",
+                "(D) Để chỉ trích một quyết định kinh doanh"
               ],
               "answer": "A"
             },
             {
-              "q": 91,
-              "enQ": "Why did the speaker wait to place an order?",
+              "q": 94,
+              "enQ": "According to the speaker, what did Rebecca Murray recently do?",
               "enOpts": [
-                "(A) He is not sure what quantity is needed.",
-                "(B) He wants a customer to reconsider a decision.",
-                "(C) He forgot what the customer requested.",
-                "(D) He learned that a product is no longer available."
+                "(A) She published a cookbook.",
+                "(B) She launched a culinary training course.",
+                "(C) She opened a restaurant.",
+                "(D) She traveled abroad."
               ],
-              "viQ": "Tại sao người nói đợi để đặt hàng?",
+              "viQ": "Theo diễn giả, gần đây Rebecca Murray đã làm gì?",
               "viOpts": [
-                "(A) Anh ấy không chắc số lượng cần thiết là bao nhiêu.",
-                "(B) Anh ấy muốn một khách hàng xem xét lại một quyết định.",
-                "(C) Anh ấy quên những gì khách hàng yêu cầu.",
-                "(D) Anh ấy biết rằng một sản phẩm không còn nữa."
+                "(A) Cô ấy đã xuất bản một cuốn sách nấu ăn.",
+                "(B) Cô ấy đã mở khóa đào tạo nấu ăn.",
+                "(C) Cô ấy mở một nhà hàng.",
+                "(D) Cô ấy đi du lịch nước ngoài."
+              ],
+              "answer": "C"
+            }
+          ]
+        },
+        {
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-95-97.mp3",
+          "img": "https://2024.toeicthaysang.com/de2/95.png",
+          "script": "W: Attention passengers. (95) Renovation work to upgrade and modernize our train station is underway. We apologize for the inconvenience the construction noise may cause. Please note that regional train schedules are not affected. Train 133 with service to Washington, D.C., will be arriving shortly. All passengers to Washington, please proceed to Track 26B. (96) lf you need assistance handling your baggage, please speak to a ticket agent immediately. (97) Train 133’s next stop will be Wilmington, followed by Baltimore and then Washington, D.C.",
+          "trans": "W: Hành khách chú ý. (95) Công việc cải tạo để nâng cấp và hiện đại hóa nhà ga xe lửa của chúng tôi đang được tiến hành. Chúng tôi xin lỗi vì sự bất tiện mà tiếng ồn xây dựng có thể gây ra. Xin lưu ý rằng lịch trình tàu khu vực không bị ảnh hưởng. Chuyến tàu 133 với tuyến đến Washington, D.C. sẽ sớm đến nơi. Tất cả hành khách đến Washington, vui lòng đi tới Đường 26B. (96) Nếu bạn cần hỗ trợ xử lý hành lý của mình, vui lòng liên hệ ngay với nhân viên bán vé. (97) Điểm dừng tiếp theo của Tàu 133 sẽ là Wilmington, tiếp theo là Baltimore và sau đó là Washington, D.C.",
+          "questions": [
+            {
+              "q": 95,
+              "enQ": "Why does the speaker apologize?",
+              "enOpts": [
+                "(A) There is construction noise at the station.",
+                "(B) There are no more seats available on a train.",
+                "(C) A printed schedule has incorrect information.",
+                "(D) A train service has been delayed."
+              ],
+              "viQ": "Tại sao người nói lại xin lỗi?",
+              "viOpts": [
+                "(A) Có tiếng ồn xây dựng tại nhà ga.",
+                "(B) Không còn chỗ trống trên tàu nữa.",
+                "(C) Một lịch trình in có thông tin không chính xác.",
+                "(D) Dịch vụ tàu đã bị trì hoãn."
+              ],
+              "answer": "A"
+            },
+            {
+              "q": 96,
+              "enQ": "According to the speaker, why may some listeners need to see an agent?",
+              "enOpts": [
+                "(A) To ask for a refund",
+                "(B) To request baggage service",
+                "(C) To purchase a monthly pass",
+                "(D) To arrange a transfer"
+              ],
+              "viQ": "Theo người nói, tại sao một số người nghe có thể cần gặp một người đại diện?",
+              "viOpts": [
+                "(A) Để yêu cầu hoàn lại tiền",
+                "(B) Để yêu cầu dịch vụ hành lý",
+                "(C) Để mua vé tháng",
+                "(D) Để sắp xếp việc chuyển giao"
+              ],
+              "answer": "B"
+            },
+            {
+              "q": 97,
+              "enQ": "Look at the graphic. When is Train 133 scheduled to arrive at its next stop?",
+              "enOpts": [
+                "(A) At 10:45 am.",
+                "(B) At 12:05 pm.",
+                "(C) At 1:00 pm.",
+                "(D) At 1:30 pm."
+              ],
+              "viQ": "Nhìn vào hình. Khi nào chuyến tàu 133 dự kiến ​​đến điểm dừng tiếp theo?",
+              "viOpts": [
+                "(A) Lúc 10:45 sáng",
+                "(B) Lúc 12:05 chiều.",
+                "(C) Lúc 1 giờ chiều.",
+                "(D) Lúc 1:30 chiều."
               ],
               "answer": "B"
             }
           ]
         },
         {
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/92-94.mp3",
-          "img": "",
-          "script": "W: (92) Welcome to the Central Valley Environmental Center. (92) ’(93) We're so grateful to all of you, our volunteers, for coming out today to help with this project to install bluebird nest boxes. The Eastern bluebird is a native species that plays an important role in our environment, but it's threatened by habitat loss and predation. (94) We have numerous donated nest boxes here that will help protect our local bluebird population. Remember that bluebirds prefer open woodlands and grasslands with scattered trees. Some suitable locations are already identified on the maps you've received.",
-          "trans": "W: (92) Chào mừng đến với Trung tâm môi trường Central Valley.(92) ’(93) Chúng tôi rất biết ơn tất cả các bạn, những tình nguyện viên của chúng tôi, đã đến hôm nay để giúp đỡ dự án lắp đặt các hộp nuôi chim xanh này. Chim xanh phương Đông là loài bản địa đóng vai trò quan trọng trong môi trường của chúng ta, nhưng nó đang bị đe dọa do mất môi trường sống và bị săn mồi. (94) Chúng tôi có rất nhiều hộp làm tổ được quyên góp ở đây sẽ giúp bảo vệ quần thể chim xanh tại địa phương của chúng tôi. Hãy nhớ rằng bluebirds thích rừng và đồng cỏ mở với cây cối rải rác. Một số địa điểm phù hợp đã được xác định trên bản đồ mà bạn được nhận.",
+          "mp3": "https://2024.toeicthaysang.com/mp3/Test_2-98-100.mp3",
+          "img": "https://2024.toeicthaysang.com/de2/98.png",
+          "script": "w: Hello, everyone. I’m Carmen Salazar, the airport operations director, (98) and I wanted to thank you for attending this press conference. As of this week, construction on the new regional airport is proceeding on schedule for two of the three terminals. (99) Minor design adjustments to terminal A have put the project slightly behind schedule, and we anticipate about two months will be added to the construction time frame as a result. (100) l'd also like to mention that we now have a 3-D printed model of this project! Please feel free to visit our Web site so you can view it.",
+          "trans": "w: Xin chào mọi người. Tôi là Carmen Salazar, giám đốc điều hành sân bay, (98) và tôi muốn cảm ơn các bạn đã tham dự cuộc họp báo này. Tính đến tuần này, việc xây dựng sân bay khu vực mới đang được tiến hành đúng tiến độ cho hai trong số ba nhà ga. (99) Những điều chỉnh nhỏ về thiết kế đối với nhà ga A đã khiến dự án bị chậm tiến độ một chút và do đó, chúng tôi dự đoán khung thời gian xây dựng sẽ được cộng thêm khoảng hai tháng. (100) Tôi cũng muốn đề cập rằng hiện tại chúng tôi đã có mô hình in 3-D của dự án này! Xin vui lòng truy cập trang web của chúng tôi để bạn có thể xem nó.",
           "questions": [
             {
-              "q": 92,
-              "enQ": "Who most likely is the speaker?",
+              "q": 98,
+              "enQ": "Who most likely are the listeners?",
               "enOpts": [
-                "(A) A teacher in a classroom",
-                "(B) A worker at an environmental center",
-                "(C) A salesperson in a sporting goods store",
-                "(D) A guide in a natural history museum"
+                "(A) Civil engineers",
+                "(B) Urban planners",
+                "(C) News reporters",
+                "(D) Safety inspectors"
               ],
-              "viQ": "Ai có khả năng nhất là người nói?",
+              "viQ": "Ai có nhiều khả năng là người nghe nhất?",
               "viOpts": [
-                "(A) Một giáo viên trong lớp học",
-                "(B) Một công nhân tại trung tâm môi trường",
-                "(C) Một nhân viên bán hàng trong cửa hàng bán đồ thể thao",
-                "(D) Hướng dẫn trong bảo tàng lịch sử tự nhiên"
-              ],
-              "answer": "B"
-            },
-            {
-              "q": 93,
-              "enQ": "What is the purpose of the project?",
-              "enOpts": [
-                "(A) To recruit volunteers",
-                "(B) To release bluebirds into the wild",
-                "(C) To provide shelter for bluebirds",
-                "(D) To educate people about bluebirds"
-              ],
-              "viQ": "Mục đích của dự án là gì?",
-              "viOpts": [
-                "(A) Để tuyển tình nguyện viên",
-                "(B) Để thả bluebirds vào tự nhiên",
-                "(C) Để cung cấp nơi trú ẩn cho bluebirds",
-                "(D) Để giáo dục mọi người về bluebirds"
+                "(A) Kỹ sư xây dựng",
+                "(B) Các nhà quy hoạch đô thị",
+                "(C) Phóng viên tin tức",
+                "(D) Thanh tra an toàn"
               ],
               "answer": "C"
             },
             {
-              "q": 94,
-              "enQ": "What is marked on some maps?",
-              "enOpts": [
-                "(A) Locations where work can be done",
-                "(B) Flight patterns of bluebirds",
-                "(C) The location of nearby attractions",
-                "(D) Directions to the environmental center"
-              ],
-              "viQ": "Cái gì được đánh dấu trên một số bản đồ?",
-              "viOpts": [
-                "(A) Các địa điểm có thể thực hiện công việc",
-                "(B) Kiểu bay của chim xanh",
-                "(C) Vị trí của các điểm tham quan gần đó",
-                "(D) Chỉ đường đến trung tâm môi trường"
-              ],
-              "answer": "A"
-            }
-          ]
-        },
-        {
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/95-97.mp3",
-          "img": "https://2023.toeicthaysang.com/de2/95.png",
-          "script": "W: Hi, everyone! (95) l want to update you on sales of our lines of dishware after the introduction of our holiday-themed patterns. Our everyday dishware continues to perform as expected. Also, I am pleased to report that our New Year plates are a resounding success: total wholesale orders have outpaced those of our popular Dawn series of fine china. (96) We spent a lot on the design for New Year, so our CEO will be happy to learn that the investment has paid off. (97) Looks like we will need to rethink the Harvest Festival brand, though. Unless total sales reach those of our Cafe series by next year, we may even discontinue it.",
-          "trans": "W: Xin chào mọi người! (95) tôi muốn cập nhật cho bạn về doanh số bán các dòng bát đĩa của chúng ta sau khi giới thiệu các mẫu theo chủ đề ngày lễ. Bát đĩa hàng ngày của chúng tôi tiếp tục hoạt động như mong đợi. Ngoài ra, tôi vui mừng thông báo rằng đĩa Năm mới của chúng ta đã thành công vang dội: tổng số đơn đặt hàng bán buôn đã vượt xa tổng số đơn đặt hàng của loạt đồ sứ cao cấp Dawn nổi tiếng (96) Chúng ta đã chi rất nhiều cho việc thiết kế cho Năm mới, vì vậy, Giám đốc điều hành sẽ rất vui khi biết rằng khoản đầu tư đã được đền đáp.(97) Tuy nhiên, có vẻ như chúng ta sẽ cần phải suy nghĩ lại về thương hiệu Harvest Festival. Trừ khi tổng doanh số bán hàng đạt được bằng với chuỗi Cafe tôi vào năm tới, chúng ta thậm chí có thể ngừng sản xuất nó.",
-          "questions": [
-            {
-              "q": 95,
-              "enQ": "What product does the speaker’s company sell?",
-              "enOpts": [
-                "(A) Bath towels",
-                "(B) Dishware",
-                "(C) Tablecloths",
-                "(D) Drinking glasses"
-              ],
-              "viQ": "Công ty của người nói bán sản phẩm gì?",
-              "viOpts": [
-                "(A) Khăn tắm",
-                "(B) Bát đĩa",
-                "(C) Khăn trải bàn",
-                "(D) Ly uống nước"
-              ],
-              "answer": "B"
-            },
-            {
-              "q": 96,
-              "enQ": "Why will the CEO be pleased?",
-              "enOpts": [
-                "(A) The company bought a new warehouse.",
-                "(B) Customer reviews have been positive.",
-                "(C) Shipping costs have gone down.",
-                "(D) An investment was successful."
-              ],
-              "viQ": "Tại sao CEO sẽ hài lòng?",
-              "viOpts": [
-                "(A) Công ty đã mua một nhà kho mới.",
-                "(B) Nhận xét của khách hàng là tích cực.",
-                "(C) Chi phí vận chuyển đã giảm.",
-                "(D) Một khoản đầu tư đã thành công."
-              ],
-              "answer": "D"
-            },
-            {
-              "q": 97,
-              "enQ": "Look at the graphic. What number of orders does the speaker say the Harvest Festival pattern must reach?",
-              "enOpts": [
-                "(A) 5,000",
-                "(B) 2,000",
-                "(C) 6,000",
-                "(D) 200",
-                "(A) 5.000",
-                "(B) 2.000",
-                "(C) 6.000",
-                "(D) 200"
-              ],
-              "viQ": "Nhìn vào đồ họa. Người nói cho biết mẫu Lễ hội thu hoạch phải đạt đến số lượng đơn đặt hàng nào?",
-              "viOpts": [],
-              "answer": "B"
-            }
-          ]
-        },
-        {
-          "mp3": "https://2023.toeicthaysang.com/mp3/de2/98-100.mp3",
-          "img": "https://2023.toeicthaysang.com/de2/98.png",
-          "script": "M: (98) l'd like to welcome all of you to your first day of work at the Wildcats customer service office. Baseball season starts in exactly one month. (99) We expect ticket sales to be very good because the Wildcats had such a great season last year. As you can see on the chart, we have four packages. (100) Make sure you let our customers know about the new Sunday package. It includes tickets for every Sunday home game throughout the season. Our Friday night package, holiday package, and discount package were available last year and should remain popular.",
-          "trans": "M: (98) Tôi muốn chào mừng tất cả các bạn đến với ngày làm việc đầu tiên tại văn phòng dịch vụ khách hàng của Wildcats. Mùa bóng chày bắt đầu trong đúng một tháng nữa. (99) Chúng ta hy vọng doanh thu bán vé sẽ rất tốt vì Wildcats đã có một mùa giải tuyệt vời như vậy vào năm ngoái. Như bạn có thể thấy trên biểu đồ, chúng ta có bốn gói. (100) Hãy chắc chắn rằng bạn cho khách hàng biết về gói Chủ nhật mới. Nó bao gồm vé cho mọi trận đấu trên sân nhà vào Chủ nhật trong suốt mùa giải. Gói tối thứ sáu, gói kỳ nghỉ và gói giảm giá của chúng ta đã có từ năm ngoái và sẽ vẫn được ưa chuộng.",
-          "questions": [
-            {
-              "q": 98,
-              "enQ": "Who most likely is the speaker?",
-              "enOpts": [
-                "(A) A baseball player",
-                "(B) A travel agent",
-                "(C) A new job applicant",
-                "(D) A customer service trainer"
-              ],
-              "viQ": "Ai có khả năng nhất là người nói?",
-              "viOpts": [
-                "(A) Một cầu thủ bóng chày",
-                "(B) Một đại lý du lịch",
-                "(C) Một ứng viên xin việc mới",
-                "(D) Một huấn luyện viên dịch vụ khách hàng"
-              ],
-              "answer": "D"
-            },
-            {
               "q": 99,
-              "enQ": "Why are ticket sales expected to be good?",
+              "enQ": "Look at the graphic. Which of the following companies will be affected by a delay?",
               "enOpts": [
-                "(A) The prices have been reduced.",
-                "(B) The team's previous season was successful.",
-                "(C) There is a new advertising campaign.",
-                "(D) The team has many new players."
+                "(A) Selca Air",
+                "(B) Trilco Airlines",
+                "(C) Heathson Airways",
+                "(D) Bluxtin Airlines",
+                "(A) Selca Air",
+                "(B) Trilco Airlines",
+                "(C) Heathson Airways",
+                "(D) Bluxtin Airlines"
               ],
-              "viQ": "Tại sao doanh thu bán vé dự kiến sẽ tốt?",
-              "viOpts": [
-                "(A) Giá đã được giảm.",
-                "(B) Mùa giải trước của đội đã thành công.",
-                "(C) Có một chiến dịch quảng cáo mới.",
-                "(D) Đội có nhiều cầu thủ mới."
-              ],
-              "answer": "B"
+              "viQ": "Nhìn vào hình. Công ty nào sau đây sẽ bị ảnh hưởng bởi sự chậm trễ?",
+              "viOpts": [],
+              "answer": "A"
             },
             {
               "q": 100,
-              "enQ": "Look at the graphic. How many games are included in the new ticket package that the speaker describes?",
+              "enQ": "What does the speaker invite the listeners to do?",
               "enOpts": [
-                "(A) 6",
-                "(B) 16",
-                "(C) 19",
-                "(D) 36",
-                "(A) 6",
-                "(B) 16",
-                "(C) 19",
-                "(D) 36"
+                "(A) Download some designs",
+                "(B) Look at a model",
+                "(C) Take a site tour",
+                "(D) View a Webcam",
+                "(D) Xem webcam"
               ],
-              "viQ": "Nhìn vào đồ họa. Có bao nhiêu trò chơi được bao gồm trong gói vé mới mà người nói mô tả?",
-              "viOpts": [],
+              "viQ": "Người nói mời người nghe làm gì?",
+              "viOpts": [
+                "(A) Tải xuống một số thiết kế",
+                "(B) Nhìn vào một mô hình",
+                "(C) Đi tham quan địa điểm"
+              ],
               "answer": "B"
             }
           ]
@@ -1668,662 +1669,662 @@ const EXAM_DATA = {
       "questions": [
         {
           "q": 101,
-          "enQ": "Last week, three staff members ------- at the local library’s book sale.",
+          "enQ": "Before operating your handheld device, please ------- the enclosed cable to charge it.",
           "enOpts": [
-            "volunteer",
-            "voluntary",
-            "volunteered",
-            "volunteering"
+            "plan",
+            "remain",
+            "use",
+            "finish"
           ],
           "viQ": "",
           "viOpts": [],
-          "videoUrl": "https://www.youtube.com/watch?v=xR0krRs_iKk&t=0s",
+          "videoUrl": "https://www.youtube.com/watch?v=Iov0CIABVOM&t=0s",
           "answer": "C",
-          "fullSent": "Last week, three staff members volunteered at the local library’s book sale.",
-          "transSent": "Tuần trước, ba nhân viên đã tình nguyện tại buổi bán sách của thư viện địa phương.",
+          "fullSent": "Before operating your handheld device, please use the enclosed cable to charge it.",
+          "transSent": "Trước khi vận hành thiết bị cầm tay của bạn, vui lòng sử dụng dây cáp đi kèm để sạc.",
           "noteOpts": [
-            "A. (động từ): tình nguyện",
-            "B. (tính từ): tự nguyện",
-            "C. (động từ quá khứ): đã tình nguyện",
-            "D. (động từ thêm ing): đang tình nguyện"
+            "A. (động từ nguyên mẫu): lên kế hoạch",
+            "B. (động từ nguyên mẫu): vẫn còn / duy trì",
+            "C. (động từ nguyên mẫu): sử dụng",
+            "D. (động từ nguyên mẫu): kết thúc"
           ]
         },
         {
           "q": 102,
-          "enQ": "In April, prices are expected to drop ------- 20 percent.",
+          "enQ": "Safile’s new external hard drive can ------- store up to one terabyte of data.",
           "enOpts": [
-            "with",
-            "on",
-            "since",
-            "by"
+            "secure",
+            "security",
+            "securely",
+            "secured"
           ],
           "viQ": "",
           "viOpts": [],
-          "videoUrl": "https://www.youtube.com/watch?v=xR0krRs_iKk&t=66s",
-          "answer": "D",
-          "fullSent": "In April, prices are expected to drop by 20 percent.",
-          "transSent": "Vào tháng Tư, giá dự kiến sẽ giảm 20 phần trăm.",
+          "videoUrl": "https://www.youtube.com/watch?v=Iov0CIABVOM&t=58s",
+          "answer": "C",
+          "fullSent": "Safile’s new external hard drive can securely store up to one terabyte of data.",
+          "transSent": "Ổ cứng ngoài mới của Safile có thể lưu trữ an toàn lên đến một terabyte dữ liệu.",
           "noteOpts": [
-            "A. (giới từ): với",
-            "B. (giới từ): trên",
-            "C. (liên từ / giới từ): từ khi",
-            "D. (giới từ): khoảng, theo mức"
+            "A. (tính từ / động từ): an toàn / siết chặt",
+            "B. (danh từ): sự an ninh / bảo mật",
+            "C. (trạng từ): một cách an toàn",
+            "D. (động từ quá khứ / tính từ): đã đạt được / bảo đảm"
           ]
         },
         {
           "q": 103,
-          "enQ": "The project management software allows staff to handle many tasks by -------.",
+          "enQ": "Mr. Peterson will travel ------- the Tokyo office for the annual meeting.",
           "enOpts": [
-            "themselves",
-            "them",
-            "they",
-            "theirs"
+            "to",
+            "through",
+            "in",
+            "over"
           ],
           "viQ": "",
           "viOpts": [],
-          "videoUrl": "https://www.youtube.com/watch?v=xR0krRs_iKk&t=131s",
+          "videoUrl": "https://www.youtube.com/watch?v=Iov0CIABVOM&t=102s",
           "answer": "A",
-          "fullSent": "The project management software allows staff to handle many tasks by themselves.",
-          "transSent": "Phần mềm quản lý dự án cho phép nhân viên tự xử lý nhiều nhiệm vụ.",
+          "fullSent": "Mr. Peterson will travel to the Tokyo office for the annual meeting.",
+          "transSent": "Ông Peterson sẽ đến văn phòng Tokyo để tham dự cuộc họp thường niên.",
           "noteOpts": [
-            "A. (đại từ phản thân): chính họ",
-            "B. (đại từ tân ngữ): họ",
-            "C. (đại từ chủ ngữ): họ",
-            "D. (đại từ sở hữu): của họ"
+            "A. (giới từ): đến / để",
+            "B. (giới từ): xuyên qua / thông qua",
+            "C. (giới từ): trong / ở trong",
+            "D. (giới từ): trên / hơn"
           ]
         },
         {
           "q": 104,
-          "enQ": "Local manufacturers have ------- shipping times by hiring external shipping companies.",
+          "enQ": "Yong-Soo Cosmetics will not charge for items on back order until ------- have left our warehouse.",
           "enOpts": [
-            "attempted",
-            "reduced",
-            "weakened",
-            "finished"
+            "them",
+            "they",
+            "themselves",
+            "their"
           ],
           "viQ": "",
           "viOpts": [],
-          "videoUrl": "https://www.youtube.com/watch?v=xR0krRs_iKk&t=248s",
+          "videoUrl": "https://www.youtube.com/watch?v=Iov0CIABVOM&t=144s",
           "answer": "B",
-          "fullSent": "Local manufacturers have reduced shipping times by hiring external shipping companies.",
-          "transSent": "Các nhà sản xuất địa phương đã rút ngắn thời gian vận chuyển bằng cách thuê các công ty vận chuyển bên ngoài.",
+          "fullSent": "Yong-Soo Cosmetics will not charge for items on back order until they have left our warehouse.",
+          "transSent": "Yong-Soo Cosmetics sẽ không tính phí cho các mặt hàng đặt trước cho đến khi chúng rời khỏi kho của chúng tôi.",
           "noteOpts": [
-            "A. (động từ): cố gắng",
-            "B. (động từ): giảm bớt",
-            "C. (động từ): làm suy yếu",
-            "D. (động từ): hoàn thành"
+            "A. (đại từ tân ngữ): họ",
+            "B. (đại từ chủ ngữ): họ",
+            "C. (đại từ phản thân): chính họ",
+            "D. (tính từ sở hữu): của họ"
           ]
         },
         {
           "q": 105,
-          "enQ": "Gramwell Corporation may charge an ------- fee for last month’s work.",
+          "enQ": "Our premium day tour takes visitors to historic sites ------- the Aprico River.",
           "enOpts": [
-            "add",
-            "adding",
-            "additionally",
-            "additional"
+            "onto",
+            "since",
+            "inside",
+            "along"
           ],
           "viQ": "",
           "viOpts": [],
-          "videoUrl": "https://www.youtube.com/watch?v=xR0krRs_iKk&t=338s",
+          "videoUrl": "https://www.youtube.com/watch?v=Iov0CIABVOM&t=181s",
           "answer": "D",
-          "fullSent": "Gramwell Corporation may charge an additional fee for last month’s work.",
-          "transSent": "Tập đoàn Gramwell có thể tính thêm phí cho công việc của tháng trước.",
+          "fullSent": "Our premium day tour takes visitors to historic sites along the Aprico River.",
+          "transSent": "Chuyến tham quan trong ngày cao cấp của chúng tôi đưa du khách đến các địa điểm lịch sử dọc theo sông Aprico.",
           "noteOpts": [
-            "A. (động từ): thêm vào",
-            "B. (động từ thêm ing): đang thêm",
-            "C. (trạng từ): thêm vào đó",
-            "D. (tính từ): bổ sung"
+            "A. (giới từ): lên trên",
+            "B. (giới từ / liên từ): kể từ khi",
+            "C. (giới từ / trạng từ): bên trong",
+            "D. (giới từ): dọc theo"
           ]
         },
         {
           "q": 106,
-          "enQ": "Ms. Kang prefers to complete ------- current project before transferring to the finance department.",
+          "enQ": "Eighty percent of drivers surveyed said they would consider buying a vehicle that runs on -------",
           "enOpts": [
-            "herself",
-            "she",
-            "her",
-            "hers"
+            "electricity",
+            "electrically",
+            "electricians",
+            "electrify"
           ],
           "viQ": "",
           "viOpts": [],
-          "videoUrl": "https://www.youtube.com/watch?v=xR0krRs_iKk&t=365s",
-          "answer": "C",
-          "fullSent": "Ms. Kang prefers to complete her current project before transferring to the finance department.",
-          "transSent": "Bà Kang thích hoàn thành dự án hiện tại của mình trước khi chuyển sang bộ phận tài chính.",
+          "videoUrl": "https://www.youtube.com/watch?v=Iov0CIABVOM&t=238s",
+          "answer": "A",
+          "fullSent": "Eighty percent of drivers surveyed said they would consider buying a vehicle that runs on electricity",
+          "transSent": "Tám mươi phần trăm tài xế được khảo sát cho biết họ sẽ cân nhắc mua một phương tiện chạy bằng điện.",
           "noteOpts": [
-            "A. (đại từ phản thân): chính cô ấy",
-            "B. (đại từ chủ ngữ): cô ấy",
-            "C. (tính từ sở hữu): của cô ấy",
-            "D. (đại từ sở hữu): của cô ấy"
+            "A. (danh từ): điện",
+            "B. (trạng từ): bằng điện",
+            "C. (danh từ số nhiều): thợ điện",
+            "D. (động từ nguyên mẫu): điện khí hóa"
           ]
         },
         {
           "q": 107,
-          "enQ": "There are ------- criteria that must be met for a password to be changed successfully.",
+          "enQ": "Xinzhe Zu has ------- Petrin Engineering as the vice president of operations.",
           "enOpts": [
-            "specific",
-            "to specify",
-            "specify",
-            "specifies"
+            "attached",
+            "resigned",
+            "joined",
+            "combined"
           ],
           "viQ": "",
           "viOpts": [],
-          "videoUrl": "https://www.youtube.com/watch?v=xR0krRs_iKk&t=408s",
-          "answer": "A",
-          "fullSent": "There are specific criteria that must be met for a password to be changed successfully.",
-          "transSent": "Có những tiêu chí cụ thể phải được đáp ứng để mật khẩu được thay đổi thành công.",
+          "videoUrl": "https://www.youtube.com/watch?v=Iov0CIABVOM&t=308s",
+          "answer": "C",
+          "fullSent": "Xinzhe Zu has joined Petrin Engineering as the vice president of operations.",
+          "transSent": "Xinzhe Zu đã gia nhập Petrin Engineering với vai trò phó chủ tịch vận hành.",
           "noteOpts": [
-            "A. (tính từ): cụ thể",
-            "B. (động từ nguyên mẫu): để chỉ rõ",
-            "C. (động từ): chỉ rõ",
-            "D. (động từ chia ngôi): chỉ rõ"
+            "A. (tính từ / quá khứ phân từ): đính kèm",
+            "B. (động từ quá khứ): đã từ chức",
+            "C. (động từ quá khứ): đã tham gia",
+            "D. (tính từ / quá khứ phân từ): kết hợp"
           ]
         },
         {
           "q": 108,
-          "enQ": "To assist the costume designers in preparing for the film, fabric samples can be sent to the ------- designer.",
+          "enQ": "Next month, Barder House Books will be holding ------- third author’s hour in Cleveland.",
           "enOpts": [
-            "leader",
-            "leads",
-            "led",
-            "lead"
+            "it",
+            "itself",
+            "its own",
+            "its"
           ],
           "viQ": "",
           "viOpts": [],
-          "videoUrl": "https://www.youtube.com/watch?v=xR0krRs_iKk&t=518s",
+          "videoUrl": "https://www.youtube.com/watch?v=Iov0CIABVOM&t=372s",
           "answer": "D",
-          "fullSent": "To assist the costume designers in preparing for the film, fabric samples can be sent to the lead designer.",
-          "transSent": "Để hỗ trợ các nhà thiết kế trang phục trong việc chuẩn bị cho bộ phim, các mẫu vải có thể được gửi đến nhà thiết kế chính.",
+          "fullSent": "Next month, Barder House Books will be holding its third author’s hour in Cleveland.",
+          "transSent": "Tháng tới, Barder House Books sẽ tổ chức buổi giao lưu tác giả lần thứ ba tại Cleveland.",
           "noteOpts": [
-            "A. (danh từ): người lãnh đạo",
-            "B. (động từ): dẫn dắt",
-            "C. (động từ quá khứ): đã dẫn dắt",
-            "D. (tính từ): chính, chủ chốt"
+            "A. (đại từ tân ngữ / chủ ngữ): nó",
+            "B. (đại từ phản thân): chính nó",
+            "C. (cụm đại từ sở hữu): của riêng nó",
+            "D. (tính từ sở hữu): của nó"
           ]
         },
         {
           "q": 109,
-          "enQ": "The product presentation has been fully rehearsed, so it can be ------- any day next week.",
+          "enQ": "Chester’s Tiles ------- expanded to a second location in Turnington.",
           "enOpts": [
-            "film",
-            "filmed",
-            "films",
-            "to film"
+            "severely",
+            "usually",
+            "recently",
+            "exactly"
           ],
           "viQ": "",
           "viOpts": [],
-          "videoUrl": "https://www.youtube.com/watch?v=xR0krRs_iKk&t=595s",
-          "answer": "B",
-          "fullSent": "The product presentation has been fully rehearsed, so it can be filmed any day next week.",
-          "transSent": "Bài thuyết trình sản phẩm đã được tập dượt đầy đủ, vì vậy nó có thể được quay vào bất kỳ ngày nào tuần tới.",
+          "videoUrl": "https://www.youtube.com/watch?v=Iov0CIABVOM&t=440s",
+          "answer": "C",
+          "fullSent": "Chester’s Tiles recently expanded to a second location in Turnington.",
+          "transSent": "Chester’s Tiles gần đây đã mở rộng sang địa điểm thứ hai tại Turnington.",
           "noteOpts": [
-            "A. (động từ): quay phim",
-            "B. (động từ bị động): được quay phim",
-            "C. (động từ chia ngôi): quay phim",
-            "D. (động từ nguyên mẫu): để quay phim"
+            "A. (trạng từ): một cách nghiêm trọng",
+            "B. (trạng từ): thường xuyên",
+            "C. (trạng từ): gần đây",
+            "D. (trạng từ): chính xác"
           ]
         },
         {
           "q": 110,
-          "enQ": "The new logo is part of a comprehensive effort to ------- the brand's identity and appeal to younger consumers.",
+          "enQ": "Tabrino’s has ------- increased the number of almonds in the Nut Medley snack pack.",
           "enOpts": [
-            "remind",
-            "refer",
-            "refresh",
-            "repeat"
+            "significant",
+            "significance",
+            "signifies",
+            "significantly"
           ],
           "viQ": "",
           "viOpts": [],
-          "videoUrl": "https://www.youtube.com/watch?v=xR0krRs_iKk&t=663s",
-          "answer": "C",
-          "fullSent": "The new logo is part of a comprehensive effort to refresh the brand's identity and appeal to younger consumers.",
-          "transSent": "Logo mới là một phần của nỗ lực toàn diện để làm mới bản sắc thương hiệu và thu hút người tiêu dùng trẻ hơn.",
+          "videoUrl": "https://www.youtube.com/watch?v=Iov0CIABVOM&t=521s",
+          "answer": "D",
+          "fullSent": "Tabrino’s has significantly increased the number of almonds in the Nut Medley snack pack.",
+          "transSent": "Tabrino’s đã tăng đáng kể số lượng hạnh nhân trong gói snack Nut Medley.",
           "noteOpts": [
-            "A. (động từ): nhắc nhở",
-            "B. (động từ): đề cập",
-            "C. (động từ): làm mới",
-            "D. (động từ): lặp lại"
+            "A. (tính từ): quan trọng / đáng kể",
+            "B. (danh từ): sự quan trọng",
+            "C. (động từ số ít): biểu thị",
+            "D. (trạng từ): một cách đáng kể"
           ]
         },
         {
           "q": 111,
-          "enQ": "The latest sport utility vehicle from Bondon Automotive can carry eight people -------.",
+          "enQ": "------- she travels, Jacintha Flores collects samples of local fabrics and patterns.",
           "enOpts": [
-            "comfortable",
-            "comfort",
-            "comfortably",
-            "comforting"
+            "Wherever",
+            "In addition to",
+            "Either",
+            "In contrast to"
           ],
           "viQ": "",
           "viOpts": [],
-          "videoUrl": "https://www.youtube.com/watch?v=xR0krRs_iKk&t=814s",
-          "answer": "C",
-          "fullSent": "The latest sport utility vehicle from Bondon Automotive can carry eight people comfortably.",
-          "transSent": "Xe thể thao đa dụng mới nhất từ Bondon Automotive có thể chở tám người một cách thoải mái.",
+          "videoUrl": "https://www.youtube.com/watch?v=Iov0CIABVOM&t=549s",
+          "answer": "A",
+          "fullSent": "Wherever she travels, Jacintha Flores collects samples of local fabrics and patterns.",
+          "transSent": "Bất cứ nơi nào cô đi đến, Jacintha Flores đều thu thập mẫu vải và hoa văn địa phương.",
           "noteOpts": [
-            "A. (tính từ): thoải mái",
-            "B. (danh từ): sự thoải mái",
-            "C. (trạng từ): một cách thoải mái",
-            "D. (tính từ): làm dễ chịu"
+            "A. (trạng từ / liên từ): bất cứ nơi nào",
+            "B. (cụm giới từ): ngoài... ra / thêm vào",
+            "C. (liên từ): hoặc (là)",
+            "D. (cụm giới từ): trái ngược với"
           ]
         },
         {
           "q": 112,
-          "enQ": "------- deciding to replace the food-service provider, the management team conducted a survey of all employees.",
+          "enQ": "Most picture ------- at Glowing Photo Lab go on sale at 3:00 p.m. today.",
           "enOpts": [
-            "Before",
-            "Unless",
-            "Whether",
-            "Except"
+            "framer",
+            "framing",
+            "framed",
+            "frames"
           ],
           "viQ": "",
           "viOpts": [],
-          "videoUrl": "https://www.youtube.com/watch?v=xR0krRs_iKk&t=853s",
-          "answer": "A",
-          "fullSent": "Before deciding to replace the food-service provider, the management team conducted a survey of all employees.",
-          "transSent": "Trước khi quyết định thay thế nhà cung cấp dịch vụ ăn uống, nhóm quản lý đã tiến hành khảo sát tất cả nhân viên.",
+          "videoUrl": "https://www.youtube.com/watch?v=Iov0CIABVOM&t=628s",
+          "answer": "D",
+          "fullSent": "Most picture frames at Glowing Photo Lab go on sale at 3:00 p.m. today.",
+          "transSent": "Hầu hết khung ảnh tại Glowing Photo Lab sẽ được giảm giá lúc 3 giờ chiều hôm nay.",
           "noteOpts": [
-            "A. (liên từ): trước khi",
-            "B. (liên từ): trừ khi",
-            "C. (liên từ): liệu rằng",
-            "D. (giới từ): ngoại trừ"
+            "A. (danh từ chỉ người): thợ đóng khung",
+            "B. (danh động từ): việc đóng khung",
+            "C. (tính từ / quá khứ phân từ): được đóng khung",
+            "D. (danh từ số nhiều): các khung"
           ]
         },
         {
           "q": 113,
-          "enQ": "Although Mr. Cho was ------- about transferring to the Houston office, he is now working there confidently and productively.",
+          "enQ": "All students in the business management class hold ------- college degrees.",
           "enOpts": [
-            "hesitate",
-            "hesitant",
-            "hesitation",
-            "hesitated"
+            "late",
+            "developed",
+            "advanced",
+            "elated"
           ],
           "viQ": "",
           "viOpts": [],
-          "videoUrl": "https://www.youtube.com/watch?v=xR0krRs_iKk&t=954s",
-          "answer": "B",
-          "fullSent": "Although Mr. Cho was hesitant about transferring to the Houston office, he is now working there confidently and productively.",
-          "transSent": "Mặc dù ông Cho do dự về việc chuyển đến văn phòng Houston, ông hiện đang làm việc ở đó một cách tự tin và hiệu quả.",
+          "videoUrl": "https://www.youtube.com/watch?v=Iov0CIABVOM&t=691s",
+          "answer": "C",
+          "fullSent": "All students in the business management class hold advanced college degrees.",
+          "transSent": "Tất cả sinh viên trong lớp quản trị kinh doanh đều có bằng đại học nâng cao.",
           "noteOpts": [
-            "A. (động từ): do dự",
-            "B. (tính từ): do dự",
-            "C. (danh từ): sự do dự",
-            "D. (động từ quá khứ): đã do dự"
+            "A. (tính từ / trạng từ): trễ / muộn",
+            "B. (tính từ / quá khứ phân từ): đã phát triển",
+            "C. (tính từ): tiên tiến / cao cấp",
+            "D. (tính từ): phấn khởi / hân hoan"
           ]
         },
         {
           "q": 114,
-          "enQ": "The personnel office should be contacted about unpaid leave ------- supervisors cannot approve it.",
+          "enQ": "We hired Noah Wan of Shengyao Accounting Ltd. ------- our company’s financial assets.",
           "enOpts": [
-            "as",
-            "either",
-            "like",
-            "instead"
+            "to evaluate",
+            "to be evaluated",
+            "will be evaluated",
+            "evaluate"
           ],
           "viQ": "",
           "viOpts": [],
-          "videoUrl": "https://www.youtube.com/watch?v=xR0krRs_iKk&t=1058s",
+          "videoUrl": "https://www.youtube.com/watch?v=Iov0CIABVOM&t=792s",
           "answer": "A",
-          "fullSent": "The personnel office should be contacted about unpaid leave as supervisors cannot approve it.",
-          "transSent": "Văn phòng nhân sự nên được liên hệ về nghỉ phép không lương vì các giám sát viên không thể phê duyệt điều đó.",
+          "fullSent": "We hired Noah Wan of Shengyao Accounting Ltd. to evaluate our company’s financial assets.",
+          "transSent": "Chúng tôi đã thuê Noah Wan của Shengyao Accounting Ltd. để đánh giá tài sản tài chính của công ty.",
           "noteOpts": [
-            "A. (liên từ): vì",
-            "B. (trạng từ): cũng",
-            "C. (giới từ): giống như",
-            "D. (trạng từ): thay vào đó"
+            "A. (động từ nguyên mẫu có to): để đánh giá",
+            "B. (bị động của to-infinitive): để được đánh giá",
+            "C. (tương lai đơn bị động): sẽ được đánh giá",
+            "D. (động từ nguyên mẫu không to): đánh giá"
           ]
         },
         {
           "q": 115,
-          "enQ": "Yesterday the board voted to ------- with discussions about acquiring Atlasburg Financial.",
+          "enQ": "Ms. Charisse is taking on a new account ------- she finishes the Morrison project.",
           "enOpts": [
-            "proceed",
-            "proceeded",
-            "proceeding",
-            "proceeds"
+            "with",
+            "going",
+            "after",
+            "between"
           ],
           "viQ": "",
           "viOpts": [],
-          "videoUrl": "https://www.youtube.com/watch?v=xR0krRs_iKk&t=1188s",
-          "answer": "A",
-          "fullSent": "Yesterday the board voted to proceed with discussions about acquiring Atlasburg Financial.",
-          "transSent": "Hôm qua hội đồng quản trị đã bỏ phiếu tiến hành các cuộc thảo luận về việc mua lại Atlasburg Financial.",
+          "videoUrl": "https://www.youtube.com/watch?v=Iov0CIABVOM&t=855s",
+          "answer": "C",
+          "fullSent": "Ms. Charisse is taking on a new account after she finishes the Morrison project.",
+          "transSent": "Bà Charisse sẽ đảm nhận một khách hàng mới sau khi hoàn thành dự án Morrison.",
           "noteOpts": [
-            "A. (động từ): tiến hành",
-            "B. (động từ quá khứ): đã tiến hành",
-            "C. (động từ thêm ing): đang tiến hành",
-            "D. (danh từ): tiền thu được"
+            "A. (giới từ): với / cùng với",
+            "B. (hiện tại phân từ): đang đi",
+            "C. (giới từ / liên từ): sau khi",
+            "D. (giới từ): ở giữa"
           ]
         },
         {
           "q": 116,
-          "enQ": "Robles Corporation encourages employees to work toward a ------- goal, rather than pursuing individual interests.",
+          "enQ": "Cormet Motors’ profits are ------- this year than last year.",
           "enOpts": [
-            "common",
-            "regular",
-            "usual",
-            "plain"
+            "higher",
+            "high",
+            "highly",
+            "highest"
           ],
           "viQ": "",
           "viOpts": [],
-          "videoUrl": "https://www.youtube.com/watch?v=xR0krRs_iKk&t=1204s",
+          "videoUrl": "https://www.youtube.com/watch?v=Iov0CIABVOM&t=914s",
           "answer": "A",
-          "fullSent": "Robles Corporation encourages employees to work toward a common goal, rather than pursuing individual interests.",
-          "transSent": "Tập đoàn Robles khuyến khích nhân viên hướng tới một mục tiêu chung, thay vì theo đuổi lợi ích cá nhân.",
+          "fullSent": "Cormet Motors’ profits are higher this year than last year.",
+          "transSent": "Lợi nhuận của Cormet Motors năm nay cao hơn năm ngoái.",
           "noteOpts": [
-            "A. (tính từ): chung",
-            "B. (tính từ): thông thường",
-            "C. (tính từ): thường lệ",
-            "D. (tính từ): đơn giản"
+            "A. (tính từ so sánh hơn): cao hơn",
+            "B. (tính từ): cao",
+            "C. (trạng từ): rất / hết sức",
+            "D. (tính từ so sánh nhất): cao nhất"
           ]
         },
         {
           "q": 117,
-          "enQ": "The ------- in the brochure are an accurate representation of what guests staying at the resort can expect to find.",
+          "enQ": "In its ------- advertising campaign, Jaymor Tools demonstrates how reliable its products are.",
           "enOpts": [
-            "image",
-            "images",
-            "imaged",
-            "imaging"
+            "current",
+            "relative",
+            "spacious",
+            "collected"
           ],
           "viQ": "",
           "viOpts": [],
-          "videoUrl": "https://www.youtube.com/watch?v=xR0krRs_iKk&t=1314s",
-          "answer": "B",
-          "fullSent": "The images in the brochure are an accurate representation of what guests staying at the resort can expect to find.",
-          "transSent": "Các hình ảnh trong tờ brochure là sự thể hiện chính xác về những gì khách lưu trú tại khu nghỉ dưỡng có thể mong đợi tìm thấy.",
+          "videoUrl": "https://www.youtube.com/watch?v=Iov0CIABVOM&t=949s",
+          "answer": "A",
+          "fullSent": "In its current advertising campaign, Jaymor Tools demonstrates how reliable its products are.",
+          "transSent": "Trong chiến dịch quảng cáo hiện tại, Jaymor Tools thể hiện mức độ đáng tin cậy của các sản phẩm của mình.",
           "noteOpts": [
-            "A. (danh từ): hình ảnh",
-            "B. (danh từ số nhiều): các hình ảnh",
-            "C. (động từ quá khứ): đã chụp hình",
-            "D. (danh từ): việc tạo ảnh"
+            "A. (tính từ): hiện tại",
+            "B. (tính từ): tương đối",
+            "C. (tính từ): rộng rãi",
+            "D. (tính từ / quá khứ phân từ): đã thu thập"
           ]
         },
         {
           "q": 118,
-          "enQ": "Current employees interested in the new managerial position should ------- about the internal hiring process.",
+          "enQ": "Remember to submit receipts for reimbursement ------- returning from a business trip.",
           "enOpts": [
-            "provide",
-            "inquire",
-            "evaluate",
-            "control"
+            "such as",
+            "when",
+            "then",
+            "within"
           ],
           "viQ": "",
           "viOpts": [],
-          "videoUrl": "https://www.youtube.com/watch?v=xR0krRs_iKk&t=1356s",
+          "videoUrl": "https://www.youtube.com/watch?v=Iov0CIABVOM&t=1052s",
           "answer": "B",
-          "fullSent": "Current employees interested in the new managerial position should inquire about the internal hiring process.",
-          "transSent": "Nhân viên hiện tại quan tâm đến vị trí quản lý mới nên hỏi về quy trình tuyển dụng nội bộ.",
+          "fullSent": "Remember to submit receipts for reimbursement when returning from a business trip.",
+          "transSent": "Hãy nhớ nộp hóa đơn để được hoàn tiền khi trở về từ chuyến công tác.",
           "noteOpts": [
-            "A. (động từ): cung cấp",
-            "B. (động từ): hỏi thông tin",
-            "C. (động từ): đánh giá",
-            "D. (động từ): kiểm soát"
+            "A. (cụm từ): chẳng hạn như",
+            "B. (liên từ): khi",
+            "C. (trạng từ): sau đó",
+            "D. (giới từ): trong vòng"
           ]
         },
         {
           "q": 119,
-          "enQ": "Colleagues in the accounting department consider the matter closed and ------- cannot provide more input.",
+          "enQ": "Patrons will be able to access Westside Library’s ------- acquired collection of books on Tuesday.",
           "enOpts": [
-            "large",
-            "consequently",
-            "very",
-            "anyone"
+            "instantly",
+            "newly",
+            "early",
+            "naturally"
           ],
           "viQ": "",
           "viOpts": [],
-          "videoUrl": "https://www.youtube.com/watch?v=xR0krRs_iKk&t=1461s",
+          "videoUrl": "https://www.youtube.com/watch?v=Iov0CIABVOM&t=1166s",
           "answer": "B",
-          "fullSent": "Colleagues in the accounting department consider the matter closed and consequently cannot provide more input.",
-          "transSent": "Các đồng nghiệp trong bộ phận kế toán coi vấn đề đã được giải quyết và do đó không thể cung cấp thêm ý kiến.",
+          "fullSent": "Patrons will be able to access Westside Library’s newly acquired collection of books on Tuesday.",
+          "transSent": "Khách sẽ có thể truy cập bộ sưu tập sách mới của Westside Library vào thứ Ba.",
           "noteOpts": [
-            "A. (tính từ): lớn",
-            "B. (trạng từ): do đó",
-            "C. (trạng từ): rất",
-            "D. (đại từ): bất kỳ ai"
+            "A. (trạng từ): ngay lập tức",
+            "B. (trạng từ): mới",
+            "C. (tính từ / trạng từ): sớm",
+            "D. (trạng từ): một cách tự nhiên"
           ]
         },
         {
           "q": 120,
-          "enQ": "The CEO hopes that the consultant’s advice will ultimately ------- higher profits for the company.",
+          "enQ": "Please ------- any questions about time sheets to Tabitha Jones in the payroll department.",
           "enOpts": [
-            "yield",
-            "submit",
-            "invent",
-            "resolve"
+            "direction",
+            "directive",
+            "directed",
+            "direct"
           ],
           "viQ": "",
           "viOpts": [],
-          "videoUrl": "https://www.youtube.com/watch?v=xR0krRs_iKk&t=1624s",
-          "answer": "A",
-          "fullSent": "The CEO hopes that the consultant’s advice will ultimately yield higher profits for the company.",
-          "transSent": "Giám đốc điều hành hy vọng rằng lời khuyên của cố vấn cuối cùng sẽ mang lại lợi nhuận cao hơn cho công ty.",
+          "videoUrl": "https://www.youtube.com/watch?v=Iov0CIABVOM&t=1322s",
+          "answer": "D",
+          "fullSent": "Please direct any questions about time sheets to Tabitha Jones in the payroll department.",
+          "transSent": "Vui lòng chuyển mọi câu hỏi về bảng chấm công cho Tabitha Jones ở bộ phận tiền lương.",
           "noteOpts": [
-            "A. (động từ): mang lại",
-            "B. (động từ): nộp",
-            "C. (động từ): phát minh",
-            "D. (động từ): giải quyết"
+            "A. (danh từ): hướng / sự chỉ dẫn",
+            "B. (danh từ): chỉ thị",
+            "C. (động từ quá khứ): đã hướng tới",
+            "D. (tính từ / động từ): trực tiếp"
           ]
         },
         {
           "q": 121,
-          "enQ": "A team of experts is reviewing the contract from a' financial ------- so please do not share it with the client yet.",
+          "enQ": "Before signing a delivery ------- , be sure to double-check that all the items ordered are in the shipment.",
           "enOpts": [
-            "perspective",
-            "belief",
-            "movement",
-            "proportion"
+            "decision",
+            "announcement",
+            "receipt",
+            "limit"
           ],
           "viQ": "",
           "viOpts": [],
-          "videoUrl": "https://www.youtube.com/watch?v=xR0krRs_iKk&t=1721s",
-          "answer": "A",
-          "fullSent": "A team of experts is reviewing the contract from a' financial perspective so please do not share it with the client yet.",
-          "transSent": "Một nhóm chuyên gia đang xem xét hợp đồng từ góc độ tài chính vì vậy vui lòng chưa chia sẻ nó với khách hàng.",
+          "videoUrl": "https://www.youtube.com/watch?v=Iov0CIABVOM&t=1351s",
+          "answer": "C",
+          "fullSent": "Before signing a delivery receipt , be sure to double-check that all the items ordered are in the shipment.",
+          "transSent": "Trước khi ký biên nhận giao hàng, hãy đảm bảo kiểm tra kỹ rằng tất cả các mặt hàng đã đặt đều có trong lô hàng.",
           "noteOpts": [
-            "A. (danh từ): góc nhìn",
-            "B. (danh từ): niềm tin",
-            "C. (danh từ): chuyển động",
-            "D. (danh từ): tỷ lệ"
+            "A. (danh từ): quyết định",
+            "B. (danh từ): sự thông báo",
+            "C. (danh từ): hóa đơn / biên lai",
+            "D. (danh từ): giới hạn"
           ]
         },
         {
           "q": 122,
-          "enQ": "To prevent noise that is distracting to performers, the lobby gift shop is ------- open during performances.",
+          "enQ": "Funds have been added to the budget for expenses ------- with the new building.",
           "enOpts": [
-            "almost",
-            "even",
-            "never",
-            "soon"
+            "associated",
+            "association",
+            "associate",
+            "associates"
           ],
           "viQ": "",
           "viOpts": [],
-          "videoUrl": "https://www.youtube.com/watch?v=xR0krRs_iKk&t=1837s",
-          "answer": "C",
-          "fullSent": "To prevent noise that is distracting to performers, the lobby gift shop is never open during performances.",
-          "transSent": "Để ngăn tiếng ồn gây phân tâm cho người biểu diễn, cửa hàng quà tặng ở sảnh không bao giờ mở cửa trong khi biểu diễn.",
+          "videoUrl": "https://www.youtube.com/watch?v=Iov0CIABVOM&t=1469s",
+          "answer": "A",
+          "fullSent": "Funds have been added to the budget for expenses associated with the new building.",
+          "transSent": "Ngân sách đã được bổ sung thêm cho các chi phí liên quan đến tòa nhà mới.",
           "noteOpts": [
-            "A. (trạng từ): hầu như",
-            "B. (trạng từ): thậm chí",
-            "C. (trạng từ): không bao giờ",
-            "D. (trạng từ): sớm"
+            "A. (tính từ / quá khứ phân từ): liên kết / liên quan",
+            "B. (danh từ): hiệp hội / sự liên kết",
+            "C. (động từ / danh từ): liên kết / cộng sự",
+            "D. (động từ số ít / danh từ số nhiều): các cộng sự"
           ]
         },
         {
           "q": 123,
-          "enQ": "Zuper Brite lightbulbs ------- reduce energy consumption when compared with standard incandescent lightbulbs.",
+          "enQ": "Ms. Bernard ------- that a deadline was approaching, so she requested some assistance.",
           "enOpts": [
-            "great",
-            "greater",
-            "greatest",
-            "greatly"
+            "noticed",
+            "obscured",
+            "withdrew",
+            "appeared"
           ],
           "viQ": "",
           "viOpts": [],
-          "videoUrl": "https://www.youtube.com/watch?v=xR0krRs_iKk&t=1927s",
-          "answer": "D",
-          "fullSent": "Zuper Brite lightbulbs greatly reduce energy consumption when compared with standard incandescent lightbulbs.",
-          "transSent": "Bóng đèn Zuper Brite giảm đáng kể mức tiêu thụ năng lượng khi so sánh với bóng đèn sợi đốt tiêu chuẩn.",
+          "videoUrl": "https://www.youtube.com/watch?v=Iov0CIABVOM&t=1578s",
+          "answer": "A",
+          "fullSent": "Ms. Bernard noticed that a deadline was approaching, so she requested some assistance.",
+          "transSent": "Bà Bernard nhận thấy thời hạn đang đến gần nên đã yêu cầu hỗ trợ.",
           "noteOpts": [
-            "A. (tính từ): tuyệt vời",
-            "B. (tính từ so sánh hơn): lớn hơn",
-            "C. (tính từ so sánh nhất): lớn nhất",
-            "D. (trạng từ): đáng kể"
+            "A. (động từ quá khứ): đã chú ý",
+            "B. (động từ quá khứ): đã che khuất",
+            "C. (động từ quá khứ): đã rút (tiền / khỏi)",
+            "D. (động từ quá khứ): đã xuất hiện"
           ]
         },
         {
           "q": 124,
-          "enQ": "The airport’s proposed ------- project will include two remodeled terminals and an updated transportation system.",
+          "enQ": "Mr. Moscowitz is ------- that Dr. Tanaka will agree to present the keynote speech at this year’s conference.",
           "enOpts": [
-            "encouragement",
-            "modernization",
-            "assistant",
-            "importance"
+            "hopes",
+            "hoped",
+            "hopeful",
+            "hopefully"
           ],
           "viQ": "",
           "viOpts": [],
-          "videoUrl": "https://www.youtube.com/watch?v=xR0krRs_iKk&t=1994s",
-          "answer": "B",
-          "fullSent": "The airport’s proposed modernization project will include two remodeled terminals and an updated transportation system.",
-          "transSent": "Dự án hiện đại hóa được đề xuất của sân bay sẽ bao gồm hai nhà ga được cải tạo và một hệ thống giao thông được cập nhật.",
+          "videoUrl": "https://www.youtube.com/watch?v=Iov0CIABVOM&t=1640s",
+          "answer": "C",
+          "fullSent": "Mr. Moscowitz is hopeful that Dr. Tanaka will agree to present the keynote speech at this year’s conference.",
+          "transSent": "Ông Moscowitz hy vọng rằng Tiến sĩ Tanaka sẽ đồng ý trình bày bài phát biểu chính tại hội nghị năm nay.",
           "noteOpts": [
-            "A. (danh từ): sự khuyến khích",
-            "B. (danh từ): sự hiện đại hóa",
-            "C. (danh từ): trợ lý",
-            "D. (danh từ): tầm quan trọng"
+            "A. (danh từ số nhiều / động từ số ít): những hy vọng",
+            "B. (động từ quá khứ): đã hy vọng",
+            "C. (tính từ): đầy hy vọng",
+            "D. (trạng từ): hy vọng rằng"
           ]
         },
         {
           "q": 125,
-          "enQ": "Market Research is the ------- of the company concerned with better understanding our clients’ needs.",
+          "enQ": "Two Australian companies are developing new smartphones, but it is unclear ------- phone will become available first.",
           "enOpts": [
-            "divisional",
-            "divisible",
-            "division",
-            "divide"
+            "if",
+            "which",
+            "before",
+            "because"
           ],
           "viQ": "",
           "viOpts": [],
-          "videoUrl": "https://www.youtube.com/watch?v=xR0krRs_iKk&t=2140s",
-          "answer": "C",
-          "fullSent": "Market Research is the division of the company concerned with better understanding our clients’ needs.",
-          "transSent": "Nghiên cứu Thị trường là bộ phận của công ty liên quan đến việc hiểu rõ hơn nhu cầu của khách hàng của chúng ta.",
+          "videoUrl": "https://www.youtube.com/watch?v=Iov0CIABVOM&t=1737s",
+          "answer": "B",
+          "fullSent": "Two Australian companies are developing new smartphones, but it is unclear which phone will become available first.",
+          "transSent": "Hai công ty Úc đang phát triển điện thoại thông minh mới, nhưng chưa rõ chiếc nào sẽ được phát hành trước.",
           "noteOpts": [
-            "A. (tính từ): thuộc bộ phận",
-            "B. (tính từ): có thể chia được",
-            "C. (danh từ): bộ phận",
-            "D. (động từ): chia ra"
+            "A. (liên từ): nếu",
+            "B. (đại từ quan hệ): cái mà",
+            "C. (giới từ / liên từ): trước khi",
+            "D. (liên từ): bởi vì"
           ]
         },
         {
           "q": 126,
-          "enQ": "Mr. Tanaka was so pleased by the quarterly performance report ------- he canceled the weekly updates.",
+          "enQ": "Corners Gym offers its members a free lesson in how to use ------- properly.",
           "enOpts": [
-            "in case",
-            "which",
-            "that",
-            "seldom"
+            "weighs",
+            "weights",
+            "weighty",
+            "weighed"
           ],
           "viQ": "",
           "viOpts": [],
-          "videoUrl": "https://www.youtube.com/watch?v=xR0krRs_iKk&t=2197s",
-          "answer": "C",
-          "fullSent": "Mr. Tanaka was so pleased by the quarterly performance report that he canceled the weekly updates.",
-          "transSent": "Ông Tanaka hài lòng đến mức với báo cáo hiệu suất hàng quý đến nỗi ông đã hủy các cập nhật hàng tuần.",
+          "videoUrl": "https://www.youtube.com/watch?v=Iov0CIABVOM&t=1850s",
+          "answer": "B",
+          "fullSent": "Corners Gym offers its members a free lesson in how to use weights properly.",
+          "transSent": "Corners Gym cung cấp cho hội viên một buổi hướng dẫn miễn phí về cách sử dụng tạ đúng cách.",
           "noteOpts": [
-            "A. (liên từ): trong trường hợp",
-            "B. (đại từ quan hệ): mà",
-            "C. (liên từ): đến nỗi mà",
-            "D. (trạng từ): hiếm khi"
+            "A. (động từ số ít): nặng",
+            "B. (danh từ số nhiều): các quả cân",
+            "C. (tính từ): nặng nề / nghiêm trọng",
+            "D. (động từ quá khứ): đã cân"
           ]
         },
         {
           "q": 127,
-          "enQ": "Quincycom’s price increase is justifiable ------- there is an improvement in the quality of the Internet service we receive.",
+          "enQ": "------- the rules, overnight parking is not permitted at the clubhouse facility.",
           "enOpts": [
-            "whereas",
-            "likewise",
-            "because of",
-            "only if"
+            "Prior to",
+            "Except for",
+            "Instead of",
+            "According to"
           ],
           "viQ": "",
           "viOpts": [],
-          "videoUrl": "https://www.youtube.com/watch?v=xR0krRs_iKk&t=2310s",
+          "videoUrl": "https://www.youtube.com/watch?v=Iov0CIABVOM&t=1955s",
           "answer": "D",
-          "fullSent": "Quincycom’s price increase is justifiable only if there is an improvement in the quality of the Internet service we receive.",
-          "transSent": "Việc tăng giá của Quincycom chỉ có thể biện minh được nếu có sự cải thiện về chất lượng dịch vụ Internet mà chúng ta nhận được.",
+          "fullSent": "According to the rules, overnight parking is not permitted at the clubhouse facility.",
+          "transSent": "Theo quy định, không được phép đỗ xe qua đêm tại khu nhà câu lạc bộ.",
           "noteOpts": [
-            "A. (liên từ): trong khi đó",
-            "B. (trạng từ): tương tự",
-            "C. (giới từ): bởi vì",
-            "D. (liên từ): chỉ nếu"
+            "A. (cụm giới từ): trước khi",
+            "B. (cụm giới từ): ngoại trừ",
+            "C. (cụm giới từ): thay vì",
+            "D. (cụm giới từ): theo như"
           ]
         },
         {
           "q": 128,
-          "enQ": "The chart attached to this e-mail presents a ------- of Vivasyco’s latest smartphone with a model from Eustace Tech.",
+          "enQ": "Once everyone ------- , we can begin the conference call.",
           "enOpts": [
-            "comparison",
-            "pronouncement",
-            "guideline",
-            "publicity"
+            "arrived",
+            "is arriving",
+            "to arrive",
+            "has arrived"
           ],
           "viQ": "",
           "viOpts": [],
-          "videoUrl": "https://www.youtube.com/watch?v=xR0krRs_iKk&t=2420s",
-          "answer": "A",
-          "fullSent": "The chart attached to this e-mail presents a comparison of Vivasyco’s latest smartphone with a model from Eustace Tech.",
-          "transSent": "Biểu đồ đính kèm trong e-mail này trình bày sự so sánh điện thoại thông minh mới nhất của Vivasyco với một mẫu từ Eustace Tech.",
+          "videoUrl": "https://www.youtube.com/watch?v=Iov0CIABVOM&t=2033s",
+          "answer": "D",
+          "fullSent": "Once everyone has arrived , we can begin the conference call.",
+          "transSent": "Khi mọi người đã đến đủ, chúng ta có thể bắt đầu cuộc gọi hội nghị.",
           "noteOpts": [
-            "A. (danh từ): sự so sánh",
-            "B. (danh từ): thông báo",
-            "C. (danh từ): hướng dẫn",
-            "D. (danh từ): sự quảng bá"
+            "A. (động từ quá khứ): đã đến",
+            "B. (hiện tại tiếp diễn): đang đến",
+            "C. (động từ nguyên mẫu có to): để đến",
+            "D. (hiện tại hoàn thành): đã đến"
           ]
         },
         {
           "q": 129,
-          "enQ": "It is the catering director's ------- to inform the chef of the intended menu well in advance of the event.",
+          "enQ": "Each summer a motivational video that highlights the past year’s ------- is shown to all company employees.",
           "enOpts": [
-            "obliged",
-            "obligated",
-            "obligatory",
-            "obligation"
+            "preferences",
+            "accomplishments",
+            "communications",
+            "uncertainties"
           ],
           "viQ": "",
           "viOpts": [],
-          "videoUrl": "https://www.youtube.com/watch?v=xR0krRs_iKk&t=2560s",
-          "answer": "D",
-          "fullSent": "It is the catering director's obligation to inform the chef of the intended menu well in advance of the event.",
-          "transSent": "Nghĩa vụ của giám đốc dịch vụ ăn uống là thông báo cho đầu bếp về thực đơn dự định trước sự kiện.",
+          "videoUrl": "https://www.youtube.com/watch?v=Iov0CIABVOM&t=2190s",
+          "answer": "B",
+          "fullSent": "Each summer a motivational video that highlights the past year’s accomplishments is shown to all company employees.",
+          "transSent": "Mỗi mùa hè, một video tạo động lực nêu bật thành tựu của năm trước được trình chiếu cho toàn bộ nhân viên công ty.",
           "noteOpts": [
-            "A. (tính từ): bị bắt buộc",
-            "B. (tính từ): có nghĩa vụ",
-            "C. (tính từ): mang tính bắt buộc",
-            "D. (danh từ): nghĩa vụ"
+            "A. (danh từ số nhiều): các sở thích",
+            "B. (danh từ số nhiều): các thành tựu",
+            "C. (danh từ số nhiều): sự giao tiếp",
+            "D. (danh từ số nhiều): sự không chắc chắn"
           ]
         },
         {
           "q": 130,
-          "enQ": "Given her experience in health care, Ms. Chung is ------- well suited to manage the company’s wellness program.",
+          "enQ": "Employees who wish to attend the retirement dinner ------- Ms. Howell's 30 years of service should contact Mr. Lee.",
           "enOpts": [
-            "formerly",
-            "expectantly",
-            "particularly",
-            "avoidably"
+            "honor",
+            "to honor",
+            "will honor",
+            "will be honored"
           ],
           "viQ": "",
           "viOpts": [],
-          "videoUrl": "https://www.youtube.com/watch?v=xR0krRs_iKk&t=2594s",
-          "answer": "C",
-          "fullSent": "Given her experience in health care, Ms. Chung is particularly well suited to manage the company’s wellness program.",
-          "transSent": "Với kinh nghiệm của mình trong lĩnh vực chăm sóc sức khỏe, bà Chung đặc biệt phù hợp để quản lý chương trình sức khỏe của công ty.",
+          "videoUrl": "https://www.youtube.com/watch?v=Iov0CIABVOM&t=2318s",
+          "answer": "B",
+          "fullSent": "Employees who wish to attend the retirement dinner to honor Ms. Howell's 30 years of service should contact Mr. Lee.",
+          "transSent": "Nhân viên muốn tham dự bữa tiệc nghỉ hưu để vinh danh 30 năm cống hiến của bà Howell nên liên hệ ông Lee.",
           "noteOpts": [
-            "A. (trạng từ): trước đây",
-            "B. (trạng từ): đầy mong đợi",
-            "C. (trạng từ): đặc biệt",
-            "D. (trạng từ): có thể tránh được"
+            "A. (động từ nguyên mẫu): tôn vinh",
+            "B. (động từ nguyên mẫu có to): để tôn vinh",
+            "C. (tương lai đơn): sẽ tôn vinh",
+            "D. (tương lai đơn bị động): sẽ được tôn vinh"
           ]
         }
       ]
@@ -2331,336 +2332,340 @@ const EXAM_DATA = {
     "6": {
       "groups": [
         {
-          "img": "https://2023.toeicthaysang.com/de2/131.png",
-          "fullPassEN": "Sanberg Industries: Big Angle Television Wall Mount\nThe Big Angle Television Wall Mount is perfect for mounting televisions from 40 inches to 75 inches in size as measured diagonally across the screen. The mount connects easily to your wall, thereby freeing your tabletops and saving space. The flexible mount comes with a 25-inch arm that bends in multiple directions so you can enjoy watching television from anywhere in the room. Plus, it has vertical and horizontal tilt capabilities, so your television can be placed exactly in the position you like. Like all products by Sanberg Industries, it also comes with a five-year guarantee.",
-          "fullPassVI": "Sanberg Industries: Giá Treo Tường Truyền Hình Góc Rộng\nGiá Treo Tường Truyền Hình Góc Rộng hoàn hảo để treo các tivi từ 40 inch đến 75 inch tính theo kích thước đo chéo qua màn hình. Giá treo kết nối dễ dàng với tường của bạn, từ đó giải phóng mặt bàn và tiết kiệm không gian. Giá treo linh hoạt đi kèm với một cánh tay dài 25 inch uốn cong theo nhiều hướng để bạn có thể thưởng thức xem truyền hình từ bất kỳ đâu trong phòng. Thêm vào đó, nó có khả năng nghiêng dọc và ngang, vì vậy tivi của bạn có thể được đặt chính xác ở vị trí bạn thích. Giống như tất cả các sản phẩm của Sanberg Industries, nó cũng đi kèm với bảo hành năm năm.",
+          "img": "https://2024.toeicthaysang.com/de2/131.png",
+          "fullPassEN": "To: Myung-Hee Hahn\nFrom: Dellwyn Home Store\nDate: January 15\nSubject: Order update\nDear Ms. Hahn,\nYour special order of a red oak dining table and six matching chairs arrived at our store this morning. We would now like to arrange for the delivery of the furniture. Please call us at 517-555-0188 and ask to speak to Coleman Cobb, our delivery manager. He can schedule a convenient time.\nCustomer Service, Dellwyn Home Store",
+          "fullPassVI": "Đến: Myung-Hee Hahn\nTừ: Dellwyn Home Store\nNgày: 15 tháng 1\nChủ đề: Cập nhật đơn hàng\nKính gửi bà Hahn,\nĐơn đặt hàng đặc biệt của bạn gồm một bộ bàn ăn gỗ sồi đỏ và sáu chiếc ghế đồng bộ đã đến cửa hàng của chúng tôi sáng nay. Chúng tôi muốn sắp xếp việc giao đồ nội thất. Xin hãy gọi cho chúng tôi theo số 517-555-0188 và yêu cầu nói chuyện với Coleman Cobb, quản lý giao hàng của chúng tôi. Ông ấy có thể sắp xếp một thời gian thuận tiện.\nDịch vụ Khách hàng, Dellwyn Home Store",
           "questions": [
             {
               "q": 131,
-              "enQ": "A. due to",
+              "enQ": "A. specially",
               "enOpts": [
-                "so that",
-                "although",
-                "thereby"
+                "specialize",
+                "special",
+                "specializing"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/OljWcluXGYg?t=0",
-              "answer": "D",
+              "videoUrl": "https://youtu.be/vLtr0lnEHW4?t=11",
+              "answer": "C",
               "noteOpts": [
-                "A. (cụm giới từ): do",
-                "B. (liên từ): để mà",
-                "C. (liên từ): mặc dù",
-                "D. (trạng từ): qua đó"
+                "A. (trạng từ): một cách đặc biệt",
+                "B. (động từ): chuyên về",
+                "C. (tính từ): đặc biệt",
+                "D. (hiện tại phân từ): đang chuyên về"
               ]
             },
             {
               "q": 132,
-              "enQ": "A. mysterious",
+              "enQ": "A. furniture",
               "enOpts": [
-                "flexible",
-                "skillful",
-                "limited"
+                "appliances",
+                "refund",
+                "tools"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/OljWcluXGYg?t=141",
-              "answer": "B",
+              "videoUrl": "https://youtu.be/vLtr0lnEHW4?t=82",
+              "answer": "A",
               "noteOpts": [
-                "A. (tính từ): bí ẩn",
-                "B. (tính từ): linh hoạt",
-                "C. (tính từ): khéo léo",
-                "D. (tính từ): hạn chế"
+                "A. (danh từ): nội thất",
+                "B. (danh từ số nhiều): thiết bị / đồ gia dụng",
+                "C. (danh từ / động từ): sự hoàn tiền",
+                "D. (danh từ số nhiều): dụng cụ"
               ]
             },
             {
               "q": 133,
-              "enQ": "A. exact",
+              "enQ": "A. speak",
               "enOpts": [
-                "exacting",
-                "exactly",
-                "exacted"
+                "spoken",
+                "is speaking",
+                "to speak"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/OljWcluXGYg?t=250",
-              "answer": "C",
+              "videoUrl": "https://youtu.be/vLtr0lnEHW4?t=127",
+              "answer": "D",
               "noteOpts": [
-                "A. (tính từ): chính xác",
-                "B. (tính từ): khắt khe",
-                "C. (trạng từ): một cách chính xác",
-                "D. (động từ quá khứ): đã yêu cầu gắt gao"
+                "A. (động từ nguyên mẫu): nói",
+                "B. (quá khứ phân từ): được nói",
+                "C. (hiện tại tiếp diễn): đang nói",
+                "D. (động từ nguyên mẫu có to): để nói"
               ]
             },
             {
               "q": 134,
-              "enQ": "A. Like all products by Sanberg Industries, it also comes with a five-year guarantee.",
+              "enQ": "A. He can schedule a convenient time.",
               "enOpts": [
-                "Your inquiry about your Sanberg product will be addressed within two business days.",
-                "We are grateful that you have worked for Sanberg Industries for so many years.",
-                "High-definition televisions offer an improved viewing experience."
+                "He began working here yesterday.",
+                "He can meet you at 11:00 a.m.",
+                "He recently moved to Dellwyn."
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/OljWcluXGYg?t=271",
+              "videoUrl": "https://youtu.be/vLtr0lnEHW4?t=192",
               "answer": "A",
               "noteOpts": [
-                "A. Giống như mọi sản phẩm của Sanberg Industries, sản phẩm này cũng đi kèm bảo hành năm năm.",
-                "B. Yêu cầu của bạn về sản phẩm Sanberg sẽ được xử lý trong vòng hai ngày làm việc.",
-                "C. Chúng tôi biết ơn vì bạn đã làm việc cho Sanberg Industries nhiều năm qua.",
-                "D. Tivi độ phân giải cao mang lại trải nghiệm xem tốt hơn."
+                "A. Anh ấy có thể sắp xếp một thời gian thuận tiện.",
+                "B. Anh ấy đã bắt đầu làm việc ở đây từ hôm qua.",
+                "C. Anh ấy có thể gặp bạn vào lúc 11 giờ sáng.",
+                "D. Anh ấy vừa mới chuyển đến Dellwyn gần đây."
               ]
             }
-          ]
+          ],
+          "title": "Questions 131-134 refer to the following e-mail."
         },
         {
-          "img": "https://2023.toeicthaysang.com/de2/135.png",
-          "fullPassEN": "To: minjunlee@alto.com\nFrom: contest@asianaturemag.org\nDate: 7 September\nSubject: Tenth annual contest\nAsia Nature magazine wants to thank you for your submission. Your participation in our tenth annual amateur photography contest is appreciated. Each photograph we receive is judged by our panel of experts. These professionals are among the best in their field. Their works have been displayed in galleries around the world.\nAsia Nature magazine depends on people like you who care about the environment and value nature's beauty. We ask that you visit our Web site and make a contribution today. Without generous readers like you, we would not be able to continue our work.",
-          "fullPassVI": "Đến: minjunlee@alto.com\nTừ: contest@asianaturemag.org\nNgày: 7 tháng 9\nChủ đề: Cuộc thi thường niên lần thứ mười\nTạp chí Asia Nature muốn cảm ơn bạn vì bài dự thi của bạn. Sự tham gia của bạn trong cuộc thi nhiếp ảnh nghiệp dư thường niên lần thứ mười của chúng tôi được trân trọng. Mỗi bức ảnh chúng tôi nhận được đều được đánh giá bởi hội đồng chuyên gia của chúng tôi. Những chuyên gia này thuộc hàng giỏi nhất trong lĩnh vực của họ. Các tác phẩm của họ đã được trưng bày trong các phòng trưng bày trên khắp thế giới.\nTạp chí Asia Nature phụ thuộc vào những người như bạn, những người quan tâm đến môi trường và trân trọng vẻ đẹp của thiên nhiên. Chúng tôi yêu cầu bạn truy cập trang Web của chúng tôi và đóng góp ngay hôm nay. Nếu không có những độc giả hào phóng như bạn, chúng tôi sẽ không thể tiếp tục công việc của mình.",
+          "img": "https://2024.toeicthaysang.com/de2/135.png",
+          "fullPassEN": "Keep Cool Service Contractors:\n67 Main Road, Edinburgh Village\nChaguanas, Trinidad and Tobago\nKeep Cool Service Contractors can bring you peace of mind. As part of an annual contract, we will service your air-conditioning system, ensuring your safety and comfort. This includes inspecting the system, making repairs as needed, and professionally cleaning your air ducts. Furthermore, if necessary, we can replace your old air-conditioning system with a new, cost-efficient one.\nOur workers are highly qualified licensed technicians who stay up-to-date with ongoing training. Plus, they are friendly, clean, and knowledgeable. We promise you fair prices and professional work, backed by our Keep Cool guarantee.\nCall 1-868-555-0129 for a free quote today.",
+          "fullPassVI": "Keep Cool Service Contractors:\n67 Main Road, Edinburgh Village\nChaguanas, Trinidad and Tobago\nKeep Cool Service Contractors có thể mang lại cho bạn sự yên tâm. Là một phần của hợp đồng hàng năm, chúng tôi sẽ bảo dưỡng hệ thống điều hòa không khí của bạn, đảm bảo sự an toàn và thoải mái của bạn. Điều này bao gồm kiểm tra hệ thống, thực hiện sửa chữa khi cần thiết, và làm sạch đường ống dẫn khí của bạn một cách chuyên nghiệp. Hơn nữa, nếu cần thiết, chúng tôi có thể thay thế hệ thống điều hòa không khí cũ của bạn bằng một hệ thống mới, tiết kiệm chi phí.\nCác nhân viên của chúng tôi là những kỹ thuật viên có giấy phép có trình độ cao, luôn cập nhật với đào tạo liên tục. Hơn nữa, họ thân thiện, sạch sẽ và hiểu biết. Chúng tôi hứa với bạn mức giá công bằng và công việc chuyên nghiệp, được bảo đảm bởi cam kết Keep Cool của chúng tôi.\nGọi 1-868-555-0129 để nhận báo giá miễn phí ngay hôm nay.",
           "questions": [
             {
               "q": 135,
-              "enQ": "A. subscription",
+              "enQ": "A. safe",
               "enOpts": [
-                "letter",
-                "submission",
-                "article"
+                "safely",
+                "safest",
+                "safety"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/OljWcluXGYg?t=404",
-              "answer": "C",
+              "videoUrl": "https://youtu.be/vLtr0lnEHW4?t=230",
+              "answer": "D",
               "noteOpts": [
-                "A. (danh từ): sự đăng ký",
-                "B. (danh từ): lá thư",
-                "C. (danh từ): sự nộp bài",
-                "D. (danh từ): bài báo"
+                "A. (tính từ): an toàn",
+                "B. (trạng từ): một cách an toàn",
+                "C. (tính từ so sánh nhất): an toàn nhất",
+                "D. (danh từ): sự an toàn"
               ]
             },
             {
               "q": 136,
-              "enQ": "A. Photographing nature is a difficult skill to learn.",
+              "enQ": "A. On one hand",
               "enOpts": [
-                "Every reader of our magazine knows that wildlife is precious.",
-                "Asia Nature magazine has been published for fourteen years.",
-                "These professionals are among the best in their field."
+                "Nonetheless",
+                "Furthermore",
+                "And yet"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/OljWcluXGYg?t=705",
-              "answer": "D",
+              "videoUrl": "https://youtu.be/vLtr0lnEHW4?t=351",
+              "answer": "C",
               "noteOpts": [
-                "A. Chụp ảnh thiên nhiên là một kỹ năng khó học.",
-                "B. Mọi độc giả của tạp chí chúng tôi đều biết động vật hoang dã rất quý giá.",
-                "C. Tạp chí Asia Nature đã được xuất bản suốt mười bốn năm.",
-                "D. Những chuyên gia này thuộc nhóm giỏi nhất trong lĩnh vực của họ."
+                "A. (cụm từ nối): một mặt thì",
+                "B. (trạng từ liên kết): tuy nhiên",
+                "C. (trạng từ liên kết): hơn nữa",
+                "D. (cụm từ nối): ấy thế mà / nhưng"
               ]
             },
             {
               "q": 137,
-              "enQ": "A. value",
+              "enQ": "A. Take advantage of dozens of useful online tools.",
               "enOpts": [
-                "values",
-                "valuable",
-                "valued"
+                "Moreover, the air conditioner you chose is very popular.",
+                "Plus, they are friendly, clean, and knowledgeable.",
+                "Thank you for visiting our contractor showroom."
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/OljWcluXGYg?t=524",
-              "answer": "A",
+              "videoUrl": "https://youtu.be/vLtr0lnEHW4?t=449",
+              "answer": "C",
               "noteOpts": [
-                "A. (danh từ): giá trị",
-                "B. (động từ): coi trọng",
-                "C. (tính từ): có giá trị",
-                "D. (tính từ): được đánh giá cao"
+                "A. Hãy tận dụng hàng tá công cụ trực tuyến hữu ích.",
+                "B. Hơn nữa, chiếc máy điều hòa bạn chọn đang rất phổ biến.",
+                "C. Thêm vào đó, họ rất thân thiện, sạch sẽ và có kiến thức chuyên môn.",
+                "D. Cảm ơn bạn đã ghé thăm phòng trưng bày nhà thầu của chúng tôi."
               ]
             },
             {
               "q": 138,
-              "enQ": "A. crowded",
+              "enQ": "A. backed",
               "enOpts": [
-                "accidental",
-                "generous",
-                "light"
+                "backs",
+                "backing",
+                "back"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/OljWcluXGYg?t=618",
-              "answer": "C",
+              "videoUrl": "https://youtu.be/vLtr0lnEHW4?t=331",
+              "answer": "A",
               "noteOpts": [
-                "A. (tính từ): đông đúc",
-                "B. (tính từ): tình cờ",
-                "C. (tính từ): hào phóng",
-                "D. (tính từ): nhẹ"
+                "A. (động từ quá khứ): đã ủng hộ",
+                "B. (động từ số ít / danh từ số nhiều): ủng hộ / phần lưng",
+                "C. (hiện tại phân từ): đang ủng hộ / lùi xe",
+                "D. (động từ nguyên mẫu / trạng từ): quay lại / ủng hộ"
               ]
             }
-          ]
+          ],
+          "title": "Questions 135-138 refer to the following advertisement."
         },
         {
-          "img": "https://2023.toeicthaysang.com/de2/139.png",
-          "fullPassEN": "New Italian Food Shop Opening Soon\nCALGARY (28 March) - This Saturday marks the grand opening of Calgary's latest Italian specialty food shop. Salerno's Italian Food will sell its own brand of fresh pastas and sauces as well as imported goods. The shop is located on the corner of Macall Avenue and Arnhem Street. This area is already home to several bakeries, bistros, and coffee shops. This small part of Calgary is becoming a very popular place to go for gourmet food. Leo Sarri, the store's owner, was previously the chef at Milano's. He is looking forward to Saturday and says he is thrilled to be entering the retail world for the first time.",
-          "fullPassVI": "Cửa Hàng Thực Phẩm Ý Mới Sắp Khai Trương\nCALGARY (28 tháng 3) - Thứ Bảy này đánh dấu lễ khai trương chính thức cửa hàng thực phẩm đặc sản Ý mới nhất của Calgary. Thực Phẩm Ý Salerno's sẽ bán thương hiệu mì ống tươi và nước sốt của riêng mình cũng như các hàng nhập khẩu. Cửa hàng tọa lạc tại góc Đại lộ Macall và Đường Arnhem. Khu vực này đã là nơi có một số tiệm bánh, quán ăn bình dân và quán cà phê. Phần nhỏ này của Calgary đang trở thành một địa điểm rất phổ biến để đến mua thực phẩm cao cấp. Leo Sarri, chủ cửa hàng, trước đây là đầu bếp tại Milano's. Ông ấy đang mong đợi ngày Thứ Bảy và nói rằng ông ấy rất phấn khích khi lần đầu tiên bước vào thế giới bán lẻ.",
+          "img": "https://2024.toeicthaysang.com/de2/139.png",
+          "fullPassEN": "To: All Customers\nFrom: asquires@lightidea.com\nDate: March 6\nSubject: Information\nDear Light Idea Customers,\nLight Idea is enacting a price increase on select energy-efficient products, effective April 17. Specific product pricing will vary. Please contact your sales representative for details and questions.\nThe last date for ordering at current prices is April 16. All orders received after this date will follow the new price list. The updated price list will be available on March 20. Customers will be able to find this on our Web site.\nWe will continue to provide quality products and exceptional service to our valued customers. Thank you for your business.\nSincerely,\nArvin Squires\nHead of Sales, Light Idea",
+          "fullPassVI": "Đến: Tất cả Khách hàng\nTừ: asquires@lightidea.com\nNgày: 6 tháng 3\nChủ đề: Thông tin\nKính gửi Khách hàng Light Idea,\nLight Idea đang thực hiện tăng giá đối với một số sản phẩm tiết kiệm năng lượng, có hiệu lực từ ngày 17 tháng 4. Giá cụ thể của từng sản phẩm sẽ khác nhau. Vui lòng liên hệ với đại diện bán hàng của bạn để biết chi tiết và giải đáp thắc mắc.\nNgày cuối cùng để đặt hàng theo giá hiện tại là ngày 16 tháng 4. Tất cả các đơn hàng nhận được sau ngày này sẽ theo bảng giá mới. Bảng giá cập nhật sẽ có sẵn vào ngày 20 tháng 3. Khách hàng sẽ có thể tìm thấy điều này trên trang Web của chúng tôi.\nChúng tôi sẽ tiếp tục cung cấp các sản phẩm chất lượng và dịch vụ xuất sắc cho các khách hàng được trân trọng của chúng tôi. Cảm ơn vì sự hợp tác của bạn.\nTrân trọng,\nArvin Squires\nTrưởng phòng Kinh doanh, Light Idea",
           "questions": [
             {
               "q": 139,
-              "enQ": "A. even though",
+              "enQ": "A. agree",
               "enOpts": [
-                "in order to",
-                "in spite of",
-                "as well as"
+                "vary",
+                "wait",
+                "decline"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/OljWcluXGYg?t=789",
-              "answer": "D",
+              "videoUrl": "https://youtu.be/vLtr0lnEHW4?t=528",
+              "answer": "B",
               "noteOpts": [
-                "A. (liên từ): mặc dù",
-                "B. (liên từ): để mà",
-                "C. (giới từ): mặc dù",
-                "D. (liên từ): cũng như"
+                "A. (động từ): đồng ý",
+                "B. (động từ): thay đổi / khác nhau",
+                "C. (động từ): chờ đợi",
+                "D. (động từ / danh từ): từ chối / suy giảm"
               ]
             },
             {
               "q": 140,
-              "enQ": "A. The weather on Saturday is expected to be beautiful.",
+              "enQ": "A. receiving",
               "enOpts": [
-                "This area is already home to several bakeries, bistros, and coffee shops.",
-                "Fresh pastas and sauces are superior to mass-produced ones.",
-                "We will soon learn what consumers think of the products that Salerno’s offers."
+                "having received",
+                "received",
+                "will be received"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/OljWcluXGYg?t=1125",
-              "answer": "B",
+              "videoUrl": "https://youtu.be/vLtr0lnEHW4?t=630",
+              "answer": "C",
               "noteOpts": [
-                "A. Thời tiết thứ Bảy được dự báo sẽ đẹp.",
-                "B. Khu vực này đã có nhiều tiệm bánh, quán ăn và quán cà phê.",
-                "C. Mì và nước sốt tươi ngon hơn loại sản xuất hàng loạt.",
-                "D. Chúng ta sẽ sớm biết người tiêu dùng nghĩ gì về các sản phẩm của Salerno’s."
+                "A. (danh động từ): việc nhận",
+                "B. (phân từ hoàn thành): sau khi đã nhận",
+                "C. (tính từ / quá khứ phân từ): đã nhận",
+                "D. (tương lai đơn bị động): sẽ được nhận"
               ]
             },
             {
               "q": 141,
-              "enQ": "A. efficiently",
+              "enQ": "A. The updated price list will be available on March 20.",
               "enOpts": [
-                "later",
-                "previously",
-                "especially"
+                "We apologize for this inconvenience.",
+                "Your orders will be shipped after April 17.",
+                "We are increasing prices because of rising costs."
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/OljWcluXGYg?t=947",
-              "answer": "C",
+              "videoUrl": "https://youtu.be/vLtr0lnEHW4?t=733",
+              "answer": "A",
               "noteOpts": [
-                "A. (trạng từ): hiệu quả",
-                "B. (trạng từ): sau đó",
-                "C. (trạng từ): trước đây",
-                "D. (trạng từ): đặc biệt"
+                "A. Danh sách giá cập nhật sẽ có sẵn vào ngày 20 tháng 3.",
+                "B. Chúng tôi xin lỗi vì sự bất tiện này.",
+                "C. Các đơn hàng của bạn sẽ được vận chuyển sau ngày 17 tháng 4.",
+                "D. Chúng tôi đang tăng giá vì chi phí đầu vào tăng cao."
               ]
             },
             {
               "q": 142,
-              "enQ": "A. retail",
+              "enQ": "A. exceptionally",
               "enOpts": [
-                "education",
-                "shipping",
-                "travel"
+                "exception",
+                "exceptional",
+                "exceptionalism"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/OljWcluXGYg?t=1032",
-              "answer": "A",
+              "videoUrl": "https://youtu.be/vLtr0lnEHW4?t=716",
+              "answer": "C",
               "noteOpts": [
-                "A. (danh từ / tính từ): bán lẻ",
-                "B. (danh từ): giáo dục",
-                "C. (danh từ): vận chuyển",
-                "D. (danh từ): du lịch"
+                "A. (trạng từ): xuất sắc / ngoại lệ",
+                "B. (danh từ): sự ngoại lệ",
+                "C. (tính từ): xuất sắc / đặc biệt",
+                "D. (danh từ): thuyết ngoại lệ"
               ]
             }
-          ]
+          ],
+          "title": "Questions 139-142 refer to the following e-mail."
         },
         {
-          "img": "https://2023.toeicthaysang.com/de2/143.png",
-          "fullPassEN": "Experienced Machinist Wanted\nCaliphar Tech Industries is seeking experienced machinists to analyze problems, set up and operate machinery, and troubleshoot machines in our main production plant. Our factory manufactures components used in industrial equipment. Examples of the equipment we make include pumps and fans for various industries.\nCaliphar Tech Industries features a fast-paced work environment with tight deadlines. We need team players who can work together under pressure. We offer competitive salaries and excellent benefits. Contact humanresources@caliphartechindustries.com.",
-          "fullPassVI": "Tìm Thợ Máy Có Kinh Nghiệm\nCaliphar Tech Industries đang tìm kiếm các thợ máy có kinh nghiệm để phân tích các vấn đề, thiết lập và vận hành máy móc, và khắc phục sự cố máy móc trong nhà máy sản xuất chính của chúng tôi. Nhà máy của chúng tôi sản xuất các linh kiện được sử dụng trong thiết bị công nghiệp. Ví dụ về thiết bị chúng tôi sản xuất bao gồm máy bơm và quạt cho các ngành công nghiệp khác nhau.\nCaliphar Tech Industries có môi trường làm việc nhanh với thời hạn chặt chẽ. Chúng tôi cần những người làm việc nhóm có thể làm việc cùng nhau dưới áp lực. Chúng tôi cung cấp mức lương cạnh tranh và phúc lợi xuất sắc. Liên hệ humanresources@caliphartechindustries.com.",
+          "img": "https://2024.toeicthaysang.com/de2/143.png",
+          "fullPassEN": "To: Jang-Ho Kwon <jkwon@newart.nz>\nFrom: Kenneth Okim <k.okim@okimjewelry.nz>\nSubject: Good news\nDate: 30 August\nDear Jang-Ho,\nThank you for the shipment last month of 80 units of your jewelry pieces. I am happy to report that they have been selling very well in my shop. My customers love the colourful designs as well as the quality of your workmanship. The reasonable prices also make your pieces a great value.\nI would like to increase the number of units I order from you. Would you be able to double my order for the September shipment?\nFinally, I would like to discuss the possibility of featuring your work exclusively in my store. I believe that I could reach your target audience best and that the agreement would serve us both very well. I look forward to hearing from you.\nBest regards,\nKenneth Okim\nOkim Jewelry",
+          "fullPassVI": "Đến: Jang-Ho Kwon <jkwon@newart.nz>\nTừ: Kenneth Okim <k.okim@okimjewelry.nz>\nChủ đề: Tin tốt\nNgày: 30 tháng 8\nKính gửi Jang-Ho,\nCảm ơn bạn vì lô hàng tháng trước gồm 80 đơn vị đồ trang sức của bạn. Tôi vui mừng thông báo rằng chúng đang bán rất chạy trong cửa hàng của tôi. Khách hàng của tôi yêu thích những thiết kế đầy màu sắc cũng như chất lượng tay nghề của bạn. Mức giá hợp lý cũng làm cho các món trang sức của bạn trở thành một giá trị tuyệt vời.\nTôi muốn tăng số lượng đơn vị tôi đặt hàng từ bạn. Bạn có thể tăng gấp đôi đơn hàng của tôi cho lô hàng tháng 9 không?\nCuối cùng, tôi muốn thảo luận về khả năng trưng bày tác phẩm của bạn độc quyền tại cửa hàng của tôi. Tôi tin rằng tôi có thể tiếp cận đối tượng mục tiêu của bạn tốt nhất và rằng thỏa thuận sẽ phục vụ rất tốt cho cả hai chúng ta. Tôi mong nhận được phản hồi từ bạn.\nTrân trọng,\nKenneth Okim\nOkim Jewelry",
           "questions": [
             {
               "q": 143,
-              "enQ": "A. analyze",
+              "enQ": "A. patients",
               "enOpts": [
-                "analyzer",
-                "analyzing",
-                "to analyze"
+                "students",
+                "customers",
+                "teammates"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/OljWcluXGYg?t=1217",
-              "answer": "D",
+              "videoUrl": "https://youtu.be/vLtr0lnEHW4?t=811",
+              "answer": "C",
               "noteOpts": [
-                "A. (động từ): phân tích",
-                "B. (danh từ): máy phân tích",
-                "C. (động từ thêm ing): đang phân tích",
-                "D. (động từ nguyên mẫu): để phân tích"
+                "A. (danh từ số nhiều): bệnh nhân",
+                "B. (danh từ số nhiều): học sinh / sinh viên",
+                "C. (danh từ số nhiều): khách hàng",
+                "D. (danh từ số nhiều): đồng đội"
               ]
             },
             {
               "q": 144,
-              "enQ": "A. Send specifications for your project to our production director.",
+              "enQ": "A. If you need more time, please let me know.",
               "enOpts": [
-                "Our factory manufactures components used in industrial equipment.",
-                "We hope you enjoy the tour of our innovative manufacturing plant.",
-                "Congratulations on being hired by Caliphar Tech Industries."
+                "Unfortunately, I do not have adequate shelf space at this time.",
+                "I would like to show you some of my own designs.",
+                "The reasonable prices also make your pieces a great value."
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/OljWcluXGYg?t=1469",
-              "answer": "B",
+              "videoUrl": "https://youtu.be/vLtr0lnEHW4?t=1129",
+              "answer": "D",
               "noteOpts": [
-                "A. Hãy gửi thông số dự án của bạn cho giám đốc sản xuất của chúng tôi.",
-                "B. Nhà máy của chúng tôi sản xuất linh kiện dùng trong thiết bị công nghiệp.",
-                "C. Chúng tôi hy vọng bạn thích chuyến tham quan nhà máy sản xuất hiện đại của chúng tôi.",
-                "D. Chúc mừng bạn đã được tuyển dụng vào Caliphar Tech Industries."
+                "A. Nếu bạn cần thêm thời gian, vui lòng cho tôi biết.",
+                "B. Thật không may, hiện tại tôi không có đủ không gian kệ trống.",
+                "C. Tôi muốn cho bạn xem một số thiết kế của riêng tôi.",
+                "D. Giá cả hợp lý cũng làm cho các tác phẩm của bạn có giá trị lớn."
               ]
             },
             {
               "q": 145,
-              "enQ": "A. along",
+              "enQ": "A. include",
               "enOpts": [
-                "under",
-                "beyond",
-                "for"
+                "double",
+                "repeat",
+                "insure"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/OljWcluXGYg?t=1398",
+              "videoUrl": "https://youtu.be/vLtr0lnEHW4?t=932",
               "answer": "B",
               "noteOpts": [
-                "A. (giới từ): dọc theo",
-                "B. (giới từ): bên dưới",
-                "C. (giới từ): vượt ngoài",
-                "D. (giới từ): cho"
+                "A. (động từ nguyên mẫu): bao gồm",
+                "B. (động từ / tính từ): gấp đôi",
+                "C. (động từ): lặp lại",
+                "D. (động từ): bảo đảm"
               ]
             },
             {
               "q": 146,
-              "enQ": "A. compete",
+              "enQ": "A. us",
               "enOpts": [
-                "competition",
-                "competitive",
-                "competed"
+                "you",
+                "we",
+                "these"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/OljWcluXGYg?t=1440",
-              "answer": "C",
+              "videoUrl": "https://youtu.be/vLtr0lnEHW4?t=992",
+              "answer": "A",
               "noteOpts": [
-                "A. (động từ): cạnh tranh",
-                "B. (danh từ): sự cạnh tranh",
-                "C. (tính từ): mang tính cạnh tranh",
-                "D. (động từ quá khứ): đã cạnh tranh"
+                "A. (đại từ tân ngữ): chúng tôi",
+                "B. (đại từ tân ngữ / chủ ngữ): bạn",
+                "C. (đại từ chủ ngữ): chúng tôi",
+                "D. (đại từ chỉ định số nhiều): những cái này"
               ]
             }
-          ]
+          ],
+          "title": "Questions 143-146 refer to the following e-mail."
         }
       ]
     },
@@ -2668,590 +2673,598 @@ const EXAM_DATA = {
       "groups": [
         {
           "imgs": [
-            "https://2023.toeicthaysang.com/de2/don.1.png"
+            "https://2024.toeicthaysang.com/de2/don.1.png"
           ],
-          "fullPassEN": "Uncle Pete's Marionette Theater Presents\nMoose Lake\nMarch 27-May 7\nEver since the founding of Uncle Pete's Marionette Theater, our adaptation of the well-known ballet Moose Lake has been one of our most beloved shows. Our 100 handcrafted marionettes will take you on a thrilling adventure into the world of Moose Lake.\nAs our skilled puppeteers pull the strings and make the puppets move, you will cheer for Maria and the Moose Prince. You may be unhappy with the Lizard King and his minions. You will be enthralled by the Drifting Dragonflies!\nUncle Pete's version of Moose Lake has been delighting viewers of all ages for more than 30 years. Shows sell out every year, so get your tickets today.\nTickets are available at the box office, 521 Perry Avenue, Fenton.",
-          "fullPassVI": "Nhà hát múa rối dây Uncle Pete's giới thiệu\nMoose Lake\nNgày 27 tháng 3-Ngày 7 tháng 5\nKể từ khi Nhà hát múa rối dây Uncle Pete's được thành lập, bản chuyển thể của chúng tôi từ vở ba lê nổi tiếng Moose Lake đã là một trong những buổi diễn được yêu thích nhất của chúng tôi. 100 con rối dây được làm thủ công của chúng tôi sẽ đưa bạn vào một cuộc phiêu lưu ly kỳ vào thế giới của Moose Lake.\nKhi những nghệ sĩ múa rối lành nghề của chúng tôi kéo dây và làm cho các con rối chuyển động, bạn sẽ cổ vũ cho Maria và Hoàng tử Nai sừng tấm. Bạn có thể sẽ không hài lòng với Vua Thằn lằn và tay sai của hắn. Bạn sẽ bị mê hoặc bởi những Chuồn chuồn Trôi dạt!\nPhiên bản Moose Lake của Uncle Pete's đã làm hài lòng khán giả ở mọi lứa tuổi trong hơn 30 năm. Các buổi diễn bán hết vé mỗi năm, vì vậy hãy mua vé của bạn hôm nay.\nVé có sẵn tại phòng vé, 521 Perry Avenue, Fenton.",
+          "fullPassEN": "Focus Your Social Media Presence\nFor small-business owners, it can be a challenge to stand out in a competitive social media environment. Successfully reaching your target market involves knowing how and where to promote your products in a way that is effective and memorable. The Savan Business Center offers support for business owners who need a boost in doing just that. For over 50 years, we've been helping entrepreneurs grow their sales through insight of current industry trends and understanding of our clients' unique needs.\nLet us help you get more organized in creating effective and far-reaching social media content. Our latest webinar, Focus Your Social Media Presence, will cover topics related to making your business stand out. You can sign up on our event Web page.\nDate: February 5\nTime: 10:00 A.M. to 11:00 ?.?.\nEvent Web page: www.savanbusinesscenter.com/socialmedia",
+          "fullPassVI": "Tập trung Hiện diện Mạng xã hội của Bạn\nĐối với các chủ doanh nghiệp nhỏ, việc nổi bật trong môi trường mạng xã hội cạnh tranh có thể là một thách thức. Tiếp cận thành công thị trường mục tiêu của bạn đòi hỏi phải biết cách thức và địa điểm quảng bá sản phẩm theo cách hiệu quả và đáng nhớ. Trung tâm Kinh doanh Savan cung cấp hỗ trợ cho các chủ doanh nghiệp cần được thúc đẩy trong chính điều đó. Trong hơn 50 năm, chúng tôi đã giúp các doanh nhân tăng doanh số thông qua hiểu biết về xu hướng ngành hiện tại và am hiểu nhu cầu độc đáo của từng khách hàng.\nHãy để chúng tôi giúp bạn có tổ chức hơn trong việc tạo ra nội dung mạng xã hội hiệu quả và có tầm với rộng. Hội thảo trực tuyến mới nhất của chúng tôi, Tập trung Hiện diện Mạng xã hội của Bạn, sẽ đề cập các chủ đề liên quan đến việc làm cho doanh nghiệp của bạn nổi bật. Bạn có thể đăng ký trên trang web sự kiện của chúng tôi.\nNgày: 5 tháng 2\nGiờ: 10:00 SA đến 11:00 SA\nTrang web sự kiện: https://www.savanbusinesscenter.com/socialmedia",
           "questions": [
             {
               "q": 147,
-              "enQ": "What is being advertised?",
+              "enQ": "What is true about the Savan Business Center?",
               "enOpts": [
-                "A lake cruise",
-                "A puppet show",
-                "A string quartet",
-                "An adventure park"
+                "It works with small businesses.",
+                "It publishes a weekly newsletter.",
+                "It recently launched a new Web site.",
+                "It is seeking suggestions for webinar topics."
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=1",
-              "answer": "B",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=0",
+              "answer": "A",
               "noteOpts": [
-                "Điều gì đang được quảng cáo?",
-                "A. Một chuyến du ngoạn trên hồ",
-                "B. Một buổi biểu diễn múa rối",
-                "C. Một tứ tấu đàn dây",
-                "D. Một công viên phiêu lưu"
+                "Điều gì đúng về Trung tâm Kinh doanh Savan?",
+                "A. Nó làm việc với các doanh nghiệp nhỏ.",
+                "B. Nó xuất bản một bản tin hàng tuần.",
+                "C. Nó gần đây đã ra mắt một trang web mới.",
+                "D. Nó đang tìm kiếm các gợi ý cho các chủ đề hội thảo trực tuyến."
               ]
             },
             {
               "q": 148,
-              "enQ": "What is Uncle Pete's version of Moose Lake based on?",
+              "enQ": "What is indicated about the webinar?",
               "enOpts": [
-                "A classic children’s book",
-                "A popular film",
-                "A video game",
-                "A dance performance"
+                "It begins at 11:00 a.m.",
+                "It features advice on creating promotional content.",
+                "It is being offered every month.",
+                "It requires a small fee to attend."
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=262",
-              "answer": "D",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=96",
+              "answer": "B",
               "noteOpts": [
-                "Phiên bản Moose Lake của Uncle Pete dựa trên điều gì?",
-                "A. Một cuốn sách thiếu nhi kinh điển",
-                "B. Một bộ phim nổi tiếng",
-                "C. Một trò chơi điện tử",
-                "D. Một buổi biểu diễn khiêu vũ"
+                "Điều gì được chỉ ra về hội thảo trực tuyến?",
+                "A. Nó bắt đầu vào lúc 11 giờ sáng.",
+                "B. Nó bao gồm lời khuyên về việc tạo nội dung quảng cáo.",
+                "C. Nó đang được cung cấp hàng tháng.",
+                "D. Nó yêu cầu một khoản phí nhỏ để tham dự."
               ]
             }
-          ]
+          ],
+          "title": "Questions 147-148 refer to the following invitation."
         },
         {
           "imgs": [
-            "https://2023.toeicthaysang.com/de2/don.2.png"
+            "https://2024.toeicthaysang.com/de2/don.2.png"
           ],
-          "fullPassEN": "Clean House Janitorial Services\nCopper County's trustworthy and efficient cleaning solution since 1972\nNEW CUSTOMER PROMOTION\n*Copper County residents ONLY\nSave 15%\non your first year of home cleanings!\n*Carpet-cleaning service NOT included\nCall 916-555-0137 today for details and to schedule your first service.\nOffer valid through December 31",
-          "fullPassVI": "Dịch vụ Vệ sinh Clean House\nGiải pháp vệ sinh đáng tin cậy và hiệu quả của Copper County từ năm 1972\nKHUYẾN MÃI KHÁCH HÀNG MỚI\n*CHỈ cư dân Copper County\nTiết kiệm 15%\ncho năm đầu tiên dọn dẹp nhà của bạn!\n*Dịch vụ giặt thảm KHÔNG được bao gồm\nHãy gọi 916-555-0137 hôm nay để biết chi tiết và để lên lịch dịch vụ đầu tiên của bạn.\nƯu đãi có hiệu lực đến ngày 31 tháng 12",
+          "fullPassEN": "Dine Out Darville Is Back!\nDine Out Darville, which runs this year from June 22 to 28, is the perfect chance to try a restaurant in Darville for the first time or revisit one of your favorite restaurants in town. You might even visit multiple restaurants during the weeklong event! Twelve popular restaurants will offer special four-course dinners—including a cup of soup, a salad, a main course, and a dessert—all for a reduced price of $30. Reservations are highly recommended. Dine Out Darville welcomes hundreds of locals and tourists each year, and you do not want to miss your opportunity to get a great meal at a great price.\nVisit www.darvillebusinesscouncil.org/dineout for a list of participating restaurants.",
+          "fullPassVI": "Dine Out Darville Trở Lại!\nDine Out Darville, diễn ra năm nay từ ngày 22 đến 28 tháng 6, là cơ hội hoàn hảo để thử một nhà hàng ở Darville lần đầu tiên hoặc ghé lại một trong những nhà hàng yêu thích của bạn trong thành phố. Bạn thậm chí có thể ghé nhiều nhà hàng trong suốt sự kiện kéo dài một tuần! Mười hai nhà hàng nổi tiếng sẽ cung cấp các bữa tối đặc biệt bốn món — bao gồm một tô súp, một đĩa salad, một món chính và một món tráng miệng — tất cả với mức giá giảm là $30. Đặt chỗ trước được khuyến khích. Dine Out Darville chào đón hàng trăm người dân địa phương và khách du lịch mỗi năm, và bạn không muốn bỏ lỡ cơ hội thưởng thức một bữa ăn tuyệt vời với giá tuyệt vời.\nTruy cập www.darvillebusinesscouncil.org/dineout để xem danh sách các nhà hàng tham gia.",
           "questions": [
             {
               "q": 149,
-              "enQ": "What is indicated about Clean House Janitorial Services?",
+              "enQ": "What is mentioned about Dine Out Darville?",
               "enOpts": [
-                "It was founded in 1972.",
-                "It specializes in office cleaning.",
-                "It offers a discount on carpet cleaning.",
-                "It prefers online communication."
+                "It lasts for one week.",
+                "It is held in a different location each year.",
+                "It is being held for the first time.",
+                "It includes both lunch and dinner."
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=348",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=214",
               "answer": "A",
               "noteOpts": [
-                "Điều gì được cho biết về Clean House Janitorial Services?",
-                "A. Công ty được thành lập vào năm 1972",
-                "B. Công ty chuyên về vệ sinh văn phòng",
-                "C. Công ty giảm giá cho dịch vụ làm sạch thảm",
-                "D. Công ty thích liên lạc trực tuyến hơn"
+                "Điều gì được đề cập về Dine Out Darville?",
+                "A. Nó kéo dài trong một tuần.",
+                "B. Nó được tổ chức tại một địa điểm khác nhau mỗi năm.",
+                "C. Nó đang được tổ chức lần đầu tiên.",
+                "D. Nó bao gồm cả bữa trưa và bữa tối."
               ]
             },
             {
               "q": 150,
-              "enQ": "Who in Copper County may use the coupon?",
+              "enQ": "What is NOT included in the reduced-price meals?",
               "enOpts": [
-                "Any large retail store",
-                "New customers",
-                "Returning customers",
-                "Any resident"
+                "A cup of soup",
+                "A salad",
+                "A dessert",
+                "A beverage"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=457",
-              "answer": "B",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=319",
+              "answer": "D",
               "noteOpts": [
-                "Ai ở Copper County có thể sử dụng phiếu giảm giá?",
-                "A. Bất kỳ cửa hàng bán lẻ lớn nào",
-                "B. Khách hàng mới",
-                "C. Khách hàng quay lại",
-                "D. Bất kỳ cư dân nào"
+                "Điều gì KHÔNG được bao gồm trong các bữa ăn giảm giá?",
+                "A. Một chén súp",
+                "B. Một đĩa salad",
+                "C. Một món tráng miệng",
+                "D. Một loại đồ uống"
               ]
             }
-          ]
+          ],
+          "title": "Questions 149-150 refer to the following annoucement."
         },
         {
           "imgs": [
-            "https://2023.toeicthaysang.com/de2/don.3.png"
+            "https://2024.toeicthaysang.com/de2/don.3.png"
           ],
-          "fullPassEN": "Pierre Gitane\n26 Bent Tree Lane\nCharlotte, NC 28804\nApril 15\nDear Mr. Gitane,\nThis letter is to inform you that you are due for your semiannual dental care visit. Go to our Web site and fill out a form to request an appointment. Or if you prefer, call us at (704) 555-0138 to reach one of our receptionists.\nWe are happy to announce that we now offer teeth whitening and invisible braces to improve your smile. Please let us know if you are interested in one or both of these services.\nWe look forward to hearing from you soon.\nAll best,\nSarah Hamadi\nOffice manager, Red Street Dental Care",
-          "fullPassVI": "Pierre Gitane\n26 Bent Tree Lane\nCharlotte, NC 28804\nNgày 15 tháng 4\nKính gửi ông Gitane,\nLá thư này là để thông báo cho ông rằng ông đã đến hạn cho lần khám chăm sóc răng miệng nửa năm một lần của mình. Hãy vào trang Web của chúng tôi và điền vào một biểu mẫu để yêu cầu một cuộc hẹn. Hoặc nếu ông thích hơn, hãy gọi cho chúng tôi theo số (704) 555-0138 để gặp một trong các lễ tân của chúng tôi.\nChúng tôi vui mừng thông báo rằng hiện nay chúng tôi cung cấp dịch vụ tẩy trắng răng và niềng răng vô hình để cải thiện nụ cười của ông. Vui lòng cho chúng tôi biết nếu ông quan tâm đến một hoặc cả hai dịch vụ này.\nChúng tôi mong sớm nhận được tin từ ông.\nMọi điều tốt đẹp nhất,\nSarah Hamadi\nQuản lý văn phòng, Red Street Dental Care",
+          "fullPassEN": "Rainy To Move Headquarters\nDADE (July 11)—Rainy LLC announced yesterday that it is moving its headquarters to Dade.\nA data storage and analytics firm currently based in Salt Creek, Rainy has clients that include some of the country's largest credit card companies, online retailers, and software providers. Rainy helps these businesses manage and understand their customer data.\nRainy is not planning to close its current offices in Salt Creek. However, the Dade location will become its new base of operations, as several members of its executive team will work there. The company's chief executive officer and chief financial officer will relocate to Dade along with approximately 50 percent of the company's workforce.\nThe office of Rainy's chief technology officer will remain in Salt Creek, as will the account management team. The company's new Dade offices are located at 12 Glacier Parkway.",
+          "fullPassVI": "Rainy Chuyển Trụ Sở\nDADE (11 tháng 7) — Rainy LLC hôm qua thông báo rằng công ty đang chuyển trụ sở đến Dade.\nLà một công ty lưu trữ dữ liệu và phân tích hiện có trụ sở tại Salt Creek, Rainy có các khách hàng bao gồm một số công ty thẻ tín dụng, nhà bán lẻ trực tuyến và nhà cung cấp phần mềm lớn nhất cả nước. Rainy giúp các doanh nghiệp này quản lý và hiểu dữ liệu khách hàng của họ.\nRainy không có kế hoạch đóng cửa văn phòng hiện tại tại Salt Creek. Tuy nhiên, địa điểm Dade sẽ trở thành căn cứ hoạt động mới của công ty, vì một số thành viên trong ban điều hành sẽ làm việc tại đó. Giám đốc điều hành và Giám đốc tài chính của công ty sẽ chuyển đến Dade cùng với khoảng 50 phần trăm lực lượng lao động của công ty.\nVăn phòng của Giám đốc công nghệ của Rainy sẽ ở lại Salt Creek, cùng với đội ngũ quản lý tài khoản. Văn phòng Dade mới của công ty tọa lạc tại 12 Glacier Parkway.",
           "questions": [
             {
               "q": 151,
-              "enQ": "Why did Mr. Gitane receive the letter?",
+              "enQ": "What does Rainsy LLC do?",
               "enOpts": [
-                "He just got a new dentist.",
-                "It is time for a routine checkup.",
-                "Red Street Dental Care is requesting his feedback.",
-                "He was dissatisfied with his last visit."
+                "It stores and analyzes consumer information.",
+                "It sells technology products online.",
+                "It processes credit card payments for retailers.",
+                "It develops computer software programs."
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=539",
-              "answer": "B",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=357",
+              "answer": "A",
               "noteOpts": [
-                "Tại sao ông Gitane nhận được lá thư?",
-                "A. Ông ấy vừa có nha sĩ mới",
-                "B. Đã đến lúc kiểm tra định kỳ",
-                "C. Red Street Dental Care đang yêu cầu phản hồi của ông ấy",
-                "D. Ông ấy không hài lòng với lần khám gần nhất"
+                "Rainsy LLC làm gì?",
+                "A. Nó lưu trữ và phân tích thông tin người tiêu dùng.",
+                "B. Nó bán các sản phẩm công nghệ trực tuyến.",
+                "C. Nó xử lý các khoản thanh toán bằng thẻ tín dụng cho các nhà bán lẻ.",
+                "D. Nó phát triển các chương trình phần mềm máy tính."
               ]
             },
             {
               "q": 152,
-              "enQ": "What does the letter state about the teeth- whitening service?",
+              "enQ": "Who will be based in Dade?",
               "enOpts": [
-                "It costs about the same as invisible braces.",
-                "It was not available at Red Street Dental Care until recently.",
-                "It takes up to six months to obtain the desired results.",
-                "It is not covered by dental insurance plans."
+                "Rainsy’s chief technology officer",
+                "The entire Rainsy executive team",
+                "About half of Rainsy’s employees",
+                "The Rainsy account management team"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=663",
-              "answer": "B",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=468",
+              "answer": "C",
               "noteOpts": [
-                "Lá thư cho biết điều gì về dịch vụ làm trắng răng?",
-                "A. Nó có giá gần bằng niềng răng trong suốt",
-                "B. Trước đây dịch vụ này chưa có tại Red Street Dental Care",
-                "C. Phải mất tới sáu tháng để có kết quả mong muốn",
-                "D. Dịch vụ này không được bảo hiểm nha khoa chi trả"
+                "Ai sẽ đặt trụ sở tại Dade?",
+                "A. Giám đốc công nghệ của Rainsy",
+                "B. Toàn bộ đội ngũ điều hành của Rainsy",
+                "C. Khoảng một nửa số nhân viên của Rainsy",
+                "D. Đội ngũ quản lý tài khoản của Rainsy"
               ]
             }
-          ]
+          ],
+          "title": "Questions 151-152 refer to the following article."
         },
         {
           "imgs": [
-            "https://2023.toeicthaysang.com/de2/don.4.png"
+            "https://2024.toeicthaysang.com/de2/don.4.png"
           ],
-          "fullPassEN": "Teleshia Thomas (8:12 A.M.)\nLaura, are you in the office already or still on your way in? I have a favor to ask.\nLaura Penn (8:14 A.M.)\nI'm here.\nTeleshia Thomas (8:16 A.M.)\nIt's Jack's farewell breakfast this morning. I have juice, coffee, fruit, and pastries with me, but I haven't passed around cards for colleagues to sign to wish him well. Do you think you could do that? There are some cards on my desk.\nLaura Penn (8:18 A.M.)\nActually, I can send out an e-mail and ask staff to go into your office to sign the cards. I'll arrange them on the round table in the corner. I'll do that straightaway.",
-          "fullPassVI": "Teleshia Thomas (8:12 sáng.)\nLaura, bạn đã ở văn phòng rồi hay vẫn đang trên đường đến? Tôi có một việc muốn nhờ.\nLaura Penn (8:14 sáng.)\nTôi ở đây rồi.\nTeleshia Thomas (8:16 sáng.)\nSáng nay là bữa sáng chia tay của Jack. Tôi có nước ép, cà phê, trái cây, và bánh ngọt mang theo, nhưng tôi chưa chuyền thiệp quanh cho đồng nghiệp ký để chúc anh ấy mọi điều tốt đẹp. Bạn nghĩ bạn có thể làm việc đó không? Có vài tấm thiệp trên bàn của tôi.\nLaura Penn (8:18 sáng.)\nThật ra, tôi có thể gửi một e-mail và yêu cầu nhân viên vào văn phòng của bạn để ký thiệp. Tôi sẽ sắp chúng trên cái bàn tròn ở góc. Tôi sẽ làm việc đó ngay lập tức.",
+          "fullPassEN": "Michael Liu (9:43 A.M.)\nHi, Jana. I'm at Biz Plus. The paper you need is out of stock until next week. Will another color work?\nJana Bhat (9:45 A.M.)\nWhat are the options?\nMichael Liu (9:46 A.M.)\nThey have yellow, green, and pink in the brand that you prefer.\nJana Bhat (9:47 A.M.)\nI really need blue. Are there other brands of blue printer paper?\nMichael Liu (9:48 A.M.)\nYes, but they're all a darker blue. They also cost more.\nJana Bhat (9:49 A.M.)\nOK, forget it. I'll place an order online.",
+          "fullPassVI": "Michael Liu (9:43 SA)\nChào Jana. Tôi đang ở Biz Plus. Loại giấy bạn cần đã hết hàng đến tuần sau. Màu khác có được không?\nJana Bhat (9:45 SA)\nCó những lựa chọn nào?\nMichael Liu (9:46 SA)\nHọ có vàng, xanh lá và hồng trong thương hiệu mà bạn thích.\nJana Bhat (9:47 SA)\nTôi thực sự cần màu xanh lam. Có thương hiệu giấy in màu xanh lam nào khác không?\nMichael Liu (9:48 SA)\nCó, nhưng tất cả đều có màu xanh đậm hơn. Chúng cũng đắt hơn.\nJana Bhat (9:49 SA)\nThôi được rồi. Tôi sẽ đặt hàng trực tuyến.",
           "questions": [
             {
               "q": 153,
-              "enQ": "At 8:14 A.M., what does Ms. Penn most likely mean when she writes, “I'm here”?",
+              "enQ": "What is suggested about the paper Mr. Liu is shopping for?",
               "enOpts": [
-                "She is paying attention.",
-                "She is in the same room as Ms. Thomas.",
-                "She is waiting for Ms. Thomas to arrive.",
-                "She is already at the office."
+                "It is light blue.",
+                "It is expensive.",
+                "It is sold exclusively at Biz Plus.",
+                "It has been discontinued."
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=817",
-              "answer": "D",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=549",
+              "answer": "A",
               "noteOpts": [
-                "Vào lúc 8 giờ 14 sáng cô Penn nhiều khả năng có ý gì khi cô ấy viết “Tôi ở đây”?",
-                "A. Cô ấy đang chú ý",
-                "B. Cô ấy ở cùng phòng với cô Thomas",
-                "C. Cô ấy đang đợi cô Thomas đến",
-                "D. Cô ấy đã ở văn phòng rồi"
+                "Điều gì được gợi ý về loại giấy mà ông Liu đang mua?",
+                "A. Nó có màu xanh nhạt.",
+                "B. Nó đắt tiền.",
+                "C. Nó được bán độc quyền tại Biz Plus.",
+                "D. Nó đã bị ngừng sản xuất."
               ]
             },
             {
               "q": 154,
-              "enQ": "What will Ms, Penn most likely do next?",
+              "enQ": "At 9:49 a.m., what does Ms. Bhat most likely mean when she writes, “OK, forget it’?",
               "enOpts": [
-                "Give a presentation",
-                "Postpone a meeting",
-                "Put cards on a table",
-                "Arrange seats in a staff room"
+                "She wants to check her budget.",
+                "She thinks Mr. Liu should not purchase paper at Biz Plus.",
+                "She believes Mr. Liu should not place an order this week.",
+                "She plans to cancel her order."
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=907",
-              "answer": "C",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=666",
+              "answer": "B",
               "noteOpts": [
-                "Cô Penn nhiều khả năng sẽ làm gì tiếp theo?",
-                "A. Thực hiện một bài thuyết trình",
-                "B. Hoãn một cuộc họp",
-                "C. Đặt các tấm thẻ lên bàn",
-                "D. Sắp xếp chỗ ngồi trong phòng nhân viên"
+                "Vào lúc 9:49 sáng, cô Bhat rất có thể có ý gì khi viết “OK, forget it”?",
+                "A. Cô ấy muốn kiểm tra ngân sách của mình.",
+                "B. Cô ấy nghĩ ông Liu không nên mua giấy tại Biz Plus.",
+                "C. Cô ấy tin rằng ông Liu không nên đặt hàng trong tuần này.",
+                "D. Cô ấy có kế hoạch hủy đơn hàng của mình."
               ]
             }
-          ]
+          ],
+          "title": "Questions 153-154 refer to the following text-message chain."
         },
         {
           "imgs": [
-            "https://2023.toeicthaysang.com/de2/don.5.png"
+            "https://2024.toeicthaysang.com/de2/don.5.png"
           ],
-          "fullPassEN": "History\nWelcome to the historic H. G. Walsh Building and North Riverview Restaurant!\nConstructed by H. G. Walsh in 1897, the building served as Astoria's post office until 1942. It has subsequently been a general store, a boutique, and a family-run restaurant serving up fresh seafood. Over the past century, the building's second floor has been used for private parties, such as birthdays and weddings.\nFacing a potential demolition in the late 1970s, the building was purchased by its current owners, Henry and Juana Thomason, in 1981. Subsequent investment and extensive renovation helped save the H. G. Walsh Building, and in 1996 it gained status on the National Register of Historic Places. With its stunning views of the Columbia River and an extensive seasonal menu, the H. G. Walsh Building has become a prime destination for visitors to Oregon's Pacific coast.\nFall Menu\nSeafood chowder | Cup: $5, Bowl: $8\nCream-based with clams, shrimp, and mussels\nFish and chips | Cod: $12, Halibut: $15\nThree pieces breaded in a buttermilk batter\nGrilled salmon | $20\nServed with lemon-garlic sauce and a side salad\nBok choy | $12\nPan-seared in a garlic-ginger oyster sauce and served over rice noodles\nChef's salad | $11\nMixed greens tossed with toasted almonds, blue cheese dressing, and avocado",
-          "fullPassVI": "Lịch sử\nChào mừng đến với Tòa nhà H. G. Walsh lịch sử và Nhà hàng North Riverview!\nĐược xây dựng bởi H. G. Walsh vào năm 1897, tòa nhà từng là bưu điện của Astoria cho đến năm 1942. Sau đó nó đã từng là một cửa hàng tổng hợp, một cửa hàng thời trang nhỏ, và một nhà hàng do gia đình điều hành phục vụ hải sản tươi. Trong thế kỷ vừa qua, tầng hai của tòa nhà đã được sử dụng cho các bữa tiệc riêng, chẳng hạn như sinh nhật và đám cưới.\nĐối mặt với khả năng bị phá dỡ vào cuối những năm 1970, tòa nhà đã được các chủ sở hữu hiện tại của nó, Henry và Juana Thomason, mua vào năm 1981. Khoản đầu tư sau đó và việc cải tạo rộng lớn đã giúp cứu Tòa nhà H. G. Walsh, và vào năm 1996 nó đạt được tình trạng trên Sổ đăng ký Quốc gia về Địa điểm Lịch sử. Với những tầm nhìn tuyệt đẹp ra Sông Columbia và một thực đơn theo mùa phong phú, Tòa nhà H. G. Walsh đã trở thành một điểm đến hàng đầu cho du khách đến bờ biển Thái Bình Dương của Oregon.\nThực đơn mùa thu\nSúp hải sản đặc | Cốc: $5, Tô: $8\nNền kem với nghêu, tôm, và trai\nCá và khoai tây chiên | Cá tuyết: $12, Cá bơn: $15\nBa miếng được tẩm bột trong lớp bột nhão sữa bơ\nCá hồi nướng | $20\nĐược phục vụ với sốt chanh-tỏi và một phần salad ăn kèm\nCải thìa | $12\nÁp chảo trong sốt dầu hào tỏi-gừng và được phục vụ trên mì gạo\nSalad của đầu bếp | $11\nRau xanh trộn được trộn với hạnh nhân nướng, sốt phô mai xanh, và bơ",
+          "fullPassEN": "20 May\nNeil Croft, Director\nQueensland Libraries\n13 Hummocky Road\nBrisbane QLD 4003\nDear Mr. Croft,\n— [1] —. I have read your inquiry about offering financial management courses at libraries across Queensland. The Society for Financial Management Advisors (SFMA) welcomes the opportunity to partner with the libraries to make basic financial management information more widely available.\nYou proposed that SFMA members could lead introductory courses at several library branches. — [2] —. SFMA members have offered similar courses to recent graduates, people changing careers, and first-time investors in the past.\n— [3] —. If you have a list of library branches that would host the first series of events, I can suggest facilitators who work near those libraries or would be willing to travel to them. Do you have a general profile of the expected attendees? — [4] —. That information would help us tailor the courses to audience needs and interests.\nI look forward to meeting with you to develop a plan. Please contact me by telephone at 07 5550 1344 to set up a time to discuss the courses.\nSincerely,\nRoberta Otney\nRoberta Otney\nChairperson, Society for Financial Management Advisors",
+          "fullPassVI": "20 tháng 5\nNeil Croft, Giám đốc\nQueensland Libraries\n13 Hummocky Road\nBrisbane QLD 4003\nKính gửi ông Croft,\n— [1] —. Tôi đã đọc yêu cầu của ông về việc cung cấp các khóa học quản lý tài chính tại các thư viện trên khắp Queensland. Hiệp hội Cố vấn Quản lý Tài chính (SFMA) hoan nghênh cơ hội hợp tác với các thư viện để phổ biến thông tin quản lý tài chính cơ bản rộng rãi hơn.\nÔng đề xuất rằng các thành viên SFMA có thể dẫn dắt các khóa học giới thiệu tại một số chi nhánh thư viện. — [2] —. Các thành viên SFMA đã từng cung cấp các khóa học tương tự cho những người mới tốt nghiệp, người đang chuyển đổi nghề nghiệp và nhà đầu tư lần đầu trong quá khứ.\n— [3] —. Nếu ông có danh sách các chi nhánh thư viện sẽ tổ chức chuỗi sự kiện đầu tiên, tôi có thể đề xuất các người hướng dẫn làm việc gần những thư viện đó hoặc sẵn sàng đi đến đó. Ông có hồ sơ chung về những người tham dự dự kiến không? — [4] —. Thông tin đó sẽ giúp chúng tôi điều chỉnh các khóa học phù hợp với nhu cầu và mối quan tâm của khán giả.\nTôi mong được gặp ông để xây dựng một kế hoạch. Vui lòng liên hệ với tôi qua điện thoại số 07 5550 1344 để sắp xếp thời gian thảo luận về các khóa học.\nTrân trọng,\nRoberta Otney\nRoberta Otney\nChủ tịch, Hiệp hội Cố vấn Quản lý Tài chính",
           "questions": [
             {
               "q": 155,
-              "enQ": "The word “served” in paragraph 1, line 2, is closest in meaning to",
+              "enQ": "Why did Ms. Otney write the letter?",
               "enOpts": [
-                "supplied",
-                "delivered",
-                "presented",
-                "functioned"
+                "To welcome a new library director",
+                "To register for an SFMA finance course",
+                "To confirm some educational credentials",
+                "To reply to a question from Mr. Croft"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=1027",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=2221",
               "answer": "D",
               "noteOpts": [
-                "Từ “phục vụ” ở đoạn 1 dòng 2 gần nghĩa nhất với từ nào?",
-                "A. Cung cấp",
-                "B. Giao hàng",
-                "C. Trình bày",
-                "D. Hoạt động"
+                "Tại sao cô Otney viết thư?",
+                "A. Để chào mừng một giám đốc thư viện mới",
+                "B. Để đăng ký một khóa học tài chính của SFMA",
+                "C. Để xác nhận một số văn bằng giáo dục",
+                "D. Để trả lời một câu hỏi từ ông Croft"
               ]
             },
             {
               "q": 156,
-              "enQ": "What is suggested about the H. G. Walsh Building?",
+              "enQ": "What is one thing Ms. Otney requested?",
               "enOpts": [
-                "It is a one-floor building.",
-                "It is located on the waterfront.",
-                "It is located next to a post office.",
-                "It has remained largely unchanged."
+                "A library membership",
+                "A list of course instructors",
+                "The locations of some libraries",
+                "Mr. Croft’s telephone number"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=1151",
-              "answer": "B",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=2391",
+              "answer": "C",
               "noteOpts": [
-                "Điều gì được gợi ý về Tòa nhà H. G. Walsh?",
-                "A. Đó là tòa nhà một tầng",
-                "B. Nó nằm ở khu ven sông",
-                "C. Nó nằm cạnh bưu điện",
-                "D. Nó hầu như không thay đổi"
+                "Một điều mà cô Otney đã yêu cầu là gì?",
+                "A. Một thẻ thành viên thư viện",
+                "B. Một danh sách các giảng viên khóa học",
+                "C. Địa điểm của một số thư viện",
+                "D. Số điện thoại của ông Croft"
               ]
             },
             {
               "q": 157,
-              "enQ": "What can be purchased for less than $10?",
+              "enQ": "In which of the positions marked [1], [2], [3], and [4] does the following sentence best belong?“This is something I would be happy to arrange.”",
               "enOpts": [
-                "Seafood chowder",
-                "Fish and chips",
-                "Bok choy",
-                "Chefs salad"
+                "[1]",
+                "[2]",
+                "[3]",
+                "[4]"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=1314",
-              "answer": "A",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=2517",
+              "answer": "B",
               "noteOpts": [
-                "Có thể mua món nào với giá dưới 10 đô la?",
-                "A. Súp hải sản đặc",
-                "B. Cá và khoai tây chiên",
-                "C. Cải thìa",
-                "D. Sa lát đầu bếp"
+                "Trong các vị trí được đánh dấu [1], [2], [3] và [4], câu sau đây phù hợp nhất ở đâu? “Đây là điều mà tôi sẽ rất vui lòng được sắp xếp.”",
+                "A. [1]",
+                "B. [2]",
+                "C. [3]",
+                "D. [4]"
               ]
             }
-          ]
+          ],
+          "title": "Questions 155-157 refer to the following letter."
         },
         {
           "imgs": [
-            "https://2023.toeicthaysang.com/de2/don.6.png"
+            "https://2024.toeicthaysang.com/de2/don.6.png"
           ],
-          "fullPassEN": "Headquarters Teams Help Out in Stores\nHannen has operated one of the largest chains of department stores in the Southwest since 1962. The In-Store Project, launched on February 7, is a new initiative from the Hannen Department Store corporate operations team. Following recommendations from employees at various levels, the initiative was developed to allow company headquarters to better understand the day-to-day operations at the individual store level.\nThe In-Store Project places employees from the corporate headquarters in stores, where they are paired with store employees to work typical shifts. This allows both types of Hannen employees to ask questions and learn about one another's work. So far, the initiative has led to a greater understanding among store employees of the decisions made at the corporate level and a greater understanding among headquarters employees on how corporate plans are implemented.\nHannen plans to complete store visits within the next two months and conduct repeat visits annually.",
-          "fullPassVI": "Các đội tại Trụ sở chính Giúp đỡ trong Cửa hàng\nHannen đã vận hành một trong những chuỗi cửa hàng bách hóa lớn nhất ở vùng Tây Nam từ năm 1962. Dự án Trong Cửa hàng, được khởi động vào ngày 7 tháng 2, là một sáng kiến mới từ đội vận hành doanh nghiệp của Cửa hàng Bách hóa Hannen. Theo sau các khuyến nghị từ nhân viên ở nhiều cấp độ khác nhau, sáng kiến này đã được phát triển để cho phép trụ sở chính của công ty hiểu rõ hơn các hoạt động hằng ngày ở cấp độ cửa hàng riêng lẻ.\nDự án Trong Cửa hàng đưa nhân viên từ trụ sở chính của công ty vào các cửa hàng, nơi họ được ghép cặp với nhân viên cửa hàng để làm các ca làm việc điển hình. Điều này cho phép cả hai loại nhân viên Hannen đặt câu hỏi và học về công việc của nhau. Cho đến nay, sáng kiến này đã dẫn đến sự hiểu biết lớn hơn trong số nhân viên cửa hàng về các quyết định được đưa ra ở cấp độ doanh nghiệp và sự hiểu biết lớn hơn trong số nhân viên trụ sở chính về cách các kế hoạch doanh nghiệp được thực hiện.\nHannen dự định hoàn thành các chuyến thăm cửa hàng trong vòng hai tháng tới và tiến hành các chuyến thăm lặp lại hằng năm.",
+          "fullPassEN": "Claro Vision\nThe difference is clear.\nTake advantage of our limited-time offer:\n50% off all eyeglass frames through 30 September\nOther advantages available today and every day:\n- Free eyeglass fittings and adjustments\n- Money-back guarantee if you are not completely satisfied\n- More than 500 locations in shopping malls throughout Canada\n- Low-cost vision checkups by licensed opticians\nTo find a store near you, visit www.clarovision.ca/locations, or call 416-555-0122 today!",
+          "fullPassVI": "Claro Vision\nSự khác biệt thật rõ ràng.\nHãy tận dụng ưu đãi có thời hạn của chúng tôi:\nGiảm 50% tất cả gọng kính đến hết ngày 30 tháng 9\nCác ưu đãi khác có hiệu lực hôm nay và mỗi ngày:\n- Lắp kính và chỉnh kính miễn phí\n- Đảm bảo hoàn tiền nếu bạn không hoàn toàn hài lòng\n- Hơn 500 địa điểm tại các trung tâm mua sắm trên khắp Canada\n- Kiểm tra thị lực giá thấp bởi các chuyên gia nhãn khoa có giấy phép\nĐể tìm cửa hàng gần bạn, truy cập www.clarovision.ca/locations hoặc gọi 416-555-0122 ngay hôm nay!",
           "questions": [
             {
               "q": 158,
-              "enQ": "Why did the company start the project?",
+              "enQ": "Why most likely was the advertisement created?",
               "enOpts": [
-                "It is a current trend among large companies.",
-                "The parent company required it.",
-                "It was suggested by some employees.",
-                "Some customers requested it."
+                "To draw attention to an underused professional service",
+                "To publicize the benefits of a warranty policy",
+                "To announce the opening of new store locations",
+                "To promote a temporary price discount"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=1346",
-              "answer": "C",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=1976",
+              "answer": "D",
               "noteOpts": [
-                "Tại sao công ty bắt đầu dự án?",
-                "A. Đây là xu hướng hiện tại của các công ty lớn",
-                "B. Công ty mẹ yêu cầu điều đó",
-                "C. Một số nhân viên đã đề xuất điều đó",
-                "D. Một số khách hàng đã yêu cầu điều đó"
+                "Quảng cáo rất có thể được tạo ra vì lý do gì?",
+                "A. Để thu hút sự chú ý đến một dịch vụ chuyên môn ít được sử dụng",
+                "B. Để công bố các lợi ích của một chính sách bảo hành",
+                "C. Để thông báo việc khai trương các địa điểm cửa hàng mới",
+                "D. Để quảng bá việc giảm giá tạm thời"
               ]
             },
             {
               "q": 159,
-              "enQ": "What does the project involve?",
+              "enQ": "What is stated about Claro Vision stores?",
               "enOpts": [
-                "Store employees visiting other department store chains",
-                "Interns being hired to receive on-the-job training",
-                "Corporate employees temporarily working in stores",
-                "Teams of employees working to redesign stores"
+                "They are larger than competitors’ stores.",
+                "They accept all major credit cards.",
+                "They are located next to shopping malls.",
+                "They provide eyeglass fittings at no cost."
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=1525",
-              "answer": "C",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=2072",
+              "answer": "D",
               "noteOpts": [
-                "Dự án liên quan đến điều gì?",
-                "A. Nhân viên cửa hàng đến thăm các chuỗi cửa hàng bách hóa khác",
-                "B. Thực tập sinh được tuyển để nhận đào tạo tại nơi làm việc",
-                "C. Nhân viên công ty tạm thời làm việc tại các cửa hàng",
-                "D. Các nhóm nhân viên làm việc để thiết kế lại các cửa hàng"
+                "Điều gì được nêu về các cửa hàng Claro Vision?",
+                "A. Chúng lớn hơn các cửa hàng của đối thủ cạnh tranh.",
+                "B. Chúng chấp nhận tất cả các loại thẻ tín dụng chính.",
+                "C. Chúng nằm cạnh các trung tâm mua sắm.",
+                "D. Chúng cung cấp dịch vụ điều chỉnh kính mắt miễn phí."
               ]
             },
             {
               "q": 160,
-              "enQ": "What does the article indicate about the future of the project?",
+              "enQ": "What is stated about vision checkups?",
               "enOpts": [
-                "The company plans to do it again each year.",
-                "The company plans to expand it to other stores it owns.",
-                "It is being discontinued because it has been unsuccessful.",
-                "It will not be completed because it is too expensive."
+                "They are completed by a partner company.",
+                "They are performed by a certified professional.",
+                "They should be done every ten months.",
+                "They are offered on a limited number of days."
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=1680",
-              "answer": "A",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=2139",
+              "answer": "B",
               "noteOpts": [
-                "Bài báo cho biết điều gì về tương lai của dự án?",
-                "A. Công ty dự định thực hiện lại dự án này mỗi năm",
-                "B. Công ty dự định mở rộng nó sang các cửa hàng khác mà họ sở hữu",
-                "C. Dự án đang bị ngừng vì không thành công",
-                "D. Dự án sẽ không được hoàn thành vì quá tốn kém"
+                "Điều gì được nêu về việc kiểm tra thị lực?",
+                "A. Chúng được hoàn thành bởi một công ty đối tác.",
+                "B. Chúng được thực hiện bởi một chuyên gia có chứng chỉ.",
+                "C. Chúng nên được thực hiện mười tháng một lần.",
+                "D. Chúng được cung cấp vào một số ngày hạn chế."
               ]
             }
-          ]
+          ],
+          "title": "Questions 158-160 refer to the following advertisement."
         },
         {
           "imgs": [
-            "https://2023.toeicthaysang.com/de2/don.7.png"
+            "https://2024.toeicthaysang.com/de2/don.7.png"
           ],
-          "fullPassEN": "KARLINGA BEACH\n(December 4)—More resources need to be allocated to promote cultural tourism to the region, officials from the Karlinga Beach Tourism Department (KBTD) concluded at a planning meeting held yesterday. The department also drafted a new marketing campaign, titled “Connect with Karlinga Beach,” that will highlight the region’s rich history and culture. “Everyone agreed that, moving forward, we should focus less on advertising traditional beach activities and more on new eco-friendly tourist activities,” said Tourism Director Arnold Bhatt.\nDuring the meeting, Mr. Bhatt gave a presentation in which he analyzed the results from an online questionnaire designed by students from the region’s university. Respondents included both local residents and tourists. In one key result, more than 80 percent of all respondents agreed that there should be more emphas is on promoting eco-friendly tourism. In another finding, more than 75 percent of surveyed tourists indicated they would like to see a wider selection of locally sourced, organic food options. “For me, the tourists’ response was unexpected,” said Mr. Bhatt. “But, looking at the full picture, it makes sense, as there are many family farms on the land near the beach.”\nThe insights from the survey are welcome news for Kathy Li, who operates the KLP Organic Farm. Its grocery store, located on the farm property, is stocked year- round with fresh, seasonal, organically grown produce. In the future, if tourist visits increase, Ms. Li plans to offer prepared foods and beverages.",
-          "fullPassVI": "KARLINGA BEACH\n(Ngày 4 tháng 12)—Nhiều nguồn lực hơn cần được phân bổ để quảng bá du lịch văn hóa đến khu vực, các quan chức từ Sở Du lịch Karlinga Beach (KBTD) đã kết luận tại một cuộc họp lập kế hoạch được tổ chức hôm qua. Sở cũng đã soạn thảo một chiến dịch tiếp thị mới, có tiêu đề “Kết nối với Karlinga Beach,” chiến dịch này sẽ làm nổi bật lịch sử và văn hóa phong phú của khu vực. “Mọi người đã đồng ý rằng, tiến về phía trước, chúng ta nên tập trung ít hơn vào việc quảng cáo các hoạt động bãi biển truyền thống và nhiều hơn vào các hoạt động du lịch thân thiện với môi trường mới,” Giám đốc Du lịch Arnold Bhatt nói.\nTrong cuộc họp, ông Bhatt đã trình bày trong đó ông phân tích các kết quả từ một bảng câu hỏi trực tuyến được thiết kế bởi sinh viên từ trường đại học của khu vực. Người trả lời bao gồm cả cư dân địa phương và khách du lịch. Trong một kết quả then chốt, hơn 80 phần trăm tất cả người trả lời đồng ý rằng nên có nhiều sự nhấn mạnh hơn vào việc quảng bá du lịch thân thiện với môi trường. Trong một phát hiện khác, hơn 75 phần trăm khách du lịch được khảo sát chỉ ra rằng họ muốn thấy một sự lựa chọn rộng hơn về các lựa chọn thực phẩm hữu cơ, có nguồn gốc địa phương. “Đối với tôi, phản hồi của khách du lịch là bất ngờ,” ông Bhatt nói. “Nhưng, nhìn vào bức tranh đầy đủ, điều đó hợp lý, vì có nhiều trang trại gia đình trên vùng đất gần bãi biển.”\nNhững hiểu biết sâu sắc từ khảo sát là tin tức đáng mừng đối với Kathy Li, người vận hành Trang trại Hữu cơ KLP. Cửa hàng tạp hóa của nó, nằm trên tài sản của trang trại, được dự trữ quanh năm với nông sản tươi, theo mùa, được trồng hữu cơ. Trong tương lai, nếu các chuyến thăm của khách du lịch tăng lên, cô Li dự định cung cấp thực phẩm và đồ uống đã được chuẩn bị sẵn.",
+          "fullPassEN": "Rossery Building Corporation\n2710 South Exmouth Drive\nSingapore 188509\n1 April\nElizabeth Balakrishnan\nBala Home Furnishings\n416 Holliton Drive C2\nSingapore 793801\nDear Ms. Balakrishnan,\nThis is a reminder that the one-year lease for your space will end on 30 April. Please contact my office at 1555 0124 to make an appointment to renew your lease. There will be a small increase in rent and fees because of rising operating costs.\nUpdated charges upon lease renewal:\nMonthly rental - $1,800.00\nParking space fee  - $50.00\nCleaning service  - $10.00\nSecurity fee  - $35.00\nTotal monthly charge - $1,895.00\nIf you are not renewing your lease, please notify our office by 15 April. Plan to vacate the property by 5 P.M. on 30 April. There will be an inspection of the property, and there may be charges for repairs or damages beyond normal usage.\nKind regards,\nAlexis Tan\nAlexis Tan",
+          "fullPassVI": "Rossery Building Corporation\n2710 South Exmouth Drive\nSingapore 188509\n1 tháng 4\nElizabeth Balakrishnan\nBala Home Furnishings\n416 Holliton Drive C2\nSingapore 793801\nKính gửi bà Balakrishnan,\nĐây là thông báo nhắc nhở rằng hợp đồng thuê một năm cho không gian của bà sẽ kết thúc vào ngày 30 tháng 4. Vui lòng liên hệ văn phòng của tôi theo số 1555 0124 để đặt lịch hẹn gia hạn hợp đồng thuê. Sẽ có một mức tăng nhỏ về tiền thuê và các khoản phí do chi phí vận hành tăng cao.\nCác khoản phí cập nhật khi gia hạn hợp đồng thuê:\nTiền thuê hàng tháng - $1.800,00\nPhí chỗ đậu xe - $50,00\nDịch vụ vệ sinh - $10,00\nPhí an ninh - $35,00\nTổng phí hàng tháng - $1.895,00\nNếu bà không gia hạn hợp đồng thuê, vui lòng thông báo cho văn phòng của chúng tôi trước ngày 15 tháng 4. Hãy dọn trống mặt bằng trước 5 giờ chiều ngày 30 tháng 4. Sẽ có cuộc kiểm tra mặt bằng và có thể có các khoản phí sửa chữa hoặc thiệt hại vượt quá mức hao mòn thông thường.\nTrân trọng,\nAlexis Tan\nAlexis Tan",
           "questions": [
             {
               "q": 161,
-              "enQ": "What is the main purpose of the article?",
+              "enQ": "What is the purpose of the letter?",
               "enOpts": [
-                "To announce recent personnel changes",
-                "To outline proposed marketing plans",
-                "To explain a decrease in local tourism",
-                "To encourage participation in a survey"
+                "To explain the fees for equipment installation",
+                "To offer a discount on a service",
+                "To provide information about a lease agreement",
+                "To request a change to a property amenity"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=1775",
-              "answer": "B",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=1806",
+              "answer": "C",
               "noteOpts": [
-                "Mục đích chính của bài báo là gì?",
-                "A. Thông báo những thay đổi nhân sự gần đây",
-                "B. Phác thảo các kế hoạch tiếp thị được đề xuất",
-                "C. Giải thích sự sụt giảm du lịch địa phương",
-                "D. Khuyến khích tham gia một cuộc khảo sát"
+                "Mục đích của bức thư là gì?",
+                "A. Để giải thích các khoản phí lắp đặt thiết bị",
+                "B. Để đưa ra mức chiết khấu cho một dịch vụ",
+                "C. Để cung cấp thông tin về một thỏa thuận thuê nhà",
+                "D. Để yêu cầu thay đổi một tiện nghi của bất động sản"
               ]
             },
             {
               "q": 162,
-              "enQ": "What is indicated about Karlinga Beach?",
+              "enQ": "According to the letter, what must Ms. Balakrishnan pay for each month?",
               "enOpts": [
-                "It has a short tourism season.",
-                "It offers inexpensive accommodations.",
-                "It is accessed mostly by ferry.",
-                "It is close to a university."
+                "Furniture rental",
+                "Office supplies",
+                "An inspection fee",
+                "A parking space"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=1995",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=1903",
               "answer": "D",
               "noteOpts": [
-                "Điều gì được cho biết về Karlinga Beach?",
-                "A. Nơi này có mùa du lịch ngắn",
-                "B. Nơi này cung cấp chỗ ở giá rẻ",
-                "C. Nơi này chủ yếu được tiếp cận bằng phà",
-                "D. Nơi này ở gần một trường đại học"
+                "Theo bức thư, cô Balakrishnan phải trả tiền cho khoản nào mỗi tháng?",
+                "A. Thuê đồ nội thất",
+                "B. Văn phòng phẩm",
+                "C. Phí kiểm tra",
+                "D. Một chỗ đậu xe"
               ]
             },
             {
               "q": 163,
-              "enQ": "According to the article, what is true about Mr. Bhatt?",
+              "enQ": "Who most likely is Ms. Tan?",
               "enOpts": [
-                "He was surprised by a survey result.",
-                "He changed the design of a questionnaire.",
-                "He is concerned about a region losing farmland.",
-                "He wants to increase attendance at public meetings."
+                "A repair person",
+                "A property manager",
+                "A cleaning person",
+                "A security company employee"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=2147",
-              "answer": "A",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=1937",
+              "answer": "B",
               "noteOpts": [
-                "Theo bài báo điều gì đúng về ông Bhatt?",
-                "A. Ông ấy ngạc nhiên về kết quả khảo sát",
-                "B. Ông ấy đã thay đổi thiết kế của bảng câu hỏi",
-                "C. Ông ấy lo ngại về việc một khu vực mất đất nông nghiệp",
-                "D. Ông ấy muốn tăng số người tham dự các cuộc họp công cộng"
-              ]
-            },
-            {
-              "q": 164,
-              "enQ": "What is mentioned about KLP Organic Farm?",
-              "enOpts": [
-                "It offers free tours to hotel guests.",
-                "It publishes its own newsletter.",
-                "It recently opened a restaurant.",
-                "It sells fruits and vegetables on-site."
-              ],
-              "viQ": "",
-              "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=2275",
-              "answer": "D",
-              "noteOpts": [
-                "Điều gì được đề cập về KLP Organic Farm?",
-                "A. Nơi này cung cấp các chuyến tham quan miễn phí cho khách sạn",
-                "B. Nơi này xuất bản bản tin riêng",
-                "C. Nơi này gần đây đã mở một nhà hàng",
-                "D. Nơi này bán trái cây và rau tại chỗ"
+                "Cô Tan rất có thể là ai?",
+                "A. Một nhân viên sửa chữa",
+                "B. Một người quản lý bất động sản",
+                "C. Một nhân viên vệ sinh",
+                "D. Một nhân viên công ty an ninh"
               ]
             }
-          ]
+          ],
+          "title": "Questions 161-163 refer to the following letter."
         },
         {
           "imgs": [
-            "https://2023.toeicthaysang.com/de2/don.8.png"
+            "https://2024.toeicthaysang.com/de2/don.8.png"
           ],
-          "fullPassEN": "Treks Auto\nKeeping your vehicle running smoothly demands getting the job done right. Leave yours in the hands of the professionals at Treks Auto, and always be sure you're getting exactly what you need and nothing that you don't. — [1] —. Our repair shop has been based in Leeds ever since Tony Reker opened his first garage in 1963. — [2] —. For three generations, our family-run business has been proud to serve the West Yorkshire community with fair pricing and a commitment to honest service.\n— [3] —. Treks Auto offers a variety of oil-change packages. Each package includes a complimentary tyre-pressure check, tyre rotation, fluid fill-up, standard oil filter, five-litre oil change, and brake inspection. Choose from the oil options listed below. — [4] —.\nSynthetic Blend - £25\nRecommended for vehicles with fewer than 125,000 miles or under ten years old.\nHigh Mileage - £40\nBest for vehicles with more than 125,000 miles or over ten years old.\nFull Synthetic - £50\nIdeal for vehicles with more than 125,000 miles and with special manufacturer- recommended maintenance needs.",
-          "fullPassVI": "Treks Auto\nGiữ cho xe của bạn chạy trơn tru đòi hỏi việc hoàn thành công việc đúng cách. Hãy để xe của bạn trong tay các chuyên gia tại Treks Auto, và luôn chắc chắn rằng bạn đang nhận chính xác những gì bạn cần và không có gì bạn không cần. — [1] —. Xưởng sửa chữa của chúng tôi đã đặt tại Leeds kể từ khi Tony Reker mở ga-ra đầu tiên của ông ấy vào năm 1963. — [2] —. Trong ba thế hệ, doanh nghiệp do gia đình chúng tôi điều hành đã tự hào phục vụ cộng đồng West Yorkshire với mức giá công bằng và cam kết về dịch vụ trung thực.\n— [3] —. Treks Auto cung cấp nhiều gói thay dầu khác nhau. Mỗi gói bao gồm kiểm tra áp suất lốp miễn phí, đảo lốp, châm đầy chất lỏng, bộ lọc dầu tiêu chuẩn, thay dầu năm lít, và kiểm tra phanh. Hãy chọn từ các lựa chọn dầu được liệt kê dưới đây. — [4] —.\nPha trộn Tổng hợp - £25\nĐược khuyến nghị cho xe có dưới 125,000 dặm hoặc dưới mười năm tuổi.\nSố dặm Cao - £40\nTốt nhất cho xe có hơn 125,000 dặm hoặc hơn mười năm tuổi.\nTổng hợp Hoàn toàn - £50\nLý tưởng cho xe có hơn 125,000 dặm và có nhu cầu bảo dưỡng đặc biệt được nhà sản xuất khuyến nghị.",
+          "fullPassEN": "*E-mail*\nTo: lkhoury@britelyauto.co.uk\nFrom: khagel@qualiview.co.uk\nDate: 14 April\nSubject:Your proposed changes\nDear Ms. Khoury,\nThank you for forwarding your proposed revisions to the contract for Qualiview Ltd. to be your wholesale supplier of automotive window glass.\nFirst, we will gladly agree to an extension of the contract term from one to three years. Secondly, I am not sure what more we can do to address your concerns about packaging materials. We use custom-built crates and innovative packaging to reduce the risk of breakage during shipping. While we will replace any goods that may be damaged in transit, we do not agree to pay an additional penalty fee in the event of such damage.\nI would like to discuss this further with you next week; however, I will be out of the office through Tuesday afternoon. Would you be available to meet before 11:00 A.M. on either Wednesday or Thursday? Friday is also possible. Please let me know a convenient date and time for you.\nBest regards,\nKarl Hagel\nQualiview Ltd.",
+          "fullPassVI": "*Thư điện tử*\nKính gửi: lkhoury@britelyauto.co.uk\nTừ: khagel@qualiview.co.uk\nNgày: 14 tháng 4\nChủ đề: Những thay đổi bạn đề xuất\nKính gửi bà Khoury,\nCảm ơn bà đã chuyển tiếp các đề xuất sửa đổi hợp đồng để Qualiview Ltd. trở thành nhà cung cấp bán buôn kính cửa sổ ô tô cho công ty của bà.\nThứ nhất, chúng tôi sẵn lòng đồng ý gia hạn thời hạn hợp đồng từ một năm lên ba năm. Thứ hai, tôi không chắc chúng tôi có thể làm gì thêm để giải quyết mối lo ngại của bà về vật liệu đóng gói. Chúng tôi sử dụng thùng đóng hàng tùy chỉnh và bao bì sáng tạo để giảm nguy cơ vỡ trong quá trình vận chuyển. Mặc dù chúng tôi sẽ thay thế bất kỳ hàng hóa nào có thể bị hư hỏng trong quá trình vận chuyển, chúng tôi không đồng ý trả thêm phí phạt trong trường hợp xảy ra thiệt hại như vậy.\nTôi muốn thảo luận thêm về vấn đề này với bà vào tuần tới; tuy nhiên, tôi sẽ vắng mặt tại văn phòng đến chiều thứ Ba. Bà có thể gặp trước 11:00 SA vào thứ Tư hoặc thứ Năm không? Thứ Sáu cũng được. Vui lòng cho tôi biết ngày và giờ thuận tiện cho bà.\nTrân trọng,\nKarl Hagel\nQualiview Ltd.",
           "questions": [
             {
-              "q": 165,
-              "enQ": "What is indicated about Treks Auto?",
+              "q": 164,
+              "enQ": "Why did Mr. Hagel write the e-mail?",
               "enOpts": [
-                "It is based in London.",
-                "It was started in 1983.",
-                "It is focused on great customer service.",
-                "It has been a family-run business for five generations."
+                "To report damage to an item",
+                "To finalize a purchase",
+                "To request a product sample",
+                "To negotiate a contract"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=2446",
-              "answer": "C",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=1457",
+              "answer": "D",
               "noteOpts": [
-                "Điều gì được cho biết về Treks Auto?",
-                "A. Công ty có trụ sở tại London",
-                "B. Công ty được thành lập vào năm 1983",
-                "C. Công ty tập trung vào dịch vụ khách hàng tuyệt vời",
-                "D. Công ty là doanh nghiệp gia đình qua năm thế hệ"
+                "Tại sao ông Hagel viết email?",
+                "A. Để báo cáo hư hỏng của một mặt hàng",
+                "B. Để hoàn tất một việc mua hàng",
+                "C. Để yêu cầu một mẫu sản phẩm",
+                "D. Để thương lượng một hợp đồng"
+              ]
+            },
+            {
+              "q": 165,
+              "enQ": "What is indicated about Qualiview Ltd.?",
+              "enOpts": [
+                "It sells its products online.",
+                "It makes windows for cars.",
+                "It has paid penalty fees in the past.",
+                "It recently redesigned its shipping crates."
+              ],
+              "viQ": "",
+              "viOpts": [],
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=1614",
+              "answer": "B",
+              "noteOpts": [
+                "Điều gì được chỉ ra về Qualiview Ltd.?",
+                "A. Nó bán các sản phẩm của mình trực tuyến.",
+                "B. Nó sản xuất cửa sổ cho ô tô.",
+                "C. Nó đã từng trả các khoản phí phạt trong quá khứ.",
+                "D. Nó gần đây đã thiết kế lại các thùng vận chuyển của mình."
               ]
             },
             {
               "q": 166,
-              "enQ": "What is indicated about the oil-change packages?",
+              "enQ": "The word “address” in paragraph 2, line 2, is closest in meaning to",
               "enOpts": [
-                "They all cost the same.",
-                "They each include free brake-pad replacement.",
-                "Only one of the packages offers a fluid fill-up.",
-                "They are based on the number of miles a vehicle has been driven."
+                "respond to",
+                "think about",
+                "greet",
+                "deliver"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=2700",
-              "answer": "D",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=1659",
+              "answer": "A",
               "noteOpts": [
-                "Điều gì được cho biết về các gói thay dầu?",
-                "A. Tất cả đều có cùng giá",
-                "B. Mỗi gói đều bao gồm thay má phanh miễn phí",
-                "C. Chỉ một gói có dịch vụ châm thêm chất lỏng",
-                "D. Chúng dựa trên số dặm xe đã chạy"
+                "Từ “address” ở đoạn 2, dòng 2, gần nghĩa nhất với",
+                "A. phản hồi",
+                "B. suy nghĩ về",
+                "C. chào hỏi",
+                "D. giao hàng"
               ]
             },
             {
               "q": 167,
-              "enQ": "In which of the positions marked [1], [2], [3] and [4] does the following sentence best belong? “Ask any of our service technicians if you are unsure of the best one for your car.”",
+              "enQ": "When is Mr. Hagel available next week?",
               "enOpts": [
-                "[1]",
-                "[2]",
-                "[3]",
-                "[4]"
+                "On Monday morning",
+                "On Tuesday afternoon",
+                "On Wednesday morning",
+                "On Thursday afternoon"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=2913",
-              "answer": "D",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=1755",
+              "answer": "C",
               "noteOpts": [
-                "Ở vị trí nào được đánh dấu [1], [2], [3] và [4] thì câu sau đây phù hợp nhất? “Hãy hỏi bất kỳ kỹ thuật viên dịch vụ nào của chúng tôi nếu bạn không chắc cái nào là tốt nhất cho xe của bạn.”",
-                "A. [1]",
-                "B. [2]",
-                "C. [3]",
-                "D. [4]"
+                "Khi nào ông Hagel rảnh vào tuần tới?",
+                "A. Vào sáng thứ Hai",
+                "B. Vào chiều thứ Ba",
+                "C. Vào sáng thứ Tư",
+                "D. Vào chiều thứ Năm"
               ]
             }
-          ]
+          ],
+          "title": "Questions 164-167 refer to the following e-mail."
         },
         {
           "imgs": [
-            "https://2023.toeicthaysang.com/de2/don.9.png"
+            "https://2024.toeicthaysang.com/de2/don.9.png"
           ],
-          "fullPassEN": "New Addition to Shadeside Plaza\nBIRCH CITY (November 12)—Design Glory, a jewelry business operated by lifelong Birch City resident Tamara Banda, has set up a brick and- mortar store in the city’s Shadeside Plaza shopping area. — [1] —. Ms. Banda said the shop, which opened on November 9, features her entire line of handmade jewelry along with a selection of beautiful natural crystals that can become the centerpiece of any room.\nMs. Banda emphasizes that she sets her jewelry brand apart from others by offering handmade designs at price points that won’t break a budget. To keep her overhead costs in check, she says she sources materials creatively from a variety of local metal suppliers. — [2] —. Although managing the store, which is open Tuesday through Saturday from 11:00 A.M. to 5:00 P.M., will occupy much of her time, Ms. Banda said she still intends to operate booths at regional arts festivals. — [3] —. She will also continue to serve on the planning committee for the annual art show at Central Arts University, where she learned her jewelry-making techniques.\nThe idea of opening a physical store came to Ms. Banda when a friend, Brad Machado, told her of his positive experience in operating his retail bookshop on the opposite side of Shadeside Plaza from where Design Glory is now. — [4] —. The shopping area, he said, benefits from the heavy foot traffic nearby.",
-          "fullPassVI": "Bổ sung Mới cho Shadeside Plaza\nBIRCH CITY (Ngày 12 tháng 11)—Design Glory, một doanh nghiệp trang sức được điều hành bởi cư dân trọn đời của Birch City Tamara Banda, đã thiết lập một cửa hàng truyền thống trong khu mua sắm Shadeside Plaza của thành phố. — [1] —. Cô Banda nói cửa hàng, khai trương vào ngày 9 tháng 11, giới thiệu toàn bộ dòng trang sức thủ công của cô cùng với một lựa chọn các tinh thể tự nhiên đẹp có thể trở thành điểm trung tâm của bất kỳ căn phòng nào.\nCô Banda nhấn mạnh rằng cô làm cho thương hiệu trang sức của mình khác biệt với những thương hiệu khác bằng cách cung cấp các thiết kế thủ công ở các mức giá sẽ không phá vỡ ngân sách. Để giữ chi phí chung của mình trong tầm kiểm soát, cô nói cô tìm nguồn vật liệu một cách sáng tạo từ nhiều nhà cung cấp kim loại địa phương. — [2] —. Mặc dù việc quản lý cửa hàng, mở cửa từ thứ Ba đến thứ Bảy từ 11:00 sáng đến 5:00 chiều, sẽ chiếm nhiều thời gian của cô, cô Banda nói cô vẫn có ý định vận hành các gian hàng tại các lễ hội nghệ thuật khu vực. — [3] —. Cô cũng sẽ tiếp tục phục vụ trong ban lập kế hoạch cho triển lãm nghệ thuật hằng năm tại Central Arts University, nơi cô đã học các kỹ thuật làm trang sức của mình.\nÝ tưởng mở một cửa hàng vật lý đến với cô Banda khi một người bạn, Brad Machado, nói với cô về trải nghiệm tích cực của anh ấy trong việc vận hành hiệu sách bán lẻ của mình ở phía đối diện của Shadeside Plaza so với nơi Design Glory hiện nay. — [4] —. Khu mua sắm này, anh ấy nói, được hưởng lợi từ lượng người đi bộ đông đúc gần đó.",
+          "fullPassEN": "Shipping Disruptions\nSINGAPORE (6 June)—Recently, the demand for international freight space has been outpacing the availability of shipping containers. This container shortage has led to higher costs for goods being shipped out of Asian ports. A drop in the production of rolls of steel, the raw material that containers are made from, has further complicated the situation. — [1] —.\nSome exporters have considered the more expensive option of air freight, but companies are still faced with a difficult choice. — [2] —. They must either ask their customers to accept shipment delays, or substantially raise customer prices to cover the costs of expedited shipping. Either way, suppliers risk triggering customer dissatisfaction.\n\"We are working with business partners, investors, and government officials to discuss solutions to this problem,\" said Henry Lam, a spokesperson for the household goods producer QET Group. — [3] —. \"It's going to take total cooperation of all stakeholders to find a solution.\"\nNot all companies are suffering, though. For example, Fezker, the producer of athletic apparel and footwear, has implemented strategies to better overcome this situation. Fezker has successfully refocused its efforts away from exports to western countries and toward expanding its domestic and regional markets. — [4] —.\n\"We moved quickly, so the shipping container shortage has not caused a significant impact on our profits,\" said Fezker CEO Nuwa Lee.",
+          "fullPassVI": "Gián đoạn Vận chuyển\nSINGAPORE (6 tháng 6) — Gần đây, nhu cầu về không gian vận chuyển hàng hóa quốc tế đã vượt quá khả năng cung cấp container vận chuyển. Tình trạng thiếu container này đã dẫn đến chi phí cao hơn cho hàng hóa được vận chuyển từ các cảng châu Á. Sản lượng cuộn thép — nguyên liệu thô để làm container — giảm sút đã làm phức tạp thêm tình hình. — [1] —.\nMột số nhà xuất khẩu đã cân nhắc lựa chọn vận chuyển hàng không đắt đỏ hơn, nhưng các công ty vẫn phải đối mặt với một lựa chọn khó khăn. — [2] —. Họ phải hoặc yêu cầu khách hàng chấp nhận việc giao hàng bị trì hoãn, hoặc tăng đáng kể giá cho khách hàng để bù đắp chi phí vận chuyển khẩn cấp. Dù theo cách nào, các nhà cung cấp đều có nguy cơ gây ra sự không hài lòng của khách hàng.\n\"Chúng tôi đang làm việc với các đối tác kinh doanh, nhà đầu tư và quan chức chính phủ để thảo luận về các giải pháp cho vấn đề này,\" Henry Lam, người phát ngôn của nhà sản xuất hàng gia dụng QET Group, cho biết. — [3] —. \"Cần có sự hợp tác toàn diện của tất cả các bên liên quan để tìm ra giải pháp.\"\nTuy nhiên, không phải tất cả các công ty đều đang gặp khó khăn. Ví dụ, Fezker, nhà sản xuất trang phục và giày dép thể thao, đã thực hiện các chiến lược để vượt qua tình huống này tốt hơn. Fezker đã chuyển hướng thành công nỗ lực của mình khỏi xuất khẩu sang các nước phương Tây và hướng đến mở rộng thị trường trong nước và khu vực. — [4] —.\n\"Chúng tôi đã hành động nhanh chóng, vì vậy tình trạng thiếu container vận chuyển không gây ra tác động đáng kể đến lợi nhuận của chúng tôi,\" Giám đốc điều hành Fezker Nuwa Lee cho biết.",
           "questions": [
             {
               "q": 168,
-              "enQ": "What is indicated about Design Glory?",
+              "enQ": "What is mentioned about shipping containers?",
               "enOpts": [
-                "It had a delayed opening date.",
-                "It sells decorative stones.",
-                "It has weekly craft demonstrations.",
-                "It is closed on Saturdays."
+                "They come in different sizes.",
+                "They are in short supply.",
+                "They are made from a variety of materials.",
+                "They can be used for long-term storage."
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=2978",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=1022",
               "answer": "B",
               "noteOpts": [
-                "Điều gì được cho biết về Design Glory?",
-                "A. Công ty khai trương trễ hơn dự kiến",
-                "B. Công ty bán đá trang trí",
-                "C. Công ty có các buổi trình diễn thủ công hằng tuần",
-                "D. Công ty đóng cửa vào thứ Bảy"
+                "Điều gì được đề cập về các container vận chuyển?",
+                "A. Chúng có nhiều kích cỡ khác nhau.",
+                "B. Chúng đang trong tình trạng thiếu hụt nguồn cung.",
+                "C. Chúng được làm từ nhiều loại vật liệu khác nhau.",
+                "D. Chúng có thể được sử dụng để lưu trữ dài hạn."
               ]
             },
             {
               "q": 169,
-              "enQ": "What does Ms. Banda say is special about her jewelry?",
+              "enQ": "What does Mr. Lam say is needed to resolve the situation?",
               "enOpts": [
-                "It is designed by local students.",
-                "It looks old-fashioned.",
-                "It is affordable.",
-                "It is lightweight."
+                "A sharp increase in the number of customers",
+                "A relaxation of government restrictions",
+                "The development of new technologies",
+                "Communication between affected groups"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=3221",
-              "answer": "C",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=1153",
+              "answer": "D",
               "noteOpts": [
-                "Cô Banda nói điều gì là đặc biệt về đồ trang sức của cô ấy?",
-                "A. Chúng được thiết kế bởi sinh viên địa phương",
-                "B. Chúng trông kiểu cũ",
-                "C. Chúng có giá phải chăng",
-                "D. Chúng nhẹ"
+                "Ông Lam nói điều gì là cần thiết để giải quyết tình hình?",
+                "A. Một sự gia tăng mạnh mẽ về số lượng khách hàng",
+                "B. Một sự nới lỏng các hạn chế của chính phủ",
+                "C. Việc phát triển các công nghệ mới",
+                "D. Sự giao tiếp giữa các nhóm bị ảnh hưởng"
               ]
             },
             {
               "q": 170,
-              "enQ": "Who is Mr. Machado?",
+              "enQ": "What type of clothing does Fezker produce?",
               "enOpts": [
-                "A property developer",
-                "A metal supplier",
-                "A photographer",
-                "A bookseller"
+                "Rain jackets",
+                "Sportswear",
+                "Business suits",
+                "Work uniforms"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=3384",
-              "answer": "D",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=1286",
+              "answer": "B",
               "noteOpts": [
-                "Ông Machado là ai?",
-                "A. Một nhà phát triển bất động sản",
-                "B. Một nhà cung cấp kim loại",
-                "C. Một nhiếp ảnh gia",
-                "D. Một người bán sách"
+                "Loại quần áo nào mà Fezker sản xuất?",
+                "A. Áo khoác đi mưa",
+                "B. Đồ thể thao",
+                "C. Bộ đồ công sở",
+                "D. Đồng phục lao động"
               ]
             },
             {
               "q": 171,
-              "enQ": "In which of the positions marked [1], [2], [3] and [4] does the following sentence best belong? ''She noted as well that she will be participating in the City Art Museum’s craft fair next month.”",
+              "enQ": "In which of the positions marked [1], [2], [3], and [4] does the following sentence best belong?“These markets are supplied using more readily available truck and train transportation.”",
               "enOpts": [
                 "[1]",
                 "[2]",
@@ -3260,688 +3273,695 @@ const EXAM_DATA = {
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=3501",
-              "answer": "C",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=1364",
+              "answer": "D",
               "noteOpts": [
-                "Ở vị trí nào được đánh dấu [1], [2], [3] và [4] thì câu sau đây phù hợp nhất? “Cô ấy cũng lưu ý rằng cô ấy sẽ tham gia hội chợ thủ công của City Art Museum vào tháng tới.”",
+                "Trong các vị trí được đánh dấu [1], [2], [3] và [4], câu sau đây phù hợp nhất ở đâu? “Các thị trường này được cung cấp bằng cách sử dụng phương tiện vận tải bằng xe tải và tàu hỏa sẵn có hơn.”",
                 "A. [1]",
                 "B. [2]",
                 "C. [3]",
                 "D. [4]"
               ]
             }
-          ]
+          ],
+          "title": "Questions 168-171 refer to the following article."
         },
         {
           "imgs": [
-            "https://2023.toeicthaysang.com/de2/don.10.png"
+            "https://2024.toeicthaysang.com/de2/don.10.png"
           ],
-          "fullPassEN": "Sandra Kyle (8:19 A.M.)\nGood morning. I’m on my way but running late because of a lane closure on Roseway Boulevard. It’s all backed up, and the bus is barely moving.\nLucas Bodin (8:20 A.M.)\nSounds terrible!\nSandra Kyle (8:21 A.M.)\nI’m supposed to take notes at our 8:30 A.M. meeting. Could one of you please fill in for me until I arrive?\nCarolina Mata (8:23 A.M.)\nWait, haven’t you heard? The meeting was moved to Thursday.\nSandra Kyle (8:24 A.M.)\nReally? What a relief.\nCarolina Mata (8:26 A.M.)\nMr. Chang is in Portsville meeting with the client about the final design for the new warehouse building. He won’t be back until tomorrow.\nSandra Kyle (8:27 A.M.)\nYes, I heard he was going to Portsville.\nLucas Bodin (8:30 A.M.)\nThe client requested some last-minute changes, so Mr. Chang is away longer than expected. Hopefully the changes are minor, because we’re already over the allocated budget.\nCarolina Mata (8:33 A.M.)\nWe will get an update at the Thursday meeting. Hopefully it’s good news.",
-          "fullPassVI": "Sandra Kyle (8:19 sáng.)\nChào buổi sáng. Tôi đang trên đường nhưng bị muộn vì một làn đường bị đóng trên Đại lộ Roseway. Tất cả bị ùn lại, và xe buýt hầu như không di chuyển.\nLucas Bodin (8:20 sáng.)\nNghe tệ thật!\nSandra Kyle (8:21 sáng.)\nTôi được cho là sẽ ghi chú tại cuộc họp 8:30 sáng của chúng ta. Một trong các bạn có thể vui lòng thay tôi cho đến khi tôi đến không?\nCarolina Mata (8:23 sáng.)\nKhoan, bạn chưa nghe à? Cuộc họp đã được chuyển sang thứ Năm.\nSandra Kyle (8:24 sáng.)\nThật sao? Thật nhẹ nhõm.\nCarolina Mata (8:26 sáng.)\nÔng Chang đang ở Portsville gặp khách hàng về thiết kế cuối cùng cho tòa nhà kho mới. Ông ấy sẽ không quay lại cho đến ngày mai.\nSandra Kyle (8:27 sáng.)\nVâng, tôi đã nghe rằng ông ấy sẽ đi Portsville.\nLucas Bodin (8:30 sáng.)\nKhách hàng đã yêu cầu một số thay đổi vào phút cuối, nên ông Chang đi lâu hơn dự kiến. Hy vọng các thay đổi là nhỏ, vì chúng ta đã vượt quá ngân sách được phân bổ rồi.\nCarolina Mata (8:33 sáng.)\nChúng ta sẽ nhận được cập nhật tại cuộc họp thứ Năm. Hy vọng đó là tin tốt.",
+          "fullPassEN": "Gary Wendel (7:40 A.M.)\nGood morning, team. Can you share the current status of your projects, please?\nJing Yu (7:42 A.M.)\nI met with the client last week to confirm the start date for Phase B of the Palisade project.\nRobbie Zuniga (7:43 A.M.)\nI am headed to the job site now for the Riverview project. The rain last week delayed pouring the concrete for the sidewalks. I will check the conditions this morning to see if the situation has improved.\nGary Wendel (7:44 A.M.)\nWhen will Phase B of the Palisade project begin?\nJing Yu (7:46 A.M.)\nWe will break ground in March and plan to have the building completed by November.\nGary Wendel (7:47 A.M.)\nThat's good news about the March start date. I am sure the client is happy about that.\nGary Wendel (7:50 A.M.)\nRobbie, let me know what you find out about the site conditions. Perhaps Nathan Burry can help at the site. He's our most knowledgeable concrete finisher.\nRobbie Zuniga (7:55 A.M.)\nActually, I'm meeting Nathan at the site this morning, so I'll get his opinion on when we can pour the concrete. The rest of the project is on hold until we can do this.\nGary Wendel (7:57 A.M.)\nKeep me posted. I don't want to rush it if it's still too wet. At the same time, the Riverview project is already behind schedule because of equipment problems and late delivery of building materials.\nRobbie Zuniga (7:58 A.M.)\nWill do.",
+          "fullPassVI": "Gary Wendel (7:40 SA)\nChào buổi sáng, cả nhóm. Mọi người có thể chia sẻ tình trạng hiện tại của các dự án không?\nJing Yu (7:42 SA)\nTôi đã gặp khách hàng tuần trước để xác nhận ngày bắt đầu Giai đoạn B của dự án Palisade.\nRobbie Zuniga (7:43 SA)\nTôi đang trên đường đến công trường dự án Riverview ngay bây giờ. Mưa tuần trước đã làm chậm việc đổ bê tông cho vỉa hè. Tôi sẽ kiểm tra tình trạng sáng nay để xem tình hình có cải thiện không.\nGary Wendel (7:44 SA)\nGiai đoạn B của dự án Palisade sẽ bắt đầu khi nào?\nJing Yu (7:46 SA)\nChúng tôi sẽ khởi công vào tháng 3 và dự kiến hoàn thành tòa nhà vào tháng 11.\nGary Wendel (7:47 SA)\nĐó là tin tốt về ngày bắt đầu tháng 3. Tôi chắc khách hàng rất vui về điều đó.\nGary Wendel (7:50 SA)\nRobbie, hãy cho tôi biết anh tìm hiểu được gì về điều kiện công trường. Có lẽ Nathan Burry có thể giúp ở công trường. Anh ấy là thợ hoàn thiện bê tông giỏi nhất của chúng ta.\nRobbie Zuniga (7:55 SA)\nThực ra, tôi đang gặp Nathan tại công trường sáng nay, vì vậy tôi sẽ hỏi ý kiến anh ấy về thời điểm có thể đổ bê tông. Phần còn lại của dự án đang tạm dừng cho đến khi chúng ta làm được điều này.\nGary Wendel (7:57 SA)\nCập nhật cho tôi nhé. Tôi không muốn vội vàng nếu vẫn còn quá ẩm. Đồng thời, dự án Riverview đã bị chậm tiến độ do sự cố thiết bị và giao vật liệu xây dựng trễ.\nRobbie Zuniga (7:58 SA)\nSẽ làm.",
           "questions": [
             {
               "q": 172,
-              "enQ": "Why does Ms. Kyle expect to be late for work?",
+              "enQ": "In what industry do the writers most likely work?",
               "enOpts": [
-                "The bus is slow because of poor weather.",
-                "The bus is stuck in traffic.",
-                "She missed the bus.",
-                "The bus arrived late at her stop."
+                "Construction",
+                "Energy",
+                "Manufacturing",
+                "Travel"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=3654",
-              "answer": "B",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=702",
+              "answer": "A",
               "noteOpts": [
-                "Tại sao cô Kyle nghĩ rằng cô ấy sẽ đến chỗ làm muộn?",
-                "A. Xe buýt di chuyển chậm vì thời tiết xấu",
-                "B. Xe buýt bị kẹt xe",
-                "C. Cô ấy lỡ xe buýt",
-                "D. Xe buýt đến trạm của cô ấy muộn"
+                "Những người viết rất có thể làm việc trong ngành nào?",
+                "A. Xây dựng",
+                "B. Năng lượng",
+                "C. Sản xuất",
+                "D. Du lịch"
               ]
             },
             {
               "q": 173,
-              "enQ": "Why was the meeting postponed?",
+              "enQ": "Why did Mr. Wendel begin the discussion?",
               "enOpts": [
-                "A colleague is out of the office.",
-                "The client needs more time to prepare.",
-                "Mr. Bodin has a scheduling conflict.",
-                "Ms. Mata needs to prepare an update."
+                "To plan a client meeting",
+                "To discuss a weather forecast",
+                "To obtain an update on some work",
+                "To change the start date of an event"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=3784",
-              "answer": "A",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=811",
+              "answer": "C",
               "noteOpts": [
-                "Tại sao cuộc họp bị hoãn?",
-                "A. Một đồng nghiệp vắng mặt khỏi văn phòng",
-                "B. Khách hàng cần thêm thời gian để chuẩn bị",
-                "C. Ông Bodin bị trùng lịch",
-                "D. Cô Mata cần chuẩn bị một bản cập nhật"
+                "Tại sao ông Wendel bắt đầu cuộc thảo luận?",
+                "A. Để lên kế hoạch cho một cuộc họp khách hàng",
+                "B. Để thảo luận về một dự báo thời tiết",
+                "C. Để có được một bản cập nhật về một số công việc",
+                "D. Để thay đổi ngày bắt đầu của một sự kiện"
               ]
             },
             {
               "q": 174,
-              "enQ": "At 8:24 A.M., what does Ms. Kyle most likely mean when she writes, “Really”?",
+              "enQ": "What is indicated about the Riverview project?",
               "enOpts": [
-                "She is disappointed by certain designs.",
-                "She disagrees with the decision.",
-                "She is surprised by Ms. Mata's comment.",
-                "She already heard the news."
+                "It has had several delays.",
+                "It is being managed by Ms. Yu.",
+                "It will be completed in November.",
+                "Its clients are happy with the progress."
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=3943",
-              "answer": "C",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=854",
+              "answer": "A",
               "noteOpts": [
-                "Vào lúc 8 giờ 24 sáng cô Kyle nhiều khả năng có ý gì khi cô ấy viết “Thật vậy sao”?",
-                "A. Cô ấy thất vọng với một số thiết kế",
-                "B. Cô ấy không đồng ý với quyết định đó",
-                "C. Cô ấy ngạc nhiên trước bình luận của cô Mata",
-                "D. Cô ấy đã nghe tin đó rồi"
+                "Điều gì được chỉ ra về dự án Riverview?",
+                "A. Nó đã gặp phải một vài sự chậm trễ.",
+                "B. Nó đang được quản lý bởi cô Yu.",
+                "C. Nó sẽ được hoàn thành vào tháng Mười Một.",
+                "D. Các khách hàng của nó hài lòng với tiến độ."
               ]
             },
             {
               "q": 175,
-              "enQ": "What is indicated about the project?",
+              "enQ": "At 7:58 a.m., what does Mr. Zuniga most likely mean when he writes, “Will do”?",
               "enOpts": [
-                "It is more expensive than planned",
-                "It has some technical difficulties.",
-                "It has been poorly managed.",
-                "It cannot be completed on time."
+                "He will revise a delivery schedule.",
+                "He will purchase more equipment.",
+                "He will hire workers to help at a site.",
+                "He will share the outcome of a meeting."
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=4007",
-              "answer": "A",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=903",
+              "answer": "D",
               "noteOpts": [
-                "Điều gì được cho biết về dự án?",
-                "A. Nó tốn kém hơn dự kiến",
-                "B. Nó gặp một số khó khăn kỹ thuật",
-                "C. Nó đã được quản lý kém",
-                "D. Nó không thể hoàn thành đúng hạn"
+                "Vào lúc 7:58 sáng, ông Zuniga rất có thể có ý gì khi viết “Will do”?",
+                "A. Ông ấy sẽ sửa đổi một lịch trình giao hàng.",
+                "B. Ông ấy sẽ mua thêm thiết bị.",
+                "C. Ông ấy sẽ thuê công nhân để giúp đỡ tại một địa điểm.",
+                "D. Ông ấy sẽ chia sẻ kết quả của một cuộc họp."
               ]
             }
-          ]
+          ],
+          "title": "Questions 172-175 refer to the following online chat discussion."
         },
         {
           "imgs": [
-            "https://2023.toeicthaysang.com/de2/176.1.png",
-            "https://2023.toeicthaysang.com/de2/176.2.png"
+            "https://2024.toeicthaysang.com/de2/176.1.png",
+            "https://2024.toeicthaysang.com/de2/176.2.png"
           ],
-          "fullPassEN": "Thompson and Groves\nThe law firm of Thompson and Groves is seeking a dedicated assistant to join our established environmental litigation team.\nThis assistant will work on a wide range of legal services, such as\n- investigating evidence related to cases being prepared for court;\n- preparing exhibits, charts, and diagrams to display information; and\n- communicating with clients and keeping files updated.\nThe best candidate for this position\n- is self-directed, responsible, and capable of juggling many projects at once; and\n- has strong communication, organization, and computer skills.\nTo apply, e-mail your résumé to Julia Powell (in human resources), julia.powell@thompsonandgroves.com, by May 25. Interviews will be conducted at the beginning of June, and our selection will be made in early July.\n\nTo: julia.powell@thompsonandgroves.com\nFrom: jonas_ivanov@sidmail.com\nDate: July 12\nSubject: Re: Legal assistant position\nDear Ms. Powell,\nI was pleased to read your letter offering me the position of legal assistant. However, after much consideration, I have decided that now is not the best time to leave Wilson Law. I did not realize how deeply I am invested in working on my projects here until I was faced with the possibility of leaving the company. While I was thrilled by the idea of working for an illustrious law firm that has won so many high-profile environmental cases, now is not the time for me to make a change.\nIt was a pleasure meeting you and your colleagues, and I hope we cross paths in the future.\nKind regards,\nJonas Ivanov",
-          "fullPassVI": "Thompson and Groves\nCông ty luật Thompson and Groves đang tìm kiếm một trợ lý tận tâm để tham gia đội ngũ tranh tụng môi trường đã được thiết lập của chúng tôi.\nTrợ lý này sẽ làm việc trên một loạt các dịch vụ pháp lý, chẳng hạn như\n* điều tra bằng chứng liên quan đến các vụ án đang được chuẩn bị cho tòa;\n* chuẩn bị các vật chứng, biểu đồ, và sơ đồ để hiển thị thông tin; và\n* giao tiếp với khách hàng và giữ hồ sơ được cập nhật.\nỨng viên tốt nhất cho vị trí này\n* là người tự định hướng, có trách nhiệm, và có khả năng xoay xở nhiều dự án cùng lúc; và\n* có kỹ năng giao tiếp, tổ chức, và máy tính tốt.\nĐể ứng tuyển, hãy e-mail sơ yếu lý lịch của bạn cho Julia Powell (ở bộ phận nhân sự), julia.powell@thompsonandgroves.com, trước ngày 25 tháng 5. Các cuộc phỏng vấn sẽ được tiến hành vào đầu tháng 6, và sự lựa chọn của chúng tôi sẽ được đưa ra vào đầu tháng 7.\n\nĐến: julia.powell@thompsonandgroves.com\nTừ: jonas_ivanov@sidmail.com\nNgày: Ngày 12 tháng 7\nChủ đề: Re: Vị trí trợ lý pháp lý\nKính gửi cô Powell,\nTôi đã rất vui khi đọc thư của cô đề nghị tôi vị trí trợ lý pháp lý. Tuy nhiên, sau nhiều cân nhắc, tôi đã quyết định rằng bây giờ không phải là thời điểm tốt nhất để rời Wilson Law. Tôi đã không nhận ra mình đã đầu tư sâu sắc như thế nào vào việc làm việc trên các dự án của mình ở đây cho đến khi tôi đối mặt với khả năng rời công ty. Mặc dù tôi đã rất hào hứng với ý tưởng làm việc cho một công ty luật danh tiếng đã thắng rất nhiều vụ án môi trường nổi bật, bây giờ không phải là lúc để tôi thực hiện một sự thay đổi.\nThật vui khi được gặp cô và các đồng nghiệp của cô, và tôi hy vọng chúng ta sẽ gặp lại nhau trong tương lai.\nTrân trọng,\nJonas Ivanov",
+          "fullPassEN": "From: Madalyn Kerluke <mkerluke@karabel.ca>\nTo: Omar Niklaus <oniklaus@karabel.ca>, Jay Tonic <jtonic@karabel.ca>\nDate: Friday, 3 February 2:16 P.M.\nSubject: Taste-test results\nAttachment: Fatior Labs survey results\nHi, Team.\nI just received the 24-26 January survey results from Fatior Labs for our new ice-cream taste test. As you can see from the attached document, the results are very disappointing. We sent the four flavours that we considered to be the best, but none of them received high enough ratings to advance to the next stage of development. Most of the reviews were consistent among the 92 taste-test participants in our target market of consumers ages 25 through 40. It's not a big problem if a product gets low scores in colour in the testing phase, since we can easily adjust that in the laboratory. But we should never be sending out samples that are getting scores lower than 3 in the taste category.\nI would like to meet at 9 A.M. on Monday (6 February) to figure out how to proceed. There is one flavour we may be able to work with if we make a few adjustments, as suggested by most of our taste testers. We will also need to get some new flavours to Fatior Labs no later than 1 March if we are going to get a new ice cream on the Preston Grocers freezer shelves by the beginning of June.\nMadalyn Kerluke\n\nFatior Labs Consumer Taste-Testing Survey\nDate: 24 January\nCompany: Karabel Industries\nParticipant number: 54\nDirections: You will be given a 45 g sample of 4 different ice creams. Please rate the taste, texture, sweetness, and colour of each ice cream on a scale of 1 (very unpleasant) to 5 (very pleasant). Please write any additional comments below.\nFlavour  - Taste - Texture - Sweetness  - Colour\nLemon  - 2 - 3 - 2 - 4\nMango  - 3 - 3 - 2 - 1\nSalted Caramel - 2 - 1 - 1 - 5\nPeanut Brittle - 3 - 4 - 2 - 2\nComments: The fruit-flavoured ice creams were surprisingly sour. I did not care for them at all. I think the Peanut Brittle has the most potential, but it's missing something. I bet that adding chocolate swirls or brownie bits would make it a winner.",
+          "fullPassVI": "Từ: Madalyn Kerluke <mkerluke@karabel.ca>\nKính gửi: Omar Niklaus <oniklaus@karabel.ca>, Jay Tonic <jtonic@karabel.ca>\nNgày: Thứ Sáu, 3 tháng 2, 2:16 CH\nChủ đề: Kết quả thử nếm\nĐính kèm: Kết quả khảo sát Fatior Labs\nXin chào cả nhóm.\nTôi vừa nhận được kết quả khảo sát từ ngày 24-26 tháng 1 từ Fatior Labs cho bài thử nếm kem mới của chúng ta. Như bạn có thể thấy từ tài liệu đính kèm, kết quả rất đáng thất vọng. Chúng ta đã gửi bốn hương vị mà chúng ta cho là tốt nhất, nhưng không có hương vị nào nhận được điểm đánh giá đủ cao để tiến sang giai đoạn phát triển tiếp theo. Hầu hết các đánh giá đều nhất quán trong số 92 người tham gia thử nếm trong thị trường mục tiêu của chúng ta là người tiêu dùng từ 25 đến 40 tuổi. Không phải vấn đề lớn nếu một sản phẩm bị điểm thấp về màu sắc trong giai đoạn kiểm tra, vì chúng ta có thể dễ dàng điều chỉnh trong phòng thí nghiệm. Nhưng chúng ta không bao giờ nên gửi đi các mẫu mà điểm trong danh mục hương vị thấp hơn 3.\nTôi muốn họp lúc 9 SA vào thứ Hai (6 tháng 2) để tìm ra cách tiến hành. Có một hương vị mà chúng ta có thể làm việc được nếu thực hiện một vài điều chỉnh, như hầu hết những người thử nếm của chúng ta đề xuất. Chúng ta cũng cần gửi một số hương vị mới đến Fatior Labs không muộn hơn ngày 1 tháng 3 nếu chúng ta muốn có một loại kem mới trên kệ tủ đông của Preston Grocers vào đầu tháng 6.\nMadalyn Kerluke\n\nKhảo sát Thử nếm Người tiêu dùng Fatior Labs\nNgày: 24 tháng 1\nCông ty: Karabel Industries\nSố người tham gia: 54\nHướng dẫn: Bạn sẽ được cho một mẫu 45 g của 4 loại kem khác nhau. Vui lòng đánh giá hương vị, kết cấu, độ ngọt và màu sắc của mỗi loại kem theo thang điểm từ 1 (rất khó chịu) đến 5 (rất dễ chịu). Vui lòng ghi bất kỳ nhận xét bổ sung nào bên dưới.\nHương vị - Vị - Kết cấu - Độ ngọt - Màu sắc\nChanh - 2 - 3 - 2 - 4\nXoài - 3 - 3 - 2 - 1\nCaramel Muối - 2 - 1 - 1 - 5\nKẹo Lạc Giòn - 3 - 4 - 2 - 2\nNhận xét: Các loại kem hương trái cây có vị chua đáng ngạc nhiên. Tôi hoàn toàn không thích chúng. Tôi nghĩ Kẹo Lạc Giòn có tiềm năng nhất, nhưng còn thiếu gì đó. Tôi đoán rằng thêm xoáy sô cô la hoặc vụn bánh brownie sẽ làm cho nó trở nên tuyệt vời.",
           "questions": [
             {
               "q": 176,
-              "enQ": "What is included in the job advertisement?",
+              "enQ": "What does the e-mail indicate about Karabel Industries ice cream?",
               "enOpts": [
-                "A brief history of the Thompson and Groves law firm",
-                "Directions to a company’s office",
-                "A description of the job’s pay and benefits",
-                "A description of the ideal applicant"
+                "It is currently sold in four flavors.",
+                "Its coloring can be changed easily.",
+                "Its popularity has declined recently.",
+                "It is sold in Karabel Industries stores."
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=4177",
-              "answer": "D",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=2630",
+              "answer": "B",
               "noteOpts": [
-                "Điều gì được bao gồm trong quảng cáo tuyển dụng?",
-                "A. Một lịch sử ngắn gọn của hãng luật Thompson and Groves",
-                "B. Chỉ đường đến văn phòng của công ty",
-                "C. Mô tả về mức lương và phúc lợi của công việc",
-                "D. Mô tả về ứng viên lý tưởng"
+                "Email chỉ ra điều gì về kem của Karabel Industries?",
+                "A. Nó hiện được bán với bốn hương vị.",
+                "B. Màu sắc của nó có thể được thay đổi dễ dàng.",
+                "C. Sự phổ biến của nó đã giảm sút gần đây.",
+                "D. Nó được bán tại các cửa hàng của Karabel Industries."
               ]
             },
             {
               "q": 177,
-              "enQ": "What most likely is one of Ms. Powell’s job responsibilities?",
+              "enQ": "What does Ms. Kerluke state that she wants to do?",
               "enOpts": [
-                "Preparing exhibits and charts",
-                "Updating computer files",
-                "Hiring new employees",
-                "Writing about environmental issues"
+                "Visit a laboratory",
+                "Hold a team meeting",
+                "Contact a grocery store",
+                "Write new survey questions"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=4353",
-              "answer": "C",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=2784",
+              "answer": "B",
               "noteOpts": [
-                "Điều gì nhiều khả năng là một trong các trách nhiệm công việc của cô Powell?",
-                "A. Chuẩn bị tài liệu trưng bày và biểu đồ",
-                "B. Cập nhật các tập tin máy tính",
-                "C. Tuyển dụng nhân viên mới",
-                "D. Viết về các vấn đề môi trường"
+                "Cô Kerluke nêu rõ rằng cô ấy muốn làm gì?",
+                "A. Thăm một phòng thí nghiệm",
+                "B. Tổ chức một cuộc họp nhóm",
+                "C. Liên lạc với một cửa hàng tạp hóa",
+                "D. Viết các câu hỏi khảo sát mới"
               ]
             },
             {
               "q": 178,
-              "enQ": "What does Mr. Ivanov indicate in his e-mail?",
+              "enQ": "What is suggested about Fatior Labs?",
               "enOpts": [
-                "He has changed his career goals.",
-                "He has decided to stay at his present job.",
-                "He has decided to retire.",
-                "He will apply for a different job."
+                "It has 92 employees.",
+                "It manufactures food colorings.",
+                "It will perform another taste test for Karabel Industries.",
+                "It supplies ice cream to Preston Grocers."
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=4507",
-              "answer": "B",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=2816",
+              "answer": "C",
               "noteOpts": [
-                "Ông Ivanov cho biết điều gì trong thư điện tử của ông ấy?",
-                "A. Ông ấy đã thay đổi mục tiêu nghề nghiệp",
-                "B. Ông ấy đã quyết định ở lại công việc hiện tại",
-                "C. Ông ấy đã quyết định nghỉ hưu",
-                "D. Ông ấy sẽ nộp đơn cho một công việc khác"
+                "Điều gì được gợi ý về Fatior Labs?",
+                "A. Nó có 92 nhân viên.",
+                "B. Nó sản xuất phẩm màu thực phẩm.",
+                "C. Nó sẽ thực hiện một cuộc kiểm tra hương vị khác cho Karabel Industries.",
+                "D. Nó cung cấp kem cho Preston Grocers."
               ]
             },
             {
               "q": 179,
-              "enQ": "What does the e-mail mention about the Thompson and Groves law firm?",
+              "enQ": "Based on the survey form, what flavor will Karabel Industries most likely make adjustments to?",
               "enOpts": [
-                "It is well-known for its successes.",
-                "It will be moving to a larger space.",
-                "It no longer specializes in environmental issues.",
-                "It will be hosting an international conference."
+                "Lemon",
+                "Mango",
+                "Salted Caramel",
+                "Peanut Brittle"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=4598",
-              "answer": "A",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=2945",
+              "answer": "D",
               "noteOpts": [
-                "Thư điện tử đề cập điều gì về hãng luật Thompson and Groves?",
-                "A. Hãng nổi tiếng với những thành công của mình",
-                "B. Hãng sẽ chuyển đến một không gian lớn hơn",
-                "C. Hãng không còn chuyên về các vấn đề môi trường nữa",
-                "D. Hãng sẽ tổ chức một hội nghị quốc tế"
+                "Dựa trên mẫu khảo sát, Karabel Industries rất có thể sẽ thực hiện các điều chỉnh đối với hương vị nào?",
+                "A. Chanh",
+                "B. Xoài",
+                "C. Caramel muối",
+                "D. Kẹo lạc"
               ]
             },
             {
               "q": 180,
-              "enQ": "What is suggested about Mr. Ivanov?",
+              "enQ": "What can be concluded about participant number 54 ?",
               "enOpts": [
-                "He received a promotion in May.",
-                "He met with Ms. Powell in June.",
-                "He and Ms. Powell have a mutual friend.",
-                "He has just completed a certification program."
+                "The participant purchased several containers of ice cream.",
+                "The participant is between the ages of 25 and 40.",
+                "The participant regularly takes consumer surveys.",
+                "The participant prefers fruit-flavored ice cream."
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=4772",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=3055",
               "answer": "B",
               "noteOpts": [
-                "Điều gì được gợi ý về ông Ivanov?",
-                "A. Ông ấy nhận được thăng chức vào tháng Năm",
-                "B. Ông ấy đã gặp cô Powell vào tháng Sáu",
-                "C. Ông ấy và cô Powell có một người quen chung",
-                "D. Ông ấy vừa hoàn thành một chương trình chứng nhận"
+                "Có thể kết luận gì về người tham gia số 54?",
+                "A. Người tham gia đã mua một vài hộp kem.",
+                "B. Người tham gia ở độ tuổi từ 25 đến 40.",
+                "C. Người tham gia thường xuyên thực hiện các cuộc khảo sát người tiêu dùng.",
+                "D. Người tham gia thích kem vị trái cây."
               ]
             }
-          ]
+          ],
+          "title": "Questions 176-180 refer to the following e-mail and survey form."
         },
         {
           "imgs": [
-            "https://2023.toeicthaysang.com/de2/181.1.png",
-            "https://2023.toeicthaysang.com/de2/181.2.png"
+            "https://2024.toeicthaysang.com/de2/181.1.png",
+            "https://2024.toeicthaysang.com/de2/181.2.png"
           ],
-          "fullPassEN": "To: Kildare Recreation Centre Staff\nFrom: Madeline Byrne\nDate: 11 April\nSubject: Daily Passes\nAs discussed in April’s staff meeting, we are considering raising the cost of daily passes from €5 to €9. The exact increase will be decided in our May meeting. This change is expected to bring in an extra €5,000 over the next year, which we will use toward the cost of replacing our outdoor running track. With the increased revenue from the fee change, we will be close to the €7,000 needed for the improvement.\nI realize that the outdoor running season is short, and I know that in our meeting, some staff members wanted to consider other uses for the money. The possibilities of using the funds for a remodeled reception area, a new floor for the dance studio, or more flat-screen televisions throughout the centre were raised. However, the board of directors thought it would be wiser to focus on the improvement most frequently requested by our members. The upgrades suggested by the staff fall into the €1,000–€2,000 range, and we hope to be able to consider them in the coming years.\n\nNOTICE\nKildare Recreation Centre Visitors\nEffective 1 June, the cost of a daily pass for nonmembers will be €8. This modest increase will allow us to provide visitors with a much better outdoor running track. The cost of monthly and annual memberships has not changed. Please visit the registration office during regular business hours to discuss membership-related issues.",
-          "fullPassVI": "Đến: Nhân viên Trung tâm Giải trí Kildare\nTừ: Madeline Byrne\nNgày: Ngày 11 tháng 4\nChủ đề: Vé ngày\nNhư đã thảo luận trong cuộc họp nhân viên tháng 4, chúng ta đang cân nhắc tăng chi phí vé ngày từ €5 lên €9. Mức tăng chính xác sẽ được quyết định trong cuộc họp tháng 5 của chúng ta. Sự thay đổi này được dự kiến sẽ mang lại thêm €5,000 trong năm tới, khoản mà chúng ta sẽ dùng cho chi phí thay thế đường chạy ngoài trời của chúng ta. Với doanh thu tăng thêm từ sự thay đổi phí, chúng ta sẽ gần với mức €7,000 cần thiết cho việc cải thiện.\nTôi nhận ra rằng mùa chạy ngoài trời thì ngắn, và tôi biết rằng trong cuộc họp của chúng ta, một số nhân viên muốn cân nhắc các cách sử dụng khác cho số tiền này. Các khả năng sử dụng quỹ cho một khu vực lễ tân được sửa sang lại, một sàn mới cho phòng khiêu vũ, hoặc thêm tivi màn hình phẳng khắp trung tâm đã được nêu ra. Tuy nhiên, hội đồng quản trị nghĩ rằng sẽ khôn ngoan hơn khi tập trung vào cải thiện được các thành viên của chúng ta yêu cầu thường xuyên nhất. Các nâng cấp được nhân viên đề xuất nằm trong khoảng €1,000–€2,000, và chúng tôi hy vọng có thể cân nhắc chúng trong những năm tới.\n\nTHÔNG BÁO\nKhách tham quan Trung tâm Giải trí Kildare\nCó hiệu lực từ ngày 1 tháng 6, chi phí vé ngày cho người không phải thành viên sẽ là €8. Mức tăng khiêm tốn này sẽ cho phép chúng tôi cung cấp cho khách tham quan một đường chạy ngoài trời tốt hơn nhiều. Chi phí của tư cách thành viên hằng tháng và hằng năm không thay đổi. Vui lòng đến văn phòng đăng ký trong giờ làm việc thông thường để thảo luận các vấn đề liên quan đến tư cách thành viên.",
+          "fullPassEN": "www.creategreat.ca/openings\nCreate Great, an Ontario-based creative agency with a diverse range of global clients in the fashion industry, is seeking a copywriter who is passionate about fashion, understands market trends, and handles digital tools with ease.\nThe ideal candidate will be someone who works well in a fast-paced environment with team members from international backgrounds. The copywriter will collaborate with the creative team to develop brand strategies that suit customer needs and with the marketing team to ensure the success of brand-based publicity campaigns for current and prospective clients. As remote work is permitted for copywriters, residence in Canada is not required.\nTo apply, send your cover letter and résumé to the director of our creative team, Fran Benjamin, Create Great, 838 Colbert Street, London, ON N6B 3P5. Application deadline: August 5.\n\nAnnie Smith\n4810 South Bryant Street\nPortland, OR 97206\nAugust 6\nFran Benjamin\nCreate Great\n838 Colbert Street\nLondon, ON N6B 3P5\nDear Ms. Benjamin,\nI am writing to apply for the copywriter position at Create Great. As an expert fashion designer who also has writing experience, I believe I would be a valuable addition to your team. Enclosed please find my résumé.\nI have a decade of experience as the lead designer for women's collections at MODA, a clothing line in Portland. I oversee the design production process from initial market research to finished product. In my role, I work in close partnership with the marketing and production teams.\nIn addition, for the last five years, I have been maintaining my own blog. My posts focus on trends in women's fashion and how to make clothing and cosmetics more sustainable. What started as a hobby has now attracted paying advertisers and over 15,000 followers. Visit www.medesheen.com for examples of my writing.\nThank you for considering my application.\nSincerely,\nAnnie Smith\nAnnie Smith\nEnclosure",
+          "fullPassVI": "https://www.creategreat.ca/openings\nCreate Great, một công ty sáng tạo có trụ sở tại Ontario với nhiều khách hàng toàn cầu trong ngành thời trang, đang tìm kiếm một biên tập viên nội dung (copywriter) đam mê thời trang, hiểu xu hướng thị trường và sử dụng thành thạo các công cụ kỹ thuật số.\nỨng viên lý tưởng là người làm việc tốt trong môi trường nhịp độ nhanh với các thành viên từ nhiều nền tảng quốc tế. Biên tập viên sẽ hợp tác với nhóm sáng tạo để phát triển các chiến lược thương hiệu phù hợp với nhu cầu khách hàng và với nhóm tiếp thị để đảm bảo sự thành công của các chiến dịch quảng bá dựa trên thương hiệu cho khách hàng hiện tại và tiềm năng. Vì làm việc từ xa được cho phép đối với các biên tập viên, không cần phải cư trú tại Canada.\nĐể ứng tuyển, hãy gửi thư xin việc và hồ sơ của bạn đến giám đốc nhóm sáng tạo của chúng tôi, Fran Benjamin, Create Great, 838 Colbert Street, London, ON N6B 3P5. Hạn chót nộp đơn: 5 tháng 8.\n\nAnnie Smith\n4810 South Bryant Street\nPortland, OR 97206\n6 tháng 8\nFran Benjamin\nCreate Great\n838 Colbert Street\nLondon, ON N6B 3P5\nKính gửi bà Benjamin,\nTôi viết thư này để ứng tuyển vào vị trí biên tập viên tại Create Great. Là một nhà thiết kế thời trang chuyên nghiệp cũng có kinh nghiệm viết lách, tôi tin rằng mình sẽ là một bổ sung có giá trị cho nhóm của bà. Vui lòng xem hồ sơ đính kèm.\nTôi có một thập kỷ kinh nghiệm với tư cách là nhà thiết kế chính cho các bộ sưu tập phụ nữ tại MODA, một thương hiệu thời trang ở Portland. Tôi giám sát quy trình sản xuất thiết kế từ nghiên cứu thị trường ban đầu đến sản phẩm hoàn thiện. Trong vai trò của mình, tôi làm việc chặt chẽ với các nhóm tiếp thị và sản xuất.\nNgoài ra, trong năm năm qua, tôi đã duy trì blog của riêng mình. Các bài đăng của tôi tập trung vào xu hướng thời trang phụ nữ và cách làm cho trang phục và mỹ phẩm bền vững hơn. Điều bắt đầu như một sở thích nay đã thu hút các nhà quảng cáo trả tiền và hơn 15.000 người theo dõi. Truy cập www.medesheen.com để xem các ví dụ về bài viết của tôi.\nCảm ơn bà đã xem xét đơn ứng tuyển của tôi.\nTrân trọng,\nAnnie Smith\nAnnie Smith\nĐính kèm",
           "questions": [
             {
               "q": 181,
-              "enQ": "What is the purpose of the memo?",
+              "enQ": "According to the Web page, what will the job recipient be able to do?",
               "enOpts": [
-                "To announce an increase in membership numbers",
-                "To explain how certain funds will be used",
-                "To describe tasks to be done for an event",
-                "To solicit donations for a project"
+                "Work remotely",
+                "Manage a team",
+                "Travel internationally",
+                "Relocate to Canada"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=4886",
-              "answer": "B",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=3130",
+              "answer": "A",
               "noteOpts": [
-                "Mục đích của bản ghi nhớ là gì?",
-                "A. Thông báo sự gia tăng số lượng thành viên",
-                "B. Giải thích cách một số quỹ sẽ được sử dụng",
-                "C. Mô tả các nhiệm vụ cần được thực hiện cho một sự kiện",
-                "D. Kêu gọi quyên góp cho một dự án"
+                "Theo trang web, người nhận công việc sẽ có thể làm gì?",
+                "A. Làm việc từ xa",
+                "B. Quản lý một đội ngũ",
+                "C. Đi du lịch quốc tế",
+                "D. Chuyển đến sinh sống tại Canada"
               ]
             },
             {
               "q": 182,
-              "enQ": "What did the staff do at the April meeting?",
+              "enQ": "On the Web page, the word “suit” in paragraph 2, line 4, is closest in meaning to",
               "enOpts": [
-                "They designed a survey for recreation center members.",
-                "They objected to a price increase.",
-                "They proposed upgrades to a recreation center.",
-                "They considered moving a reception area."
+                "adapt",
+                "determine",
+                "invest",
+                "satisfy"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=5109",
-              "answer": "C",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=3213",
+              "answer": "D",
               "noteOpts": [
-                "Nhân viên đã làm gì tại cuộc họp tháng Tư?",
-                "A. Họ đã thiết kế một cuộc khảo sát cho các thành viên trung tâm giải trí",
-                "B. Họ phản đối việc tăng giá",
-                "C. Họ đề xuất nâng cấp cho một trung tâm giải trí",
-                "D. Họ cân nhắc việc di chuyển khu vực tiếp tân"
+                "Trên trang web, từ “suit” ở đoạn 2, dòng 4, gần nghĩa nhất với",
+                "A. thích nghi",
+                "B. xác định",
+                "C. đầu tư",
+                "D. làm hài lòng / phù hợp"
               ]
             },
             {
               "q": 183,
-              "enQ": "According to the memo, what do the recreation center members most frequently ask for?",
+              "enQ": "What is indicated about Ms. Smith?",
               "enOpts": [
-                "A remodeled reception area",
-                "A new dance studio floor",
-                "Additional flat-screen televisions",
-                "An improved outdoor running track"
+                "She has already met Ms. Benjamin.",
+                "She has worked as a copywriter.",
+                "She missed an application deadline.",
+                "She forgot to submit a required document."
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=5307",
-              "answer": "D",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=3281",
+              "answer": "C",
               "noteOpts": [
-                "Theo bản ghi nhớ các thành viên trung tâm giải trí thường yêu cầu điều gì nhất?",
-                "A. Một khu vực tiếp tân được sửa sang lại",
-                "B. Một sàn phòng khiêu vũ mới",
-                "C. Thêm các ti vi màn hình phẳng",
-                "D. Một đường chạy ngoài trời được cải thiện"
+                "Điều gì được chỉ ra về cô Smith?",
+                "A. Cô ấy đã gặp cô Benjamin.",
+                "B. Cô ấy đã từng làm việc như một người viết lời quảng cáo.",
+                "C. Cô ấy đã lỡ một hạn chót nộp đơn.",
+                "D. Cô ấy đã quên nộp một tài liệu bắt buộc."
               ]
             },
             {
               "q": 184,
-              "enQ": "In the notice, the word ''modest” in paragraph 1, line 2, is closest in meaning to",
+              "enQ": "According to the letter, what is one of Ms. Smith’s responsibilities at MODA?",
               "enOpts": [
-                "shy",
-                "modern",
-                "creative",
-                "small"
+                "Hiring fashion designers",
+                "Writing drafts of advertisements",
+                "Managing a production process",
+                "Researching sustainable clothing options"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=5400",
-              "answer": "D",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=3340",
+              "answer": "C",
               "noteOpts": [
-                "Từ “khiêm tốn” trong thông báo ở đoạn 1 dòng 2 gần nghĩa nhất với từ nào?",
-                "A. Nhút nhát",
-                "B. Hiện đại",
-                "C. Sáng tạo",
-                "D. Nhỏ"
+                "Theo bức thư, một trong những trách nhiệm của cô Smith tại MODA là gì?",
+                "A. Thuê các nhà thiết kế thời trang",
+                "B. Viết các bản thảo quảng cáo",
+                "C. Quản lý một quy trình sản xuất",
+                "D. Nghiên cứu các lựa chọn quần áo bền vững"
               ]
             },
             {
               "q": 185,
-              "enQ": "What is true about the new fee for daily passes for nonmembers?",
+              "enQ": "What most likely is Medesheen?",
               "enOpts": [
-                "It is less than what was originally considered.",
-                "It will be effective starting May 1.",
-                "It can be paid online.",
-                "It was approved at a June meeting."
+                "A brand of cosmetics",
+                "A fashion blog",
+                "An online magazine",
+                "An advertising agency"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=5487",
-              "answer": "A",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=3416",
+              "answer": "B",
               "noteOpts": [
-                "Điều gì đúng về mức phí mới cho vé ngày dành cho người không phải thành viên?",
-                "A. Nó thấp hơn mức đã được cân nhắc ban đầu",
-                "B. Nó sẽ có hiệu lực bắt đầu từ ngày 1 tháng 5",
-                "C. Nó có thể được thanh toán trực tuyến",
-                "D. Nó đã được phê duyệt tại cuộc họp tháng Sáu"
+                "Medesheen rất có thể là gì?",
+                "A. Một thương hiệu mỹ phẩm",
+                "B. Một blog thời trang",
+                "C. Một tạp chí trực tuyến",
+                "D. Một công ty quảng cáo"
               ]
             }
-          ]
+          ],
+          "title": "Questions 181-185 refer to the following Web page and letter."
         },
         {
           "imgs": [
-            "https://2023.toeicthaysang.com/de2/186.1.png",
-            "https://2023.toeicthaysang.com/de2/186.2.png",
-            "https://2023.toeicthaysang.com/de2/186.3.png"
+            "https://2024.toeicthaysang.com/de2/186.1.png",
+            "https://2024.toeicthaysang.com/de2/186.2.png",
+            "https://2024.toeicthaysang.com/de2/186.3.png"
           ],
-          "fullPassEN": "To: jsantos@coloniamenor.com\nFrom: markash@amtrcorp.com\nDate: September 4\nSubject: Job tip\nHello, Juan,\nIt was nice to see you again at the Tech Writers' Conference in Mexico City. You mentioned that your cousin Carlos Cruz wants to find a product design job here in Dallas. Well, the company I work for, AMTR Corporation, is about to post a job for a junior industrial designer, which might interest him. So far, the company has announced the opening only to current employees, but next week it will appear on the company Web site. The salary is good, and there may not be any qualified candidates in-house. Please let him know about this opportunity.\nHeide Markas\n\nhttps://www.amtrcorp.com\nAMTR\nCorporation\nHOME    ABOUT    CAREERS    >CONTACT<    BLOG\nCurrent Opportunities\nJunior Industrial Designer: This is a full-time position developing and improving the full range of products manufactured by AMTR Corporation in Dallas, Texas.\nSample Job Duties:\n- Design consumer and office supply products, including personal computers, tablets, copiers, and printers\n- Collaborate with design team and colleagues from engineering, marketing, and manufacturing departments to develop new products\n- Improve sustainability efforts by promoting the use of recycled, recyclable, and reusable materials\nQualifications:\n- Understanding of design principles, theories, and concepts\n- Ability to analyze and apply customer feedback\n- Proven analytical and problem-solving skills\n- Experience in creating sketches, storyboards, models, and prototypes\n- Bachelor's or master's degree in industrial design\n\nTo: Carlos Cruz <ccruz@bmail.com>\nFrom: Pamela Wang <wangp@amtrcorp.com>\nDate: November 11\nSubject: Job Application\nDear Mr. Cruz,\nThank you for submitting your application for junior industrial designer to AMTR Corporation. Our hiring committee has reviewed your application and determined that you meet the qualifications for the position. We will contact you shortly to schedule an initial interview. Interviews will be held on-site at our Dallas headquarters during the first two weeks of December. In the meantime, you will receive a request for professional references via e-mail. Please respond to the request as soon as you receive it.\nCordially,\nPamela Wang\nHuman Resources Specialist\nAMTR Corporation",
-          "fullPassVI": "Đến: jsantos@coloniamenor.com\nTừ: markash@amtrcorp.com\nNgày: Ngày 4 tháng 9\nChủ đề: Gợi ý việc làm\nXin chào, Juan,\nRất vui được gặp lại anh tại Hội nghị Người viết Kỹ thuật ở Thành phố Mexico. Anh đã đề cập rằng anh họ của anh Carlos Cruz muốn tìm một công việc thiết kế sản phẩm ở đây tại Dallas. À, công ty tôi làm việc, AMTR Corporation, sắp đăng một công việc cho nhà thiết kế công nghiệp cấp dưới, điều này có thể khiến anh ấy quan tâm. Cho đến nay, công ty mới chỉ thông báo vị trí mở cho nhân viên hiện tại, nhưng tuần tới nó sẽ xuất hiện trên trang Web của công ty. Mức lương tốt, và có thể không có ứng viên đủ tiêu chuẩn nào trong nội bộ. Vui lòng cho anh ấy biết về cơ hội này.\nHeide Markas\n\nwww.amtrcorp.com\nAMTR\nCorporation\nHOME  ABOUT  CAREERS  >CONTACT<  BLOG\nCác Cơ Hội Hiện Tại\nNhà Thiết Kế Công Nghiệp Cấp Dưới: Đây là một vị trí toàn thời gian phát triển và cải thiện toàn bộ phạm vi sản phẩm được sản xuất bởi AMTR Corporation ở Dallas, Texas.\nNhiệm vụ Công việc Mẫu:\n* Thiết kế các sản phẩm tiêu dùng và đồ dùng văn phòng, bao gồm máy tính cá nhân, máy tính bảng, máy photocopy, và máy in\n* Hợp tác với đội thiết kế và các đồng nghiệp từ các phòng ban kỹ thuật, tiếp thị, và sản xuất để phát triển sản phẩm mới\n* Cải thiện các nỗ lực bền vững bằng cách thúc đẩy việc sử dụng các vật liệu tái chế, có thể tái chế, và có thể tái sử dụng\nTrình độ:\n* Hiểu biết về các nguyên tắc, lý thuyết, và khái niệm thiết kế\n* Khả năng phân tích và áp dụng phản hồi của khách hàng\n* Kỹ năng phân tích và giải quyết vấn đề đã được chứng minh\n* Kinh nghiệm tạo phác thảo, bảng phân cảnh, mô hình, và nguyên mẫu\n* Bằng cử nhân hoặc thạc sĩ về thiết kế công nghiệp\n\nĐến: Carlos Cruz ccruz@bmail.com\nTừ: Pamela Wang wangp@amtrcorp.com\nNgày: Ngày 11 tháng 11\nChủ đề: Đơn xin việc\nKính gửi ông Cruz,\nCảm ơn ông đã nộp đơn ứng tuyển cho vị trí nhà thiết kế công nghiệp cấp dưới đến AMTR Corporation. Ủy ban tuyển dụng của chúng tôi đã xem xét đơn của ông và xác định rằng ông đáp ứng các trình độ cho vị trí này. Chúng tôi sẽ liên hệ với ông trong thời gian ngắn để lên lịch một cuộc phỏng vấn ban đầu. Các cuộc phỏng vấn sẽ được tổ chức tại chỗ ở trụ sở chính Dallas của chúng tôi trong hai tuần đầu tiên của tháng 12. Trong lúc đó, ông sẽ nhận được một yêu cầu cung cấp người tham khảo chuyên môn qua e-mail. Vui lòng phản hồi yêu cầu ngay khi ông nhận được nó.\nTrân trọng,\nPamela Wang\nChuyên viên Nhân sự\nAMTR Corporation",
+          "fullPassEN": "From: Akihito Nakashima <a.nakashima@gilchristshipping.com>\nTo: Fowler Office Supplies <support@fowlerofficesupplies.com>\nSubject: Order B19849\nDate: August 19\nTo Whom It May Concern,\nYesterday, I purchased some office supplies on your Web site. I received an e-mail receipt, but the costs are not itemized on it. To satisfy a new company policy, I must give my supervisor a receipt with the charges for each item listed separately. Could you e-mail me such a receipt? If not, is it possible for me to get this information myself from your Web site? Finally, can confirmations for future orders possibly be sent to more than one e-mail address? It would be ideal for my supervisor to automatically receive one.\nThank you,\nAkihito Nakashima, Executive Assistant\nGilchrist Shipping\n\nFrom: Fowler Office Supplies <support@fowlerofficesupplies.com>\nTo: Akihito Nakashima <a.nakashima@gilchristshipping.com>\nSubject: RE: Order B19849\nDate: August 19\nAttachment: B19849\nDear Mr. Nakashima,\nAttached is the receipt you requested. In apology for the inconvenience, we will provide you with 10 percent off the total price of your next order. To view a full description of any previous order, first log in to your account on our Web site, go to the \"My Orders\" tab, and then click on any order number.\nI noticed that included in each of your last few orders was an identical order for ten of a particular item. You should know that we will reduce the price for that item by 5 percent if you mark this as a recurring order. To do this, simply check the \"Recurring Order\" box on the online order form.\nAs for your final query, this is not possible right now. However, I will share the idea with our technical team.\nAll the best,\nCameron Higgins, Customer Relations\nFowler Office Supplies\n\nFowler Office Supplies\nReceipt for Order: B19849\nOrder Date: August 18\nItem - Price - Quantity - Total\nPrinter paper - $8.00/500 sheets - 10 - $80.00\nToner (black) - $50.00/cartridge - 1 - $50.00\nGel pens (blue) - $5.00/8-pack - 3 - $15.00\nStaples - $3.50/box - 2 - $7.00\nGRAND TOTAL - $152.00\nReturn Policy: Unopened merchandise may be returned by mail or in one of our stores within 60 days of purchase. For returns by mail, log in to your www.fowlerofficesupplies.com account to print a shipping label. For in-store returns, bring the item and the order number to any Fowler Office Supplies location.",
+          "fullPassVI": "Từ: Akihito Nakashima <a.nakashima@gilchristshipping.com>\nKính gửi: Fowler Office Supplies <support@fowlerofficesupplies.com>\nChủ đề: Đơn hàng B19849\nNgày: 19 tháng 8\nKính gửi quý vị,\nHôm qua, tôi đã mua một số văn phòng phẩm trên trang web của quý vị. Tôi đã nhận được biên lai qua email, nhưng các chi phí không được liệt kê chi tiết trong đó. Để đáp ứng một chính sách mới của công ty, tôi phải cung cấp cho cấp trên một biên lai có liệt kê riêng các khoản phí cho từng mặt hàng. Quý vị có thể gửi email cho tôi một biên lai như vậy không? Nếu không, tôi có thể tự lấy thông tin này từ trang web của quý vị không? Cuối cùng, liệu các xác nhận cho các đơn hàng trong tương lai có thể được gửi đến nhiều hơn một địa chỉ email không? Sẽ rất lý tưởng nếu cấp trên của tôi tự động nhận được một bản.\nTrân trọng,\nAkihito Nakashima, Trợ lý điều hành\nGilchrist Shipping\n\nTừ: Fowler Office Supplies <support@fowlerofficesupplies.com>\nKính gửi: Akihito Nakashima <a.nakashima@gilchristshipping.com>\nChủ đề: RE: Đơn hàng B19849\nNgày: 19 tháng 8\nĐính kèm: B19849\nKính gửi ông Nakashima,\nĐính kèm là biên lai ông đã yêu cầu. Để xin lỗi vì sự bất tiện, chúng tôi sẽ cung cấp cho ông mức giảm giá 10 phần trăm trên tổng giá đơn hàng tiếp theo của ông. Để xem mô tả đầy đủ của bất kỳ đơn hàng trước đây nào, trước tiên hãy đăng nhập vào tài khoản của ông trên trang web của chúng tôi, vào tab \"Đơn hàng của tôi\", sau đó nhấp vào bất kỳ số đơn hàng nào.\nTôi nhận thấy rằng trong mỗi đơn hàng gần đây của ông đều có một đơn hàng giống hệt nhau cho mười đơn vị của một mặt hàng cụ thể. Ông nên biết rằng chúng tôi sẽ giảm giá mặt hàng đó 5 phần trăm nếu ông đánh dấu đây là đơn hàng định kỳ. Để thực hiện điều này, chỉ cần đánh dấu vào ô \"Đơn hàng định kỳ\" trên mẫu đặt hàng trực tuyến.\nVề câu hỏi cuối cùng của ông, điều này hiện không thể thực hiện được. Tuy nhiên, tôi sẽ chia sẻ ý kiến này với nhóm kỹ thuật của chúng tôi.\nTrân trọng,\nCameron Higgins, Quan hệ Khách hàng\nFowler Office Supplies\n\nFowler Office Supplies\nBiên lai cho Đơn hàng: B19849\nNgày đặt hàng: 18 tháng 8\nMặt hàng - Giá - Số lượng - Thành tiền\nGiấy in - $8.00/500 tờ - 10 - $80.00\nMực in (đen) - $50.00/hộp - 1 - $50.00\nBút gel (xanh) - $5.00/hộp 8 cái - 3 - $15.00\nĐinh ghim - $3.50/hộp - 2 - $7.00\nTỔNG CỘNG - $152.00\nChính sách hoàn trả: Hàng hóa chưa mở có thể được trả lại qua bưu điện hoặc tại một trong các cửa hàng của chúng tôi trong vòng 60 ngày kể từ ngày mua. Để hoàn trả qua bưu điện, hãy đăng nhập vào tài khoản www.fowlerofficesupplies.com của bạn để in nhãn vận chuyển. Để hoàn trả tại cửa hàng, hãy mang mặt hàng và số đơn hàng đến bất kỳ địa điểm Fowler Office Supplies nào.",
           "questions": [
             {
               "q": 186,
-              "enQ": "What is the purpose of the first e-mail?",
+              "enQ": "Why did Mr. Nakashima send the e-mail?",
               "enOpts": [
-                "To share information about a new job opening",
-                "To ask whether a company is hiring new staff",
-                "To learn whether a colleague will attend an upcoming conference",
-                "To congratulate someone for getting a new job"
+                "He did not receive an item he ordered.",
+                "He was mistakenly charged twice for an item.",
+                "He received a receipt that was not detailed enough.",
+                "He did not get a confirmation e-mail for a purchase he made."
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=5571",
-              "answer": "A",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=3546",
+              "answer": "C",
               "noteOpts": [
-                "Mục đích của thư điện tử đầu tiên là gì?",
-                "A. Chia sẻ thông tin về một vị trí việc làm mới",
-                "B. Hỏi liệu một công ty có đang tuyển nhân viên mới hay không",
-                "C. Tìm hiểu liệu một đồng nghiệp có tham dự hội nghị sắp tới hay không",
-                "D. Chúc mừng ai đó vì đã có công việc mới"
+                "Tại sao ông Nakashima gửi email?",
+                "A. Ông ấy đã không nhận được một mặt hàng mình đã đặt.",
+                "B. Ông ấy đã bị tính phí nhầm hai lần cho một mặt hàng.",
+                "C. Ông ấy đã nhận được một tờ hóa đơn không đủ chi tiết.",
+                "D. Ông ấy đã không nhận được email xác nhận cho một việc mua hàng mà mình đã thực hiện."
               ]
             },
             {
               "q": 187,
-              "enQ": "What does the company that Ms. Markas works for produce?",
+              "enQ": "According to the second e-mail, what will Mr. Nakashima receive with his next order?",
               "enOpts": [
-                "Guides for creating Web sites",
-                "Operating manuals for passenger airplanes",
-                "Transportation system maps",
-                "Office equipment"
+                "A catalog",
+                "A free pen",
+                "A printed receipt",
+                "A price discount"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=5757",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=3661",
               "answer": "D",
               "noteOpts": [
-                "Công ty mà cô Markas làm việc sản xuất gì?",
-                "A. Hướng dẫn tạo trang Web",
-                "B. Sổ tay hướng dẫn vận hành cho máy bay chở khách",
-                "C. Bản đồ hệ thống giao thông",
-                "D. Thiết bị văn phòng"
+                "Theo email thứ hai, ông Nakashima sẽ nhận được gì với đơn hàng tiếp theo của mình?",
+                "A. Một cuốn danh mục sản phẩm",
+                "B. Một chiếc bút miễn phí",
+                "C. Một tờ hóa đơn in sẵn",
+                "D. Một khoản giảm giá"
               ]
             },
             {
               "q": 188,
-              "enQ": "What is explained in the second e-mail?",
+              "enQ": "For what item does Mr. Higgins suggest that Mr. Nakashima select “Recurring Order’?",
               "enOpts": [
-                "The procedure for submitting an application",
-                "What applicants can expect during an interview",
-                "The next steps of the hiring process",
-                "AMTR Corporation’s expectations for designers"
+                "Printer paper",
+                "Toner",
+                "Gel pens",
+                "Staples"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=5929",
-              "answer": "C",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=3709",
+              "answer": "A",
               "noteOpts": [
-                "Điều gì được giải thích trong thư điện tử thứ hai?",
-                "A. Quy trình nộp đơn ứng tuyển",
-                "B. Điều mà ứng viên có thể mong đợi trong buổi phỏng vấn",
-                "C. Các bước tiếp theo của quy trình tuyển dụng",
-                "D. Những kỳ vọng của Tập đoàn AMTR đối với các nhà thiết kế"
+                "Đối với mặt hàng nào ông Higgins gợi ý ông Nakashima nên chọn “Recurring Order” (Đặt hàng định kỳ)?",
+                "A. Giấy in",
+                "B. Mực in",
+                "C. Bút gel",
+                "D. Kim bấm"
               ]
             },
             {
               "q": 189,
-              "enQ": "What will AMTR Corporation do during the first two weeks of December?",
+              "enQ": "What will Mr. Higgins ask the technical team to look into?",
               "enOpts": [
-                "Move its headquarters to Dallas",
-                "Begin reviewing applications",
-                "Send out professional references",
-                "Perform the first round of interviews"
+                "Improving the Web site’s response rate",
+                "Providing an option to send receipts to multiple e-mail addresses",
+                "Placing a link to customers’ order history on the home page",
+                "Making return labels printable from any device"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=6104",
-              "answer": "D",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=3856",
+              "answer": "B",
               "noteOpts": [
-                "Tập đoàn AMTR sẽ làm gì trong hai tuần đầu của tháng Mười Hai?",
-                "A. Chuyển trụ sở chính đến Dallas",
-                "B. Bắt đầu xem xét các đơn ứng tuyển",
-                "C. Gửi thư giới thiệu nghề nghiệp",
-                "D. Tiến hành vòng phỏng vấn đầu tiên"
+                "Ông Higgins sẽ yêu cầu đội ngũ kỹ thuật xem xét điều gì?",
+                "A. Cải thiện tốc độ phản hồi của trang web",
+                "B. Cung cấp một tùy chọn để gửi hóa đơn đến nhiều địa chỉ email",
+                "C. Đặt một liên kết đến lịch sử đơn hàng của khách hàng trên trang chủ",
+                "D. Làm cho các nhãn trả hàng có thể in được từ bất kỳ thiết bị nào"
               ]
             },
             {
               "q": 190,
-              "enQ": "What is most likely true about Mr. Cruz?",
+              "enQ": "What is needed to return an item at a Fowler Office Supplies store?",
               "enOpts": [
-                "He will begin the job in November.",
-                "He has a degree in industrial design.",
-                "He has relocated to Dallas.",
-                "He recently interviewed for a new job."
+                "The original receipt",
+                "A credit card number",
+                "A confirmation e-mail",
+                "The order number"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=6178",
-              "answer": "B",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=3968",
+              "answer": "D",
               "noteOpts": [
-                "Điều gì nhiều khả năng đúng về ông Cruz?",
-                "A. Ông ấy sẽ bắt đầu công việc vào tháng Mười Một",
-                "B. Ông ấy có bằng về thiết kế công nghiệp",
-                "C. Ông ấy đã chuyển đến Dallas",
-                "D. Ông ấy gần đây đã phỏng vấn cho một công việc mới"
+                "Cần những gì để trả lại một mặt hàng tại một cửa hàng Fowler Office Supplies?",
+                "A. Hóa đơn gốc",
+                "B. Một số thẻ tín dụng",
+                "C. Một email xác nhận",
+                "D. Mã số đơn hàng"
               ]
             }
-          ]
+          ],
+          "title": "Questions 186-190 refer to the following e-mails and receipt."
         },
         {
           "imgs": [
-            "https://2023.toeicthaysang.com/de2/191.1.png",
-            "https://2023.toeicthaysang.com/de2/191.2.png",
-            "https://2023.toeicthaysang.com/de2/191.3.png"
+            "https://2024.toeicthaysang.com/de2/191.1.png",
+            "https://2024.toeicthaysang.com/de2/191.2.png",
+            "https://2024.toeicthaysang.com/de2/191.3.png"
           ],
-          "fullPassEN": "Shingle Town Roofing\nColor Options\nChoose from our many colors of high-quality, affordable shingles for a long-lasting, beautiful roof.\nColor Product Number\nLawnwood Blue (#302)\nCharcoal Bliss (#702)\nFoxwood Gray (#704)\nMission Gray (#707)\nCedarwood (#203)\nHickory Nut (#209)\nBrick Red (#505)\n\nJoanne Westley\n8021 Daffodil Lane\nHerndon, Virginia 22090\nDear Ms. Westley,\nThis is to confirm our agreement to replace your roof in Herndon, Virginia, on August 4. As discussed, we will be using our exclusive Prime Technology System with Hickory Nut color shingles. The Prime Technology System is guaranteed to keep your house dry and has a ten-year warranty for labor and materials.\nOur crew will arrive at 8:30 A.M. We have received your deposit and signed contract. The remainder of the charge is due upon completion of the job. Please contact us if you have any questions.\nMartin Sage\nMartin Sage, customer service representative\nShingle Town Roofing\n\nShingle Town Roofing: Installation Schedule for August 1–7\nNote to installation crew: Be sure to confirm the job location and the required materials.\nSunday - 1\nMonday - 2 - Harris residence (#702)\nTuesday - 3 - Landsford Apartments E-3 (#505)\nWednesday - 4 - Westley residence (#209)\nThursday - 5 - Kendelwood Motel (#302)\nFriday - Hopewell Gardens (#704)\nSaturday - 7 - Hopewell Gardens (#704)",
-          "fullPassVI": "Shingle Town Roofing\nCác lựa chọn màu sắc\nHãy chọn từ nhiều màu sắc của chúng tôi về các tấm lợp chất lượng cao, giá phải chăng cho một mái nhà bền lâu, đẹp.\nMàu Số sản phẩm\nLawnwood Blue (#302)\nCharcoal Bliss (#702)\nFoxwood Gray (#704)\nMission Gray (#707)\nCedarwood (#203)\nHickory Nut (#209)\nBrick Red (#505)\n\nJoanne Westley\n8021 Daffodil Lane\nHerndon, Virginia 22090\nKính gửi cô Westley,\nThư này là để xác nhận thỏa thuận của chúng ta về việc thay mái nhà của cô ở Herndon, Virginia, vào ngày 4 tháng 8. Như đã thảo luận, chúng tôi sẽ sử dụng Hệ thống Công nghệ Prime độc quyền của chúng tôi với các tấm lợp màu Hickory Nut. Hệ thống Công nghệ Prime được đảm bảo giữ cho nhà của cô khô ráo và có bảo hành mười năm cho nhân công và vật liệu.\nĐội của chúng tôi sẽ đến lúc 8:30 sáng. Chúng tôi đã nhận được tiền đặt cọc và hợp đồng đã ký của cô. Phần còn lại của khoản phí đến hạn khi hoàn thành công việc. Vui lòng liên hệ với chúng tôi nếu cô có bất kỳ câu hỏi nào.\nMartin Sage\nMartin Sage, đại diện dịch vụ khách hàng\nShingle Town Roofing\n\nShingle Town Roofing: Lịch Lắp Đặt cho ngày 1–7 tháng 8\nGhi chú cho đội lắp đặt: Hãy chắc chắn xác nhận địa điểm công việc và các vật liệu cần thiết.\nChủ Nhật - 1\nThứ Hai - 2 - nhà Harris (#702)\nThứ Ba - 3 - Căn hộ Landsford E-3 (#505)\nThứ Tư - 4 - nhà Westley (#209)\nThứ Năm - 5 - Kendelwood Motel (#302)\nThứ Sáu - Hopewell Gardens (#704)\nThứ Bảy - 7 - Hopewell Gardens (#704)",
+          "fullPassEN": "Crawford and Duval Opens Brick-and-Mortar Stores\nHONG KONG (18 February)—Crawford and Duval, the online retailer known for its handcrafted blankets, decorative pillows, and other household goods, has established four brick-and-mortar stores in Hong Kong. Last Monday, the company celebrated the grand opening of boutique stores in Causeway Bay, Discovery Bay, and Sheung Wan in addition to a large department store in Central District. While the boutique stores carry the most popular of the small household goods for which Crawford and Duval is famous, the Central District location also boasts an indoor plant department and an on-site café that features specialty coffees, teas, and light snacks. Moreover, it has a much more extensive selection of the merchandise than what is available through the company's Web site.\n\nwww.crawfordandduval.com.hk\nHOME - Best Sellers - Full Catalogue - Shopping Cart\nCrawford and Duval comes to our loyal shoppers in Hong Kong!\nCrawford and Duval is pleased to announce the opening of its first brick-and-mortar stores in the following locations: Causeway Bay, Discovery Bay, Sheung Wan, and Central District.\nSince the launch of our online store five years ago, we have helped you to create the living space of your dreams. Now we make it even easier to decorate your home. Each location has an interior designer on staff, so you can consult with an expert in person while you browse our popular items.\nAll locations are convenient to public transportation. Our Central District location offers free parking in its attached car park.\nAs part of our grand-opening celebration, shoppers who visit one of our stores before 1 March will receive a gift card for HK$70 to use during their visit.\nMembers of our online Frequent Purchase Club will receive the same benefits in our stores, including a 10 percent discount on purchases of HK$500 or more.\n\nCrawford and Duval\nCustomer Receipt\nDate: 23 February\nItem - Price\nBamboo table lamp - HK$1,450.00\nDecorative cushions, set of two - HK$750.00\nAloe plant in a 7.5-litre planter - HK$300.00\nMachine-washable wool blanket - HK$2,000.00\nSub Total - HK$4,500.00\nLess 10% - HK$450.00\nTOTAL - HK$4,050.00\nCash\nGift card number:\nCredit card number: **************5598\nName on the credit card: Mei-Lin Fong\nStop at our in-store café for a treat!",
+          "fullPassVI": "Crawford and Duval Khai Trương Cửa Hàng Thực Thể\nHONG KONG (18 tháng 2) — Crawford and Duval, nhà bán lẻ trực tuyến nổi tiếng với những chiếc chăn thủ công, gối trang trí và các đồ gia dụng khác, đã thành lập bốn cửa hàng thực thể tại Hong Kong. Thứ Hai tuần trước, công ty đã tổ chức lễ khai trương trọng thể các cửa hàng boutique tại Causeway Bay, Discovery Bay và Sheung Wan, ngoài ra còn có một cửa hàng bách hóa lớn tại Central District. Trong khi các cửa hàng boutique bày bán những đồ gia dụng nhỏ phổ biến nhất mà Crawford and Duval nổi tiếng, địa điểm Central District còn có thêm khu đồ cây nội thất và một quán cà phê tại chỗ phục vụ cà phê đặc sản, trà và đồ ăn nhẹ. Hơn nữa, nơi đây có bộ sưu tập hàng hóa phong phú hơn nhiều so với những gì có sẵn trên trang web của công ty.\n\nhttps://www.crawfordandduval.com.hk\nTRANG CHỦ - Bán chạy nhất - Danh mục đầy đủ - Giỏ hàng\nCrawford and Duval đến với những khách hàng trung thành tại Hong Kong!\nCrawford and Duval vui mừng thông báo khai trương các cửa hàng thực thể đầu tiên tại các địa điểm sau: Causeway Bay, Discovery Bay, Sheung Wan và Central District.\nKể từ khi ra mắt cửa hàng trực tuyến năm năm trước, chúng tôi đã giúp bạn tạo ra không gian sống trong mơ của mình. Giờ đây chúng tôi giúp bạn trang trí ngôi nhà dễ dàng hơn nữa. Mỗi địa điểm đều có một nhà thiết kế nội thất trong biên chế, vì vậy bạn có thể tham khảo ý kiến chuyên gia trực tiếp trong khi duyệt xem các mặt hàng phổ biến của chúng tôi.\nTất cả các địa điểm đều thuận tiện đến bằng phương tiện giao thông công cộng. Địa điểm Central District của chúng tôi cung cấp bãi đậu xe miễn phí tại bãi xe đính kèm.\nLà một phần của lễ kỷ niệm khai trương, khách hàng ghé thăm một trong các cửa hàng của chúng tôi trước ngày 1 tháng 3 sẽ nhận được thẻ quà tặng HK$70 để sử dụng trong chuyến thăm của họ.\nThành viên của Câu lạc bộ Mua hàng Thường xuyên trực tuyến sẽ nhận được các quyền lợi tương tự tại các cửa hàng của chúng tôi, bao gồm giảm giá 10 phần trăm cho các giao dịch mua từ HK$500 trở lên.\n\nCrawford and Duval\nBiên lai Khách hàng\nNgày: 23 tháng 2\nMặt hàng - Giá\nĐèn bàn tre - HK$1.450,00\nGối trang trí, bộ hai cái - HK$750,00\nCây lô hội trong chậu 7,5 lít - HK$300,00\nChăn len giặt máy được - HK$2.000,00\nTạm tính - HK$4.500,00\nGiảm 10% - HK$450,00\nTỔNG CỘNG - HK$4.050,00\nTiền mặt\nSố thẻ quà tặng:\nSố thẻ tín dụng: **************5598\nTên trên thẻ tín dụng: Mei-Lin Fong\nHãy ghé quán cà phê trong cửa hàng để thưởng thức!",
           "questions": [
             {
               "q": 191,
-              "enQ": "What is the purpose of the letter?",
+              "enQ": "What is the purpose of the article?",
               "enOpts": [
-                "To get a cost estimate for a new roof",
-                "To request a deposit for a job",
-                "To ask a contractor to do a project",
-                "To finalize a business arrangement"
+                "To compare locally made products",
+                "To announce store openings",
+                "To list changes to a Web site",
+                "To review a café"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=6251",
-              "answer": "D",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=4000",
+              "answer": "B",
               "noteOpts": [
-                "Mục đích của lá thư là gì?",
-                "A. Nhận báo giá cho một mái nhà mới",
-                "B. Yêu cầu tiền đặt cọc cho một công việc",
-                "C. Yêu cầu một nhà thầu thực hiện một dự án",
-                "D. Hoàn tất một thỏa thuận kinh doanh"
+                "Mục đích của bài báo là gì?",
+                "A. Để so sánh các sản phẩm được sản xuất tại địa phương",
+                "B. Để thông báo việc khai trương các cửa hàng",
+                "C. Để liệt kê các thay đổi đối với một trang web",
+                "D. Để đánh giá một quán cà phê"
               ]
             },
             {
               "q": 192,
-              "enQ": "What does Mr. Sage indicate about the Prime Technology System?",
+              "enQ": "What does the Web site indicate about Crawford and Duval?",
               "enOpts": [
-                "It requires a separate fee for the ten-year warranty.",
-                "It prevents water from leaking into a house.",
-                "It is available for only certain types of shingles.",
-                "It requires a large crew to install."
+                "It has store locations around the world.",
+                "It has been in business for ten years.",
+                "It employs interior designers.",
+                "It offers free parking at all of its stores."
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=6351",
-              "answer": "B",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=4086",
+              "answer": "C",
               "noteOpts": [
-                "Ông Sage cho biết điều gì về Prime Technology System?",
-                "A. Nó yêu cầu một khoản phí riêng cho bảo hành mười năm",
-                "B. Nó ngăn nước rò rỉ vào nhà",
-                "C. Nó chỉ có sẵn cho một số loại tấm lợp nhất định",
-                "D. Nó cần một đội thi công lớn để lắp đặt"
+                "Trang web chỉ ra điều gì về Crawford và Duval?",
+                "A. Nó có các địa điểm cửa hàng trên khắp thế giới.",
+                "B. Nó đã kinh doanh được mười năm.",
+                "C. Nó thuê các nhà thiết kế nội thất.",
+                "D. Nó cung cấp chỗ đậu xe miễn phí tại tất cả các cửa hàng của mình."
               ]
             },
             {
               "q": 193,
-              "enQ": "Where is a shingles installation scheduled to take place on August 3?",
+              "enQ": "According to the receipt, what is indicated about the blanket?",
               "enOpts": [
-                "At the Harris residence",
-                "At Landsford Apartments",
-                "At Kendelwood Motel",
-                "At Hopewell Gardens"
+                "It can be washed by machine.",
+                "It is made of cotton.",
+                "It is queen-sized.",
+                "It comes in a set with pillows."
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=6442",
-              "answer": "B",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=4210",
+              "answer": "A",
               "noteOpts": [
-                "Việc lắp đặt tấm lợp được lên lịch diễn ra ở đâu vào ngày 3 tháng 8?",
-                "A. Tại nhà Harris",
-                "B. Tại Landsford Apartments",
-                "C. Tại Kendelwood Motel",
-                "D. Tại Hopewell Gardens"
+                "Theo biên lai, điều gì được chỉ ra về chiếc chăn?",
+                "A. Nó có thể được giặt bằng máy.",
+                "B. Nó được làm bằng bông.",
+                "C. Nó có kích thước cho giường đôi lớn (queen-sized).",
+                "D. Nó đi kèm trong một bộ với gối."
               ]
             },
             {
               "q": 194,
-              "enQ": "What color shingles will the crew be installing at Kendelwood Motel?",
+              "enQ": "Where most likely did Ms. Fong make her purchase?",
               "enOpts": [
-                "Lawnwood Blue",
-                "Charcoal Bliss",
-                "Mission Gray",
-                "Brick Red"
+                "On a Web site",
+                "In a boutique shop",
+                "At a café",
+                "In a department store"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=6476",
-              "answer": "A",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=4274",
+              "answer": "D",
               "noteOpts": [
-                "Đội thi công sẽ lắp đặt tấm lợp màu gì tại Kendelwood Motel?",
-                "A. Lawnwood Blue",
-                "B. Charcoal Bliss",
-                "C. Mission Gray",
-                "D. Brick Red"
+                "Cô Fong rất có thể đã thực hiện việc mua hàng của mình ở đâu?",
+                "A. Trên một trang web",
+                "B. Trong một cửa hàng boutique",
+                "C. Tại một quán cà phê",
+                "D. Trong một cửa hàng bách hóa"
               ]
             },
             {
               "q": 195,
-              "enQ": "When will Shingle Town Roofing do work at 8021 Daffodil Lane?",
+              "enQ": "What is suggested about Ms. Fong?",
               "enOpts": [
-                "On Monday",
-                "On Tuesday",
-                "On Wednesday",
-                "On Thursday"
+                "She often buys food from Crawford and Duval.",
+                "She is a member of the Frequent Purchase Club.",
+                "She applied a gift card to her purchase.",
+                "She shopped during a grand-opening event."
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=6522",
-              "answer": "C",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=4415",
+              "answer": "B",
               "noteOpts": [
-                "Shingle Town Roofing sẽ làm việc tại 8021 Daffodil Lane khi nào?",
-                "A. Vào thứ Hai",
-                "B. Vào thứ Ba",
-                "C. Vào thứ Tư",
-                "D. Vào thứ Năm"
+                "Điều gì được gợi ý về cô Fong?",
+                "A. Cô ấy thường xuyên mua thực phẩm từ Crawford và Duval.",
+                "B. Cô ấy là thành viên của Câu lạc bộ Mua hàng Thường xuyên.",
+                "C. Cô ấy đã áp dụng một thẻ quà tặng vào việc mua hàng của mình.",
+                "D. Cô ấy đã mua sắm trong một sự kiện khai trương."
               ]
             }
-          ]
+          ],
+          "title": "Questions 191-195 refer to the following article, Web site, and receipt."
         },
         {
           "imgs": [
-            "https://2023.toeicthaysang.com/de2/196.1.png",
-            "https://2023.toeicthaysang.com/de2/196.2.png",
-            "https://2023.toeicthaysang.com/de2/196.3.png"
+            "https://2024.toeicthaysang.com/de2/196.1.png",
+            "https://2024.toeicthaysang.com/de2/196.2.png",
+            "https://2024.toeicthaysang.com/de2/196.3.png"
           ],
-          "fullPassEN": "https://carinasolutions.com/home\nHOME - Services - Contact Us - Reviews\nCarina Solutions\nThe Best Software Option for Hotel Management\nWe will help you manage all aspects of your hotel. Whether you need help with your reservation system, managing staff, or improving your advertising and online presence, our software will work for you!\nHere are just a few of the tasks our software can do.\n- Manage online bookings and payments\n- Track staff hours and vacation time\n- Promote your hotel on top booking Web sites\n- Manage property maintenance\nContact us today to begin using the trial version of our software completely free for three months. More information about the pricing and features of the Premier software version can be found on the Services page of our Web site.\n\nhttps://carinasolutions.com/reviews\nHome - Services - Contact Us - REVIEWS\nMy trial version of the Carina Solutions hotel management software expires tomorrow, and I have to decide whether to purchase the Premier version or search for something better.\nI have two main concerns.\n- The reservations module does not allow you to keep information about repeat guests on file. This forces staff to reenter repeat customers’ information manually, which wastes time.\n- The software offers full functionality only when accessed on a desktop computer, which is unfortunate because I do almost everything on my mobile phone. The interface should be the same no matter what device you use.\n—Submitted by Susan Yan\n\nhttps://carinasolutions.com/reviews_response\nHome - Services - Contact Us - REVIEWS\nDear Ms. Yan,\nGood news! We have updated some features of Carina Solutions since you began your trial subscription. There is now an automatic rebooking feature that you can use to register repeat guests, cutting down on manual data entry.\nAdditionally, you should know that one of the differences between the trial version and the Premier version is that the interfaces are the same across all devices.\nRemember, Carina Solutions hotel management software is more than just a booking tool. Learning about all the features in the Premier version can help you fill your hotel with happy customers. Make sure to visit carinasolutions.com to see our instructional videos.\nMarcus Feldman\nCarina Solutions representative",
-          "fullPassVI": "carinasolutions.com/home\nHOME - Dịch vụ - Liên hệ Chúng tôi - Đánh giá\nCarina Solutions\nLựa chọn Phần mềm Tốt nhất cho Quản lý Khách sạn\nChúng tôi sẽ giúp bạn quản lý tất cả các khía cạnh của khách sạn của bạn. Dù bạn cần trợ giúp với hệ thống đặt phòng của mình, quản lý nhân viên, hoặc cải thiện quảng cáo và sự hiện diện trực tuyến của mình, phần mềm của chúng tôi sẽ hiệu quả cho bạn!\nĐây chỉ là một vài trong số các nhiệm vụ phần mềm của chúng tôi có thể làm.\n* Quản lý đặt phòng trực tuyến và thanh toán\n* Theo dõi giờ làm việc và thời gian nghỉ phép của nhân viên\n* Quảng bá khách sạn của bạn trên các trang Web đặt phòng hàng đầu\n* Quản lý bảo trì tài sản\nLiên hệ chúng tôi hôm nay để bắt đầu sử dụng phiên bản dùng thử của phần mềm chúng tôi hoàn toàn miễn phí trong ba tháng. Thông tin thêm về giá cả và các tính năng của phiên bản phần mềm Premier có thể được tìm thấy trên trang Dịch vụ của trang Web của chúng tôi.\n\ncarinasolutions.com/reviews\nHome - Dịch vụ - Liên hệ Chúng tôi - ĐÁNH GIÁ\nPhiên bản dùng thử phần mềm quản lý khách sạn Carina Solutions của tôi hết hạn vào ngày mai, và tôi phải quyết định liệu có mua phiên bản Premier hay tìm thứ gì đó tốt hơn.\nTôi có hai mối quan ngại chính.\n* Mô-đun đặt phòng không cho phép bạn giữ thông tin về khách quay lại trong hồ sơ. Điều này buộc nhân viên nhập lại thông tin của khách hàng quay lại một cách thủ công, điều này lãng phí thời gian.\n* Phần mềm cung cấp đầy đủ chức năng chỉ khi được truy cập trên máy tính để bàn, điều này thật không may vì tôi làm hầu như mọi thứ trên điện thoại di động của mình. Giao diện nên giống nhau bất kể bạn sử dụng thiết bị nào.\n—Được gửi bởi Susan Yan\n\ncarinasolutions.com/reviews_response\nHome - Dịch vụ - Liên hệ Chúng tôi - ĐÁNH GIÁ\nKính gửi cô Yan,\nTin tốt đây! Chúng tôi đã cập nhật một số tính năng của Carina Solutions kể từ khi cô bắt đầu đăng ký dùng thử. Hiện nay có một tính năng đặt lại tự động mà cô có thể sử dụng để đăng ký khách quay lại, cắt giảm việc nhập dữ liệu thủ công.\nNgoài ra, cô nên biết rằng một trong những điểm khác biệt giữa phiên bản dùng thử và phiên bản Premier là các giao diện giống nhau trên tất cả các thiết bị.\nHãy nhớ rằng, phần mềm quản lý khách sạn Carina Solutions không chỉ là một công cụ đặt phòng. Tìm hiểu về tất cả các tính năng trong phiên bản Premier có thể giúp cô lấp đầy khách sạn của mình bằng những khách hàng hài lòng. Hãy chắc chắn truy cập carinasolutions.com để xem các video hướng dẫn của chúng tôi.\nMarcus Feldman\nĐại diện Carina Solutions",
+          "fullPassEN": "www.osawacorporateteambuilding.com/home\nHOME - Requests - Reviews - Contact Us\nOsawa Corporate Team Building\nBring your team together to promote cooperation while having fun! Our activities increase job satisfaction and engagement. We do all the planning so you can relax. Simply choose the event that is right for your team.\nScavenger Hunt—An outdoor game in which teams are given a list of objects to find and photograph with their phone or camera. Group size: 10–50 people. Time: 3 hours.\nGame Day—This is a high-energy game day with fun team activities. This event builds team strength, communication, and problem solving skills. Group size: 20–500 people. Time: 2 hours.\nTeam Painting—Each team member creates a painting outdoors based on a predetermined theme. The paintings are linked together at the end. Group size: 6–30 people. Time: 1–2 hours.\nRobot Building—Your group will be broken into teams. Each team builds a robot to be used in challenges against the others. Group size: 10–30 people. Time: 2–3 hours.\nAll Chocolate—Your group will have the chance to use engineering skills to build a tower of chocolate. Then you learn how to make chocolate from a local chocolatier. Group size: 8–150 people. Time: 2 hours.\nBook an event in October and receive 15 percent off.\n\nwww.osawacorporateteambuilding.com/requests\nHome REQUESTS Reviews Contact Us\nName: Alexandra Peterson\nCompany name: Whitten Tech\nE-mail address: apeterson@whittentech.com\nPhone: 617-555-0123\nLocation and date of event: Downtown Boston, October 15\nWhat events are you interested in? Choose your top three.\n1 - Game Day | 2 - Scavenger Hunt | 3 - Team Painting\nNumber of participants: 28 people\nAdditional information\nWe are interested in a fun activity for our sales team before the busy selling season begins. We spend a lot of time in the office, so we want an outdoor event.\nWe will contact you within three business days with a quote and confirmation.\n\nwww.osawacorporateteambuilding.com/reviews\nHome - Requests - REVIEWS - Contact Us\nWhat Our Customers Are Saying\nPosted by Whitten Tech on October 20\nOur team hired Osawa Corporate Team Building to lead an activity for the sales staff at Whitten Tech. The facilitator of the Scavenger Hunt, Lorenzo Benford, was excellent. The 28 members of our sales team all had positive feedback. They reported that they loved exploring the city, learning about its history, and finding new local attractions, even on a cold and cloudy day. I highly recommend this activity. The only downside was that we did not realize how far we would be walking. It would have been helpful to have an idea of the walking distances so we could have been fully prepared.",
+          "fullPassVI": "https://www.osawacorporateteambuilding.com/home\nTRANG CHỦ - Yêu cầu - Đánh giá - Liên hệ\nOsawa Corporate Team Building\nGắn kết đội ngũ của bạn để thúc đẩy sự hợp tác trong khi vui vẻ! Các hoạt động của chúng tôi tăng sự hài lòng và gắn kết trong công việc. Chúng tôi lo toàn bộ việc lập kế hoạch để bạn có thể thư giãn. Chỉ cần chọn sự kiện phù hợp với nhóm của bạn.\nTrò chơi Tìm kiếm — Một trò chơi ngoài trời trong đó các nhóm được cho một danh sách các vật phẩm cần tìm và chụp ảnh bằng điện thoại hoặc máy ảnh. Quy mô nhóm: 10-50 người. Thời gian: 3 giờ.\nNgày Thi Đấu — Đây là ngày thi đấu năng động với các hoạt động nhóm vui vẻ. Sự kiện này xây dựng sức mạnh nhóm, kỹ năng giao tiếp và giải quyết vấn đề. Quy mô nhóm: 20-500 người. Thời gian: 2 giờ.\nVẽ Tranh Nhóm — Mỗi thành viên nhóm tạo ra một bức tranh ngoài trời dựa trên một chủ đề định sẵn. Các bức tranh được ghép lại với nhau ở cuối. Quy mô nhóm: 6-30 người. Thời gian: 1-2 giờ.\nLắp Ráp Robot — Nhóm của bạn sẽ được chia thành các nhóm nhỏ. Mỗi nhóm xây dựng một robot để sử dụng trong các thử thách chống lại nhau. Quy mô nhóm: 10-30 người. Thời gian: 2-3 giờ.\nTất cả Sô cô la — Nhóm của bạn sẽ có cơ hội sử dụng kỹ năng kỹ thuật để xây dựng một tháp sô cô la. Sau đó bạn học cách làm sô cô la từ một người thợ làm sô cô la địa phương. Quy mô nhóm: 8-150 người. Thời gian: 2 giờ.\nĐặt sự kiện vào tháng 10 và nhận giảm giá 15 phần trăm.\n\nhttps://www.osawacorporateteambuilding.com/requests\nTrang chủ - YÊU CẦU - Đánh giá - Liên hệ\nTên: Alexandra Peterson\nTên công ty: Whitten Tech\nĐịa chỉ email: apeterson@whittentech.com\nĐiện thoại: 617-555-0123\nĐịa điểm và ngày sự kiện: Downtown Boston, 15 tháng 10\nBạn quan tâm đến những sự kiện nào? Chọn ba lựa chọn hàng đầu của bạn.\n1 - Ngày Thi Đấu | 2 - Trò chơi Tìm kiếm | 3 - Vẽ Tranh Nhóm\nSố người tham gia: 28 người\nThông tin bổ sung\nChúng tôi quan tâm đến một hoạt động vui vẻ cho đội ngũ bán hàng trước mùa bán hàng bận rộn bắt đầu. Chúng tôi dành nhiều thời gian trong văn phòng, vì vậy chúng tôi muốn một sự kiện ngoài trời.\nChúng tôi sẽ liên hệ với bạn trong vòng ba ngày làm việc với báo giá và xác nhận.\n\nhttps://www.osawacorporateteambuilding.com/reviews\nTrang chủ - Yêu cầu - ĐÁNH GIÁ - Liên hệ\nKhách Hàng Nói Gì Về Chúng Tôi\nĐăng bởi Whitten Tech vào ngày 20 tháng 10\nNhóm của chúng tôi đã thuê Osawa Corporate Team Building để tổ chức một hoạt động cho nhân viên bán hàng tại Whitten Tech. Người hướng dẫn Trò chơi Tìm kiếm, Lorenzo Benford, rất xuất sắc. 28 thành viên trong đội ngũ bán hàng của chúng tôi đều có phản hồi tích cực. Họ cho biết họ rất thích khám phá thành phố, tìm hiểu lịch sử của nó và tìm kiếm các điểm tham quan địa phương mới, ngay cả vào một ngày lạnh và nhiều mây. Tôi rất giới thiệu hoạt động này. Điểm trừ duy nhất là chúng tôi không nhận ra mình sẽ phải đi bộ xa đến vậy. Sẽ rất hữu ích nếu có ý tưởng về quãng đường đi bộ để chúng tôi có thể chuẩn bị đầy đủ hơn.",
           "questions": [
             {
               "q": 196,
-              "enQ": "According to the Web page, what is true about the maker of Carina Solutions software?",
+              "enQ": "What does the first Web page indicate about the Scavenger Hunt?",
               "enOpts": [
-                "It makes products for the transportation industry.",
-                "It makes two versions of its software.",
-                "Travelers use its products to find discounted hotel prices.",
-                "Its products are not yet available for sale."
+                "It requires participants to rent a camera.",
+                "It concludes with prizes for participants.",
+                "It is a suitable activity for indoors.",
+                "It takes three hours to complete."
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=6591",
-              "answer": "B",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=4491",
+              "answer": "D",
               "noteOpts": [
-                "Theo trang Web điều gì đúng về nhà sản xuất phần mềm Carina Solutions?",
-                "A. Công ty sản xuất sản phẩm cho ngành vận tải",
-                "B. Công ty sản xuất hai phiên bản phần mềm",
-                "C. Khách du lịch sử dụng sản phẩm của công ty để tìm giá khách sạn giảm giá",
-                "D. Sản phẩm của công ty vẫn chưa được bán"
+                "Trang web đầu tiên chỉ ra điều gì về Trò chơi Tìm đồ vật (Scavenger Hunt)?",
+                "A. Nó yêu cầu những người tham gia phải thuê một chiếc máy ảnh.",
+                "B. Nó kết thúc với các giải thưởng cho những người tham gia.",
+                "C. Nó là một hoạt động phù hợp cho trong nhà.",
+                "D. Phải mất ba giờ để hoàn thành."
               ]
             },
             {
               "q": 197,
-              "enQ": "What is implied about Ms. Yan?",
+              "enQ": "What event is best for a group of more than 200 people?",
               "enOpts": [
-                "She has been using Carina Solutions for nearly three months.",
-                "She was referred to Carina Solutions by another client.",
-                "She plans to stay at a hotel during her next trip.",
-                "She works for a software company."
+                "Game Day",
+                "Team Painting",
+                "Robot Building",
+                "All Chocolate"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=6724",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=4578",
               "answer": "A",
               "noteOpts": [
-                "Điều gì được ngụ ý về cô Yan?",
-                "A. Cô ấy đã sử dụng Carina Solutions gần ba tháng",
-                "B. Cô ấy được một khách hàng khác giới thiệu đến Carina Solutions",
-                "C. Cô ấy dự định ở khách sạn trong chuyến đi tiếp theo",
-                "D. Cô ấy làm việc cho một công ty phần mềm"
+                "Sự kiện nào là tốt nhất cho một nhóm hơn 200 người?",
+                "A. Ngày hội Trò chơi",
+                "B. Vẽ tranh theo nhóm",
+                "C. Chế tạo Robot",
+                "D. Tất cả về Socola"
               ]
             },
             {
               "q": 198,
-              "enQ": "What is Ms. Yan’s concern about hotel guest information?",
+              "enQ": "What is suggested about Ms. Peterson?",
               "enOpts": [
-                "It cannot be downloaded easily.",
-                "The system does not protect it with a secure password.",
-                "She cannot enter corrections to misspelled names or addresses.",
-                "It must be entered every time a guest makes a reservation."
+                "She has joined the Building Robots avert in the past.",
+                "She will receive a discount on an event.",
+                "She recently started a job at Whitten Tech.",
+                "She used to be an event planner."
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=6830",
-              "answer": "D",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=4611",
+              "answer": "B",
               "noteOpts": [
-                "Mối lo ngại của cô Yan về thông tin khách khách sạn là gì?",
-                "A. Nó không thể được tải xuống dễ dàng",
-                "B. Hệ thống không bảo vệ nó bằng mật khẩu an toàn",
-                "C. Cô ấy không thể nhập sửa lỗi cho tên hoặc địa chỉ bị viết sai",
-                "D. Nó phải được nhập mỗi lần khách đặt phòng"
+                "Điều gì được gợi ý về cô Peterson?",
+                "A. Cô ấy đã từng tham gia sự kiện Chế tạo Robot trong quá khứ.",
+                "B. Cô ấy sẽ nhận được một khoản giảm giá cho một sự kiện.",
+                "C. Cô ấy gần đây đã bắt đầu một công việc tại Whitten Tech.",
+                "D. Cô ấy đã từng là một người lập kế hoạch sự kiện."
               ]
             },
             {
               "q": 199,
-              "enQ": "What does Mr. Feldman indicate about the company’s videos?",
+              "enQ": "What can be concluded about Whitten Tech?",
               "enOpts": [
-                "They contain information about interesting places to visit.",
-                "They are available for guests to view in their hotel rooms.",
-                "They describe many ways that the company’s software can be used.",
-                "They were created by the company very recently."
+                "It changed its number of event participants.",
+                "It provided its staff with free passes to museums.",
+                "It was unable to schedule its first-choice activity.",
+                "It was not able to hold its event outside."
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=6963",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=4732",
               "answer": "C",
               "noteOpts": [
-                "Ông Feldman cho biết điều gì về các video của công ty?",
-                "A. Chúng chứa thông tin về những nơi thú vị để tham quan",
-                "B. Chúng có sẵn để khách xem trong phòng khách sạn",
-                "C. Chúng mô tả nhiều cách mà phần mềm của công ty có thể được sử dụng",
-                "D. Chúng được công ty tạo ra gần đây"
+                "Có thể kết luận gì về Whitten Tech?",
+                "A. Nó đã thay đổi số lượng người tham gia sự kiện của mình.",
+                "B. Nó đã cung cấp cho nhân viên của mình vé vào cửa bảo tàng miễn phí.",
+                "C. Nó đã không thể lên lịch cho hoạt động lựa chọn đầu tiên của mình.",
+                "D. Nó đã không thể tổ chức sự kiện của mình ở ngoài trời."
               ]
             },
             {
               "q": 200,
-              "enQ": "What is suggested about the Premier version of Carina Solutions software?",
+              "enQ": "According to the review, what was disappointing about the event?",
               "enOpts": [
-                "It must be updated every three months.",
-                "It addresses Ms. Yan’s second concern.",
-                "Optional features can be added for a fee.",
-                "Ms. Yan may contact Mr. Feldman to receive a discount coupon."
+                "The focus on local history",
+                "The lack of information about walking distances",
+                "The difficulty in keeping the group together",
+                "The uninteresting facilitator"
               ],
               "viQ": "",
               "viOpts": [],
-              "videoUrl": "https://youtu.be/k_0W3GVH-oE?t=7100",
+              "videoUrl": "https://youtu.be/6Qq5Y6uqRek?t=4868",
               "answer": "B",
               "noteOpts": [
-                "Điều gì được gợi ý về phiên bản Premier của phần mềm Carina Solutions?",
-                "A. Nó phải được cập nhật mỗi ba tháng",
-                "B. Nó giải quyết mối lo ngại thứ hai của cô Yan",
-                "C. Có thể thêm các tính năng tùy chọn với một khoản phí",
-                "D. Cô Yan có thể liên hệ ông Feldman để nhận phiếu giảm giá"
+                "Theo bài đánh giá, điều gì gây thất vọng về sự kiện?",
+                "A. Sự tập trung vào lịch sử địa phương",
+                "B. Sự thiếu thông tin về khoảng cách đi bộ",
+                "C. Khó khăn trong việc giữ nhóm ở cùng nhau",
+                "D. Người điều phối không thú vị"
               ]
             }
-          ]
+          ],
+          "title": "Questions 196-200 refer to the following Web pages."
         }
       ]
     }
