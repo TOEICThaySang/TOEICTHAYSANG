@@ -794,40 +794,26 @@ function renderScreen(idx) {
     const q=sc.q;
     left.appendChild(buildAudioBlock(q.mp3, isPractice, sk));
     if (q.img) { const img=make('img','exam-img'); img.src=q.img; img.alt=`Câu ${q.q}`; left.appendChild(img); }
+    if (showSol && (q.script || q.trans)) {
+      const sg = buildScriptBiGrid(q.script, q.trans);
+      sg.dataset.scriptsk = 'q'+q.q;
+      if (!state.showSolution['q'+q.q]) sg.style.display = 'none';
+      left.appendChild(sg);
+    }
     right.appendChild(buildQHeader(q.q,1,sk,showSol));
-    const p1parsed = parseScriptOpts(q.script, q.trans);
-    const p1solShown = showSol && !!state.showSolution['q'+q.q];
-    const optList1 = buildOptionsAll(q.q,['A','B','C','D'],sk,
-      p1parsed.enOpts.length ? p1parsed.enOpts : null,
-      p1parsed.viOpts.length ? p1parsed.viOpts : null,
-      null);
-    if (!p1solShown) optList1.querySelectorAll('.opt-text,.opt-trans').forEach(el => el.style.display='none');
-    right.appendChild(optList1);
+    right.appendChild(buildOptionsAll(q.q,['A','B','C','D'],sk,null,null,null));
   }
   if (sc.type==='p2') {
     const q=sc.q;
     left.appendChild(buildAudioBlock(q.mp3, isPractice, sk));
+    if (showSol && (q.script || q.trans)) {
+      const sg = buildScriptBiGrid(q.script, q.trans);
+      sg.dataset.scriptsk = 'q'+q.q;
+      if (!state.showSolution['q'+q.q]) sg.style.display = 'none';
+      left.appendChild(sg);
+    }
     right.appendChild(buildQHeader(q.q,2,sk,showSol));
-    const p2parsed = parseScriptOpts(q.script, q.trans);
-    const p2solShown = showSol && !!state.showSolution['q'+q.q];
-    if (p2parsed.enQ) {
-      const qTxt2 = make('div','q-text', p2parsed.enQ);
-      qTxt2.dataset.questionfor = String(q.q);
-      if (!p2solShown) qTxt2.style.display = 'none';
-      right.appendChild(qTxt2);
-    }
-    if (showSol && p2parsed.viQ) {
-      const qTr2 = make('div','q-trans', escHtml(p2parsed.viQ));
-      qTr2.dataset.vifor = String(q.q);
-      if (!p2solShown) qTr2.style.display = 'none';
-      right.appendChild(qTr2);
-    }
-    const optList2 = buildOptionsAll(q.q,['A','B','C'],sk,
-      p2parsed.enOpts.length ? p2parsed.enOpts : null,
-      p2parsed.viOpts.length ? p2parsed.viOpts : null,
-      null);
-    if (!p2solShown) optList2.querySelectorAll('.opt-text,.opt-trans').forEach(el => el.style.display='none');
-    right.appendChild(optList2);
+    right.appendChild(buildOptionsAll(q.q,['A','B','C'],sk,null,null,null));
   }
   if (sc.type==='p3') {
     const g=sc.group;
@@ -836,10 +822,10 @@ function renderScreen(idx) {
     const p3SolKey='q'+g.questions[0].q;
     const p3AllQNums=g.questions.map(q=>q.q);
     if (showSol) {
-      const sbWrap=document.createElement('div'); sbWrap.dataset.scriptsk=sk;
-      sbWrap.appendChild(buildScriptBlock(g.script, g.trans));
-      if (!state.showSolution[p3SolKey]) sbWrap.style.display='none';
-      left.appendChild(sbWrap);
+      const sg = buildScriptBiGrid(g.script, g.trans);
+      sg.dataset.scriptsk = sk;
+      if (!state.showSolution[p3SolKey]) sg.style.display = 'none';
+      left.appendChild(sg);
     }
     g.questions.forEach((q)=>right.appendChild(buildGroupQBlock(q,3,showSol,sk,showSol,p3AllQNums)));
   }
@@ -850,10 +836,10 @@ function renderScreen(idx) {
     const p4SolKey='q'+g.questions[0].q;
     const p4AllQNums=g.questions.map(q=>q.q);
     if (showSol) {
-      const sbWrap=document.createElement('div'); sbWrap.dataset.scriptsk=sk;
-      sbWrap.appendChild(buildScriptBlock(g.script, g.trans));
-      if (!state.showSolution[p4SolKey]) sbWrap.style.display='none';
-      left.appendChild(sbWrap);
+      const sg = buildScriptBiGrid(g.script, g.trans);
+      sg.dataset.scriptsk = sk;
+      if (!state.showSolution[p4SolKey]) sg.style.display = 'none';
+      left.appendChild(sg);
     }
     g.questions.forEach((q)=>right.appendChild(buildGroupQBlock(q,4,showSol,sk,showSol,p4AllQNums)));
   }
@@ -874,7 +860,7 @@ function renderScreen(idx) {
   }
   if (sc.type==='p6') {
     const g=sc.group;
-    buildLeftTabs(left,g,sk,false);
+    buildLeftTabs(left,g,sk,false,showSol);
     g.questions.forEach(q=>{
       const qKey='q'+q.q;
       const solShown6  = showSol && !!state.showSolution[qKey];
@@ -893,7 +879,7 @@ function renderScreen(idx) {
   }
   if (sc.type==='p7') {
     const g=sc.group;
-    buildLeftTabs(left,g,sk,true);
+    buildLeftTabs(left,g,sk,true,showSol);
     g.questions.forEach(q=>{
       const qKey='q'+q.q;
       const solShown7  = showSol && !!state.showSolution[qKey];
@@ -1011,14 +997,15 @@ function buildRatioBar(left) {
   left.prepend(bar);
 }
 
-function buildLeftTabs(left, g, sk, isP7) {
+function buildLeftTabs(left, g, sk, isP7, showSol) {
   const hasBi     = !!(g.fullPassEN || g.fullPassVI);
   const rawTab    = state.leftTab[sk] || 'passage';
-  const activeTab = ['passage','grid','video'].includes(rawTab) ? rawTab : 'passage';
+  const canGrid   = showSol && hasBi;
+  const activeTab = (['passage','grid','video'].includes(rawTab) && (rawTab !== 'grid' || canGrid)) ? rawTab : 'passage';
 
   const tabBar = make('div','left-tab-bar');
   const tabPassageBtn = make('button','left-tab-btn'+(activeTab==='passage'?' active':''),'Đề bài');
-  const tabGridBtn    = hasBi ? make('button','left-tab-btn'+(activeTab==='grid'?' active':''),'Dịch bài') : null;
+  const tabGridBtn    = canGrid ? make('button','left-tab-btn'+(activeTab==='grid'?' active':''),'Dịch bài') : null;
   const tabVideoBtn   = make('button','left-tab-btn'+(activeTab==='video'?' active':''),'Video giải');
   tabBar.appendChild(tabPassageBtn);
   if (tabGridBtn) tabBar.appendChild(tabGridBtn);
@@ -1244,6 +1231,33 @@ function buildScriptBlock(script, trans) {
   return frag;
 }
 
+function buildScriptBiGrid(enText, viText) {
+  const enLines = (enText || '').split('\n');
+  const viLines = (viText || '').split('\n');
+  const maxLen  = Math.max(enLines.length, viLines.length);
+  const grid = make('div', 'left-tab-pane biGrid-pane');
+  let rowIdx = 0;
+  for (let i = 0; i < maxLen; i++) {
+    const en = (enLines[i] || '').trim();
+    const vi = (viLines[i] || '').trim();
+    if (!en && !vi) {
+      const spacer = make('div', 'biGrid-spacer');
+      spacer.style.gridColumn = '1 / -1';
+      grid.appendChild(spacer);
+    } else {
+      const stripe = rowIdx % 2 === 1 ? ' biGrid-stripe' : '';
+      const enCell = make('div', 'biGrid-cell biGrid-en' + stripe);
+      const viCell = make('div', 'biGrid-cell biGrid-vi' + stripe);
+      enCell.textContent = en;
+      viCell.textContent = vi;
+      grid.appendChild(enCell);
+      grid.appendChild(viCell);
+      rowIdx++;
+    }
+  }
+  return grid;
+}
+
 function parseScriptOpts(script, trans) {
   const parse = (text) => {
     if (!text) return { question: '', opts: [] };
@@ -1312,19 +1326,21 @@ function buildQHeader(qNum, part, sk, showSolBtn, groupQNums=null) {
           if (optList) applyOptionColors(optList, state.answers[qn], getQuestionData(qn)?.q.answer, next);
         });
       } else if ([1,2,3,4].includes(part)) {
-        const sbWrap = document.querySelector(`[data-scriptsk="${sk}"]`);
-        if (sbWrap) sbWrap.style.display = next ? '' : 'none';
+        if ([3,4].includes(part)) {
+          const sbWrap = document.querySelector(`[data-scriptsk="${sk}"]`);
+          if (sbWrap) sbWrap.style.display = next ? '' : 'none';
+        }
         keys.forEach(k => {
           const qn = parseInt(k.slice(1));
           const btn = document.querySelector(`[data-solq="${qn}"]`);
           if (btn) btn.innerHTML = solHtml(next);
-          const qtr = document.querySelector(`.q-trans[data-vifor="${qn}"]`);
-          if (qtr) qtr.style.display = next ? '' : 'none';
-          document.querySelectorAll(`.options-list[data-qlist="${qn}"] .opt-trans,.options-list[data-qlist="${qn}"] .opt-note`).forEach(el => el.style.display = next ? '' : 'none');
           if ([1,2].includes(part)) {
-            const qtext = document.querySelector(`.q-text[data-questionfor="${qn}"]`);
-            if (qtext) qtext.style.display = next ? '' : 'none';
-            document.querySelectorAll(`.options-list[data-qlist="${qn}"] .opt-text`).forEach(el => el.style.display = next ? '' : 'none');
+            const sg = document.querySelector(`[data-scriptsk="q${qn}"]`);
+            if (sg) sg.style.display = next ? '' : 'none';
+          } else {
+            const qtr = document.querySelector(`.q-trans[data-vifor="${qn}"]`);
+            if (qtr) qtr.style.display = next ? '' : 'none';
+            document.querySelectorAll(`.options-list[data-qlist="${qn}"] .opt-trans,.options-list[data-qlist="${qn}"] .opt-note`).forEach(el => el.style.display = next ? '' : 'none');
           }
           const optList = document.querySelector(`.options-list[data-qlist="${qn}"]`);
           if (optList) applyOptionColors(optList, state.answers[qn], getQuestionData(qn)?.q.answer, next);

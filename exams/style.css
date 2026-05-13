@@ -827,7 +827,7 @@ body {
   width: 100%;
   gap: 8px;
   flex-shrink: 0;
-  padding-bottom: 4px;
+  padding: 4px 10px 4px 10px;
 }
 .left-tab-btn {
   -webkit-appearance: none;
@@ -881,7 +881,7 @@ body {
   border-bottom: 1px solid var(--border);
   flex-shrink: 0;
 }
-.left-tab-pane { width: 100%; }
+.left-tab-pane { width: 100%; padding: 0 10px; }
 
 .passage-title {
   font-size: .82rem;
@@ -2110,21 +2110,38 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
 .biGrid-pane {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  overflow-y: auto;
-  height: 100%;
   align-content: start;
 }
 .biGrid-cell {
-  padding: 5px 14px;
+  padding: 5px 10px;
   font-size: 13.5px;
   line-height: 1.65;
   border-bottom: 1px solid rgba(0,0,0,0.06);
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 .biGrid-en               { color: #1e3a5f; background: #f8faff; border-right: 1.5px solid var(--border); }
 .biGrid-vi               { color: #78350f; font-style: italic; background: #fffdf5; }
 .biGrid-stripe.biGrid-en { background: #eff6ff; }
 .biGrid-stripe.biGrid-vi { background: #fffbeb; }
-.biGrid-spacer           { height: 10px; background: transparent; border-bottom: none; }
+.biGrid-spacer {
+  height: 22px;
+  grid-column: 1 / -1;
+  background: transparent;
+  border-bottom: none;
+  position: relative;
+}
+.biGrid-spacer::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 1.5px;
+  background: var(--border-mid);
+  border-radius: 1px;
+}
 
 /* ══════════════════════════════════════════════════════
    TAB SONG NGỮ — THEO ĐOẠN (biAccord)

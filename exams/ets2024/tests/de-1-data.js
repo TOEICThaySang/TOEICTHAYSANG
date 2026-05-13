@@ -1823,13 +1823,14 @@ const EXAM_DATA = {
         },
         {
           "q": 108,
-          "enQ": "A. tightly",
+          "enQ": "The café ------- features poets, folk singers, and drama groups on its stage.",
           "enOpts": [
+            "tightly",
             "occasionally",
             "vaguely",
             "realistically"
           ],
-          "viQ": "The café ------- features poets, folk singers, and drama groups on its stage.",
+          "viQ": "",
           "viOpts": [],
           "videoUrl": "https://www.youtube.com/watch?v=zdpnxeyCwp4&t=361s",
           "answer": "B",
