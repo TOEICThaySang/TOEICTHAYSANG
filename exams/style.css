@@ -293,24 +293,26 @@ body {
   color: var(--yellow);
 }
 .countdown-wrap { margin-top: 4px; }
-.countdown-select {
-  width: 100%;
+.time-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 2px 0;
+}
+.time-grid-btn {
+  padding: 6px 12px;
   border: 1.5px solid var(--border-mid);
-  border-radius: var(--radius-md);
-  padding: 9px 14px;
-  font-family: inherit;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--text-main);
+  border-radius: var(--radius-sm);
   background: var(--white);
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-main);
   cursor: pointer;
   transition: var(--transition);
 }
-.countdown-select:focus {
-  outline: none;
-  border-color: var(--navy);
-  box-shadow: 0 0 0 3px rgba(26,26,46,0.1);
-}
+.time-grid-btn:hover { border-color: var(--navy); background: rgba(26,26,46,0.05); }
+.time-grid-btn.active { border-color: var(--yellow-dark); background: var(--yellow); color: var(--navy); font-weight: 700; }
 
 /* Nút Bắt đầu */
 .btn-start {
@@ -869,6 +871,16 @@ body {
   border-color: var(--navy);
   color: var(--navy);
 }
+/* Thanh tỷ lệ cho Part 1/2/3/4/5 (Part 6/7 dùng left-tab-bar) */
+.left-ratio-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 4px;
+  padding: 5px 10px;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
 .left-tab-pane { width: 100%; }
 
 .passage-title {
@@ -1170,6 +1182,28 @@ audio::-webkit-media-controls-panel { background: rgba(26,26,46,0.04); }
 }
 .btn-solution:hover { background: var(--yellow); color: var(--navy); }
 .btn-solution span { line-height: 1; }
+
+/* Nút dịch nghĩa */
+.btn-trans {
+  -webkit-appearance: none;
+  appearance: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(59,130,246,0.12);
+  border: 1.5px solid #93c5fd;
+  border-radius: var(--radius-sm);
+  padding: 5px 12px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  color: #1e40af;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.btn-trans:hover { background: #bfdbfe; color: #1e3a8a; }
+.btn-trans span { line-height: 1; }
 
 /* Câu hỏi text */
 .q-text {

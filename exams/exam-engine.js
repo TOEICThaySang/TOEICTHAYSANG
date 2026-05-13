@@ -146,7 +146,7 @@ function enterReviewFromHistory(r) {
     screens: buildScreens(r.selectedParts || []),
     currentIdx: 0, answers: r.answers || {}, flags: r.flags || {},
     timerInterval: null, started: true, finished: true, startTime: null,
-    showSolution: {}, showImg: {}, leftTab: {}, videoQ: {}, sheetFilter: 'all',
+    showSolution: {}, showTrans: {}, showImg: {}, leftTab: {}, videoQ: {}, sheetFilter: 'all',
   };
   renderExamPage();
   enterReviewMode(r);
@@ -161,7 +161,7 @@ let state = {
   screens: [], currentIdx: 0, answers: {}, flags: {}, lastRevealedQ: null, scrollToQ: null,
   timerInterval: null, secondsLeft: 0,
   started: false, finished: false, startTime: null,
-  showSolution: {}, showImg: {}, sheetFilter: 'all', leftTab: {}, videoQ: {},
+  showSolution: {}, showTrans: {}, showImg: {}, sheetFilter: 'all', leftTab: {}, videoQ: {},
 };
 const LS_KEY = 'prog_' + ED.id;
 function saveProgress() {
@@ -339,18 +339,14 @@ function renderSelectPage() {
   timeSection.appendChild(timerModeGroup);
 
   const countdownWrap = make('div','countdown-wrap');
-  const countdownSel  = document.createElement('select');
-  countdownSel.className = 'countdown-select';
-  const placeholderOpt = document.createElement('option');
-  placeholderOpt.value = ''; placeholderOpt.textContent = 'Chọn thời gian đếm ngược...';
-  placeholderOpt.disabled = true; placeholderOpt.selected = true;
-  countdownSel.appendChild(placeholderOpt);
-  for (let m = 5; m <= 120; m += 5) {
-    const opt = document.createElement('option');
-    opt.value = m; opt.textContent = `${m} phút`;
-    countdownSel.appendChild(opt);
-  }
-  countdownWrap.appendChild(countdownSel);
+  const timeGrid = make('div','time-grid');
+  const timeMins = [5,10,15,20,25,30,35,40,45,50,55,60,65,70,75,120];
+  timeMins.forEach(m => {
+    const btn = make('button','time-grid-btn', m + ' phút');
+    btn.dataset.min = m;
+    timeGrid.appendChild(btn);
+  });
+  countdownWrap.appendChild(timeGrid);
   countdownWrap.style.display = 'none';
   timeSection.appendChild(countdownWrap);
   body.appendChild(timeSection);
@@ -421,9 +417,13 @@ function renderSelectPage() {
     updateUI();
   });
 
-  countdownSel.addEventListener('change', e => {
-    selMinutes = parseInt(e.target.value) || 0;
-    updateUI();
+  timeGrid.querySelectorAll('.time-grid-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      selMinutes = parseInt(btn.dataset.min) || 0;
+      timeGrid.querySelectorAll('.time-grid-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      updateUI();
+    });
   });
 
   btnStart.addEventListener('click', () => {
@@ -521,7 +521,7 @@ function showResumeModal(saved) {
       currentIdx:saved.currentIdx, answers:saved.answers,
       flags:saved.flags||{}, startTime:saved.startTime,
       screens:buildScreens(saved.selectedParts),
-      showSolution:{}, showImg:{}, leftTab:{}, videoQ:{},
+      showSolution:{}, showTrans:{}, showImg:{}, leftTab:{}, videoQ:{},
     });
     renderExamPage();
   });
@@ -537,7 +537,7 @@ function startExam(mode, parts, seconds, timerMode) {
     timerMode: timerMode || 'down',
     screens:buildScreens(parts), currentIdx:0, answers:{}, flags:{},
     timerInterval:null, started:true, finished:false,
-    startTime:Date.now(), showSolution:{}, showImg:{}, leftTab:{}, videoQ:{},
+    startTime:Date.now(), showSolution:{}, showTrans:{}, showImg:{}, leftTab:{}, videoQ:{},
   };
   renderExamPage();
 }
@@ -556,7 +556,7 @@ function renderExamPage() {
     <div class="topbar-title">${ED.title}</div>
     <div class="topbar-right">
       <div class="timer" id="timerDisplay">${fmtTime(state.secondsLeft)}</div>
-      <button class="topbar-btn" id="btnSheet">${IC.clipboard}Phiếu tô</button>
+      <button class="topbar-btn" id="btnSheet">${IC.clipboard}Review</button>
       <button class="topbar-btn submit-btn" id="btnSubmit">Nộp bài</button>
     </div>`;
   document.body.appendChild(topbar);
@@ -566,7 +566,7 @@ function renderExamPage() {
   sheetOverlay.innerHTML = `
     <div class="answer-sheet">
       <div class="answer-sheet-head">
-        <div class="answer-sheet-head-title">Phiếu tô đáp án</div>
+        <div class="answer-sheet-head-title">Review đáp án</div>
         <div class="answer-sheet-legend">
           <div class="legend-item"><div class="legend-dot answered"></div> Đã chọn</div>
           <div class="legend-item"><div class="legend-dot unanswered"></div> Bỏ trống</div>
@@ -794,26 +794,40 @@ function renderScreen(idx) {
     const q=sc.q;
     left.appendChild(buildAudioBlock(q.mp3, isPractice, sk));
     if (q.img) { const img=make('img','exam-img'); img.src=q.img; img.alt=`Câu ${q.q}`; left.appendChild(img); }
-    if (showSol) {
-      const sbWrap=document.createElement('div'); sbWrap.dataset.scriptsk=sk;
-      sbWrap.appendChild(buildScriptBlock(q.script, q.trans));
-      if (!state.showSolution['q'+q.q]) sbWrap.style.display='none';
-      left.appendChild(sbWrap);
-    }
     right.appendChild(buildQHeader(q.q,1,sk,showSol));
-    right.appendChild(buildOptions(q.q,['A','B','C','D'],sk));
+    const p1parsed = parseScriptOpts(q.script, q.trans);
+    const p1solShown = showSol && !!state.showSolution['q'+q.q];
+    const optList1 = buildOptionsAll(q.q,['A','B','C','D'],sk,
+      p1parsed.enOpts.length ? p1parsed.enOpts : null,
+      p1parsed.viOpts.length ? p1parsed.viOpts : null,
+      null);
+    if (!p1solShown) optList1.querySelectorAll('.opt-text,.opt-trans').forEach(el => el.style.display='none');
+    right.appendChild(optList1);
   }
   if (sc.type==='p2') {
     const q=sc.q;
     left.appendChild(buildAudioBlock(q.mp3, isPractice, sk));
-    if (showSol) {
-      const sbWrap=document.createElement('div'); sbWrap.dataset.scriptsk=sk;
-      sbWrap.appendChild(buildScriptBlock(q.script, q.trans));
-      if (!state.showSolution['q'+q.q]) sbWrap.style.display='none';
-      left.appendChild(sbWrap);
-    }
     right.appendChild(buildQHeader(q.q,2,sk,showSol));
-    right.appendChild(buildOptions(q.q,['A','B','C'],sk));
+    const p2parsed = parseScriptOpts(q.script, q.trans);
+    const p2solShown = showSol && !!state.showSolution['q'+q.q];
+    if (p2parsed.enQ) {
+      const qTxt2 = make('div','q-text', p2parsed.enQ);
+      qTxt2.dataset.questionfor = String(q.q);
+      if (!p2solShown) qTxt2.style.display = 'none';
+      right.appendChild(qTxt2);
+    }
+    if (showSol && p2parsed.viQ) {
+      const qTr2 = make('div','q-trans', escHtml(p2parsed.viQ));
+      qTr2.dataset.vifor = String(q.q);
+      if (!p2solShown) qTr2.style.display = 'none';
+      right.appendChild(qTr2);
+    }
+    const optList2 = buildOptionsAll(q.q,['A','B','C'],sk,
+      p2parsed.enOpts.length ? p2parsed.enOpts : null,
+      p2parsed.viOpts.length ? p2parsed.viOpts : null,
+      null);
+    if (!p2solShown) optList2.querySelectorAll('.opt-text,.opt-trans').forEach(el => el.style.display='none');
+    right.appendChild(optList2);
   }
   if (sc.type==='p3') {
     const g=sc.group;
@@ -845,22 +859,26 @@ function renderScreen(idx) {
   }
   if (sc.type==='p5') {
     const q=sc.q;
-    const solShown = showSol && !!state.showSolution['q'+q.q];
+    const solShown   = showSol && !!state.showSolution['q'+q.q];
+    const transShown = showSol && !!state.showTrans['q'+q.q];
     if (solShown && q.videoUrl) {
       const vw=make('div','video-wrap'); vw.innerHTML=`<iframe src="${youtubeEmbed(q.videoUrl,autoplayQ===q.q)}" allow="autoplay" allowfullscreen></iframe>`; left.appendChild(vw);
     } else { left.classList.add('empty'); }
     right.appendChild(buildQHeader(q.q,5,sk,showSol));
     if (q.enQ) right.appendChild(make('div','q-text', q.enQ.replace(/ (---+)/g,'&nbsp;<span style="white-space:nowrap">$1</span>')));
-    if (solShown && q.fullSent)  right.appendChild(make('div','full-sent-en', escHtml(q.fullSent)));
-    if (solShown && q.transSent) right.appendChild(make('div','full-sent-vi', escHtml(q.transSent)));
-    right.appendChild(buildOptionsAll(q.q,['A','B','C','D'],sk,null,null,solShown?q.noteOpts:null));
+    if (showSol && q.fullSent)  { const fsEl=make('div','full-sent-en', escHtml(q.fullSent)); if(!transShown) fsEl.style.display='none'; right.appendChild(fsEl); }
+    if (showSol && q.transSent) { const tsEl=make('div','full-sent-vi', escHtml(q.transSent)); if(!transShown) tsEl.style.display='none'; right.appendChild(tsEl); }
+    const optList5 = buildOptionsAll(q.q,['A','B','C','D'],sk,null,null,showSol?q.noteOpts:null);
+    if (!transShown) optList5.querySelectorAll('.opt-note').forEach(el => el.style.display='none');
+    right.appendChild(optList5);
   }
   if (sc.type==='p6') {
     const g=sc.group;
     buildLeftTabs(left,g,sk,false);
     g.questions.forEach(q=>{
       const qKey='q'+q.q;
-      const solShown6 = showSol && !!state.showSolution[qKey];
+      const solShown6  = showSol && !!state.showSolution[qKey];
+      const transShown6 = showSol && !!state.showTrans[qKey];
       const qw=make('div','q-block'); qw.style.cssText='padding-bottom:8px';
       if (q.q === state.scrollToQ) qw.dataset.autoq = '1';
       qw.appendChild(buildQHeader(q.q,6,sk,showSol));
@@ -868,7 +886,7 @@ function renderScreen(idx) {
       const viTrans6 = rawViTrans6.some(Boolean) ? rawViTrans6 : null;
       const notes6   = q.noteOpts?.some(Boolean) ? q.noteOpts : null;
       const optList6 = buildOptionsAll(q.q,['A','B','C','D'],sk,[q.enQ,...(q.enOpts||[])],viTrans6,notes6);
-      if (!solShown6) optList6.querySelectorAll('.opt-trans,.opt-note').forEach(el => el.style.display='none');
+      if (!transShown6) optList6.querySelectorAll('.opt-trans,.opt-note').forEach(el => el.style.display='none');
       qw.appendChild(optList6);
       right.appendChild(qw);
     });
@@ -878,7 +896,8 @@ function renderScreen(idx) {
     buildLeftTabs(left,g,sk,true);
     g.questions.forEach(q=>{
       const qKey='q'+q.q;
-      const solShown7 = showSol && !!state.showSolution[qKey];
+      const solShown7  = showSol && !!state.showSolution[qKey];
+      const transShown7 = showSol && !!state.showTrans[qKey];
       const qw=make('div','q-block'); qw.style.cssText='padding-bottom:8px';
       if (q.q === state.scrollToQ) qw.dataset.autoq = '1';
       qw.appendChild(buildQHeader(q.q,7,sk,showSol));
@@ -886,7 +905,7 @@ function renderScreen(idx) {
       if(q.viQ) {
         const qtr7 = make('div','q-trans',escHtml(q.viQ));
         qtr7.dataset.vifor = String(q.q);
-        if(!solShown7) qtr7.style.display = 'none';
+        if(!transShown7) qtr7.style.display = 'none';
         qw.appendChild(qtr7);
       }
       // noteOpts[0] = ghi chú câu hỏi; noteOpts[1..4] = ghi chú đáp án A/B/C/D
@@ -896,12 +915,12 @@ function renderScreen(idx) {
       if (noteQ7) {
         const qnote7 = make('div','q-note', escHtml(noteQ7));
         qnote7.dataset.vifor = String(q.q);
-        if (!solShown7) qnote7.style.display = 'none';
+        if (!transShown7) qnote7.style.display = 'none';
         qw.appendChild(qnote7);
       }
       const viOpts7 = q.viOpts?.some(Boolean) ? q.viOpts : null;
       const optList7 = buildOptionsAll(q.q,['A','B','C','D'],sk,null,viOpts7, noteOpts7?.some(Boolean) ? noteOpts7 : null);
-      if (!solShown7) optList7.querySelectorAll('.opt-trans,.opt-note').forEach(el => el.style.display='none');
+      if (!transShown7) optList7.querySelectorAll('.opt-trans,.opt-note').forEach(el => el.style.display='none');
       qw.appendChild(optList7);
       right.appendChild(qw);
     });
@@ -922,6 +941,7 @@ function renderScreen(idx) {
   right.appendChild(nav);
   screenEl.appendChild(left);
   if (!left.classList.contains('empty')) {
+    if (!left.querySelector('.left-tab-bar')) buildRatioBar(left);
     const resizer = make('div','screen-resizer');
     screenEl.appendChild(resizer);
     initResizer(screenEl, left, resizer);
@@ -974,26 +994,38 @@ function splitParas(text) {
   return paras;
 }
 
+const _ratioSvg = (lw) => {
+  const divX = 1.5 + lw + 0.5;
+  return `<svg width="22" height="14" viewBox="0 0 22 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.7" y="0.7" width="20.6" height="12.6" rx="2.5" stroke="currentColor" stroke-width="1.4"/><rect x="1.5" y="1.5" width="${lw}" height="11" rx="1" fill="currentColor" opacity="0.35"/><line x1="${divX}" y1="1.5" x2="${divX}" y2="12.5" stroke="currentColor" stroke-width="1"/></svg>`;
+};
+
+function buildRatioBar(left) {
+  const bar = make('div','left-ratio-bar');
+  [{ pct:50, lw:9.5 }, { pct:65, lw:12 }, { pct:72, lw:13.5 }].forEach(({ pct, lw }) => {
+    const btn = make('button','left-tab-ratio-btn');
+    btn.innerHTML = _ratioSvg(lw);
+    btn.title = `Tỷ lệ ${pct}/${100-pct}`;
+    btn.addEventListener('click', () => { left.style.width = pct + '%'; });
+    bar.appendChild(btn);
+  });
+  left.prepend(bar);
+}
+
 function buildLeftTabs(left, g, sk, isP7) {
   const hasBi     = !!(g.fullPassEN || g.fullPassVI);
-  const activeTab = state.leftTab[sk] || 'passage';
+  const rawTab    = state.leftTab[sk] || 'passage';
+  const activeTab = ['passage','grid','video'].includes(rawTab) ? rawTab : 'passage';
 
   const tabBar = make('div','left-tab-bar');
-  const tabPassageBtn  = make('button','left-tab-btn'+(activeTab==='passage'?' active':''),'Đề bài');
-  const tabGridBtn     = hasBi ? make('button','left-tab-btn'+(activeTab==='grid'?' active':''),'Cột đôi') : null;
-  const tabAccordBtn   = hasBi ? make('button','left-tab-btn'+(activeTab==='accord'?' active':''),'Theo đoạn') : null;
-  const tabVideoBtn    = make('button','left-tab-btn'+(activeTab==='video'?' active':''),'Video giải');
+  const tabPassageBtn = make('button','left-tab-btn'+(activeTab==='passage'?' active':''),'Đề bài');
+  const tabGridBtn    = hasBi ? make('button','left-tab-btn'+(activeTab==='grid'?' active':''),'Dịch bài') : null;
+  const tabVideoBtn   = make('button','left-tab-btn'+(activeTab==='video'?' active':''),'Video giải');
   tabBar.appendChild(tabPassageBtn);
-  if (tabGridBtn)   tabBar.appendChild(tabGridBtn);
-  if (tabAccordBtn) tabBar.appendChild(tabAccordBtn);
+  if (tabGridBtn) tabBar.appendChild(tabGridBtn);
   tabBar.appendChild(tabVideoBtn);
 
   const tabSep = make('div','left-tab-sep'); tabBar.appendChild(tabSep);
 
-  const _ratioSvg = (lw) => {
-    const divX = 1.5 + lw + 0.5;
-    return `<svg width="22" height="14" viewBox="0 0 22 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.7" y="0.7" width="20.6" height="12.6" rx="2.5" stroke="currentColor" stroke-width="1.4"/><rect x="1.5" y="1.5" width="${lw}" height="11" rx="1" fill="currentColor" opacity="0.35"/><line x1="${divX}" y1="1.5" x2="${divX}" y2="12.5" stroke="currentColor" stroke-width="1"/></svg>`;
-  };
   [{ pct:50, lw:9.5 }, { pct:65, lw:12 }, { pct:72, lw:13.5 }].forEach(({ pct, lw }) => {
     const btn = make('button','left-tab-ratio-btn');
     btn.innerHTML = _ratioSvg(lw);
@@ -1019,14 +1051,13 @@ function buildLeftTabs(left, g, sk, isP7) {
   }
   left.appendChild(passagePane);
 
-  // Pane: cột đôi (grid) + theo đoạn (accordion)
-  let gridPane = null, accordPane = null;
+  // Pane: cột đôi (grid)
+  let gridPane = null;
   if (hasBi) {
     const enParas = splitParas(g.fullPassEN||'');
     const viParas = splitParas(g.fullPassVI||'');
     const maxLen  = Math.max(enParas.length, viParas.length);
 
-    // --- Grid pane ---
     gridPane = make('div','left-tab-pane biGrid-pane');
     gridPane.style.display = activeTab==='grid' ? '' : 'none';
     for (let i = 0; i < maxLen; i++) {
@@ -1039,57 +1070,6 @@ function buildLeftTabs(left, g, sk, isP7) {
       gridPane.appendChild(viCell);
     }
     left.appendChild(gridPane);
-
-    // --- Accordion pane ---
-    accordPane = make('div','left-tab-pane biAccord-pane');
-    accordPane.style.display = activeTab==='accord' ? '' : 'none';
-
-    const controls = make('div','biAccord-controls');
-    const allBtn = make('button','biAccord-btn-all','Mở hết');
-    controls.appendChild(allBtn);
-    accordPane.appendChild(controls);
-
-    const paraEls = [];
-    let allOpen = false;
-
-    const updateAllBtn = () => {
-      const openCount = paraEls.filter(p => p.viEl.style.display !== 'none').length;
-      allBtn.textContent = openCount === paraEls.length ? 'Đóng hết' : 'Mở hết';
-    };
-
-    for (let i = 0; i < maxLen; i++) {
-      const paraWrap = make('div','biAccord-para');
-      const enEl = make('div','biAccord-en');
-      const icon = make('span','bi-accord-icon','▾');
-      enEl.appendChild(icon);
-      enEl.appendChild(document.createTextNode(enParas[i] || ''));
-      const viEl = make('div','biAccord-vi');
-      viEl.textContent = viParas[i] || '';
-      viEl.style.display = 'none';
-
-      enEl.addEventListener('click', () => {
-        const isOpen = viEl.style.display !== 'none';
-        viEl.style.display = isOpen ? 'none' : '';
-        enEl.classList.toggle('open', !isOpen);
-        updateAllBtn();
-      });
-
-      paraWrap.appendChild(enEl);
-      paraWrap.appendChild(viEl);
-      accordPane.appendChild(paraWrap);
-      paraEls.push({ enEl, viEl });
-    }
-
-    allBtn.addEventListener('click', () => {
-      allOpen = !allOpen;
-      paraEls.forEach(({ enEl, viEl }) => {
-        viEl.style.display = allOpen ? '' : 'none';
-        enEl.classList.toggle('open', allOpen);
-      });
-      allBtn.textContent = allOpen ? 'Đóng hết' : 'Mở hết';
-    });
-
-    left.appendChild(accordPane);
   }
 
   // Pane: video
@@ -1107,13 +1087,11 @@ function buildLeftTabs(left, g, sk, isP7) {
   left.appendChild(videoPane);
 
   const showPane = (tab) => {
-    passagePane.style.display  = tab==='passage' ? '' : 'none';
-    if (gridPane)   gridPane.style.display   = tab==='grid'    ? '' : 'none';
-    if (accordPane) accordPane.style.display = tab==='accord'  ? '' : 'none';
-    videoPane.style.display    = tab==='video'   ? '' : 'none';
+    passagePane.style.display = tab==='passage' ? '' : 'none';
+    if (gridPane) gridPane.style.display = tab==='grid' ? '' : 'none';
+    videoPane.style.display   = tab==='video'   ? '' : 'none';
     tabPassageBtn.classList.toggle('active', tab==='passage');
-    if (tabGridBtn)   tabGridBtn.classList.toggle('active',   tab==='grid');
-    if (tabAccordBtn) tabAccordBtn.classList.toggle('active', tab==='accord');
+    if (tabGridBtn) tabGridBtn.classList.toggle('active', tab==='grid');
     tabVideoBtn.classList.toggle('active', tab==='video');
   };
 
@@ -1127,16 +1105,11 @@ function buildLeftTabs(left, g, sk, isP7) {
     if (iframe) try { iframe.contentWindow.postMessage(JSON.stringify({event:'command',func:'pauseVideo',args:[]}), '*'); } catch(e) {}
     state.leftTab[sk]='grid'; showPane('grid');
   });
-  if (tabAccordBtn) tabAccordBtn.addEventListener('click',()=>{
-    const iframe = videoPane.querySelector('iframe');
-    if (iframe) try { iframe.contentWindow.postMessage(JSON.stringify({event:'command',func:'pauseVideo',args:[]}), '*'); } catch(e) {}
-    state.leftTab[sk]='accord'; showPane('accord');
-  });
   tabVideoBtn.addEventListener('click',()=>{
     state.leftTab[sk]='video'; showPane('video');
   });
 
-  leftTabRefs[sk] = { passagePane, gridPane, accordPane, videoPane, tabPassageBtn, tabGridBtn, tabAccordBtn, tabVideoBtn, g };
+  leftTabRefs[sk] = { passagePane, gridPane, videoPane, tabPassageBtn, tabGridBtn, tabVideoBtn, g };
 }
 
 function switchToVideoTab(sk, qNum) {
@@ -1157,10 +1130,8 @@ function switchToVideoTab(sk, qNum) {
     }
   }
   passagePane.style.display = 'none';
-  if (refs.gridPane)    refs.gridPane.style.display    = 'none';
-  if (refs.accordPane)  refs.accordPane.style.display  = 'none';
-  if (refs.tabGridBtn)  refs.tabGridBtn.classList.remove('active');
-  if (refs.tabAccordBtn) refs.tabAccordBtn.classList.remove('active');
+  if (refs.gridPane)   refs.gridPane.style.display   = 'none';
+  if (refs.tabGridBtn) refs.tabGridBtn.classList.remove('active');
   videoPane.style.display = '';
   tabPassageBtn.classList.remove('active'); tabVideoBtn.classList.add('active');
   state.leftTab[sk] = 'video'; state.videoQ[sk] = qNum;
@@ -1172,12 +1143,10 @@ function switchToPassageTab(sk) {
   const iframe = videoPane.querySelector('iframe');
   if (iframe) try { iframe.contentWindow.postMessage(JSON.stringify({event:'command',func:'pauseVideo',args:[]}), '*'); } catch(e) {}
   passagePane.style.display = '';
-  if (refs.gridPane)    refs.gridPane.style.display    = 'none';
-  if (refs.accordPane)  refs.accordPane.style.display  = 'none';
+  if (refs.gridPane)   refs.gridPane.style.display   = 'none';
   videoPane.style.display = 'none';
   tabPassageBtn.classList.add('active');
-  if (refs.tabGridBtn)   refs.tabGridBtn.classList.remove('active');
-  if (refs.tabAccordBtn) refs.tabAccordBtn.classList.remove('active');
+  if (refs.tabGridBtn) refs.tabGridBtn.classList.remove('active');
   tabVideoBtn.classList.remove('active');
   state.leftTab[sk] = 'passage';
 }
@@ -1265,8 +1234,27 @@ function buildScriptBlock(script, trans) {
   return frag;
 }
 
+function parseScriptOpts(script, trans) {
+  const parse = (text) => {
+    if (!text) return { question: '', opts: [] };
+    const opts = [];
+    let question = '';
+    for (const line of text.split('\n')) {
+      const m = line.match(/^\(?([A-D])\)?\s+(.*)/);
+      if (m) opts[m[1].charCodeAt(0) - 65] = m[2].trim();
+      else if (!opts.length && line.trim()) question += (question ? ' ' : '') + line.trim();
+    }
+    return { question, opts };
+  };
+  const en = parse(script), vi = parse(trans);
+  return { enQ: en.question, viQ: vi.question, enOpts: en.opts, viOpts: vi.opts };
+}
+
 const IC_SHOW = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
 const IC_HIDE = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`;
+
+const IC_TRANS_SHOW = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`;
+const IC_TRANS_HIDE = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><line x1="4" y1="4" x2="20" y2="20" stroke-width="2.5"/></svg>`;
 
 function buildQHeader(qNum, part, sk, showSolBtn, groupQNums=null) {
   const wrap=make('div','q-header');
@@ -1291,11 +1279,6 @@ function buildQHeader(qNum, part, sk, showSolBtn, groupQNums=null) {
             state.showSolution['q'+otherQn] = false;
             const otherBtn = document.querySelector(`[data-solq="${otherQn}"]`);
             if (otherBtn) otherBtn.innerHTML = solHtml(false);
-            const otherQtr = document.querySelector(`.q-trans[data-vifor="${otherQn}"]`);
-            if (otherQtr) otherQtr.style.display = 'none';
-            const otherQnote = document.querySelector(`.q-note[data-vifor="${otherQn}"]`);
-            if (otherQnote) otherQnote.style.display = 'none';
-            document.querySelectorAll(`.options-list[data-qlist="${otherQn}"] .opt-trans,.options-list[data-qlist="${otherQn}"] .opt-note`).forEach(el => el.style.display='none');
             const otherOpts = document.querySelector(`.options-list[data-qlist="${otherQn}"]`);
             if (otherOpts) applyOptionColors(otherOpts, state.answers[otherQn], getQuestionData(otherQn)?.q.answer, false);
           });
@@ -1315,11 +1298,6 @@ function buildQHeader(qNum, part, sk, showSolBtn, groupQNums=null) {
         } else    switchToPassageTab(sk);
         keys.forEach(k => {
           const qn = parseInt(k.slice(1));
-          const qtr = document.querySelector(`.q-trans[data-vifor="${qn}"]`);
-          if (qtr) qtr.style.display = next ? '' : 'none';
-          const qnote = document.querySelector(`.q-note[data-vifor="${qn}"]`);
-          if (qnote) qnote.style.display = next ? '' : 'none';
-          document.querySelectorAll(`.options-list[data-qlist="${qn}"] .opt-trans,.options-list[data-qlist="${qn}"] .opt-note`).forEach(el => el.style.display = next ? '' : 'none');
           const optList = document.querySelector(`.options-list[data-qlist="${qn}"]`);
           if (optList) applyOptionColors(optList, state.answers[qn], getQuestionData(qn)?.q.answer, next);
         });
@@ -1332,7 +1310,12 @@ function buildQHeader(qNum, part, sk, showSolBtn, groupQNums=null) {
           if (btn) btn.innerHTML = solHtml(next);
           const qtr = document.querySelector(`.q-trans[data-vifor="${qn}"]`);
           if (qtr) qtr.style.display = next ? '' : 'none';
-          document.querySelectorAll(`.options-list[data-qlist="${qn}"] .opt-trans`).forEach(el => el.style.display = next ? '' : 'none');
+          document.querySelectorAll(`.options-list[data-qlist="${qn}"] .opt-trans,.options-list[data-qlist="${qn}"] .opt-note`).forEach(el => el.style.display = next ? '' : 'none');
+          if ([1,2].includes(part)) {
+            const qtext = document.querySelector(`.q-text[data-questionfor="${qn}"]`);
+            if (qtext) qtext.style.display = next ? '' : 'none';
+            document.querySelectorAll(`.options-list[data-qlist="${qn}"] .opt-text`).forEach(el => el.style.display = next ? '' : 'none');
+          }
           const optList = document.querySelector(`.options-list[data-qlist="${qn}"]`);
           if (optList) applyOptionColors(optList, state.answers[qn], getQuestionData(qn)?.q.answer, next);
         });
@@ -1341,6 +1324,41 @@ function buildQHeader(qNum, part, sk, showSolBtn, groupQNums=null) {
       }
     });
     wrap.appendChild(solBtn);
+
+    // Nút Dịch nghĩa — chỉ cho Part 5, 6, 7
+    if ([5,6,7].includes(part)) {
+      const isTransShown = !!state.showTrans['q'+qNum];
+      const transHtml = (shown) => shown
+        ? `${IC_TRANS_HIDE}<span>Ẩn dịch nghĩa</span>`
+        : `${IC_TRANS_SHOW}<span>Dịch nghĩa</span>`;
+      const transBtn = make('button','btn-trans',transHtml(isTransShown));
+      transBtn.dataset.transq = qNum;
+      transBtn.addEventListener('click', () => {
+        const nextTrans = !state.showTrans['q'+qNum];
+        state.showTrans['q'+qNum] = nextTrans;
+        transBtn.innerHTML = transHtml(nextTrans);
+        if (part === 5) {
+          document.querySelectorAll('.screen-right .full-sent-en, .screen-right .full-sent-vi').forEach(el => el.style.display = nextTrans ? '' : 'none');
+          document.querySelectorAll(`.options-list[data-qlist="${qNum}"] .opt-note`).forEach(el => el.style.display = nextTrans ? '' : 'none');
+        } else {
+          const qtr = document.querySelector(`.q-trans[data-vifor="${qNum}"]`);
+          if (qtr) qtr.style.display = nextTrans ? '' : 'none';
+          const qnote = document.querySelector(`.q-note[data-vifor="${qNum}"]`);
+          if (qnote) qnote.style.display = nextTrans ? '' : 'none';
+          document.querySelectorAll(`.options-list[data-qlist="${qNum}"] .opt-trans,.options-list[data-qlist="${qNum}"] .opt-note`).forEach(el => el.style.display = nextTrans ? '' : 'none');
+          if (nextTrans) {
+            const qBlock = document.querySelector(`[data-transq="${qNum}"]`)?.closest('.q-block');
+            const rightPanel = document.querySelector('.screen-right');
+            if (qBlock && rightPanel) {
+              const padTop = parseInt(getComputedStyle(rightPanel).paddingTop) || 0;
+              const targetTop = qBlock.getBoundingClientRect().top - rightPanel.getBoundingClientRect().top + rightPanel.scrollTop - padTop;
+              rightPanel.scrollTo({ top: targetTop, behavior: 'smooth' });
+            }
+          }
+        }
+      });
+      wrap.appendChild(transBtn);
+    }
   }
   const flagBtn=make('button','q-flag-btn'+(state.flags[qNum]?' flagged':''));
   flagBtn.innerHTML=`<svg viewBox="0 0 24 24"><path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"/></svg>`;
