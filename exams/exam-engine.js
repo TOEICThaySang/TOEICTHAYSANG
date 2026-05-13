@@ -1272,7 +1272,7 @@ function buildQHeader(qNum, part, sk, showSolBtn, groupQNums=null) {
   if (showSolBtn) {
     const keys = groupQNums ? groupQNums.map(n=>'q'+n) : ['q'+qNum];
     const isShown = keys.every(k=>state.showSolution[k]);
-    const solLabel = [1,2,3,4].includes(part) ? ['Xem lời giải','Ẩn lời giải'] : ['Xem video giải','Ẩn video'];
+    const solLabel = [1,2,3,4].includes(part) ? ['Xem lời giải','Ẩn lời giải'] : ['Video giải','Ẩn video'];
     const solHtml  = (shown) => shown ? `${IC_HIDE}<span>${solLabel[1]}</span>` : `${IC_SHOW}<span>${solLabel[0]}</span>`;
     const solBtn=make('button','btn-solution',solHtml(isShown));
     solBtn.dataset.solq = qNum;
@@ -1340,7 +1340,7 @@ function buildQHeader(qNum, part, sk, showSolBtn, groupQNums=null) {
       const isTransShown = !!state.showTrans['q'+qNum];
       const transHtml = (shown) => shown
         ? `${IC_TRANS_HIDE}<span>Ẩn dịch</span>`
-        : `${IC_TRANS_SHOW}<span>Dịch đáp án</span>`;
+        : `${IC_TRANS_SHOW}<span>Dịch</span>`;
       const transBtn = make('button','btn-trans',transHtml(isTransShown));
       transBtn.dataset.transq = qNum;
       transBtn.addEventListener('click', () => {
