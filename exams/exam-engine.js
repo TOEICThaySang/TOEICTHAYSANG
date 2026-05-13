@@ -1054,20 +1054,30 @@ function buildLeftTabs(left, g, sk, isP7) {
   // Pane: cột đôi (grid)
   let gridPane = null;
   if (hasBi) {
-    const enParas = splitParas(g.fullPassEN||'');
-    const viParas = splitParas(g.fullPassVI||'');
-    const maxLen  = Math.max(enParas.length, viParas.length);
+    const enLines = (g.fullPassEN||'').split('\n');
+    const viLines = (g.fullPassVI||'').split('\n');
+    const maxLen  = Math.max(enLines.length, viLines.length);
 
     gridPane = make('div','left-tab-pane biGrid-pane');
     gridPane.style.display = activeTab==='grid' ? '' : 'none';
+    let rowIdx = 0;
     for (let i = 0; i < maxLen; i++) {
-      const stripe = i % 2 === 1 ? ' biGrid-stripe' : '';
-      const enCell = make('div','biGrid-cell biGrid-en'+stripe);
-      const viCell = make('div','biGrid-cell biGrid-vi'+stripe);
-      enCell.textContent = enParas[i] || '';
-      viCell.textContent = viParas[i] || '';
-      gridPane.appendChild(enCell);
-      gridPane.appendChild(viCell);
+      const en = (enLines[i] || '').trim();
+      const vi = (viLines[i] || '').trim();
+      if (!en && !vi) {
+        const spacer = make('div','biGrid-spacer');
+        spacer.style.gridColumn = '1 / -1';
+        gridPane.appendChild(spacer);
+      } else {
+        const stripe = rowIdx % 2 === 1 ? ' biGrid-stripe' : '';
+        const enCell = make('div','biGrid-cell biGrid-en'+stripe);
+        const viCell = make('div','biGrid-cell biGrid-vi'+stripe);
+        enCell.textContent = en;
+        viCell.textContent = vi;
+        gridPane.appendChild(enCell);
+        gridPane.appendChild(viCell);
+        rowIdx++;
+      }
     }
     left.appendChild(gridPane);
   }

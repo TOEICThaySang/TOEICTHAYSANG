@@ -2115,16 +2115,16 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
   align-content: start;
 }
 .biGrid-cell {
-  padding: 10px 14px;
+  padding: 5px 14px;
   font-size: 13.5px;
-  line-height: 1.75;
+  line-height: 1.65;
   border-bottom: 1px solid rgba(0,0,0,0.06);
-  white-space: pre-wrap;
 }
 .biGrid-en               { color: #1e3a5f; background: #f8faff; border-right: 1.5px solid var(--border); }
 .biGrid-vi               { color: #78350f; font-style: italic; background: #fffdf5; }
 .biGrid-stripe.biGrid-en { background: #eff6ff; }
 .biGrid-stripe.biGrid-vi { background: #fffbeb; }
+.biGrid-spacer           { height: 10px; background: transparent; border-bottom: none; }
 
 /* ══════════════════════════════════════════════════════
    TAB SONG NGỮ — THEO ĐOẠN (biAccord)
