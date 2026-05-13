@@ -1,0 +1,7 @@
+/exams/ets2024/tests/*.html
+  Cache-Control: no-transform
+  Content-Type: text/html; charset=utf-8
+
+/exams/exam-engine.js
+  Cache-Control: no-transform
+  Content-Type: text/javascript; charset=utf-8
