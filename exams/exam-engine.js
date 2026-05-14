@@ -91,10 +91,12 @@ const youtubeEmbed = (url, autoplay=false) => {
   let vid='', params=[];
   const m1=url.match(/youtu\.be\/([^?&]+)/);
   const m2=url.match(/[?&]v=([^&]+)/);
-  if (m1) vid=m1[1]; else if (m2) vid=m2[1];
+  const m3=url.match(/\/embed\/([^?&]+)/);
+  if (m1) vid=m1[1]; else if (m2) vid=m2[1]; else if (m3) vid=m3[1];
+  vid = (vid||'').split('?')[0];
   const t=url.match(/[?&]t=(\d+)/);
   if (t) params.push('start='+t[1]);
-  params.push('enablejsapi=1');
+  params.push('enablejsapi=1','rel=0','modestbranding=1','iv_load_policy=3');
   if (autoplay) params.push('autoplay=1');
   const qs=params.length?'?'+params.join('&'):'';
   if (vid) return `https://www.youtube.com/embed/${vid}${qs}`;
@@ -102,8 +104,22 @@ const youtubeEmbed = (url, autoplay=false) => {
   return url;
 };
 
+// Preconnect YouTube sớm để giảm thời gian khởi tạo iframe
+(()=>{ ['https://www.youtube.com','https://i.ytimg.com'].forEach(h=>{ const l=document.createElement('link'); l.rel='preconnect'; l.href=h; document.head.appendChild(l); }); })();
+
 // Lưu DOM refs của left tab theo sk — để toggle không cần re-render
 const leftTabRefs = {};
+
+// Cache lite-yt DOM nodes ngoài examBody — di chuyển node trong same document không reload iframe
+const _lytByVid = {};
+const _lytCache = (() => {
+  const d = document.createElement('div');
+  // Đủ lớn để YouTube player hoạt động bình thường; left:-9999px để ẩn khỏi màn hình
+  d.style.cssText = 'position:fixed;top:0;left:-9999px;width:640px;height:360px;overflow:hidden;pointer-events:none;';
+  document.body.appendChild(d);
+  return d;
+})();
+
 
 // ── Lịch sử làm bài (localStorage) ──
 function getHistory(examId) {
@@ -556,7 +572,17 @@ function renderExamPage() {
     <div class="topbar-title">${ED.title}</div>
     <div class="topbar-right">
       <div class="timer" id="timerDisplay">${fmtTime(state.secondsLeft)}</div>
-      <button class="topbar-btn" id="btnSheet">${IC.clipboard}Review</button>
+      <div class="review-group">
+        <button class="rg-btn rg-prev" id="btnNavPrev" title="Câu trước" disabled>
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6z"/></svg>
+        </button>
+        <button class="rg-btn rg-sheet" id="btnSheet" title="Phiếu đáp án">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        </button>
+        <button class="rg-btn rg-next" id="btnNavNext" title="Câu sau">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M8.59 16.59L13.17 12 8.59 7.41 10 6l6 6-6 6z"/></svg>
+        </button>
+      </div>
       <button class="topbar-btn submit-btn" id="btnSubmit">Nộp bài</button>
     </div>`;
   document.body.appendChild(topbar);
@@ -624,6 +650,10 @@ function renderExamPage() {
   document.body.appendChild(warningOverlay);
 
   el('btnSheet').addEventListener('click', ()=>toggleSheet());
+  el('btnNavPrev').addEventListener('click', ()=>{
+    if (state.currentIdx > 0) { state.currentIdx--; renderScreen(state.currentIdx); renderSheet(); saveProgress(); }
+  });
+  el('btnNavNext').addEventListener('click', goNext);
   sheetOverlay.addEventListener('click', e=>{ if(e.target===sheetOverlay) toggleSheet(false); });
   sheetOverlay.querySelectorAll('.sheet-filter-btn').forEach(btn=>{
     btn.addEventListener('click',()=>{ state.sheetFilter=btn.dataset.filter; applySheetFilter(); });
@@ -732,8 +762,8 @@ function renderSettingsPanel() {
       <div class="sp-sc-row"><kbd class="sp-key-wide">Space</kbd><span>Tạm ngưng / tiếp tục</span></div>
       <div class="sp-sc-row"><kbd>←</kbd><span>−3 giây</span></div>
       <div class="sp-sc-row"><kbd>→</kbd><span>+3 giây</span></div>
-      <div class="sp-sc-row"><kbd>↑</kbd><span>+0.25 tốc độ</span></div>
-      <div class="sp-sc-row"><kbd>↓</kbd><span>−0.25 tốc độ</span></div>
+      <div class="sp-sc-row"><kbd>↑</kbd><span>Cuộn lên (cột bài)</span></div>
+      <div class="sp-sc-row"><kbd>↓</kbd><span>Cuộn xuống (cột bài)</span></div>
     </div>
   `;
 
@@ -790,12 +820,26 @@ function goNext() {
   saveProgress();
 }
 
+function lytCache_save() {
+  const body = el('examBody');
+  if (!body) return;
+  body.querySelectorAll('.lite-yt').forEach(lytEl => {
+    const vid = lytEl.dataset.vid;
+    if (!vid) return;
+    const iframe = lytEl.querySelector('iframe');
+    if (iframe) ytPostMsg(iframe, 'pauseVideo');
+    _lytByVid[vid] = lytEl;
+    _lytCache.appendChild(lytEl);
+  });
+}
+
 function renderScreen(idx) {
   const autoplayQ = state.lastRevealedQ; state.lastRevealedQ = null;
   const prevAudio = document.querySelector('audio');
   if (prevAudio) prevAudio.pause();
   const prevScrollTop = document.querySelector('.screen-right')?.scrollTop || 0;
   const examBody = el('examBody'); if (!examBody) return;
+  lytCache_save();
   examBody.innerHTML = '';
   const sc=state.screens[idx]; if (!sc) return;
   const isPractice = state.mode==='practice';
@@ -810,7 +854,7 @@ function renderScreen(idx) {
 
   if (sc.type==='p1') {
     const q=sc.q;
-    left.appendChild(buildAudioBlock(q.mp3, isPractice, sk));
+    left.appendChild(buildAudioBlock(q.mp3, sk));
     if (q.img) { const img=make('img','exam-img'); img.src=q.img; img.alt=`Câu ${q.q}`; left.appendChild(img); }
     if (showSol && (q.script || q.trans)) {
       const sg = buildScriptBiGrid(q.script, q.trans);
@@ -823,7 +867,7 @@ function renderScreen(idx) {
   }
   if (sc.type==='p2') {
     const q=sc.q;
-    left.appendChild(buildAudioBlock(q.mp3, isPractice, sk));
+    left.appendChild(buildAudioBlock(q.mp3, sk));
     if (showSol && (q.script || q.trans)) {
       const sg = buildScriptBiGrid(q.script, q.trans);
       sg.dataset.scriptsk = 'q'+q.q;
@@ -835,7 +879,7 @@ function renderScreen(idx) {
   }
   if (sc.type==='p3') {
     const g=sc.group;
-    left.appendChild(buildAudioBlock(g.mp3, isPractice, sk));
+    left.appendChild(buildAudioBlock(g.mp3, sk));
     if (g.img) { const img=make('img','exam-img'); img.src=g.img; img.alt='Ảnh Part 3'; left.appendChild(img); }
     const p3SolKey='q'+g.questions[0].q;
     const p3AllQNums=g.questions.map(q=>q.q);
@@ -849,7 +893,7 @@ function renderScreen(idx) {
   }
   if (sc.type==='p4') {
     const g=sc.group;
-    left.appendChild(buildAudioBlock(g.mp3, isPractice, sk));
+    left.appendChild(buildAudioBlock(g.mp3, sk));
     if (g.img) { const img=make('img','exam-img'); img.src=g.img; img.alt='Ảnh Part 4'; left.appendChild(img); }
     const p4SolKey='q'+g.questions[0].q;
     const p4AllQNums=g.questions.map(q=>q.q);
@@ -866,7 +910,7 @@ function renderScreen(idx) {
     const solShown   = showSol && !!state.showSolution['q'+q.q];
     const transShown = showSol && !!state.showTrans['q'+q.q];
     if (solShown && q.videoUrl) {
-      const vw=make('div','video-wrap'); vw.innerHTML=`<iframe src="${youtubeEmbed(q.videoUrl,autoplayQ===q.q)}" allow="autoplay" allowfullscreen></iframe>`; left.appendChild(vw);
+      left.appendChild(buildVideoLoader(q.videoUrl, autoplayQ===q.q));
     } else { left.classList.add('empty'); }
     right.appendChild(buildQHeader(q.q,5,sk,showSol));
     if (q.enQ) right.appendChild(make('div','q-text', q.enQ.replace(/ (---+)/g,'&nbsp;<span style="white-space:nowrap">$1</span>')));
@@ -930,19 +974,12 @@ function renderScreen(idx) {
     });
   }
 
-  const nav=make('div','screen-nav');
-  const prevBtn=make('button','nav-btn');
-  prevBtn.innerHTML=`<svg viewBox="0 0 24 24"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg> Trước`;
-  prevBtn.disabled = idx===0 || (isTest && [1,2,3,4].includes(sc.part));
-  const nextBtn=make('button','nav-btn');
-  nextBtn.innerHTML=`Sau <svg viewBox="0 0 24 24"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>`;
-  nextBtn.disabled = idx>=state.screens.length-1;
+  // Cập nhật trạng thái nút mũi tên trên topbar
+  const _tbPrev = el('btnNavPrev');
+  const _tbNext = el('btnNavNext');
+  if (_tbPrev) _tbPrev.disabled = idx===0 || (isTest && [1,2,3,4].includes(sc.part));
+  if (_tbNext) _tbNext.disabled = idx>=state.screens.length-1;
 
-  prevBtn.addEventListener('click',()=>{ state.currentIdx--; renderScreen(state.currentIdx); renderSheet(); saveProgress(); });
-  nextBtn.addEventListener('click', goNext);
-
-  nav.appendChild(prevBtn); nav.appendChild(nextBtn);
-  right.appendChild(nav);
   screenEl.appendChild(left);
   if (!left.classList.contains('empty')) {
     const resizer = make('div','screen-resizer');
@@ -981,6 +1018,19 @@ function renderScreen(idx) {
       }, { once: true });
     }
   }
+  preloadNextAudio(idx);
+}
+
+function preloadNextAudio(currentIdx) {
+  [1, 2].forEach(offset => {
+    const next = state.screens[currentIdx + offset];
+    if (!next || ![1,2,3,4].includes(next.part)) return;
+    const url = next.q?.mp3 || next.group?.mp3;
+    if (!url) return;
+    const a = new Audio();
+    a.preload = 'auto';
+    a.src = url;
+  });
 }
 
 function splitParas(text) {
@@ -997,6 +1047,95 @@ function splitParas(text) {
   return paras;
 }
 
+
+function extractYtVid(url) {
+  if (!url) return '';
+  const m1 = url.match(/youtu\.be\/([^?&]+)/);
+  const m2 = url.match(/[?&]v=([^&]+)/);
+  const m3 = url.match(/\/embed\/([^?&]+)/);
+  return (m1?.[1] || m2?.[1] || m3?.[1] || '').split('?')[0];
+}
+function extractYtTs(url) {
+  const m = url?.match(/[?&]t=(\d+)/);
+  return m ? parseInt(m[1]) : 0;
+}
+function ytPostMsg(iframe, func, args=[]) {
+  try { iframe.contentWindow.postMessage(JSON.stringify({event:'command',func,args}), '*'); } catch(e) {}
+}
+
+function buildVideoLoader(url, activateNow) {
+  const vid = extractYtVid(url);
+
+  // Cache hit: reuse existing DOM node — moving node in same document does NOT reload iframes
+  const cached = vid ? _lytByVid[vid] : null;
+  if (cached) {
+    const prevUrl = cached._lytUrl;
+    cached._lytUrl = url;
+    const iframe = cached.querySelector('iframe');
+    if (cached.classList.contains('lyt-loaded')) {
+      if (activateNow && iframe) {
+        if (prevUrl === url) {
+          // Same URL (ví dụ: Part 5 toggle sol cùng câu) → tiếp tục từ vị trí đã pause
+          queueMicrotask(() => ytPostMsg(iframe, 'playVideo'));
+        } else {
+          // URL khác (cross-group hoặc cross-question) → reload iframe đúng timestamp
+          iframe.src = youtubeEmbed(url, true);
+          cached.classList.remove('lyt-loaded');
+          iframe.addEventListener('load', () => cached.classList.add('lyt-loaded'), { once: true });
+        }
+      }
+    } else if (cached.classList.contains('lyt-activated')) {
+      if (activateNow && iframe) iframe.src = youtubeEmbed(url, true);
+    } else if (activateNow) {
+      cached.classList.add('lyt-activated');
+      const newIframe = document.createElement('iframe');
+      newIframe.src             = youtubeEmbed(url, true);
+      newIframe.allow           = 'autoplay; fullscreen; picture-in-picture';
+      newIframe.allowFullscreen = true;
+      newIframe.addEventListener('load', () => cached.classList.add('lyt-loaded'));
+      cached.appendChild(newIframe);
+    }
+    return cached;
+  }
+
+  // No cache: create fresh element
+  const lytEl = make('div', 'lite-yt');
+  lytEl.dataset.vid = vid;
+  lytEl._lytUrl = url; // mutable — updated by cache path if same vid requested later
+  if (vid) _lytByVid[vid] = lytEl;
+
+  if (vid) {
+    const img = document.createElement('img');
+    img.src     = `https://i.ytimg.com/vi/${vid}/hqdefault.jpg`;
+    img.alt     = '';
+    img.loading = 'eager';
+    lytEl.appendChild(img);
+  }
+
+  const playBtn = make('button', 'lyt-playbtn');
+  playBtn.setAttribute('aria-label', 'Phát video');
+  lytEl.appendChild(playBtn);
+
+  const loadingEl = make('div', 'lyt-loading');
+  loadingEl.innerHTML = '<div class="lyt-spin"></div><span>Đang tải video...</span>';
+  lytEl.appendChild(loadingEl);
+
+  function activate() {
+    if (lytEl.classList.contains('lyt-activated')) return;
+    lytEl.classList.add('lyt-activated');
+    const src = youtubeEmbed(lytEl._lytUrl, true); // reads current url, not stale closure
+    const iframe = document.createElement('iframe');
+    iframe.src             = src;
+    iframe.allow           = 'autoplay; fullscreen; picture-in-picture';
+    iframe.allowFullscreen = true;
+    iframe.addEventListener('load', () => lytEl.classList.add('lyt-loaded'));
+    lytEl.appendChild(iframe);
+  }
+
+  lytEl.addEventListener('click', activate);
+  if (activateNow) activate();
+  return lytEl;
+}
 
 function buildLeftTabs(left, g, sk, isP7, showSol) {
   const hasBi     = !!(g.fullPassEN || g.fullPassVI);
@@ -1065,10 +1204,8 @@ function buildLeftTabs(left, g, sk, isP7, showSol) {
   videoPane.style.display = activeTab==='video' ? '' : 'none';
   const activeQNum = state.videoQ[sk];
   const activeQ = g.questions.find(q=>q.q===activeQNum);
-  if (activeQ && activeQ.videoUrl) {
-    const vw=make('div','video-wrap');
-    vw.innerHTML=`<iframe src="${youtubeEmbed(activeQ.videoUrl,activeTab==='video')}" allow="autoplay" allowfullscreen></iframe>`;
-    videoPane.appendChild(vw);
+  if (activeQ && activeQ.videoUrl && activeTab === 'video') {
+    videoPane.appendChild(buildVideoLoader(activeQ.videoUrl, true));
   } else {
     videoPane.appendChild(make('div','video-placeholder',`Bấm ${IC.lightbulb}Xem video giải để xem video giải thích.`));
   }
@@ -1084,14 +1221,10 @@ function buildLeftTabs(left, g, sk, isP7, showSol) {
   };
 
   tabPassageBtn.addEventListener('click',()=>{
-    const iframe = videoPane.querySelector('iframe');
-    if (iframe) try { iframe.contentWindow.postMessage(JSON.stringify({event:'command',func:'pauseVideo',args:[]}), '*'); } catch(e) {}
-    state.leftTab[sk]='passage'; showPane('passage');
+    pauseVideoInPane(videoPane); state.leftTab[sk]='passage'; showPane('passage');
   });
   if (tabGridBtn) tabGridBtn.addEventListener('click',()=>{
-    const iframe = videoPane.querySelector('iframe');
-    if (iframe) try { iframe.contentWindow.postMessage(JSON.stringify({event:'command',func:'pauseVideo',args:[]}), '*'); } catch(e) {}
-    state.leftTab[sk]='grid'; showPane('grid');
+    pauseVideoInPane(videoPane); state.leftTab[sk]='grid'; showPane('grid');
   });
   tabVideoBtn.addEventListener('click',()=>{
     state.leftTab[sk]='video'; showPane('video');
@@ -1104,18 +1237,30 @@ function switchToVideoTab(sk, qNum) {
   const refs = leftTabRefs[sk]; if (!refs) return;
   const { passagePane, videoPane, tabPassageBtn, tabVideoBtn, g } = refs;
   const q = g.questions.find(qq => qq.q === qNum);
-  const newSrc = q?.videoUrl ? youtubeEmbed(q.videoUrl, true) : '';
-  const iframe  = videoPane.querySelector('iframe');
-  if (!iframe || state.videoQ[sk] !== qNum) {
-    if (iframe) iframe.src = '';
-    videoPane.innerHTML = '';
-    if (newSrc) {
-      const vw = make('div','video-wrap');
-      vw.innerHTML = `<iframe src="${newSrc}" allow="autoplay" allowfullscreen></iframe>`;
-      videoPane.appendChild(vw);
+  if (state.videoQ[sk] !== qNum) {
+    const newVid = extractYtVid(q?.videoUrl || '');
+    const lytEl  = videoPane.querySelector('.lite-yt');
+    const iframe = lytEl?.querySelector('iframe');
+    const sameVideo = lytEl && lytEl.dataset.vid === newVid && newVid;
+
+    if (sameVideo && iframe && lytEl.classList.contains('lyt-loaded')) {
+      // Cùng video, đã load xong → seekTo ngay lập tức
+      const ts = extractYtTs(q.videoUrl);
+      ytPostMsg(iframe, 'seekTo', [ts, true]);
+      ytPostMsg(iframe, 'playVideo');
+    } else if (sameVideo && iframe) {
+      // Cùng video, đang load → đổi src cho đúng timestamp
+      iframe.src = youtubeEmbed(q.videoUrl, true);
     } else {
-      videoPane.appendChild(make('div','video-placeholder',`Bấm ${IC.lightbulb}Xem video giải để xem video giải thích.`));
+      // Video khác hoặc chưa có → tạo mới
+      videoPane.innerHTML = '';
+      if (q?.videoUrl) {
+        videoPane.appendChild(buildVideoLoader(q.videoUrl, true));
+      } else {
+        videoPane.appendChild(make('div','video-placeholder',`Bấm ${IC.lightbulb}Xem video giải để xem video giải thích.`));
+      }
     }
+    state.videoQ[sk] = qNum;
   }
   passagePane.style.display = 'none';
   if (refs.gridPane)   refs.gridPane.style.display   = 'none';
@@ -1125,11 +1270,15 @@ function switchToVideoTab(sk, qNum) {
   state.leftTab[sk] = 'video'; state.videoQ[sk] = qNum;
 }
 
+function pauseVideoInPane(pane) {
+  const iframe = pane?.querySelector('iframe');
+  if (iframe) try { iframe.contentWindow.postMessage(JSON.stringify({event:'command',func:'pauseVideo',args:[]}), '*'); } catch(e) {}
+}
+
 function switchToPassageTab(sk) {
   const refs = leftTabRefs[sk]; if (!refs) return;
   const { passagePane, videoPane, tabPassageBtn, tabVideoBtn } = refs;
-  const iframe = videoPane.querySelector('iframe');
-  if (iframe) try { iframe.contentWindow.postMessage(JSON.stringify({event:'command',func:'pauseVideo',args:[]}), '*'); } catch(e) {}
+  pauseVideoInPane(videoPane);
   passagePane.style.display = '';
   if (refs.gridPane)   refs.gridPane.style.display   = 'none';
   videoPane.style.display = 'none';
@@ -1143,7 +1292,7 @@ function buildMediaLeft(left, g, isPractice, sk, isP7) {
   const showVideo = isPractice && state.showSolution[sk] && !state.showImg[sk];
   if (showVideo) {
     const firstQ=g.questions[0];
-    if (firstQ && firstQ.videoUrl) { const vw=make('div','video-wrap'); vw.innerHTML=`<iframe src="${youtubeEmbed(firstQ.videoUrl,true)}" allow="autoplay" allowfullscreen></iframe>`; left.appendChild(vw); }
+    if (firstQ && firstQ.videoUrl) { left.appendChild(buildVideoLoader(firstQ.videoUrl, true)); }
     const btn=make('button','btn-toggle-img',IC.image+'Hiện ảnh đề thi');
     btn.addEventListener('click',()=>{ state.showImg[sk]=true; renderScreen(state.currentIdx); }); left.appendChild(btn);
   } else {
@@ -1167,7 +1316,20 @@ function buildGroupQBlock(q, part, isPractice, sk, showSolBtn, groupQNums=null) 
   const qKey = 'q'+q.q;
   const solShown = isPractice && !!state.showSolution[qKey];
   const wrap = make('div','q-block'); wrap.style.cssText='padding-bottom:8px';
+  if (q.q === state.scrollToQ) wrap.dataset.autoq = '1';
   wrap.appendChild(buildQHeader(q.q,part,sk,showSolBtn,showSolBtn?groupQNums:null));
+  const qNumEl = wrap.querySelector('.q-number');
+  if (qNumEl) {
+    qNumEl.style.cursor = 'pointer';
+    qNumEl.title = 'Cuộn lên đầu câu này';
+    qNumEl.addEventListener('click', () => {
+      const rightPanel = document.querySelector('.screen-right');
+      if (!rightPanel) return;
+      const padTop = parseInt(getComputedStyle(rightPanel).paddingTop) || 0;
+      const targetTop = wrap.getBoundingClientRect().top - rightPanel.getBoundingClientRect().top + rightPanel.scrollTop - padTop;
+      rightPanel.scrollTo({ top: targetTop, behavior: 'smooth' });
+    });
+  }
   if (q.enQ) wrap.appendChild(make('div','q-text',q.enQ));
   if (isPractice && q.viQ) {
     const qtr = make('div','q-trans', escHtml(q.viQ));
@@ -1195,14 +1357,97 @@ function buildViBlock(q, letters) {
   return block;
 }
 
-function buildAudioBlock(mp3Url, isPractice, sk) {
-  const wrap=make('div','audio-wrap');
-  const audio=document.createElement('audio');
-  audio.id='examAudio_'+sk; audio.src=mp3Url||''; audio.controls=isPractice;
-  const speedBadge=make('span','audio-speed-badge','1×');
-  if (!isPractice) speedBadge.style.display='none';
+function buildAudioBlock(mp3Url, sk) {
+  const wrap = make('div', 'audio-wrap');
+
+  const audio = document.createElement('audio');
+  audio.id = 'examAudio_' + sk;
+  audio.src = mp3Url || '';
+  audio.preload = 'metadata';
   wrap.appendChild(audio);
-  wrap.appendChild(speedBadge);
+
+  const SVG_PLAY  = `<svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><polygon points="5 3 19 12 5 21 5 3"/></svg>`;
+  const SVG_PAUSE = `<svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><rect x="6" y="4" width="4" height="16" rx="1"/><rect x="14" y="4" width="4" height="16" rx="1"/></svg>`;
+  const SVG_RW    = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.5"/></svg>`;
+
+  const playBtn = make('button', 'ap-play');
+  playBtn.innerHTML = SVG_PLAY;
+  playBtn.title = 'Play / Pause (Space)';
+  wrap.appendChild(playBtn);
+
+  const rwBtn = make('button', 'ap-rewind');
+  rwBtn.innerHTML = SVG_RW + '<span>3s</span>';
+  rwBtn.title = 'Tua lại 3 giây (←)';
+  wrap.appendChild(rwBtn);
+
+  const barWrap = make('div', 'ap-bar-wrap');
+  const bar     = make('div', 'ap-bar');
+  const fill    = make('div', 'ap-bar-fill');
+  const thumb   = make('div', 'ap-bar-thumb');
+  bar.appendChild(fill);
+  bar.appendChild(thumb);
+  barWrap.appendChild(bar);
+  wrap.appendChild(barWrap);
+
+  const timeEl = make('div', 'ap-time', '0:00 / 0:00');
+  wrap.appendChild(timeEl);
+
+  const speedWrap = make('div', 'ap-speed-wrap');
+  const speedBtn  = make('button', 'ap-speed-btn', '1×');
+  const speedDrop = make('div', 'ap-speed-dropdown');
+  SPEED_STEPS.forEach(r => {
+    const opt = make('button', 'ap-speed-opt', r === 1 ? '1×' : r + '×');
+    opt.dataset.rate = r;
+    if (r === 1) opt.classList.add('active');
+    speedDrop.appendChild(opt);
+  });
+  speedWrap.appendChild(speedBtn);
+  speedWrap.appendChild(speedDrop);
+  wrap.appendChild(speedWrap);
+
+  const fmt = s => { const m=Math.floor(s/60); return `${m}:${Math.floor(s%60).toString().padStart(2,'0')}`; };
+
+  const updateBar = () => {
+    if (!audio.duration) return;
+    const pct = audio.currentTime / audio.duration * 100;
+    fill.style.width  = pct + '%';
+    thumb.style.left  = pct + '%';
+    timeEl.textContent = `${fmt(audio.currentTime)} / ${fmt(audio.duration)}`;
+  };
+
+  audio.addEventListener('loadedmetadata', () => { timeEl.textContent = `0:00 / ${fmt(audio.duration)}`; });
+  audio.addEventListener('timeupdate', updateBar);
+  audio.addEventListener('play',  () => { playBtn.innerHTML = SVG_PAUSE; playBtn.classList.add('playing'); });
+  audio.addEventListener('pause', () => { playBtn.innerHTML = SVG_PLAY;  playBtn.classList.remove('playing'); });
+  audio.addEventListener('ended', () => { playBtn.innerHTML = SVG_PLAY;  playBtn.classList.remove('playing'); });
+
+  playBtn.addEventListener('click', () => { audio.paused ? audio.play().catch(()=>{}) : audio.pause(); });
+  rwBtn.addEventListener('click',   () => { audio.currentTime = Math.max(0, audio.currentTime - 3); });
+
+  let seeking = false;
+  const seek = clientX => {
+    const r = bar.getBoundingClientRect();
+    const pct = Math.max(0, Math.min(1, (clientX - r.left) / r.width));
+    if (audio.duration) audio.currentTime = pct * audio.duration;
+  };
+  bar.addEventListener('mousedown', e => { seeking = true; seek(e.clientX); });
+  document.addEventListener('mousemove', e => { if (seeking) seek(e.clientX); });
+  document.addEventListener('mouseup', () => { seeking = false; });
+  bar.addEventListener('touchstart', e => seek(e.touches[0].clientX), { passive: true });
+  bar.addEventListener('touchmove',  e => seek(e.touches[0].clientX), { passive: true });
+
+  speedBtn.addEventListener('click', e => { e.stopPropagation(); speedDrop.classList.toggle('open'); });
+  speedDrop.addEventListener('click', e => {
+    const opt = e.target.closest('[data-rate]');
+    if (!opt) return;
+    const rate = parseFloat(opt.dataset.rate);
+    audio.playbackRate = rate;
+    speedBtn.textContent = rate === 1 ? '1×' : rate + '×';
+    speedDrop.querySelectorAll('.ap-speed-opt').forEach(o => o.classList.toggle('active', o === opt));
+    speedDrop.classList.remove('open');
+  });
+  document.addEventListener('click', () => speedDrop.classList.remove('open'));
+
   return wrap;
 }
 
@@ -1277,7 +1522,7 @@ function buildQHeader(qNum, part, sk, showSolBtn, groupQNums=null) {
   if (showSolBtn) {
     const keys = groupQNums ? groupQNums.map(n=>'q'+n) : ['q'+qNum];
     const isShown = keys.every(k=>state.showSolution[k]);
-    const solLabel = [1,2,3,4].includes(part) ? ['Xem lời giải','Ẩn lời giải'] : ['Video giải','Ẩn video'];
+    const solLabel = [1,2,3,4].includes(part) ? ['Đáp án','Ẩn đáp án'] : ['Video giải','Ẩn video'];
     const solHtml  = (shown) => shown ? `${IC_HIDE}<span>${solLabel[1]}</span>` : `${IC_SHOW}<span>${solLabel[0]}</span>`;
     const solBtn=make('button','btn-solution',solHtml(isShown));
     solBtn.dataset.solq = qNum;
@@ -1294,8 +1539,6 @@ function buildQHeader(qNum, part, sk, showSolBtn, groupQNums=null) {
             state.showSolution['q'+otherQn] = false;
             const otherBtn = document.querySelector(`[data-solq="${otherQn}"]`);
             if (otherBtn) otherBtn.innerHTML = solHtml(false);
-            const otherOpts = document.querySelector(`.options-list[data-qlist="${otherQn}"]`);
-            if (otherOpts) applyOptionColors(otherOpts, state.answers[otherQn], getQuestionData(otherQn)?.q.answer, false);
           });
         }
         // Toggle trực tiếp trên DOM — iframe không bị rebuild, video không reload
@@ -1311,16 +1554,14 @@ function buildQHeader(qNum, part, sk, showSolBtn, groupQNums=null) {
             rightPanel.scrollTo({ top: targetTop, behavior: 'smooth' });
           }
         } else    switchToPassageTab(sk);
-        keys.forEach(k => {
-          const qn = parseInt(k.slice(1));
-          const optList = document.querySelector(`.options-list[data-qlist="${qn}"]`);
-          if (optList) applyOptionColors(optList, state.answers[qn], getQuestionData(qn)?.q.answer, next);
-        });
       } else if ([1,2,3,4].includes(part)) {
         if ([3,4].includes(part)) {
           const sbWrap = document.querySelector(`[data-scriptsk="${sk}"]`);
           if (sbWrap) sbWrap.style.display = next ? '' : 'none';
         }
+        const _rp      = [3,4].includes(part) ? document.querySelector('.screen-right') : null;
+        const _qBlock  = _rp ? document.querySelector(`[data-solq="${qNum}"]`)?.closest('.q-block') : null;
+        const _beforeY = _qBlock ? _qBlock.getBoundingClientRect().top : 0;
         keys.forEach(k => {
           const qn = parseInt(k.slice(1));
           const btn = document.querySelector(`[data-solq="${qn}"]`);
@@ -1336,24 +1577,42 @@ function buildQHeader(qNum, part, sk, showSolBtn, groupQNums=null) {
           const optList = document.querySelector(`.options-list[data-qlist="${qn}"]`);
           if (optList) applyOptionColors(optList, state.answers[qn], getQuestionData(qn)?.q.answer, next);
         });
+        if (_rp && _qBlock) {
+          if (next) {
+            requestAnimationFrame(() => {
+              const padTop    = parseInt(getComputedStyle(_rp).paddingTop) || 0;
+              const targetTop = _qBlock.getBoundingClientRect().top - _rp.getBoundingClientRect().top + _rp.scrollTop - padTop;
+              _rp.scrollTo({ top: targetTop, behavior: 'smooth' });
+            });
+          } else {
+            requestAnimationFrame(() => {
+              const afterY = _qBlock.getBoundingClientRect().top;
+              _rp.scrollTop += afterY - _beforeY;
+            });
+          }
+        }
       } else {
         renderScreen(state.currentIdx);
       }
     });
     wrap.appendChild(solBtn);
 
-    // Nút Dịch nghĩa — chỉ cho Part 5, 6, 7
+    // Nút Đáp án — chỉ cho Part 5, 6, 7
     if ([5,6,7].includes(part)) {
       const isTransShown = !!state.showTrans['q'+qNum];
       const transHtml = (shown) => shown
-        ? `${IC_TRANS_HIDE}<span>Ẩn dịch</span>`
-        : `${IC_TRANS_SHOW}<span>Dịch</span>`;
+        ? `${IC_TRANS_HIDE}<span>Ẩn đáp án</span>`
+        : `${IC_TRANS_SHOW}<span>Đáp án</span>`;
       const transBtn = make('button','btn-trans',transHtml(isTransShown));
       transBtn.dataset.transq = qNum;
       transBtn.addEventListener('click', () => {
         const nextTrans = !state.showTrans['q'+qNum];
         state.showTrans['q'+qNum] = nextTrans;
         transBtn.innerHTML = transHtml(nextTrans);
+        // Chấm màu đúng/sai — result mode luôn giữ màu dù ẩn dịch
+        const shouldColor = state.finished || nextTrans;
+        const optList = document.querySelector(`.options-list[data-qlist="${qNum}"]`);
+        if (optList) applyOptionColors(optList, state.answers[qNum], getQuestionData(qNum)?.q.answer, shouldColor);
         if (part === 5) {
           document.querySelectorAll('.screen-right .full-sent-en, .screen-right .full-sent-vi').forEach(el => el.style.display = nextTrans ? '' : 'none');
           document.querySelectorAll(`.options-list[data-qlist="${qNum}"] .opt-note`).forEach(el => el.style.display = nextTrans ? '' : 'none');
@@ -1460,7 +1719,7 @@ function buildOptions(qNum, letters, sk, optsOverride) {
     ? optsOverride.map(o=>o?String(o).replace(/^[A-D]\.\s*/,''):'')
     : (qd?(qd.q.enOpts||[]).map(o=>o?String(o).replace(/^(?:\([A-D]\)|[A-D]\.)\s*/,''):''):[]);
   const correct = qd ? qd.q.answer : null;
-  const showSol = state.finished || (state.mode==='practice' && !!state.showSolution['q'+qNum]);
+  const showSol = state.finished || (state.mode==='practice' && !!state.showTrans['q'+qNum]);
   const list=make('div','options-list');
   list.dataset.qlist = qNum;
   letters.forEach((letter,i)=>{
@@ -1659,22 +1918,16 @@ const SPEED_STEPS=[0.5,0.75,1,1.25,1.5,1.75,2];
 function handleKeydown(e) {
   if (['INPUT','TEXTAREA','SELECT'].includes(document.activeElement.tagName)) return;
   if (e.code==='Enter' || e.code==='NumpadEnter') { e.preventDefault(); goNext(); return; }
-  if (state.mode==='test' && !state.finished) return;
-  const audio=document.querySelector('audio'); if (!audio) return;
-  if (e.code==='Space')      { e.preventDefault(); audio.paused?audio.play():audio.pause(); }
-  if (e.code==='ArrowLeft')  { e.preventDefault(); audio.currentTime=Math.max(0,audio.currentTime-3); }
-  if (e.code==='ArrowRight') { e.preventDefault(); audio.currentTime+=3; }
   if (e.code==='ArrowUp' || e.code==='ArrowDown') {
     e.preventDefault();
-    const cur=audio.playbackRate;
-    const i=SPEED_STEPS.findIndex(s=>Math.abs(s-cur)<0.01);
-    const next=e.code==='ArrowUp'
-      ? SPEED_STEPS[Math.min(i<0?2:i+1, SPEED_STEPS.length-1)]
-      : SPEED_STEPS[Math.max(i<0?2:i-1, 0)];
-    audio.playbackRate=next;
-    const badge=document.querySelector('.audio-speed-badge');
-    if (badge) badge.textContent=next===1?'1×':next+'×';
+    document.querySelector('.screen-right')?.scrollBy({ top: e.code==='ArrowDown' ? 80 : -80 });
+    return;
   }
+  if (state.mode==='test' && !state.finished) return;
+  const audio=document.querySelector('audio'); if (!audio) return;
+  if (e.code==='Space')     { e.preventDefault(); audio.paused?audio.play():audio.pause(); }
+  if (e.code==='ArrowLeft') { e.preventDefault(); audio.currentTime=Math.max(0,audio.currentTime-3); }
+  if (e.code==='ArrowRight'){ e.preventDefault(); audio.currentTime+=3; }
 }
 
 // ══════════════════════════════════════════════════════════════

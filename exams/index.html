@@ -25,28 +25,28 @@
 
     <!-- Year switcher -->
     <div class="year-switcher" role="tablist" aria-label="Chọn bộ đề">
-      <div class="year-card ets2024 active" id="ycTab2024"
-           role="tab" aria-selected="true" tabindex="0" aria-controls="panel2024"
-           onclick="switchYear('2024')">
-        <div class="yc-title">ETS 2024</div>
-        <div class="yc-sub">10 bài test · 200 câu · 120 phút</div>
-      </div>
-      <div class="year-card ets2023" id="ycTab2023"
-           role="tab" aria-selected="false" tabindex="-1" aria-controls="panel2023"
+      <div class="year-card ets2023 active" id="ycTab2023"
+           role="tab" aria-selected="true" tabindex="0" aria-controls="panel2023"
            onclick="switchYear('2023')">
         <div class="yc-title">ETS 2023</div>
+        <div class="yc-sub">10 bài test · 200 câu · 120 phút</div>
+      </div>
+      <div class="year-card ets2024" id="ycTab2024"
+           role="tab" aria-selected="false" tabindex="-1" aria-controls="panel2024"
+           onclick="switchYear('2024')">
+        <div class="yc-title">ETS 2024</div>
         <div class="yc-sub">10 bài test · 200 câu · 120 phút</div>
       </div>
     </div>
 
     <!-- Exam panels -->
-    <div class="exam-panel panel-in" id="panel2024" role="tabpanel" aria-labelledby="ycTab2024">
-      <div class="exam-grid" id="grid2024">
+    <div class="exam-panel panel-in" id="panel2023" role="tabpanel" aria-labelledby="ycTab2023">
+      <div class="exam-grid" id="grid2023">
         <p class="exam-loading">Đang tải...</p>
       </div>
     </div>
-    <div class="exam-panel" id="panel2023" role="tabpanel" aria-labelledby="ycTab2023" hidden>
-      <div class="exam-grid" id="grid2023">
+    <div class="exam-panel" id="panel2024" role="tabpanel" aria-labelledby="ycTab2024" hidden>
+      <div class="exam-grid" id="grid2024">
         <p class="exam-loading">Đang tải...</p>
       </div>
     </div>
@@ -148,8 +148,8 @@ document.querySelectorAll('.year-card').forEach(card => {
   });
 });
 
-loadSection('grid2024', 'ets2024/lessons.json', 'ets2024', 'ets2024');
 loadSection('grid2023', 'ets2023/lessons.json', 'ets2023', 'ets2023');
+loadSection('grid2024', 'ets2024/lessons.json', 'ets2024', 'ets2024');
 </script>
 <script type="module">
 import { collection, query, where, getDocs }
