@@ -4,30 +4,113 @@
    KHÔNG dùng cho trang làm bài → xem exams/style.css
    ══════════════════════════════════════════════════════════ */
 
-/* ─── Section header ─── */
-.exams-section-header {
-  margin-bottom: 20px;
-}
-.exams-section-title {
-  font-size: 1.15rem;
-  font-weight: 800;
-  color: var(--text);
-  margin-bottom: 4px;
-}
-.exams-section-sub {
-  font-size: .84rem;
-  color: var(--text-3);
+/* ─── CSS vars theo năm (dùng cho cả year-card và exam-card) ─── */
+.ets2024 { --cA: #6366f1; --cB: #8b5cf6; --cBg: rgba(99,102,241,.09); }
+.ets2023 { --cA: #0ea5e9; --cB: #06b6d4; --cBg: rgba(14,165,233,.09); }
+
+/* ══════════════════════════════════════════════════════════
+   YEAR SWITCHER — 2 card tab nằm ngang
+   ══════════════════════════════════════════════════════════ */
+.year-switcher {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 28px;
 }
 
-/* ─── Grid đề thi ─── */
-/* Mobile: 2 cột */
+.year-card {
+  border: 2px solid var(--border);
+  border-radius: var(--radius);
+  padding: 15px 18px 19px;
+  cursor: pointer;
+  transition: border-color .18s, background .18s, transform .18s, box-shadow .18s;
+  background: var(--bg-card);
+  position: relative;
+  overflow: hidden;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  outline: none;
+}
+
+/* Thanh accent đáy trượt vào khi active */
+.year-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--cA), var(--cB));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .22s ease;
+}
+.year-card.active::after { transform: scaleX(1); }
+
+.year-card.active {
+  border-color: var(--cA);
+  background: var(--cBg);
+}
+
+/* Hover — chỉ khi chưa active */
+@media (hover: hover) {
+  .year-card:not(.active):hover {
+    border-color: var(--cA);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  .year-card:not(.active):hover .yc-title {
+    color: var(--text);
+  }
+}
+
+.year-card:active { transform: scale(.98); }
+
+/* Focus ring */
+.year-card:focus-visible {
+  box-shadow: 0 0 0 3px rgba(99,102,241,.3);
+  border-color: var(--cA);
+}
+
+.yc-title {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-2);
+  margin-bottom: 3px;
+  transition: color .18s;
+}
+.year-card.active .yc-title { color: var(--cA); }
+
+.yc-sub {
+  font-size: .74rem;
+  color: var(--text-3);
+  line-height: 1.4;
+}
+
+/* ══════════════════════════════════════════════════════════
+   EXAM PANEL — khung chứa grid, có animation fade
+   ══════════════════════════════════════════════════════════ */
+.exam-panel[hidden] { display: none; }
+
+@keyframes panelFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+.panel-in { animation: panelFadeIn .22s ease both; }
+
+/* ══════════════════════════════════════════════════════════
+   EXAM GRID & CARD
+   ══════════════════════════════════════════════════════════ */
 .exam-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 12px;
 }
 
-/* ─── Card đề thi ─── */
+.exam-loading {
+  color: var(--text-3);
+  grid-column: 1/-1;
+  padding: 20px 0;
+}
+
 .exam-card {
   background: var(--bg-card);
   border: 1.5px solid var(--border);
@@ -45,43 +128,35 @@
   -webkit-tap-highlight-color: transparent;
 }
 
-/* Gạch màu đầu card */
+/* Thanh màu đầu card */
 .exam-card::before {
   content: '';
   position: absolute;
   top: 0; left: 0; right: 0;
   height: 3px;
-  background: linear-gradient(90deg, var(--primary), var(--primary-mid));
+  background: linear-gradient(90deg, var(--cA, var(--primary)), var(--cB, var(--primary-mid)));
   transition: var(--transition);
 }
 
-/* Card paid — gạch xám */
 .exam-card.paid::before {
   background: linear-gradient(90deg, #94a3b8, #cbd5e1);
 }
 
-/* Hover effect — chỉ trên desktop */
 @media (hover: hover) {
   .exam-card:hover {
     transform: translateY(-3px);
     box-shadow: var(--shadow-md);
-    border-color: var(--primary);
+    border-color: var(--cA, var(--primary));
   }
-  .exam-card.paid:hover {
-    border-color: var(--warning);
-  }
-  .exam-card:hover::before {
-    height: 4px;
-  }
+  .exam-card.paid:hover { border-color: var(--warning); }
+  .exam-card:hover::before { height: 4px; }
 }
 
-/* Active state — mobile tap feedback */
 .exam-card:active {
   transform: scale(.98);
   box-shadow: var(--shadow-sm);
 }
 
-/* Số thứ tự */
 .exam-card-num {
   font-size: 1.7rem;
   font-weight: 800;
@@ -89,7 +164,6 @@
   line-height: 1;
 }
 
-/* Tiêu đề */
 .exam-card-title {
   font-size: .9rem;
   font-weight: 700;
@@ -97,29 +171,27 @@
   line-height: 1.35;
 }
 
-/* Meta (200 câu · 120 phút) */
 .exam-card-meta {
   font-size: .74rem;
   color: var(--text-3);
   line-height: 1.4;
 }
 
-/* Best score */
 .exam-card-best {
   font-size: .74rem;
   font-weight: 700;
   color: var(--success);
 }
 
-/* Footer card: badge action */
 .exam-card-footer {
   margin-top: auto;
   padding-top: 6px;
 }
+
 .exam-card-btn {
   display: inline-flex;
   align-items: center;
-  gap: 5px;
+  gap: 4px;
   padding: 5px 12px;
   border-radius: var(--radius-pill);
   font-size: .74rem;
@@ -128,8 +200,8 @@
   white-space: nowrap;
 }
 .exam-card-btn.free {
-  background: var(--primary-light);
-  color: var(--primary);
+  background: var(--cBg, var(--primary-light));
+  color: var(--cA, var(--primary));
 }
 .exam-card-btn.paid-lock {
   background: var(--bg);
@@ -142,10 +214,9 @@
   border: 1px dashed var(--border);
 }
 
-/* Hover trên btn (desktop) */
 @media (hover: hover) {
   .exam-card:hover .exam-card-btn.free {
-    background: var(--primary);
+    background: var(--cA, var(--primary));
     color: #fff;
   }
   .exam-card:hover .exam-card-btn.paid-lock {
@@ -155,30 +226,25 @@
   }
 }
 
-/* ── Tablet ≥ 768px: 3 cột ── */
+/* ── Tablet ≥ 768px ── */
 @media (min-width: 768px) {
-  .exam-grid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 16px;
-  }
-  .exam-card {
-    min-height: 168px;
-    padding: 20px 18px;
-  }
+  .year-switcher { gap: 16px; margin-bottom: 32px; }
+  .year-card { padding: 18px 22px 22px; }
+  .yc-title { font-size: 1.12rem; }
+
+  .exam-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .exam-card { min-height: 168px; padding: 20px 18px; }
   .exam-card-num { font-size: 2rem; }
   .exam-card-title { font-size: .95rem; }
 }
 
-/* ── Desktop ≥ 1024px: 4 cột ── */
+/* ── Desktop ≥ 1024px ── */
 @media (min-width: 1024px) {
-  .exam-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
-  }
+  .exam-grid { grid-template-columns: repeat(4, 1fr); gap: 18px; }
   .exam-card { min-height: 176px; padding: 22px 20px; }
 }
 
-/* ── Màn hình rất nhỏ < 360px: 1 cột ── */
+/* ── Màn hình rất nhỏ < 360px ── */
 @media (max-width: 359px) {
   .exam-grid { grid-template-columns: 1fr; }
 }
@@ -236,19 +302,13 @@
   padding: 18px 24px;
   background: linear-gradient(135deg,#4f46e5,#6366f1);
 }
-.gh-title {
-  font-size: 17px;
-  font-weight: 700;
-  color: #fff;
-}
+.gh-title { font-size: 17px; font-weight: 700; color: #fff; }
 .gh-close {
   background: rgba(255,255,255,.18);
   border: none;
   color: #fff;
-  width: 30px;
-  height: 30px;
+  width: 30px; height: 30px;
   border-radius: 7px;
-  font-size: 13px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -257,10 +317,7 @@
 }
 .gh-close:hover { background: rgba(255,255,255,.3); }
 
-.gh-body {
-  max-height: 62vh;
-  overflow-y: auto;
-}
+.gh-body { max-height: 62vh; overflow-y: auto; }
 .gh-placeholder {
   padding: 48px 24px;
   text-align: center;
@@ -297,22 +354,11 @@
   font-size: 12px;
   color: var(--text-3, #94a3b8);
 }
-.gh-badge {
-  font-size: 11px;
-  font-weight: 600;
-  padding: 2px 8px;
-  border-radius: 5px;
-}
+.gh-badge { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 5px; }
 .gh-badge.practice { background: #dcfce7; color: #16a34a; }
 .gh-badge.test      { background: #dbeafe; color: #2563eb; }
 
-.gh-score {
-  text-align: center;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 1.35;
-  min-width: 52px;
-}
+.gh-score { text-align: center; font-size: 14px; font-weight: 700; line-height: 1.35; min-width: 52px; }
 .gh-score.good  { color: #16a34a; }
 .gh-score.mid   { color: #d97706; }
 .gh-score.low   { color: #dc2626; }

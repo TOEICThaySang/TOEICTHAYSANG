@@ -683,6 +683,10 @@ function renderSettingsPanel() {
     if (fsBtn) fsBtn.classList.toggle('on', !!document.fullscreenElement);
     const apBtn = panel.querySelector('[data-sp="autoplay"]');
     if (apBtn) apBtn.classList.toggle('on', localStorage.getItem('tts_autoplay') !== '0');
+    const ratioVal = parseInt(localStorage.getItem('tts_left_ratio') || '50');
+    panel.querySelectorAll('.sp-ratio-btn').forEach(b => {
+      b.classList.toggle('active', parseInt(b.dataset.ratio) === ratioVal);
+    });
   };
 
   panel.innerHTML = `
@@ -713,6 +717,14 @@ function renderSettingsPanel() {
         <span class="sp-toggle-track"><span class="sp-toggle-thumb"></span></span>
       </button>
     </div>
+    <div class="sp-row">
+      <span class="sp-label">Tỷ lệ bố cục</span>
+      <div class="sp-ratio-ctrl">
+        <button class="sp-ratio-btn" data-sp="ratio" data-ratio="50" title="Đều 50:50">½</button>
+        <button class="sp-ratio-btn" data-sp="ratio" data-ratio="65" title="Rộng 65:35">⅔</button>
+        <button class="sp-ratio-btn" data-sp="ratio" data-ratio="72" title="Tối đa 72:28">¾</button>
+      </div>
+    </div>
     <div class="sp-divider"></div>
     <div class="sp-section-label">Phím tắt</div>
     <div class="sp-shortcuts">
@@ -741,6 +753,11 @@ function renderSettingsPanel() {
     } else if (sp === 'fullscreen') {
       if (document.fullscreenElement) document.exitFullscreen();
       else document.documentElement.requestFullscreen();
+    } else if (sp === 'ratio') {
+      const pct = parseInt(e.target.closest('[data-ratio]')?.dataset.ratio || '50');
+      localStorage.setItem('tts_left_ratio', pct);
+      const leftPanel = document.querySelector('.screen-left');
+      if (leftPanel) leftPanel.style.width = pct + '%';
     }
     syncPanel();
   });
@@ -788,6 +805,7 @@ function renderScreen(idx) {
 
   const screenEl = make('div','exam-screen active');
   const left     = make('div','screen-left');
+  left.style.width = (parseInt(localStorage.getItem('tts_left_ratio') || '50')) + '%';
   const right    = make('div','screen-right');
 
   if (sc.type==='p1') {
@@ -927,7 +945,6 @@ function renderScreen(idx) {
   right.appendChild(nav);
   screenEl.appendChild(left);
   if (!left.classList.contains('empty')) {
-    if (!left.querySelector('.left-tab-bar')) buildRatioBar(left);
     const resizer = make('div','screen-resizer');
     screenEl.appendChild(resizer);
     initResizer(screenEl, left, resizer);
@@ -980,22 +997,6 @@ function splitParas(text) {
   return paras;
 }
 
-const _ratioSvg = (lw) => {
-  const divX = 1.5 + lw + 0.5;
-  return `<svg width="22" height="14" viewBox="0 0 22 14" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.7" y="0.7" width="20.6" height="12.6" rx="2.5" stroke="currentColor" stroke-width="1.4"/><rect x="1.5" y="1.5" width="${lw}" height="11" rx="1" fill="currentColor" opacity="0.35"/><line x1="${divX}" y1="1.5" x2="${divX}" y2="12.5" stroke="currentColor" stroke-width="1"/></svg>`;
-};
-
-function buildRatioBar(left) {
-  const bar = make('div','left-ratio-bar');
-  [{ pct:50, lw:9.5 }, { pct:65, lw:12 }, { pct:72, lw:13.5 }].forEach(({ pct, lw }) => {
-    const btn = make('button','left-tab-ratio-btn');
-    btn.innerHTML = _ratioSvg(lw);
-    btn.title = `Tỷ lệ ${pct}/${100-pct}`;
-    btn.addEventListener('click', () => { left.style.width = pct + '%'; });
-    bar.appendChild(btn);
-  });
-  left.prepend(bar);
-}
 
 function buildLeftTabs(left, g, sk, isP7, showSol) {
   const hasBi     = !!(g.fullPassEN || g.fullPassVI);
@@ -1010,16 +1011,6 @@ function buildLeftTabs(left, g, sk, isP7, showSol) {
   tabBar.appendChild(tabPassageBtn);
   if (tabGridBtn) tabBar.appendChild(tabGridBtn);
   tabBar.appendChild(tabVideoBtn);
-
-  const tabSep = make('div','left-tab-sep'); tabBar.appendChild(tabSep);
-
-  [{ pct:50, lw:9.5 }, { pct:65, lw:12 }, { pct:72, lw:13.5 }].forEach(({ pct, lw }) => {
-    const btn = make('button','left-tab-ratio-btn');
-    btn.innerHTML = _ratioSvg(lw);
-    btn.title = `Tỷ lệ ${pct}/${100-pct}`;
-    btn.addEventListener('click', () => { left.style.width = pct + '%'; });
-    tabBar.appendChild(btn);
-  });
 
   left.appendChild(tabBar);
 
@@ -1421,6 +1412,13 @@ function initResizer(screenEl, left, resizer) {
   let dragging = false, startX = 0, startW = 0;
 
   const stopDrag = () => {
+    if (dragging) {
+      const pct = Math.round(left.offsetWidth / screenEl.offsetWidth * 100);
+      localStorage.setItem('tts_left_ratio', pct);
+      document.querySelectorAll('.sp-ratio-btn').forEach(b => {
+        b.classList.toggle('active', parseInt(b.dataset.ratio) === pct);
+      });
+    }
     dragging = false;
     resizer.classList.remove('dragging');
     document.body.style.cursor = '';
@@ -1447,7 +1445,13 @@ function initResizer(screenEl, left, resizer) {
   resizer.addEventListener('pointerup', stopDrag);
   resizer.addEventListener('pointercancel', stopDrag);
 
-  resizer.addEventListener('dblclick', () => { left.style.width = '50%'; });
+  resizer.addEventListener('dblclick', () => {
+    left.style.width = '50%';
+    localStorage.setItem('tts_left_ratio', '50');
+    document.querySelectorAll('.sp-ratio-btn').forEach(b => {
+      b.classList.toggle('active', b.dataset.ratio === '50');
+    });
+  });
 }
 
 function buildOptions(qNum, letters, sk, optsOverride) {
