@@ -900,7 +900,7 @@ function buildClozeDisplay(tokens, blankedSet, openedSet, onReveal) {
       wrap.appendChild(line); return;
     }
     if (tok.type === 'word' && blankedSet.has(idx)) {
-      const w = Math.max(40, tok.text.length * 9 + 8);
+      const w = Math.max(44, tok.text.length * 10 + 10);
       const isOpen = openedSet.has(idx);
       const pill = make('span', 'cloze-pill' + (isOpen ? ' opened' : ''));
       pill.style.width = w + 'px';
@@ -980,7 +980,8 @@ function buildClozeGame(scriptText, partNum, sk, solKey, rightEl, leftEl) {
     return btn;
   });
   pctBtns.forEach(b => controls.appendChild(b));
-  const redoBtn = make('button', 'cloze-redo-btn', '🔀 Làm lại');
+  const IC_REDO = `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:5px"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.5"/></svg>`;
+  const redoBtn = make('button', 'cloze-redo-btn', IC_REDO + 'Làm lại');
   redoBtn.addEventListener('click', () => { cs.blankedSet = clozeSelectBlanks(cs.tokens, cs.percent); cs.openedSet = new Set(); refresh(); });
   controls.appendChild(redoBtn);
   gameArea.appendChild(controls);
