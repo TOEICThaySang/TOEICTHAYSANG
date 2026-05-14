@@ -833,6 +833,182 @@ function lytCache_save() {
   });
 }
 
+// ══════════════════════════════════════════════════════════════
+// CLOZE GAME — Nghe Khuyết (Part 1–4)
+// ══════════════════════════════════════════════════════════════
+const clozeState = {};
+
+function clozeTokenize(text, partNum) {
+  const tokens = [];
+  const lines = (text || '').split('\n');
+  lines.forEach((rawLine, li) => {
+    if (li > 0) tokens.push({ type: 'br' });
+    const line = rawLine.trim();
+    if (!line) return;
+    let rest = line;
+    if ([3, 4].includes(partNum)) {
+      const sm = rest.match(/^([A-Za-z]+\s*:)\s*/);
+      if (sm) {
+        tokens.push({ type: 'fixed', text: sm[1] });
+        tokens.push({ type: 'space', text: ' ' });
+        rest = rest.slice(sm[0].length);
+      }
+      // Tách câu: dấu .?! + space + chữ hoa / dấu ngoặc
+      const sentences = rest.split(/(?<=[.?!])\s+(?=[A-Z("])/);
+      sentences.forEach((sent, si) => {
+        if (si > 0) tokens.push({ type: 'sentbr' });
+        clozeWords(sent, tokens);
+      });
+    } else {
+      const om = rest.match(/^\(([A-D])\)\s*/);
+      if (om) {
+        tokens.push({ type: 'fixed', text: `(${om[1]})` });
+        tokens.push({ type: 'space', text: ' ' });
+        rest = rest.slice(om[0].length);
+      }
+      clozeWords(rest, tokens);
+    }
+  });
+  return tokens;
+}
+
+function clozeWords(text, tokens) {
+  const re = /\(\d+\)|[A-Za-z][A-Za-z'’-]*|[ \t]+|[^\w\s]+/g;
+  let m;
+  while ((m = re.exec(text)) !== null) {
+    const t = m[0];
+    if (/^\(\d+\)$/.test(t))      tokens.push({ type: 'fixed', text: t });
+    else if (/^[ \t]+$/.test(t))  tokens.push({ type: 'space', text: ' ' });
+    else if (/^[A-Za-z]/.test(t)) tokens.push({ type: 'word',  text: t, eligible: t.length > 2 });
+    else                           tokens.push({ type: 'punct', text: t });
+  }
+}
+
+function clozeSelectBlanks(tokens, pct) {
+  const eligible = tokens.map((t, i) => t.eligible ? i : -1).filter(i => i >= 0);
+  const count = Math.max(1, Math.round(eligible.length * pct / 100));
+  return new Set(eligible.slice().sort(() => Math.random() - 0.5).slice(0, count));
+}
+
+function buildClozeDisplay(tokens, blankedSet, openedSet, onReveal) {
+  const wrap = make('div', 'cloze-display');
+  let line = make('div', 'cloze-line');
+  wrap.appendChild(line);
+  tokens.forEach((tok, idx) => {
+    if (tok.type === 'br' || tok.type === 'sentbr') {
+      line = make('div', 'cloze-line' + (tok.type === 'sentbr' ? ' cloze-sentline' : ''));
+      wrap.appendChild(line); return;
+    }
+    if (tok.type === 'word' && blankedSet.has(idx)) {
+      const w = Math.max(40, tok.text.length * 9 + 8);
+      const isOpen = openedSet.has(idx);
+      const pill = make('span', 'cloze-pill' + (isOpen ? ' opened' : ''));
+      pill.style.width = w + 'px';
+      const inner = make('span', 'cloze-pill-inner');
+      const front = make('span', 'cloze-pill-front', '···');
+      const back  = make('span', 'cloze-pill-back',  isOpen ? tok.text : '');
+      inner.appendChild(front); inner.appendChild(back); pill.appendChild(inner);
+      if (!isOpen) pill.addEventListener('click', () => {
+        openedSet.add(idx); back.textContent = tok.text;
+        pill.classList.add('opened'); pill.style.cursor = 'default';
+        onReveal();
+      }, { once: true });
+      line.appendChild(pill);
+    } else {
+      const sp = make('span', tok.type === 'fixed' ? 'cloze-fixed' : '', tok.text);
+      if (tok.type === 'space') sp.style.whiteSpace = 'pre';
+      line.appendChild(sp);
+    }
+  });
+  return wrap;
+}
+
+function buildClozeScorePanel(sk) {
+  const r = 26, cx = 34, cy = 34, C = +(2 * Math.PI * r).toFixed(1);
+  const panel = make('div', 'cloze-score-panel');
+  panel.id = 'clozeScore_' + sk;
+  panel.innerHTML =
+    `<svg width="68" height="68" viewBox="0 0 68 68">` +
+    `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#1e293b" stroke-width="6"/>` +
+    `<circle class="score-ring" cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#6366f1"` +
+    ` stroke-width="6" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C}"` +
+    ` transform="rotate(-90 ${cx} ${cy})" style="transition:stroke-dashoffset .4s ease,stroke .4s ease"/>` +
+    `<text class="score-pct" x="${cx}" y="${cy+5}" text-anchor="middle" fill="#e2e8f0"` +
+    ` font-size="13" font-weight="700">0%</text></svg>` +
+    `<div class="score-info"><span class="score-count">0/0</span><span class="score-hint">ô đã mở</span></div>`;
+  return panel;
+}
+
+function clozeUpdateScore(sk, opened, total) {
+  const panel = document.getElementById('clozeScore_' + sk);
+  if (!panel) return;
+  const pct = total > 0 ? Math.round(opened / total * 100) : 0;
+  const r = 26, C = +(2 * Math.PI * r).toFixed(1);
+  const ring = panel.querySelector('.score-ring');
+  if (ring) { ring.style.strokeDashoffset = (C * (1 - pct / 100)).toFixed(1); ring.style.stroke = pct === 100 ? '#22c55e' : '#6366f1'; }
+  const p = panel.querySelector('.score-pct'); if (p) p.textContent = pct + '%';
+  const c = panel.querySelector('.score-count'); if (c) c.textContent = opened + '/' + total;
+  const h = panel.querySelector('.score-hint'); if (h) h.textContent = pct === 100 ? '🎉 Xong!' : 'ô đã mở';
+}
+
+function buildClozeGame(scriptText, partNum, sk, solKey, rightEl, leftEl) {
+  const cs = clozeState[sk] || (clozeState[sk] = { active: false, percent: 30, tokens: null, blankedSet: null, openedSet: null });
+  if (!cs.tokens) {
+    cs.tokens    = clozeTokenize(scriptText, partNum);
+    cs.blankedSet = clozeSelectBlanks(cs.tokens, cs.percent);
+    cs.openedSet  = new Set();
+  }
+
+  const banner = make('div', 'cloze-banner' + (cs.active ? ' active' : ''));
+  banner.innerHTML = cs.active ? `<span class="cloze-x">✕</span> Thoát game` : `🎮 Chơi Nghe Khuyết`;
+
+  const scorePanel = buildClozeScorePanel(sk);
+  scorePanel.style.display = cs.active ? '' : 'none';
+  rightEl.insertBefore(scorePanel, rightEl.firstChild);
+
+  const gameArea = make('div', 'cloze-area');
+  gameArea.style.display = cs.active ? '' : 'none';
+
+  const controls = make('div', 'cloze-controls');
+  const pctBtns = [30, 50, 70].map(pct => {
+    const btn = make('button', 'cloze-pct-btn' + (cs.percent === pct ? ' active' : ''), pct + '%');
+    btn.addEventListener('click', () => {
+      cs.percent = pct; cs.blankedSet = clozeSelectBlanks(cs.tokens, pct); cs.openedSet = new Set();
+      pctBtns.forEach(b => b.classList.toggle('active', b === btn));
+      refresh();
+    });
+    return btn;
+  });
+  pctBtns.forEach(b => controls.appendChild(b));
+  const redoBtn = make('button', 'cloze-redo-btn', '🔀 Làm lại');
+  redoBtn.addEventListener('click', () => { cs.blankedSet = clozeSelectBlanks(cs.tokens, cs.percent); cs.openedSet = new Set(); refresh(); });
+  controls.appendChild(redoBtn);
+  gameArea.appendChild(controls);
+
+  let displayEl = null;
+  const refresh = () => {
+    if (displayEl) displayEl.remove();
+    displayEl = buildClozeDisplay(cs.tokens, cs.blankedSet, cs.openedSet, () => clozeUpdateScore(sk, cs.openedSet.size, cs.blankedSet.size));
+    gameArea.appendChild(displayEl);
+    clozeUpdateScore(sk, cs.openedSet.size, cs.blankedSet.size);
+  };
+  if (cs.active) refresh();
+
+  banner.addEventListener('click', () => {
+    cs.active = !cs.active;
+    banner.classList.toggle('active', cs.active);
+    banner.innerHTML = cs.active ? `<span class="cloze-x">✕</span> Thoát game` : `🎮 Chơi Nghe Khuyết`;
+    gameArea.style.display = cs.active ? '' : 'none';
+    scorePanel.style.display = cs.active ? '' : 'none';
+    // Ẩn/hiện biGrid script
+    const scriptEl = leftEl.querySelector('[data-scriptsk]');
+    if (scriptEl) scriptEl.style.display = (cs.active ? 'none' : (state.showSolution[solKey] ? '' : 'none'));
+    if (cs.active && !displayEl) refresh();
+  });
+
+  return { banner, gameArea };
+}
+
 function renderScreen(idx) {
   const autoplayQ = state.lastRevealedQ; state.lastRevealedQ = null;
   const prevAudio = document.querySelector('audio');
@@ -856,26 +1032,34 @@ function renderScreen(idx) {
     const q=sc.q;
     left.appendChild(buildAudioBlock(q.mp3, sk));
     if (q.img) { const img=make('img','exam-img'); img.src=q.img; img.alt=`Câu ${q.q}`; left.appendChild(img); }
+    right.appendChild(buildQHeader(q.q,1,sk,showSol));
+    right.appendChild(buildOptionsAll(q.q,['A','B','C','D'],sk,null,null,null));
+    if (showSol && q.script) {
+      const { banner, gameArea } = buildClozeGame(q.script,1,sk,'q'+q.q,right,left);
+      left.appendChild(banner); left.appendChild(gameArea);
+    }
     if (showSol && (q.script || q.trans)) {
       const sg = buildScriptBiGrid(q.script, q.trans);
       sg.dataset.scriptsk = 'q'+q.q;
-      if (!state.showSolution['q'+q.q]) sg.style.display = 'none';
+      if (!state.showSolution['q'+q.q] || clozeState[sk]?.active) sg.style.display = 'none';
       left.appendChild(sg);
     }
-    right.appendChild(buildQHeader(q.q,1,sk,showSol));
-    right.appendChild(buildOptionsAll(q.q,['A','B','C','D'],sk,null,null,null));
   }
   if (sc.type==='p2') {
     const q=sc.q;
     left.appendChild(buildAudioBlock(q.mp3, sk));
+    right.appendChild(buildQHeader(q.q,2,sk,showSol));
+    right.appendChild(buildOptionsAll(q.q,['A','B','C'],sk,null,null,null));
+    if (showSol && q.script) {
+      const { banner, gameArea } = buildClozeGame(q.script,2,sk,'q'+q.q,right,left);
+      left.appendChild(banner); left.appendChild(gameArea);
+    }
     if (showSol && (q.script || q.trans)) {
       const sg = buildScriptBiGrid(q.script, q.trans);
       sg.dataset.scriptsk = 'q'+q.q;
-      if (!state.showSolution['q'+q.q]) sg.style.display = 'none';
+      if (!state.showSolution['q'+q.q] || clozeState[sk]?.active) sg.style.display = 'none';
       left.appendChild(sg);
     }
-    right.appendChild(buildQHeader(q.q,2,sk,showSol));
-    right.appendChild(buildOptionsAll(q.q,['A','B','C'],sk,null,null,null));
   }
   if (sc.type==='p3') {
     const g=sc.group;
@@ -883,13 +1067,17 @@ function renderScreen(idx) {
     if (g.img) { const img=make('img','exam-img'); img.src=g.img; img.alt='Ảnh Part 3'; left.appendChild(img); }
     const p3SolKey='q'+g.questions[0].q;
     const p3AllQNums=g.questions.map(q=>q.q);
+    g.questions.forEach((q)=>right.appendChild(buildGroupQBlock(q,3,showSol,sk,showSol,p3AllQNums)));
+    if (showSol && g.script) {
+      const { banner, gameArea } = buildClozeGame(g.script,3,sk,p3SolKey,right,left);
+      left.appendChild(banner); left.appendChild(gameArea);
+    }
     if (showSol) {
       const sg = buildScriptBiGrid(g.script, g.trans);
       sg.dataset.scriptsk = sk;
-      if (!state.showSolution[p3SolKey]) sg.style.display = 'none';
+      if (!state.showSolution[p3SolKey] || clozeState[sk]?.active) sg.style.display = 'none';
       left.appendChild(sg);
     }
-    g.questions.forEach((q)=>right.appendChild(buildGroupQBlock(q,3,showSol,sk,showSol,p3AllQNums)));
   }
   if (sc.type==='p4') {
     const g=sc.group;
@@ -897,13 +1085,17 @@ function renderScreen(idx) {
     if (g.img) { const img=make('img','exam-img'); img.src=g.img; img.alt='Ảnh Part 4'; left.appendChild(img); }
     const p4SolKey='q'+g.questions[0].q;
     const p4AllQNums=g.questions.map(q=>q.q);
+    g.questions.forEach((q)=>right.appendChild(buildGroupQBlock(q,4,showSol,sk,showSol,p4AllQNums)));
+    if (showSol && g.script) {
+      const { banner, gameArea } = buildClozeGame(g.script,4,sk,p4SolKey,right,left);
+      left.appendChild(banner); left.appendChild(gameArea);
+    }
     if (showSol) {
       const sg = buildScriptBiGrid(g.script, g.trans);
       sg.dataset.scriptsk = sk;
-      if (!state.showSolution[p4SolKey]) sg.style.display = 'none';
+      if (!state.showSolution[p4SolKey] || clozeState[sk]?.active) sg.style.display = 'none';
       left.appendChild(sg);
     }
-    g.questions.forEach((q)=>right.appendChild(buildGroupQBlock(q,4,showSol,sk,showSol,p4AllQNums)));
   }
   if (sc.type==='p5') {
     const q=sc.q;
@@ -1557,7 +1749,7 @@ function buildQHeader(qNum, part, sk, showSolBtn, groupQNums=null) {
       } else if ([1,2,3,4].includes(part)) {
         if ([3,4].includes(part)) {
           const sbWrap = document.querySelector(`[data-scriptsk="${sk}"]`);
-          if (sbWrap) sbWrap.style.display = next ? '' : 'none';
+          if (sbWrap && !clozeState[sk]?.active) sbWrap.style.display = next ? '' : 'none';
         }
         const _rp      = [3,4].includes(part) ? document.querySelector('.screen-right') : null;
         const _qBlock  = _rp ? document.querySelector(`[data-solq="${qNum}"]`)?.closest('.q-block') : null;
@@ -1568,7 +1760,7 @@ function buildQHeader(qNum, part, sk, showSolBtn, groupQNums=null) {
           if (btn) btn.innerHTML = solHtml(next);
           if ([1,2].includes(part)) {
             const sg = document.querySelector(`[data-scriptsk="q${qn}"]`);
-            if (sg) sg.style.display = next ? '' : 'none';
+            if (sg && !clozeState[sk]?.active) sg.style.display = next ? '' : 'none';
           } else {
             const qtr = document.querySelector(`.q-trans[data-vifor="${qn}"]`);
             if (qtr) qtr.style.display = next ? '' : 'none';

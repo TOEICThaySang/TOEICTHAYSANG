@@ -2369,3 +2369,111 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
 }
 .bilingual-col p { margin: 0 0 6px; }
 .bilingual-col p:empty { margin: 0; height: 8px; }
+
+/* ══════════════════════════════════════════════════════
+   CLOZE GAME — Nghe Khuyết (Part 1–4)
+══════════════════════════════════════════════════════ */
+
+/* Banner kích hoạt */
+.cloze-banner {
+  display: flex; align-items: center; gap: 6px;
+  margin: 10px 12px 0;
+  padding: 7px 14px;
+  background: linear-gradient(135deg, rgba(99,102,241,0.12), rgba(139,92,246,0.12));
+  border: 1.5px solid rgba(129,140,248,0.35);
+  border-radius: 20px;
+  color: #a5b4fc;
+  font-size: 13px; font-weight: 500;
+  cursor: pointer; user-select: none;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+  width: fit-content;
+}
+.cloze-banner:hover { background: linear-gradient(135deg, rgba(99,102,241,0.22), rgba(139,92,246,0.22)); border-color: #818cf8; color: #c7d2fe; }
+.cloze-banner.active { background: rgba(71,85,105,0.3); border-color: rgba(148,163,184,0.3); color: #94a3b8; }
+.cloze-x { font-size: 14px; font-weight: 700; }
+
+/* Khu vực game */
+.cloze-area {
+  margin: 10px 0 0;
+  padding: 12px 14px;
+  background: rgba(15,23,42,0.5);
+  border-top: 1.5px solid rgba(99,102,241,0.2);
+  border-bottom: 1.5px solid rgba(99,102,241,0.2);
+}
+
+/* Nút % + Làm lại */
+.cloze-controls {
+  display: flex; align-items: center; gap: 6px; margin-bottom: 14px; flex-wrap: wrap;
+}
+.cloze-pct-btn {
+  padding: 4px 12px; border-radius: 16px; border: 1.5px solid rgba(129,140,248,0.3);
+  background: transparent; color: #64748b; font-size: 12.5px; font-weight: 600;
+  cursor: pointer; transition: all 0.18s;
+}
+.cloze-pct-btn.active {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  border-color: transparent; color: #fff;
+  box-shadow: 0 0 10px rgba(99,102,241,0.4);
+}
+.cloze-pct-btn:hover:not(.active) { border-color: #818cf8; color: #a5b4fc; }
+.cloze-redo-btn {
+  padding: 4px 12px; border-radius: 16px; border: 1.5px solid rgba(100,116,139,0.3);
+  background: transparent; color: #64748b; font-size: 12.5px;
+  cursor: pointer; transition: all 0.18s; margin-left: 4px;
+}
+.cloze-redo-btn:hover { border-color: #94a3b8; color: #cbd5e1; }
+
+/* Hiển thị text khuyết */
+.cloze-display { line-height: 2; font-size: 14px; }
+.cloze-line { display: block; min-height: 1.6em; }
+.cloze-sentline { padding-left: 0; }
+.cloze-fixed { color: #f59e0b; font-weight: 600; font-size: 13px; }
+.cloze-text, .cloze-punct { color: #cbd5e1; }
+
+/* Pill ẩn/hiện từ — flip animation */
+.cloze-pill {
+  display: inline-flex; align-items: center; justify-content: center;
+  height: 26px; border-radius: 10px; vertical-align: middle;
+  margin: 0 2px; cursor: pointer; perspective: 400px;
+  position: relative;
+}
+.cloze-pill-inner {
+  width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.38s cubic-bezier(0.4,0,0.2,1);
+  position: relative;
+}
+.cloze-pill.opened .cloze-pill-inner { transform: rotateY(180deg); }
+.cloze-pill-front, .cloze-pill-back {
+  position: absolute; inset: 0; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  backface-visibility: hidden; -webkit-backface-visibility: hidden;
+}
+.cloze-pill-front {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  box-shadow: 0 0 8px rgba(129,140,248,0.35);
+  border: 1.5px solid #818cf8;
+  color: rgba(255,255,255,0.65); font-size: 11px; letter-spacing: 2px;
+  transition: box-shadow 0.2s;
+}
+.cloze-pill:not(.opened):hover .cloze-pill-front {
+  box-shadow: 0 0 14px rgba(129,140,248,0.7);
+}
+.cloze-pill-back {
+  background: linear-gradient(135deg, #f59e0b, #fbbf24);
+  color: #1e1b4b; font-weight: 700; font-size: 13px;
+  transform: rotateY(180deg);
+}
+
+/* Score panel (cột phải, trên câu hỏi) */
+.cloze-score-panel {
+  display: flex; align-items: center; gap: 12px;
+  margin: 0 0 14px;
+  padding: 10px 16px;
+  background: rgba(30,41,59,0.7);
+  border: 1.5px solid rgba(99,102,241,0.25);
+  border-radius: 12px;
+}
+.score-info { display: flex; flex-direction: column; gap: 2px; }
+.score-count { font-size: 18px; font-weight: 700; color: #e2e8f0; line-height: 1; }
+.score-hint  { font-size: 11.5px; color: #64748b; margin-top: 3px; }
