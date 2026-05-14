@@ -929,11 +929,11 @@ function buildClozeScorePanel(sk) {
   panel.id = 'clozeScore_' + sk;
   panel.innerHTML =
     `<svg width="68" height="68" viewBox="0 0 68 68">` +
-    `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#1e293b" stroke-width="6"/>` +
+    `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#e2e8f0" stroke-width="6"/>` +
     `<circle class="score-ring" cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#6366f1"` +
     ` stroke-width="6" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C}"` +
     ` transform="rotate(-90 ${cx} ${cy})" style="transition:stroke-dashoffset .4s ease,stroke .4s ease"/>` +
-    `<text class="score-pct" x="${cx}" y="${cy+5}" text-anchor="middle" fill="#e2e8f0"` +
+    `<text class="score-pct" x="${cx}" y="${cy+5}" text-anchor="middle" fill="#1e3a5f"` +
     ` font-size="13" font-weight="700">0%</text></svg>` +
     `<div class="score-info"><span class="score-count">0/0</span><span class="score-hint">ô đã mở</span></div>`;
   return panel;
@@ -1000,9 +1000,11 @@ function buildClozeGame(scriptText, partNum, sk, solKey, rightEl, leftEl) {
     banner.innerHTML = cs.active ? `<span class="cloze-x">✕</span> Thoát game` : `🎮 Chơi Nghe Khuyết`;
     gameArea.style.display = cs.active ? '' : 'none';
     scorePanel.style.display = cs.active ? '' : 'none';
-    // Ẩn/hiện biGrid script
+    // Ẩn/hiện biGrid script và ảnh
     const scriptEl = leftEl.querySelector('[data-scriptsk]');
     if (scriptEl) scriptEl.style.display = (cs.active ? 'none' : (state.showSolution[solKey] ? '' : 'none'));
+    const imgEl = leftEl.querySelector('.exam-img');
+    if (imgEl) imgEl.style.display = cs.active ? 'none' : '';
     if (cs.active && !displayEl) refresh();
   });
 
@@ -1031,7 +1033,7 @@ function renderScreen(idx) {
   if (sc.type==='p1') {
     const q=sc.q;
     left.appendChild(buildAudioBlock(q.mp3, sk));
-    if (q.img) { const img=make('img','exam-img'); img.src=q.img; img.alt=`Câu ${q.q}`; left.appendChild(img); }
+    if (q.img) { const img=make('img','exam-img'); img.src=q.img; img.alt=`Câu ${q.q}`; if (clozeState[sk]?.active) img.style.display='none'; left.appendChild(img); }
     right.appendChild(buildQHeader(q.q,1,sk,showSol));
     right.appendChild(buildOptionsAll(q.q,['A','B','C','D'],sk,null,null,null));
     if (showSol && q.script) {
@@ -1064,7 +1066,7 @@ function renderScreen(idx) {
   if (sc.type==='p3') {
     const g=sc.group;
     left.appendChild(buildAudioBlock(g.mp3, sk));
-    if (g.img) { const img=make('img','exam-img'); img.src=g.img; img.alt='Ảnh Part 3'; left.appendChild(img); }
+    if (g.img) { const img=make('img','exam-img'); img.src=g.img; img.alt='Ảnh Part 3'; if (clozeState[sk]?.active) img.style.display='none'; left.appendChild(img); }
     const p3SolKey='q'+g.questions[0].q;
     const p3AllQNums=g.questions.map(q=>q.q);
     g.questions.forEach((q)=>right.appendChild(buildGroupQBlock(q,3,showSol,sk,showSol,p3AllQNums)));
@@ -1082,7 +1084,7 @@ function renderScreen(idx) {
   if (sc.type==='p4') {
     const g=sc.group;
     left.appendChild(buildAudioBlock(g.mp3, sk));
-    if (g.img) { const img=make('img','exam-img'); img.src=g.img; img.alt='Ảnh Part 4'; left.appendChild(img); }
+    if (g.img) { const img=make('img','exam-img'); img.src=g.img; img.alt='Ảnh Part 4'; if (clozeState[sk]?.active) img.style.display='none'; left.appendChild(img); }
     const p4SolKey='q'+g.questions[0].q;
     const p4AllQNums=g.questions.map(q=>q.q);
     g.questions.forEach((q)=>right.appendChild(buildGroupQBlock(q,4,showSol,sk,showSol,p4AllQNums)));
