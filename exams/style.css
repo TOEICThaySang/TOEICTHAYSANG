@@ -1355,37 +1355,41 @@ body {
   font-weight: 500;
   color: var(--text-main);
   line-height: 1.6;
-  margin-bottom: 4px;
+  margin-bottom: 2px;
 }
 .q-text-vi {
   font-size: calc(var(--ef) - 2px);
-  color: var(--text-sub);
-  font-style: italic;
+  color: #999999;
   margin-bottom: 4px;
+}
+
+/* Từ được điền vào chỗ trống Part 5 khi hiện đáp án */
+.fill-word {
+  font-weight: 700;
+  color: #1e3a5f;
+  background: rgba(245, 197, 24, 0.28);
+  border-radius: 3px;
+  padding: 1px 5px;
 }
 
 /* Block dịch tiếng Việt câu hỏi + đáp án */
 .vi-block {
-  background: rgba(245,197,24,0.06);
-  border: 1px solid rgba(245,197,24,0.2);
   border-radius: var(--radius-sm);
-  padding: 10px 14px;
-  margin-top: 8px;
+  padding: 6px 14px;
+  margin-top: 6px;
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 .vi-block-q {
   font-size: calc(var(--ef) - 2px);
-  font-style: italic;
-  color: var(--text-sub);
-  margin-bottom: 4px;
-  font-weight: 500;
+  color: #999999;
+  margin-bottom: 2px;
+  font-weight: 400;
 }
 .vi-block-opt {
-  font-size: calc(var(--ef) - 3px);
-  font-style: italic;
-  color: var(--text-hint);
+  font-size: calc(var(--ef) - 2px);
+  color: #999999;
   padding: 1px 0;
 }
 
@@ -1401,13 +1405,14 @@ body {
 .options-list {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 10px;
   margin-top: 6px;
 }
 .option-item {
   display: flex;
   align-items: center;
-  gap: 10px;
+  row-gap: 2px;
+  column-gap: 10px;
   padding: 8px 14px;
   border: 1.5px solid var(--border);
   border-radius: var(--radius-md);
@@ -1467,14 +1472,16 @@ body {
 .option-item.missed-correct .opt-radio { border-color: #16a34a; }
 
 .opt-label {
-  font-size: calc(var(--ef) - 2px);
+  font-size: var(--ef);
   font-weight: 700;
   color: var(--text-sub);
+  line-height: 1.5;
   flex-shrink: 0;
   min-width: 18px;
 }
 .opt-text {
-  font-size: calc(var(--ef) - 2px);
+  font-size: var(--ef);
+  font-weight: 500;
   color: var(--text-main);
   line-height: 1.5;
   flex: 1;
@@ -2216,12 +2223,7 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
 ══════════════════════════════════════════════════════ */
 .q-trans {
   font-size: calc(var(--ef) - 2px);
-  font-style: italic;
-  color: #78350f;
-  background: #fffbeb;
-  border-left: 3px solid #fde68a;
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  padding: 4px 10px;
+  color: #999999;
   margin: 2px 0 8px;
   line-height: 1.55;
 }
@@ -2245,20 +2247,21 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
 .option-item { flex-wrap: wrap; }
 .opt-trans {
   flex-basis: 100%;
-  padding: 2px 0 2px 56px;
-  font-size: calc(var(--ef) - 3px);
-  font-style: italic;
-  color: #92400e;
+  padding: 0 0 0 56px;
+  font-size: calc(var(--ef) - 2px);
+  color: #999999;
   line-height: 1.5;
 }
 .opt-note {
   flex-basis: 100%;
   padding: 3px 0 2px 56px;
-  font-size: calc(var(--ef) - 3px);
-  font-style: italic;
+  font-size: calc(var(--ef) - 2px);
   color: #6366f1;
   line-height: 1.5;
 }
+.option-item.correct .opt-trans       { color: #4CAF50; }
+.option-item.wrong .opt-trans         { color: #ef5350; }
+.option-item.missed-correct .opt-trans { color: #4CAF50; }
 
 /* ══════════════════════════════════════════════════════
    TAB SONG NGỮ — COLT ĐÔI (biGrid)
@@ -2476,7 +2479,7 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
 }
 
 /* Progress bar */
-.cloze-progress-wrap { margin-bottom: 18px; padding-right: 44px; }
+.cloze-progress-wrap { margin-bottom: 18px; }
 .cloze-progress-track {
   height: 4px; background: #EFF6FF; border-radius: 999px; overflow: hidden;
 }
@@ -2566,5 +2569,5 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
   .cloze-top-row { gap: 8px; }
   .cloze-display { font-size: 13px; }
   .cloze-pill { min-width: 44px; }
-  .cloze-progress-wrap { padding-right: 40px; }
+
 }

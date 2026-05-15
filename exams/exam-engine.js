@@ -1065,7 +1065,11 @@ function buildClozeGame(scriptText, partNum, sk, solKey, rightEl, leftEl) {
 
   if (cs.active) leftEl.classList.add('cloze-game-active');
 
-  banner.addEventListener('click', () => setActive(true));
+  banner.addEventListener('click', () => {
+    const audio = document.querySelector('audio');
+    if (audio) { audio.pause(); audio.currentTime = 0; }
+    setActive(true);
+  });
   menuBtn.addEventListener('click', e => {
     e.stopPropagation();
     dropdown.style.display = dropdown.style.display === 'none' ? '' : 'none';
@@ -1174,9 +1178,17 @@ function renderScreen(idx) {
       left.appendChild(buildVideoLoader(q.videoUrl, autoplayQ===q.q));
     } else { left.classList.add('empty'); }
     right.appendChild(buildQHeader(q.q,5,sk,showSol));
-    if (q.enQ) right.appendChild(make('div','q-text', q.enQ.replace(/ (---+)/g,'&nbsp;<span style="white-space:nowrap">$1</span>')));
-    if (showSol && q.fullSent)  { const fsEl=make('div','full-sent-en', escHtml(q.fullSent)); if(!transShown) fsEl.style.display='none'; right.appendChild(fsEl); }
-    if (showSol && q.transSent) { const tsEl=make('div','full-sent-vi', escHtml(q.transSent)); if(!transShown) tsEl.style.display='none'; right.appendChild(tsEl); }
+    if (q.enQ) {
+      const ansWord = transShown ? extractAnswerWord(q) : null;
+      const qtEl = make('div','q-text', buildP5QTextHtml(q.enQ, ansWord));
+      qtEl.id = 'p5qt-' + q.q;
+      right.appendChild(qtEl);
+    }
+    if (showSol && q.transSent) {
+      const tsEl = make('div','full-sent-vi', escHtml(q.transSent));
+      if (!transShown) tsEl.style.display = 'none';
+      right.appendChild(tsEl);
+    }
     const optList5 = buildOptionsAll(q.q,['A','B','C','D'],sk,null,null,showSol?q.noteOpts:null);
     if (!transShown) optList5.querySelectorAll('.opt-note').forEach(el => el.style.display='none');
     right.appendChild(optList5);
@@ -1737,6 +1749,24 @@ function buildScriptBlock(script, trans) {
   return frag;
 }
 
+function extractAnswerWord(q) {
+  if (!q || !q.answer) return null;
+  const idx = q.answer.toUpperCase().charCodeAt(0) - 65; // A=0, B=1, C=2, D=3
+  if (q.enOpts && q.enOpts[idx] != null) return String(q.enOpts[idx]);
+  if (q.options) {
+    const opt = q.options.find(o => o[0].toUpperCase() === q.answer.toUpperCase());
+    if (opt) return opt.replace(/^[A-D][.\s]\s*/, '').trim();
+  }
+  return null;
+}
+
+function buildP5QTextHtml(enQ, answerWord) {
+  if (answerWord) {
+    return enQ.replace(/-{3,}/g, `<span class="fill-word">${escHtml(answerWord)}</span>`);
+  }
+  return enQ.replace(/ (-{3,})/g, '&nbsp;<span style="white-space:nowrap">$1</span>');
+}
+
 function splitIntoSentences(text) {
   if (!text) return text;
   // Split before (digit) — handles "France. (90)" and "Pháp.(90)"
@@ -1898,7 +1928,13 @@ function buildQHeader(qNum, part, sk, showSolBtn, groupQNums=null) {
         const optList = document.querySelector(`.options-list[data-qlist="${qNum}"]`);
         if (optList) applyOptionColors(optList, state.answers[qNum], getQuestionData(qNum)?.q.answer, shouldColor);
         if (part === 5) {
-          document.querySelectorAll('.screen-right .full-sent-en, .screen-right .full-sent-vi').forEach(el => el.style.display = nextTrans ? '' : 'none');
+          const p5Data = getQuestionData(qNum);
+          const p5qtEl = document.getElementById('p5qt-' + qNum);
+          if (p5qtEl && p5Data) {
+            const ansWord = nextTrans ? extractAnswerWord(p5Data.q) : null;
+            p5qtEl.innerHTML = buildP5QTextHtml(p5Data.q.enQ, ansWord);
+          }
+          document.querySelectorAll('.screen-right .full-sent-vi').forEach(el => el.style.display = nextTrans ? '' : 'none');
           document.querySelectorAll(`.options-list[data-qlist="${qNum}"] .opt-note`).forEach(el => el.style.display = nextTrans ? '' : 'none');
         } else {
           const qtr = document.querySelector(`.q-trans[data-vifor="${qNum}"]`);
