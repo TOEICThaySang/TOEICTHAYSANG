@@ -2367,66 +2367,113 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
 .bilingual-col p:empty { margin: 0; height: 8px; }
 
 /* ══════════════════════════════════════════════════════
-   CLOZE GAME — Nghe Khuyết (Part 1–4)
+   CLOZE GAME — Nghe Khuyết — Glassmorphism
 ══════════════════════════════════════════════════════ */
 
-/* Banner kích hoạt */
-.cloze-banner {
-  display: inline-flex; align-items: center; gap: 7px;
-  margin: 10px 12px 0;
-  padding: 6px 16px;
-  background: #f0f4ff;
-  border: 1.5px solid #a5b4fc;
-  border-radius: 20px;
-  color: #4338ca;
-  font-size: 13px; font-weight: 600;
-  cursor: pointer; user-select: none;
-  transition: all 0.18s;
+/* Overlay cột trái khi game active */
+.screen-left.cloze-game-active {
+  background: linear-gradient(160deg, #0d1b2a 0%, #1e2a3a 100%);
 }
-.cloze-banner:hover { background: #e0e7ff; border-color: #818cf8; }
-.cloze-banner.active { background: #f1f5f9; border-color: #cbd5e1; color: #64748b; }
-.cloze-x { font-size: 13px; font-weight: 700; }
 
-/* Khu vực game */
+/* Banner vào game — gold style */
+.cloze-banner {
+  display: inline-flex; align-items: center; gap: 8px;
+  margin: 10px 12px 0;
+  padding: 10px 24px;
+  background: rgba(255,215,0,0.15);
+  border: 1.5px solid rgba(255,215,0,0.5);
+  border-radius: 12px;
+  color: #FFD700;
+  font-size: 13.5px; font-weight: 600;
+  cursor: pointer; user-select: none;
+  transition: all 0.2s ease;
+}
+.cloze-banner:hover {
+  background: rgba(255,215,0,0.25);
+  border-color: #FFD700;
+  box-shadow: 0 0 12px rgba(255,215,0,0.3);
+}
+
+/* Card game — glassmorphism */
 .cloze-area {
-  margin: 8px 12px 0;
-  padding: 12px 14px;
-  background: #f8faff;
-  border: 1.5px solid #c7d8f0;
-  border-radius: 10px;
+  position: relative;
+  margin: 10px 12px 0;
+  padding: 28px 28px 24px;
+  background: rgba(255,255,255,0.07);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  animation: clozeCardIn 0.3s ease;
+}
+@keyframes clozeCardIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Nút thoát — góc trên phải card */
+.cloze-exit-btn {
+  position: absolute; top: 12px; right: 14px;
+  display: flex; align-items: center; justify-content: center;
+  width: 36px; height: 36px;
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.2);
+  border-radius: 8px;
+  color: rgba(255,255,255,0.5);
+  cursor: pointer; transition: all 0.2s ease;
+  font-family: inherit;
+}
+.cloze-exit-btn:hover { border-color: #ff6b6b; color: #ff6b6b; }
+
+/* Progress bar — trên cùng trong card */
+.cloze-progress-wrap { margin-bottom: 18px; }
+.cloze-progress-label {
+  font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 6px;
+}
+.cloze-progress-track {
+  height: 4px; background: rgba(255,255,255,0.1); border-radius: 999px; overflow: hidden;
+}
+.cloze-progress-fill {
+  height: 100%; width: 0%;
+  background: linear-gradient(90deg, #4ECDC4, #FFD700);
+  border-radius: 999px;
+  transition: width 0.4s ease;
 }
 
 /* Nút % + Làm lại */
 .cloze-controls {
-  display: flex; align-items: center; gap: 6px; margin-bottom: 12px; flex-wrap: wrap;
+  display: flex; align-items: center; gap: 8px; margin-bottom: 18px; flex-wrap: wrap;
 }
 .cloze-pct-btn {
-  padding: 4px 14px; border-radius: 16px;
-  border: 1.5px solid #c7d8f0; background: #fff;
-  color: #475569; font-size: 12.5px; font-weight: 600;
-  cursor: pointer; transition: all 0.18s; font-family: inherit;
+  padding: 6px 18px; border-radius: 999px;
+  border: 1.5px solid rgba(255,255,255,0.25);
+  background: transparent; color: rgba(255,255,255,0.7);
+  font-size: 13px; font-weight: 500;
+  cursor: pointer; transition: all 0.2s ease; font-family: inherit;
 }
-.cloze-pct-btn.active { background: #6366f1; border-color: #6366f1; color: #fff; box-shadow: 0 2px 8px rgba(99,102,241,0.3); }
-.cloze-pct-btn:hover:not(.active) { border-color: #818cf8; color: #4338ca; }
+.cloze-pct-btn.active { background: #FFD700; border-color: #FFD700; color: #0d1b2a; font-weight: 600; }
+.cloze-pct-btn:hover:not(.active) { background: rgba(255,255,255,0.1); }
 .cloze-redo-btn {
-  padding: 4px 12px; border-radius: 16px;
-  border: 1.5px solid #e2e8f0; background: #fff; color: #64748b;
-  font-size: 12.5px; cursor: pointer; transition: all 0.18s;
+  display: inline-flex; align-items: center;
+  padding: 6px 14px; border-radius: 999px;
+  border: 1.5px solid rgba(255,255,255,0.2);
+  background: transparent; color: rgba(255,255,255,0.6);
+  font-size: 13px; cursor: pointer; transition: all 0.2s ease;
   margin-left: 4px; font-family: inherit;
 }
-.cloze-redo-btn:hover { border-color: #94a3b8; color: #334155; }
+.cloze-redo-btn:hover { border-color: rgba(255,255,255,0.8); color: rgba(255,255,255,0.8); }
 
-/* Hiển thị text khuyết */
-.cloze-display { font-size: 15px; color: #1e3a5f; }
-/* flex trên mỗi dòng → pill và chữ thẳng hàng */
+/* Text hiển thị trong game */
+.cloze-display { font-size: 15px; color: rgba(255,255,255,0.9); }
 .cloze-line {
   display: flex; flex-wrap: wrap; align-items: center;
   row-gap: 4px; min-height: 2em;
 }
 .cloze-sentline { padding-left: 0; }
-.cloze-fixed { color: #b45309; font-weight: 700; font-size: 14px; }
+.cloze-fixed { color: #FFD700; font-weight: 700; font-size: 14px; }
 
-/* Pill ẩn/hiện từ — flip animation */
+/* Pill — glass front, gold back, giữ flip 3D */
 .cloze-pill {
   display: inline-flex; align-items: center; justify-content: center;
   height: 28px; border-radius: 10px;
@@ -2446,29 +2493,34 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
   backface-visibility: hidden; -webkit-backface-visibility: hidden;
 }
 .cloze-pill-front {
-  background: linear-gradient(135deg, #6366f1, #8b5cf6);
-  box-shadow: 0 1px 6px rgba(99,102,241,0.35);
-  border: 1.5px solid #a5b4fc;
-  color: rgba(255,255,255,0.75); font-size: 11px; letter-spacing: 2px;
-  transition: box-shadow 0.2s;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: rgba(255,255,255,0.3);
+  font-size: 11px; letter-spacing: 2px;
+  transition: background 0.2s, border-color 0.2s;
 }
-.cloze-pill:not(.opened):hover .cloze-pill-front { box-shadow: 0 2px 12px rgba(99,102,241,0.55); }
+.cloze-pill:not(.opened):hover .cloze-pill-front {
+  background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.45);
+}
 .cloze-pill-back {
-  background: linear-gradient(135deg, #f59e0b, #fbbf24);
-  color: #1e1b4b; font-weight: 700; font-size: 14px;
+  background: rgba(255,215,0,0.18);
+  border: 1px solid rgba(255,215,0,0.5);
+  color: #FFD700; font-weight: 700; font-size: 14px;
   transform: rotateY(180deg);
 }
-
-/* Score panel (cột phải, trên câu hỏi) */
-.cloze-score-panel {
-  display: flex; align-items: center; gap: 12px;
-  margin: 0 0 12px;
-  padding: 10px 16px;
-  background: #fff;
-  border: 1.5px solid #c7d8f0;
-  border-radius: 10px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+@keyframes clozeReveal {
+  from { opacity: 0.4; transform: rotateY(180deg) scale(1.04); }
+  to   { opacity: 1;   transform: rotateY(180deg) scale(1); }
 }
-.score-info { display: flex; flex-direction: column; gap: 2px; }
-.score-count { font-size: 18px; font-weight: 700; color: #1e3a5f; line-height: 1; }
-.score-hint  { font-size: 11.5px; color: #94a3b8; margin-top: 3px; }
+.cloze-pill.opened .cloze-pill-back { animation: clozeReveal 0.25s ease forwards; }
+
+/* Mobile */
+@media (max-width: 768px) {
+  .cloze-banner { padding: 8px 18px; font-size: 13px; }
+  .cloze-area { padding: 18px 16px 16px; border-radius: 14px; margin: 8px 8px 0; }
+  .cloze-pct-btn { padding: 5px 12px; font-size: 13px; }
+  .cloze-controls { gap: 8px; }
+  .cloze-display { font-size: 15px; }
+  .cloze-pill { min-width: 44px; }
+  .cloze-progress-label { font-size: 11px; }
+}

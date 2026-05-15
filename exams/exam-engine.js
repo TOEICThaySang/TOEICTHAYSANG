@@ -923,52 +923,54 @@ function buildClozeDisplay(tokens, blankedSet, openedSet, onReveal) {
   return wrap;
 }
 
-function buildClozeScorePanel(sk) {
-  const r = 26, cx = 34, cy = 34, C = +(2 * Math.PI * r).toFixed(1);
-  const panel = make('div', 'cloze-score-panel');
-  panel.id = 'clozeScore_' + sk;
-  panel.innerHTML =
-    `<svg width="68" height="68" viewBox="0 0 68 68">` +
-    `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#e2e8f0" stroke-width="6"/>` +
-    `<circle class="score-ring" cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="#6366f1"` +
-    ` stroke-width="6" stroke-linecap="round" stroke-dasharray="${C}" stroke-dashoffset="${C}"` +
-    ` transform="rotate(-90 ${cx} ${cy})" style="transition:stroke-dashoffset .4s ease,stroke .4s ease"/>` +
-    `<text class="score-pct" x="${cx}" y="${cy+5}" text-anchor="middle" fill="#1e3a5f"` +
-    ` font-size="13" font-weight="700">0%</text></svg>` +
-    `<div class="score-info"><span class="score-count">0/0</span><span class="score-hint">ô đã mở</span></div>`;
-  return panel;
+function buildClozeProgressBar(sk) {
+  const wrap = make('div', 'cloze-progress-wrap');
+  wrap.id = 'clozeProgress_' + sk;
+  const label = make('div', 'cloze-progress-label', '0 / 0 ô đã mở');
+  const track = make('div', 'cloze-progress-track');
+  const fill  = make('div', 'cloze-progress-fill');
+  track.appendChild(fill);
+  wrap.appendChild(label);
+  wrap.appendChild(track);
+  return wrap;
 }
 
 function clozeUpdateScore(sk, opened, total) {
-  const panel = document.getElementById('clozeScore_' + sk);
-  if (!panel) return;
+  const wrap = document.getElementById('clozeProgress_' + sk);
+  if (!wrap) return;
   const pct = total > 0 ? Math.round(opened / total * 100) : 0;
-  const r = 26, C = +(2 * Math.PI * r).toFixed(1);
-  const ring = panel.querySelector('.score-ring');
-  if (ring) { ring.style.strokeDashoffset = (C * (1 - pct / 100)).toFixed(1); ring.style.stroke = pct === 100 ? '#22c55e' : '#6366f1'; }
-  const p = panel.querySelector('.score-pct'); if (p) p.textContent = pct + '%';
-  const c = panel.querySelector('.score-count'); if (c) c.textContent = opened + '/' + total;
-  const h = panel.querySelector('.score-hint'); if (h) h.textContent = pct === 100 ? '🎉 Xong!' : 'ô đã mở';
+  const fill  = wrap.querySelector('.cloze-progress-fill');
+  const label = wrap.querySelector('.cloze-progress-label');
+  if (fill)  fill.style.width = pct + '%';
+  if (label) label.textContent = pct === 100 ? '🎉 Hoàn thành!' : `${opened} / ${total} ô đã mở`;
 }
 
 function buildClozeGame(scriptText, partNum, sk, solKey, rightEl, leftEl) {
   const cs = clozeState[sk] || (clozeState[sk] = { active: false, percent: 30, tokens: null, blankedSet: null, openedSet: null });
   if (!cs.tokens) {
-    cs.tokens    = clozeTokenize(scriptText, partNum);
+    cs.tokens     = clozeTokenize(scriptText, partNum);
     cs.blankedSet = clozeSelectBlanks(cs.tokens, cs.percent);
     cs.openedSet  = new Set();
   }
 
-  const banner = make('div', 'cloze-banner' + (cs.active ? ' active' : ''));
-  banner.innerHTML = cs.active ? `<span class="cloze-x">✕</span> Thoát game` : `🎮 Nghe Khuyết`;
-
-  const scorePanel = buildClozeScorePanel(sk);
-  scorePanel.style.display = cs.active ? '' : 'none';
-  rightEl.insertBefore(scorePanel, rightEl.firstChild);
+  // Banner — chỉ kích hoạt game (không toggle)
+  const banner = make('div', 'cloze-banner');
+  banner.innerHTML = `🎮 <span>Chơi Nghe Khuyết</span>`;
+  banner.style.display = cs.active ? 'none' : '';
 
   const gameArea = make('div', 'cloze-area');
   gameArea.style.display = cs.active ? '' : 'none';
 
+  // Nút thoát — góc trên phải card
+  const IC_X = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+  const exitBtn = make('button', 'cloze-exit-btn', IC_X);
+  gameArea.appendChild(exitBtn);
+
+  // Progress bar — trên cùng trong card
+  const progressBar = buildClozeProgressBar(sk);
+  gameArea.appendChild(progressBar);
+
+  // Controls: % + Làm lại
   const controls = make('div', 'cloze-controls');
   const pctBtns = [30, 50, 70].map(pct => {
     const btn = make('button', 'cloze-pct-btn' + (cs.percent === pct ? ' active' : ''), pct + '%');
@@ -995,19 +997,22 @@ function buildClozeGame(scriptText, partNum, sk, solKey, rightEl, leftEl) {
   };
   if (cs.active) refresh();
 
-  banner.addEventListener('click', () => {
-    cs.active = !cs.active;
-    banner.classList.toggle('active', cs.active);
-    banner.innerHTML = cs.active ? `<span class="cloze-x">✕</span> Thoát game` : `🎮 Nghe Khuyết`;
-    gameArea.style.display = cs.active ? '' : 'none';
-    scorePanel.style.display = cs.active ? '' : 'none';
-    // Ẩn/hiện biGrid script và ảnh
+  const setActive = (on) => {
+    cs.active = on;
+    banner.style.display    = on ? 'none' : '';
+    gameArea.style.display  = on ? '' : 'none';
+    leftEl.classList.toggle('cloze-game-active', on);
     const scriptEl = leftEl.querySelector('[data-scriptsk]');
-    if (scriptEl) scriptEl.style.display = (cs.active ? 'none' : (state.showSolution[solKey] ? '' : 'none'));
+    if (scriptEl) scriptEl.style.display = (on ? 'none' : (state.showSolution[solKey] ? '' : 'none'));
     const imgEl = leftEl.querySelector('.exam-img');
-    if (imgEl) imgEl.style.display = cs.active ? 'none' : '';
-    if (cs.active && !displayEl) refresh();
-  });
+    if (imgEl) imgEl.style.display = on ? 'none' : '';
+    if (on && !displayEl) refresh();
+  };
+
+  if (cs.active) leftEl.classList.add('cloze-game-active');
+
+  banner.addEventListener('click',  () => setActive(true));
+  exitBtn.addEventListener('click', () => setActive(false));
 
   return { banner, gameArea };
 }
