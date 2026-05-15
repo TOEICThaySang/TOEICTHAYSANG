@@ -1483,32 +1483,28 @@ body {
 /* ── REVIEW GROUP (topbar 3-button cluster) ── */
 .review-group {
   display: flex;
-  align-items: stretch;
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(255,255,255,0.22);
-  border-radius: var(--radius-sm);
-  overflow: hidden;
-  height: 34px;
+  align-items: center;
+  gap: 4px;
 }
 .rg-btn {
   display: flex;
   align-items: center;
   justify-content: center;
   background: transparent;
-  border: none;
-  color: #fff;
+  border: 1.5px solid rgba(255,255,255,0.5);
+  border-radius: 8px;
+  color: #ffffff;
+  padding: 6px 10px;
+  height: 34px;
+  width: auto;
   cursor: pointer;
-  width: 34px;
-  transition: background 0.15s;
+  transition: all 0.2s ease;
+  font-family: inherit;
 }
-.rg-btn:hover:not(:disabled) { background: rgba(255,255,255,0.16); }
-.rg-btn:disabled              { opacity: 0.28; cursor: not-allowed; }
-.rg-btn svg                   { flex-shrink: 0; }
-.rg-sheet {
-  width: 38px;
-  border-left:  1px solid rgba(255,255,255,0.16);
-  border-right: 1px solid rgba(255,255,255,0.16);
-}
+.rg-btn:hover:not(:disabled) { background: rgba(255,255,255,0.15); border-color: #ffffff; }
+.rg-btn:disabled              { opacity: 0.35; cursor: not-allowed; }
+.rg-btn svg                   { flex-shrink: 0; filter: brightness(10); }
+.rg-sheet                     { padding: 6px 11px; }
 
 /* ── 2 PHÚT CẢNH BÁO ── */
 .warning-overlay {
