@@ -890,6 +890,39 @@ function clozeSelectBlanks(tokens, pct) {
   return new Set(eligible.slice().sort(() => Math.random() - 0.5).slice(0, count));
 }
 
+function makeDashSVG(charCount) {
+  const n = Math.min(charCount, 10);
+  const long = charCount > 8;
+  const rW = long ? 4 : 5, rH = long ? 2 : 3, gap = long ? 2 : 3, rx = 1.5;
+  const totalW = n * rW + (n - 1) * gap;
+  const svgW = totalW + 8;
+  const svgH = 20;
+  const startX = (svgW - totalW) / 2;
+  const y = (svgH - rH) / 2;
+  const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+  svg.setAttribute('width', svgW);
+  svg.setAttribute('height', svgH);
+  svg.setAttribute('viewBox', `0 0 ${svgW} ${svgH}`);
+  for (let i = 0; i < n; i++) {
+    const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+    rect.setAttribute('x', startX + i * (rW + gap));
+    rect.setAttribute('y', y);
+    rect.setAttribute('width', rW);
+    rect.setAttribute('height', rH);
+    rect.setAttribute('rx', rx);
+    rect.setAttribute('fill', 'rgba(255,255,255,0.75)');
+    svg.appendChild(rect);
+  }
+  return svg;
+}
+
+function spawnRipple(pill) {
+  const r = document.createElement('div');
+  r.className = 'cloze-ripple';
+  pill.appendChild(r);
+  r.addEventListener('animationend', () => r.remove(), { once: true });
+}
+
 function buildClozeDisplay(tokens, blankedSet, openedSet, onReveal) {
   const wrap = make('div', 'cloze-display');
   let line = make('div', 'cloze-line');
@@ -905,19 +938,20 @@ function buildClozeDisplay(tokens, blankedSet, openedSet, onReveal) {
       const pill = make('span', 'cloze-pill' + (isOpen ? ' opened' : ''));
       pill.style.width = w + 'px';
       const inner = make('span', 'cloze-pill-inner');
-      const front = make('span', 'cloze-pill-front', '···');
+      const front = make('span', 'cloze-pill-front');
       const back  = make('span', 'cloze-pill-back',  isOpen ? tok.text : '');
       inner.appendChild(front); inner.appendChild(back); pill.appendChild(inner);
       if (!isOpen) pill.addEventListener('click', () => {
         openedSet.add(idx); back.textContent = tok.text;
         pill.classList.add('opened'); pill.style.cursor = 'default';
+        spawnRipple(pill);
         onReveal();
       }, { once: true });
       line.appendChild(pill);
     } else {
-      const sp = make('span', tok.type === 'fixed' ? 'cloze-fixed' : '', tok.text);
-      if (tok.type === 'space') sp.style.whiteSpace = 'pre';
-      line.appendChild(sp);
+      if (tok.type === 'space') return; // column-gap handles word spacing
+      const cls = tok.type === 'fixed' ? 'cloze-fixed' : tok.type === 'punct' ? 'cloze-punct' : '';
+      line.appendChild(make('span', cls, tok.text));
     }
   });
   return wrap;
@@ -926,11 +960,9 @@ function buildClozeDisplay(tokens, blankedSet, openedSet, onReveal) {
 function buildClozeProgressBar(sk) {
   const wrap = make('div', 'cloze-progress-wrap');
   wrap.id = 'clozeProgress_' + sk;
-  const label = make('div', 'cloze-progress-label', '0 / 0 ô đã mở');
   const track = make('div', 'cloze-progress-track');
   const fill  = make('div', 'cloze-progress-fill');
   track.appendChild(fill);
-  wrap.appendChild(label);
   wrap.appendChild(track);
   return wrap;
 }
@@ -940,9 +972,9 @@ function clozeUpdateScore(sk, opened, total) {
   if (!wrap) return;
   const pct = total > 0 ? Math.round(opened / total * 100) : 0;
   const fill  = wrap.querySelector('.cloze-progress-fill');
-  const label = wrap.querySelector('.cloze-progress-label');
-  if (fill)  fill.style.width = pct + '%';
-  if (label) label.textContent = pct === 100 ? '🎉 Hoàn thành!' : `${opened} / ${total} ô đã mở`;
+  if (fill) fill.style.width = pct + '%';
+  const pill = document.getElementById('clozeScorePill_' + sk);
+  if (pill) { const sp = pill.querySelector('span'); if (sp) sp.textContent = pct === 100 ? '🎉 Hoàn thành!' : `${opened} / ${total} ô đã mở`; }
 }
 
 function buildClozeGame(scriptText, partNum, sk, solKey, rightEl, leftEl) {
@@ -953,40 +985,62 @@ function buildClozeGame(scriptText, partNum, sk, solKey, rightEl, leftEl) {
     cs.openedSet  = new Set();
   }
 
-  // Banner — chỉ kích hoạt game (không toggle)
   const banner = make('div', 'cloze-banner');
-  banner.innerHTML = `🎮 <span>Chơi Nghe Khuyết</span>`;
+  banner.innerHTML = `🎮 <span>Luyện nghe khuyết từ</span>`;
   banner.style.display = cs.active ? 'none' : '';
 
   const gameArea = make('div', 'cloze-area');
   gameArea.style.display = cs.active ? '' : 'none';
 
-  // Nút thoát — góc trên phải card
-  const IC_X = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
-  const exitBtn = make('button', 'cloze-exit-btn', IC_X);
-  gameArea.appendChild(exitBtn);
+  // Menu button — góc trên phải card
+  const IC_MENU = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>`;
+  const menuBtn = make('button', 'cloze-menu-btn');
+  menuBtn.innerHTML = IC_MENU;
+  gameArea.appendChild(menuBtn);
 
-  // Progress bar — trên cùng trong card
+  // Dropdown
+  const PCT_OPTIONS  = [30, 50, 70, 100];
+  const PCT_LABELS   = { 30: 'Khuyết 30%', 50: 'Khuyết 50%', 70: 'Khuyết 70%', 100: 'Khuyết tối đa' };
+  const dropdown = make('div', 'cloze-dropdown');
+  dropdown.style.display = 'none';
+  const dotItems = PCT_OPTIONS.map(pct => {
+    const item = make('div', 'cloze-dropdown-item' + (cs.percent === pct ? ' active' : ''));
+    item.innerHTML = `<span class="cloze-dot"></span>${PCT_LABELS[pct]}`;
+    item.addEventListener('click', () => {
+      cs.percent = pct; cs.blankedSet = clozeSelectBlanks(cs.tokens, pct); cs.openedSet = new Set();
+      dotItems.forEach((it, i) => it.classList.toggle('active', PCT_OPTIONS[i] === pct));
+      refresh();
+      dropdown.style.display = 'none';
+    });
+    return item;
+  });
+  dotItems.forEach(it => dropdown.appendChild(it));
+  dropdown.appendChild(make('div', 'cloze-dropdown-divider'));
+  const quitItem = make('div', 'cloze-dropdown-item cloze-dropdown-quit', '← Nghỉ chơi');
+  dropdown.appendChild(quitItem);
+  gameArea.appendChild(dropdown);
+
+  // Top row: 2 nút căn giữa (trên thanh tiến độ)
+  const IC_REDO  = `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:5px"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.5"/></svg>`;
+  const IC_CHART = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="vertical-align:-1px;margin-right:5px"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`;
+  const topRow   = make('div', 'cloze-top-row');
+  const redoBtn  = make('button', 'cloze-redo-btn');
+  redoBtn.innerHTML = IC_REDO + 'Chơi lại';
+  redoBtn.addEventListener('click', () => {
+    cs.blankedSet = clozeSelectBlanks(cs.tokens, cs.percent); cs.openedSet = new Set(); refresh();
+    const audio = document.querySelector('audio');
+    if (audio) { audio.currentTime = 0; audio.play().catch(() => {}); }
+  });
+  const scorePill = make('div', 'cloze-score-pill');
+  scorePill.id = 'clozeScorePill_' + sk;
+  scorePill.innerHTML = IC_CHART + '<span>0 / 0 ô đã mở</span>';
+  topRow.appendChild(redoBtn);
+  topRow.appendChild(scorePill);
+  gameArea.appendChild(topRow);
+
+  // Thanh tiến độ
   const progressBar = buildClozeProgressBar(sk);
   gameArea.appendChild(progressBar);
-
-  // Controls: % + Làm lại
-  const controls = make('div', 'cloze-controls');
-  const pctBtns = [30, 50, 70].map(pct => {
-    const btn = make('button', 'cloze-pct-btn' + (cs.percent === pct ? ' active' : ''), pct + '%');
-    btn.addEventListener('click', () => {
-      cs.percent = pct; cs.blankedSet = clozeSelectBlanks(cs.tokens, pct); cs.openedSet = new Set();
-      pctBtns.forEach(b => b.classList.toggle('active', b === btn));
-      refresh();
-    });
-    return btn;
-  });
-  pctBtns.forEach(b => controls.appendChild(b));
-  const IC_REDO = `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:5px"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.5"/></svg>`;
-  const redoBtn = make('button', 'cloze-redo-btn', IC_REDO + 'Làm lại');
-  redoBtn.addEventListener('click', () => { cs.blankedSet = clozeSelectBlanks(cs.tokens, cs.percent); cs.openedSet = new Set(); refresh(); });
-  controls.appendChild(redoBtn);
-  gameArea.appendChild(controls);
 
   let displayEl = null;
   const refresh = () => {
@@ -999,8 +1053,8 @@ function buildClozeGame(scriptText, partNum, sk, solKey, rightEl, leftEl) {
 
   const setActive = (on) => {
     cs.active = on;
-    banner.style.display    = on ? 'none' : '';
-    gameArea.style.display  = on ? '' : 'none';
+    banner.style.display   = on ? 'none' : '';
+    gameArea.style.display = on ? '' : 'none';
     leftEl.classList.toggle('cloze-game-active', on);
     const scriptEl = leftEl.querySelector('[data-scriptsk]');
     if (scriptEl) scriptEl.style.display = (on ? 'none' : (state.showSolution[solKey] ? '' : 'none'));
@@ -1011,8 +1065,15 @@ function buildClozeGame(scriptText, partNum, sk, solKey, rightEl, leftEl) {
 
   if (cs.active) leftEl.classList.add('cloze-game-active');
 
-  banner.addEventListener('click',  () => setActive(true));
-  exitBtn.addEventListener('click', () => setActive(false));
+  banner.addEventListener('click', () => setActive(true));
+  menuBtn.addEventListener('click', e => {
+    e.stopPropagation();
+    dropdown.style.display = dropdown.style.display === 'none' ? '' : 'none';
+  });
+  quitItem.addEventListener('click', () => { dropdown.style.display = 'none'; setActive(false); });
+  document.addEventListener('click', e => {
+    if (!dropdown.contains(e.target)) dropdown.style.display = 'none';
+  });
 
   return { banner, gameArea };
 }
@@ -1047,7 +1108,7 @@ function renderScreen(idx) {
       left.appendChild(banner); left.appendChild(gameArea);
     }
     if (showSol && (q.script || q.trans)) {
-      const sg = buildScriptBiGrid(q.script, q.trans);
+      const sg = buildScriptBiGrid(q.script, q.trans, q.answer);
       sg.dataset.scriptsk = 'q'+q.q;
       if (!state.showSolution['q'+q.q] || clozeState[sk]?.active) sg.style.display = 'none';
       left.appendChild(sg);
@@ -1063,7 +1124,7 @@ function renderScreen(idx) {
       left.appendChild(banner); left.appendChild(gameArea);
     }
     if (showSol && (q.script || q.trans)) {
-      const sg = buildScriptBiGrid(q.script, q.trans);
+      const sg = buildScriptBiGrid(q.script, q.trans, q.answer);
       sg.dataset.scriptsk = 'q'+q.q;
       if (!state.showSolution['q'+q.q] || clozeState[sk]?.active) sg.style.display = 'none';
       left.appendChild(sg);
@@ -1080,7 +1141,7 @@ function renderScreen(idx) {
       const { banner, gameArea } = buildClozeGame(g.script,3,sk,p3SolKey,right,left);
       left.appendChild(banner); left.appendChild(gameArea);
     }
-    if (showSol) {
+    if (showSol && (g.script || g.trans)) {
       const sg = buildScriptBiGrid(g.script, g.trans);
       sg.dataset.scriptsk = sk;
       if (!state.showSolution[p3SolKey] || clozeState[sk]?.active) sg.style.display = 'none';
@@ -1098,8 +1159,8 @@ function renderScreen(idx) {
       const { banner, gameArea } = buildClozeGame(g.script,4,sk,p4SolKey,right,left);
       left.appendChild(banner); left.appendChild(gameArea);
     }
-    if (showSol) {
-      const sg = buildScriptBiGrid(g.script, g.trans);
+    if (showSol && (g.script || g.trans)) {
+      const sg = buildScriptBiGrid(splitIntoSentences(g.script), splitIntoSentences(g.trans));
       sg.dataset.scriptsk = sk;
       if (!state.showSolution[p4SolKey] || clozeState[sk]?.active) sg.style.display = 'none';
       left.appendChild(sg);
@@ -1639,11 +1700,11 @@ function buildAudioBlock(mp3Url, sk) {
     const pct = Math.max(0, Math.min(1, (clientX - r.left) / r.width));
     if (audio.duration) audio.currentTime = pct * audio.duration;
   };
-  bar.addEventListener('mousedown', e => { seeking = true; seek(e.clientX); });
+  barWrap.addEventListener('mousedown', e => { seeking = true; seek(e.clientX); });
   document.addEventListener('mousemove', e => { if (seeking) seek(e.clientX); });
   document.addEventListener('mouseup', () => { seeking = false; });
-  bar.addEventListener('touchstart', e => seek(e.touches[0].clientX), { passive: true });
-  bar.addEventListener('touchmove',  e => seek(e.touches[0].clientX), { passive: true });
+  barWrap.addEventListener('touchstart', e => seek(e.touches[0].clientX), { passive: true });
+  barWrap.addEventListener('touchmove',  e => seek(e.touches[0].clientX), { passive: true });
 
   speedBtn.addEventListener('click', e => { e.stopPropagation(); speedDrop.classList.toggle('open'); });
   speedDrop.addEventListener('click', e => {
@@ -1676,7 +1737,16 @@ function buildScriptBlock(script, trans) {
   return frag;
 }
 
-function buildScriptBiGrid(enText, viText) {
+function splitIntoSentences(text) {
+  if (!text) return text;
+  // Split before (digit) — handles "France. (90)" and "Pháp.(90)"
+  text = text.replace(/([.?!])\s*(?=\(\d)/g, '$1\n');
+  // Split before uppercase letter — \p{Lu} covers both Latin (A-Z) and Vietnamese (Đ, Ă, Ơ...)
+  text = text.replace(/([.?!]) +(?=\p{Lu})/gu, '$1\n');
+  return text;
+}
+
+function buildScriptBiGrid(enText, viText, answer = null) {
   const enLines = (enText || '').split('\n');
   const viLines = (viText || '').split('\n');
   const maxLen  = Math.max(enLines.length, viLines.length);
@@ -1693,6 +1763,11 @@ function buildScriptBiGrid(enText, viText) {
       const stripe = rowIdx % 2 === 1 ? ' biGrid-stripe' : '';
       const enCell = make('div', 'biGrid-cell biGrid-en' + stripe);
       const viCell = make('div', 'biGrid-cell biGrid-vi' + stripe);
+      const lineLetterMatch = en.match(/^\(([A-D])\)/i);
+      if (answer && lineLetterMatch && lineLetterMatch[1].toUpperCase() === answer.toUpperCase()) {
+        enCell.style.fontWeight = 'bold';
+        viCell.style.fontWeight = 'bold';
+      }
       enCell.textContent = en;
       viCell.textContent = vi;
       grid.appendChild(enCell);
@@ -1731,7 +1806,7 @@ function buildQHeader(qNum, part, sk, showSolBtn, groupQNums=null) {
   if (showSolBtn) {
     const keys = groupQNums ? groupQNums.map(n=>'q'+n) : ['q'+qNum];
     const isShown = keys.every(k=>state.showSolution[k]);
-    const solLabel = [1,2,3,4].includes(part) ? ['Đáp án','Ẩn đáp án'] : ['Video giải','Ẩn video'];
+    const solLabel = [1,2,3,4].includes(part) ? ['Đáp án + Script','Ẩn'] : ['Video giải','Ẩn video'];
     const solHtml  = (shown) => shown ? `${IC_HIDE}<span>${solLabel[1]}</span>` : `${IC_SHOW}<span>${solLabel[0]}</span>`;
     const solBtn=make('button','btn-solution',solHtml(isShown));
     solBtn.dataset.solq = qNum;

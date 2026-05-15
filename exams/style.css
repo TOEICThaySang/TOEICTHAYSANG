@@ -1358,7 +1358,7 @@ body {
   margin-bottom: 4px;
 }
 .q-text-vi {
-  font-size: 13px;
+  font-size: calc(var(--ef) - 2px);
   color: var(--text-sub);
   font-style: italic;
   margin-bottom: 4px;
@@ -1376,14 +1376,14 @@ body {
   gap: 4px;
 }
 .vi-block-q {
-  font-size: 13px;
+  font-size: calc(var(--ef) - 2px);
   font-style: italic;
   color: var(--text-sub);
   margin-bottom: 4px;
   font-weight: 500;
 }
 .vi-block-opt {
-  font-size: 12px;
+  font-size: calc(var(--ef) - 3px);
   font-style: italic;
   color: var(--text-hint);
   padding: 1px 0;
@@ -1467,7 +1467,7 @@ body {
 .option-item.missed-correct .opt-radio { border-color: #16a34a; }
 
 .opt-label {
-  font-size: 13px;
+  font-size: calc(var(--ef) - 2px);
   font-weight: 700;
   color: var(--text-sub);
   flex-shrink: 0;
@@ -2108,7 +2108,7 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
   text-align: center;
 }
 .sp-ratio-btn:hover { background: var(--border); color: var(--text-main); }
-.sp-ratio-btn.active { background: var(--navy); border-color: var(--navy); color: var(--white); }
+.sp-ratio-btn.active { background: #16a34a; border-color: #16a34a; color: #fff; }
 
 .sp-toggle-btn {
   -webkit-appearance: none;
@@ -2246,7 +2246,7 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
 .opt-trans {
   flex-basis: 100%;
   padding: 2px 0 2px 56px;
-  font-size: 12px;
+  font-size: calc(var(--ef) - 3px);
   font-style: italic;
   color: #92400e;
   line-height: 1.5;
@@ -2254,7 +2254,7 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
 .opt-note {
   flex-basis: 100%;
   padding: 3px 0 2px 56px;
-  font-size: 12px;
+  font-size: calc(var(--ef) - 3px);
   font-style: italic;
   color: #6366f1;
   line-height: 1.5;
@@ -2270,7 +2270,7 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
 }
 .biGrid-cell {
   padding: 6px 14px;
-  font-size: 13.5px;
+  font-size: calc(var(--ef) - 1px);
   line-height: 1.72;
   border-bottom: 1px solid rgba(0,0,0,0.06);
   overflow-wrap: break-word;
@@ -2317,7 +2317,7 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
 .biAccord-btn-all:hover { background: #fef3c7; }
 .biAccord-para { border-bottom: 1px solid var(--border); }
 .biAccord-en {
-  padding: 10px 14px; font-size: 13.5px; color: #1e3a5f; line-height: 1.75;
+  padding: 10px 14px; font-size: calc(var(--ef) - 1px); color: #1e3a5f; line-height: 1.75;
   cursor: pointer; display: flex; gap: 8px; align-items: flex-start;
   background: #f8faff; transition: background 0.15s; user-select: none;
   white-space: pre-wrap;
@@ -2329,7 +2329,7 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
 }
 .biAccord-en.open .bi-accord-icon { transform: rotate(180deg); }
 .biAccord-vi {
-  padding: 8px 14px 12px 36px; font-size: 13px; color: #78350f;
+  padding: 8px 14px 12px 36px; font-size: calc(var(--ef) - 2px); color: #78350f;
   font-style: italic; line-height: 1.75; background: #fffbeb;
   border-left: 3px solid #fde68a;
   white-space: pre-wrap;
@@ -2348,7 +2348,7 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
   flex: 1;
   overflow-y: auto;
   padding: 14px 16px;
-  font-size: 13.5px;
+  font-size: calc(var(--ef) - 1px);
   line-height: 1.75;
 }
 .bilingual-col + .bilingual-col {
@@ -2367,44 +2367,41 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
 .bilingual-col p:empty { margin: 0; height: 8px; }
 
 /* ══════════════════════════════════════════════════════
-   CLOZE GAME — Nghe Khuyết — Glassmorphism
+   CLOZE GAME — Nghe Khuyết — Sky Blue
 ══════════════════════════════════════════════════════ */
 
 /* Overlay cột trái khi game active */
 .screen-left.cloze-game-active {
-  background: linear-gradient(160deg, #0d1b2a 0%, #1e2a3a 100%);
+  background: rgba(239,246,255,0.6);
 }
 
-/* Banner vào game — gold style */
+/* Banner vào game — solid blue button */
 .cloze-banner {
   display: inline-flex; align-items: center; gap: 8px;
   margin: 10px 12px 0;
   padding: 10px 24px;
-  background: rgba(255,215,0,0.15);
-  border: 1.5px solid rgba(255,215,0,0.5);
+  background: #3B82F6;
+  border: none;
   border-radius: 12px;
-  color: #FFD700;
+  color: #ffffff;
   font-size: 13.5px; font-weight: 600;
   cursor: pointer; user-select: none;
-  transition: all 0.2s ease;
+  transition: background 0.2s ease, transform 0.2s ease;
 }
 .cloze-banner:hover {
-  background: rgba(255,215,0,0.25);
-  border-color: #FFD700;
-  box-shadow: 0 0 12px rgba(255,215,0,0.3);
+  background: #2563EB;
+  transform: translateY(-1px);
 }
 
-/* Card game — glassmorphism */
+/* Card game — white card */
 .cloze-area {
   position: relative;
   margin: 10px 12px 0;
   padding: 28px 28px 24px;
-  background: rgba(255,255,255,0.07);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255,255,255,0.15);
+  background: #ffffff;
+  border: 1.5px solid #BFDBFE;
   border-radius: 20px;
-  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 24px rgba(59,130,246,0.08);
   animation: clozeCardIn 0.3s ease;
 }
 @keyframes clozeCardIn {
@@ -2412,78 +2409,112 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
   to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Nút thoát — góc trên phải card */
-.cloze-exit-btn {
-  position: absolute; top: 12px; right: 14px;
+/* Menu button — góc trên phải card */
+.cloze-menu-btn {
+  position: absolute; top: 12px; right: 12px;
+  width: 32px; height: 32px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  width: 36px; height: 36px;
-  background: transparent;
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 8px;
-  color: rgba(255,255,255,0.5);
-  cursor: pointer; transition: all 0.2s ease;
+  background: #f1f5f9; border: 1px solid #e2e8f0;
+  color: #64748b; cursor: pointer;
+  transition: background 0.18s, color 0.18s, border-color 0.18s;
+  font-family: inherit; flex-shrink: 0;
+}
+.cloze-menu-btn:hover { background: #e0e7ff; color: #6366f1; border-color: #818cf8; }
+
+/* Dropdown */
+.cloze-dropdown {
+  position: absolute; top: 52px; right: 10px;
+  background: rgba(255,255,255,0.98);
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.13);
+  backdrop-filter: blur(8px);
+  min-width: 148px;
+  z-index: 100;
+  overflow: hidden;
+}
+.cloze-dropdown-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px;
+  font-size: 13px; cursor: pointer; color: #374151;
+  transition: background 0.12s;
+}
+.cloze-dropdown-item:hover { background: #f1f5f9; }
+.cloze-dropdown-item.active { background: #e0e7ff; color: #6366f1; font-weight: 600; }
+.cloze-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  border: 1.5px solid #a5b4fc; flex-shrink: 0;
+  transition: background 0.15s, border-color 0.15s;
+}
+.cloze-dropdown-item.active .cloze-dot { background: #6366f1; border-color: #6366f1; }
+.cloze-dropdown-divider { height: 1px; background: #f1f5f9; margin: 2px 0; }
+.cloze-dropdown-quit { color: #94a3b8; }
+.cloze-dropdown-quit:hover { background: #fff5f5; color: #ef4444; }
+
+/* Top row — 2 nút căn giữa */
+.cloze-top-row {
+  display: flex; align-items: center; justify-content: center;
+  gap: 12px; margin-bottom: 12px; margin-top: 4px;
+}
+.cloze-redo-btn {
+  display: inline-flex; align-items: center;
+  padding: 7px 16px; border-radius: 999px;
+  border: 1.5px solid #818cf8;
+  background: #e0e7ff; color: #6366f1;
+  font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: background 0.18s, border-color 0.18s;
   font-family: inherit;
 }
-.cloze-exit-btn:hover { border-color: #ff6b6b; color: #ff6b6b; }
-
-/* Progress bar — trên cùng trong card */
-.cloze-progress-wrap { margin-bottom: 18px; }
-.cloze-progress-label {
-  font-size: 12px; color: rgba(255,255,255,0.5); margin-bottom: 6px;
+.cloze-redo-btn:hover { background: #c7d2fe; border-color: #6366f1; }
+.cloze-score-pill {
+  display: inline-flex; align-items: center;
+  padding: 7px 16px; border-radius: 999px;
+  border: 1.5px solid #6ee7b7;
+  background: #d1fae5; color: #059669;
+  font-size: 13px; font-weight: 600;
+  user-select: none; pointer-events: none;
 }
+
+/* Progress bar */
+.cloze-progress-wrap { margin-bottom: 18px; padding-right: 44px; }
 .cloze-progress-track {
-  height: 4px; background: rgba(255,255,255,0.1); border-radius: 999px; overflow: hidden;
+  height: 4px; background: #EFF6FF; border-radius: 999px; overflow: hidden;
 }
 .cloze-progress-fill {
   height: 100%; width: 0%;
-  background: linear-gradient(90deg, #4ECDC4, #FFD700);
+  background: linear-gradient(90deg, #3B82F6, #60A5FA);
   border-radius: 999px;
   transition: width 0.4s ease;
 }
 
-/* Nút % + Làm lại */
-.cloze-controls {
-  display: flex; align-items: center; gap: 8px; margin-bottom: 18px; flex-wrap: wrap;
-}
-.cloze-pct-btn {
-  padding: 6px 18px; border-radius: 999px;
-  border: 1.5px solid rgba(255,255,255,0.25);
-  background: transparent; color: rgba(255,255,255,0.7);
-  font-size: 13px; font-weight: 500;
-  cursor: pointer; transition: all 0.2s ease; font-family: inherit;
-}
-.cloze-pct-btn.active { background: #FFD700; border-color: #FFD700; color: #0d1b2a; font-weight: 600; }
-.cloze-pct-btn:hover:not(.active) { background: rgba(255,255,255,0.1); }
-.cloze-redo-btn {
-  display: inline-flex; align-items: center;
-  padding: 6px 14px; border-radius: 999px;
-  border: 1.5px solid rgba(255,255,255,0.2);
-  background: transparent; color: rgba(255,255,255,0.6);
-  font-size: 13px; cursor: pointer; transition: all 0.2s ease;
-  margin-left: 4px; font-family: inherit;
-}
-.cloze-redo-btn:hover { border-color: rgba(255,255,255,0.8); color: rgba(255,255,255,0.8); }
-
 /* Text hiển thị trong game */
-.cloze-display { font-size: 15px; color: rgba(255,255,255,0.9); }
+.cloze-display { font-size: var(--ef); color: #1E293B; }
 .cloze-line {
   display: flex; flex-wrap: wrap; align-items: center;
-  row-gap: 4px; min-height: 2em;
+  row-gap: 6px; column-gap: 5px; min-height: 2em;
 }
 .cloze-sentline { padding-left: 0; }
-.cloze-fixed { color: #FFD700; font-weight: 700; font-size: 14px; }
+.cloze-fixed {
+  display: inline-block;
+  padding: 1px 8px; border-radius: 6px;
+  background: #FEF9C3; color: #92400E;
+  font-weight: 700; font-size: calc(var(--ef) - 1px);
+}
+.cloze-punct { margin-left: -4px; }
 
-/* Pill — glass front, gold back, giữ flip 3D */
+/* Pill — soft indigo front, amber back, flip 3D */
 .cloze-pill {
   display: inline-flex; align-items: center; justify-content: center;
   height: 28px; border-radius: 10px;
-  margin: 0 2px; cursor: pointer; perspective: 400px;
-  flex-shrink: 0;
+  cursor: pointer; perspective: 400px;
+  flex-shrink: 0; position: relative;
+  transition: transform 0.15s ease;
 }
+.cloze-pill:not(.opened):hover { transform: scale(1.05); }
 .cloze-pill-inner {
   width: 100%; height: 100%;
   transform-style: preserve-3d;
-  transition: transform 0.38s cubic-bezier(0.4,0,0.2,1);
+  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
   position: relative;
 }
 .cloze-pill.opened .cloze-pill-inner { transform: rotateY(180deg); }
@@ -2493,19 +2524,17 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
   backface-visibility: hidden; -webkit-backface-visibility: hidden;
 }
 .cloze-pill-front {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.2);
-  color: rgba(255,255,255,0.3);
-  font-size: 11px; letter-spacing: 2px;
-  transition: background 0.2s, border-color 0.2s;
+  background: linear-gradient(to bottom, #e0e7ff, #c7d2fe);
+  border: 1px solid #818cf8;
+  box-shadow: inset 0 2px 4px rgba(99,102,241,0.12);
 }
 .cloze-pill:not(.opened):hover .cloze-pill-front {
-  background: rgba(255,255,255,0.14); border-color: rgba(255,255,255,0.45);
+  background: #a5b4fc;
 }
 .cloze-pill-back {
-  background: rgba(255,215,0,0.18);
-  border: 1px solid rgba(255,215,0,0.5);
-  color: #FFD700; font-weight: 700; font-size: 14px;
+  background: #fbbf24;
+  border: 1px solid #f59e0b;
+  color: #78350f; font-weight: 700; font-size: calc(var(--ef) - 1px);
   transform: rotateY(180deg);
 }
 @keyframes clozeReveal {
@@ -2514,13 +2543,28 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
 }
 .cloze-pill.opened .cloze-pill-back { animation: clozeReveal 0.25s ease forwards; }
 
+/* Ripple on reveal */
+.cloze-ripple {
+  position: absolute;
+  width: 60px; height: 60px; border-radius: 50%;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  background: rgba(255,255,255,0.35);
+  pointer-events: none;
+  animation: clozeRipple 0.3s ease-out forwards;
+}
+@keyframes clozeRipple {
+  from { transform: translate(-50%, -50%) scale(0); opacity: 0.5; }
+  to   { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
+}
+
 /* Mobile */
 @media (max-width: 768px) {
   .cloze-banner { padding: 8px 18px; font-size: 13px; }
-  .cloze-area { padding: 18px 16px 16px; border-radius: 14px; margin: 8px 8px 0; }
-  .cloze-pct-btn { padding: 5px 12px; font-size: 13px; }
-  .cloze-controls { gap: 8px; }
-  .cloze-display { font-size: 15px; }
+  .cloze-area { padding: 18px 16px; border-radius: 14px; margin: 8px 8px 0; }
+  .cloze-redo-btn, .cloze-score-pill { padding: 6px 12px; font-size: 12px; }
+  .cloze-top-row { gap: 8px; }
+  .cloze-display { font-size: 13px; }
   .cloze-pill { min-width: 44px; }
-  .cloze-progress-label { font-size: 11px; }
+  .cloze-progress-wrap { padding-right: 40px; }
 }
