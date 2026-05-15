@@ -960,7 +960,7 @@ function buildClozeGame(scriptText, partNum, sk, solKey, rightEl, leftEl) {
   }
 
   const banner = make('div', 'cloze-banner' + (cs.active ? ' active' : ''));
-  banner.innerHTML = cs.active ? `<span class="cloze-x">✕</span> Thoát game` : `🎮 Chơi Nghe Khuyết`;
+  banner.innerHTML = cs.active ? `<span class="cloze-x">✕</span> Thoát game` : `🎮 Nghe Khuyết`;
 
   const scorePanel = buildClozeScorePanel(sk);
   scorePanel.style.display = cs.active ? '' : 'none';
@@ -998,7 +998,7 @@ function buildClozeGame(scriptText, partNum, sk, solKey, rightEl, leftEl) {
   banner.addEventListener('click', () => {
     cs.active = !cs.active;
     banner.classList.toggle('active', cs.active);
-    banner.innerHTML = cs.active ? `<span class="cloze-x">✕</span> Thoát game` : `🎮 Chơi Nghe Khuyết`;
+    banner.innerHTML = cs.active ? `<span class="cloze-x">✕</span> Thoát game` : `🎮 Nghe Khuyết`;
     gameArea.style.display = cs.active ? '' : 'none';
     scorePanel.style.display = cs.active ? '' : 'none';
     // Ẩn/hiện biGrid script và ảnh
@@ -1214,6 +1214,15 @@ function renderScreen(idx) {
     }
   }
   preloadNextAudio(idx);
+  preloadNextImages(idx);
+}
+
+function preloadNextImages(currentIdx) {
+  [1, 2].forEach(offset => {
+    const next = state.screens[currentIdx + offset];
+    const url = next?.q?.img || next?.group?.img;
+    if (url) new Image().src = url;
+  });
 }
 
 function preloadNextAudio(currentIdx) {
