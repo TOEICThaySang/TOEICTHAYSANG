@@ -1416,14 +1416,23 @@ body {
   padding: 8px 14px;
   border: 1.5px solid var(--border);
   border-radius: var(--radius-md);
-  cursor: pointer;
+  cursor: default;
   background: var(--white);
   transition: border-color 0.15s, background 0.15s;
   user-select: none;
 }
-.option-item:hover {
+.opt-select {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  cursor: pointer;
+  padding: 4px 6px 4px 0;
+  margin: -4px -6px -4px 0;
+  border-radius: 6px;
+}
+.opt-select:hover .opt-radio {
   border-color: var(--navy-light);
-  background: #f0f4ff;
 }
 .option-item.selected {
   border-color: var(--navy);
@@ -2208,13 +2217,8 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
 }
 .full-sent-vi {
   font-size: calc(var(--ef) - 2px);
-  font-style: italic;
-  color: #78350f;
-  background: #fffbeb;
-  border: 1px solid #fde68a;
-  border-radius: var(--radius-md);
-  padding: 7px 12px;
-  margin-bottom: 8px;
+  color: #999999;
+  margin: 2px 0 8px;
   line-height: 1.6;
 }
 
@@ -2231,12 +2235,7 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
 /* Ghi chú câu hỏi Part 7 — ngay dưới q-trans */
 .q-note {
   font-size: calc(var(--ef) - 2px);
-  font-style: italic;
-  color: #4338ca;
-  background: #eef2ff;
-  border-left: 3px solid #a5b4fc;
-  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-  padding: 4px 10px;
+  color: #999999;
   margin: 2px 0 8px;
   line-height: 1.55;
 }
@@ -2505,46 +2504,41 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
 }
 .cloze-punct { margin-left: -4px; }
 
-/* Pill — soft indigo front, amber back, flip 3D */
+/* Pill — pop fade reveal */
 .cloze-pill {
   display: inline-flex; align-items: center; justify-content: center;
   height: 28px; border-radius: 10px;
-  cursor: pointer; perspective: 400px;
+  cursor: pointer;
   flex-shrink: 0; position: relative;
   transition: transform 0.15s ease;
 }
 .cloze-pill:not(.opened):hover { transform: scale(1.05); }
 .cloze-pill-inner {
   width: 100%; height: 100%;
-  transform-style: preserve-3d;
-  transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
   position: relative;
 }
-.cloze-pill.opened .cloze-pill-inner { transform: rotateY(180deg); }
 .cloze-pill-front, .cloze-pill-back {
   position: absolute; inset: 0; border-radius: 10px;
   display: flex; align-items: center; justify-content: center;
-  backface-visibility: hidden; -webkit-backface-visibility: hidden;
 }
 .cloze-pill-front {
   background: linear-gradient(to bottom, #e0e7ff, #c7d2fe);
   border: 1px solid #818cf8;
   box-shadow: inset 0 2px 4px rgba(99,102,241,0.12);
 }
-.cloze-pill:not(.opened):hover .cloze-pill-front {
-  background: #a5b4fc;
-}
+.cloze-pill:not(.opened):hover .cloze-pill-front { background: #a5b4fc; }
+.cloze-pill.opened .cloze-pill-front { opacity: 0; }
 .cloze-pill-back {
   background: #fbbf24;
   border: 1px solid #f59e0b;
   color: #78350f; font-weight: 700; font-size: calc(var(--ef) - 1px);
-  transform: rotateY(180deg);
+  opacity: 0;
 }
 @keyframes clozeReveal {
-  from { opacity: 0.4; transform: rotateY(180deg) scale(1.04); }
-  to   { opacity: 1;   transform: rotateY(180deg) scale(1); }
+  from { opacity: 0; transform: scale(0.82); }
+  to   { opacity: 1; transform: scale(1); }
 }
-.cloze-pill.opened .cloze-pill-back { animation: clozeReveal 0.25s ease forwards; }
+.cloze-pill.opened .cloze-pill-back { animation: clozeReveal 0.12s ease-out forwards; }
 
 /* Ripple on reveal */
 .cloze-ripple {

@@ -885,9 +885,52 @@ function clozeWords(text, tokens) {
 }
 
 function clozeSelectBlanks(tokens, pct) {
-  const eligible = tokens.map((t, i) => t.eligible ? i : -1).filter(i => i >= 0);
-  const count = Math.max(1, Math.round(eligible.length * pct / 100));
-  return new Set(eligible.slice().sort(() => Math.random() - 0.5).slice(0, count));
+  // Group eligible token indices by line (split at 'br' only, not 'sentbr')
+  const lineGroups = [[]];
+  tokens.forEach((t, i) => {
+    if (t.type === 'br') lineGroups.push([]);
+    else if (t.eligible) lineGroups[lineGroups.length - 1].push(i);
+  });
+  const nonEmpty = lineGroups.filter(g => g.length > 0);
+  if (!nonEmpty.length) return new Set();
+
+  const totalEligible = nonEmpty.reduce((s, g) => s + g.length, 0);
+  const total = Math.min(
+    Math.max(nonEmpty.length, Math.round(totalEligible * pct / 100)),
+    totalEligible
+  );
+
+  // Proportional distribution with at least 1 per line (largest remainder method)
+  const quotas = nonEmpty.map(() => 1);
+  const remaining = total - nonEmpty.length;
+  if (remaining > 0) {
+    const caps = nonEmpty.map((g, i) => g.length - quotas[i]);
+    const totalCap = caps.reduce((s, c) => s + c, 0);
+    if (totalCap > 0) {
+      const exact = caps.map(c => c / totalCap * remaining);
+      const floors = exact.map(Math.floor);
+      let toAdd = remaining - floors.reduce((s, f) => s + f, 0);
+      exact.map((x, i) => ({ i, rem: x - Math.floor(x) }))
+        .sort((a, b) => b.rem - a.rem)
+        .forEach(({ i }) => { if (toAdd > 0 && floors[i] < caps[i]) { floors[i]++; toAdd--; } });
+      floors.forEach((f, i) => { quotas[i] += f; });
+    }
+  } else if (remaining < 0) {
+    // pct so low that can't give 1 to every line — give 1 to 'total' random lines
+    const shuffledIdx = nonEmpty.map((_, i) => i).sort(() => Math.random() - 0.5);
+    return new Set(
+      shuffledIdx.slice(0, total).flatMap(i =>
+        nonEmpty[i].slice().sort(() => Math.random() - 0.5).slice(0, 1)
+      )
+    );
+  }
+
+  // Pick random words within each line according to quota
+  const blanked = new Set();
+  nonEmpty.forEach((group, i) => {
+    group.slice().sort(() => Math.random() - 0.5).slice(0, quotas[i]).forEach(idx => blanked.add(idx));
+  });
+  return blanked;
 }
 
 function makeDashSVG(charCount) {
@@ -1104,7 +1147,6 @@ function renderScreen(idx) {
   if (sc.type==='p1') {
     const q=sc.q;
     left.appendChild(buildAudioBlock(q.mp3, sk));
-    if (q.img) { const img=make('img','exam-img'); img.src=q.img; img.alt=`Câu ${q.q}`; if (clozeState[sk]?.active) img.style.display='none'; left.appendChild(img); }
     right.appendChild(buildQHeader(q.q,1,sk,showSol));
     right.appendChild(buildOptionsAll(q.q,['A','B','C','D'],sk,null,null,null));
     if (showSol && q.script) {
@@ -1117,6 +1159,7 @@ function renderScreen(idx) {
       if (!state.showSolution['q'+q.q] || clozeState[sk]?.active) sg.style.display = 'none';
       left.appendChild(sg);
     }
+    if (q.img) { const img=make('img','exam-img'); img.src=q.img; img.alt=`Câu ${q.q}`; if (clozeState[sk]?.active) img.style.display='none'; left.appendChild(img); }
   }
   if (sc.type==='p2') {
     const q=sc.q;
@@ -1137,7 +1180,6 @@ function renderScreen(idx) {
   if (sc.type==='p3') {
     const g=sc.group;
     left.appendChild(buildAudioBlock(g.mp3, sk));
-    if (g.img) { const img=make('img','exam-img'); img.src=g.img; img.alt='Ảnh Part 3'; if (clozeState[sk]?.active) img.style.display='none'; left.appendChild(img); }
     const p3SolKey='q'+g.questions[0].q;
     const p3AllQNums=g.questions.map(q=>q.q);
     g.questions.forEach((q)=>right.appendChild(buildGroupQBlock(q,3,showSol,sk,showSol,p3AllQNums)));
@@ -1151,11 +1193,11 @@ function renderScreen(idx) {
       if (!state.showSolution[p3SolKey] || clozeState[sk]?.active) sg.style.display = 'none';
       left.appendChild(sg);
     }
+    if (g.img) { const img=make('img','exam-img'); img.src=g.img; img.alt='Ảnh Part 3'; if (clozeState[sk]?.active) img.style.display='none'; left.appendChild(img); }
   }
   if (sc.type==='p4') {
     const g=sc.group;
     left.appendChild(buildAudioBlock(g.mp3, sk));
-    if (g.img) { const img=make('img','exam-img'); img.src=g.img; img.alt='Ảnh Part 4'; if (clozeState[sk]?.active) img.style.display='none'; left.appendChild(img); }
     const p4SolKey='q'+g.questions[0].q;
     const p4AllQNums=g.questions.map(q=>q.q);
     g.questions.forEach((q)=>right.appendChild(buildGroupQBlock(q,4,showSol,sk,showSol,p4AllQNums)));
@@ -1169,6 +1211,7 @@ function renderScreen(idx) {
       if (!state.showSolution[p4SolKey] || clozeState[sk]?.active) sg.style.display = 'none';
       left.appendChild(sg);
     }
+    if (g.img) { const img=make('img','exam-img'); img.src=g.img; img.alt='Ảnh Part 4'; if (clozeState[sk]?.active) img.style.display='none'; left.appendChild(img); }
   }
   if (sc.type==='p5') {
     const q=sc.q;
@@ -1254,11 +1297,9 @@ function renderScreen(idx) {
   if (_tbNext) _tbNext.disabled = idx>=state.screens.length-1;
 
   screenEl.appendChild(left);
-  if (!left.classList.contains('empty')) {
-    const resizer = make('div','screen-resizer');
-    screenEl.appendChild(resizer);
-    initResizer(screenEl, left, resizer);
-  }
+  const resizer = make('div','screen-resizer');
+  screenEl.appendChild(resizer);
+  initResizer(screenEl, left, resizer);
   screenEl.appendChild(right);
   el('examBody').appendChild(screenEl);
   state.scrollToQ = null;
@@ -1836,7 +1877,7 @@ function buildQHeader(qNum, part, sk, showSolBtn, groupQNums=null) {
   if (showSolBtn) {
     const keys = groupQNums ? groupQNums.map(n=>'q'+n) : ['q'+qNum];
     const isShown = keys.every(k=>state.showSolution[k]);
-    const solLabel = [1,2,3,4].includes(part) ? ['Đáp án + Script','Ẩn'] : ['Video giải','Ẩn video'];
+    const solLabel = [1,2,3,4].includes(part) ? ['Đáp án + Script','Ẩn'] : ['Video giải','Ẩn'];
     const solHtml  = (shown) => shown ? `${IC_HIDE}<span>${solLabel[1]}</span>` : `${IC_SHOW}<span>${solLabel[0]}</span>`;
     const solBtn=make('button','btn-solution',solHtml(isShown));
     solBtn.dataset.solq = qNum;
@@ -1915,8 +1956,8 @@ function buildQHeader(qNum, part, sk, showSolBtn, groupQNums=null) {
     if ([5,6,7].includes(part)) {
       const isTransShown = !!state.showTrans['q'+qNum];
       const transHtml = (shown) => shown
-        ? `${IC_TRANS_HIDE}<span>Ẩn đáp án</span>`
-        : `${IC_TRANS_SHOW}<span>Đáp án</span>`;
+        ? `${IC_TRANS_HIDE}<span>Ẩn</span>`
+        : `${IC_TRANS_SHOW}<span>Đáp án + song ngữ</span>`;
       const transBtn = make('button','btn-trans',transHtml(isTransShown));
       transBtn.dataset.transq = qNum;
       transBtn.addEventListener('click', () => {
@@ -2045,19 +2086,22 @@ function buildOptions(qNum, letters, sk, optsOverride) {
   letters.forEach((letter,i)=>{
     const item=make('div','option-item');
     item.dataset.q=qNum; item.dataset.letter=letter;
-    item.appendChild(make('div','opt-radio'));
-    item.appendChild(make('div','opt-label',letter+'.'));
+    const sel=make('div','opt-select');
+    sel.appendChild(make('div','opt-radio'));
+    sel.appendChild(make('div','opt-label',letter+'.'));
+    item.appendChild(sel);
     item.appendChild(make('div','opt-text',opts[i]||''));
     list.appendChild(item);
   });
   applyOptionColors(list, state.answers[qNum], correct, showSol);
   if (!state.finished) {
     list.querySelectorAll('.option-item').forEach(item => {
-      item.addEventListener('click',()=>{
+      const select = () => {
         state.answers[qNum] = item.dataset.letter;
         applyOptionColors(list, state.answers[qNum], correct, showSol);
         renderSheet(); saveProgress();
-      });
+      };
+      item.querySelector('.opt-select').addEventListener('click', e => { e.stopPropagation(); select(); });
     });
   } else {
     list.style.pointerEvents = 'none';
