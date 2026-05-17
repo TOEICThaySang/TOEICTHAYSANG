@@ -84,6 +84,7 @@ function injectAuthUI() {
     if (user) {
       const name    = user.displayName || user.email.split('@')[0];
       const initial = name[0].toUpperCase();
+      const root    = (typeof PATH_TO_ROOT !== 'undefined') ? PATH_TO_ROOT : '';
       const triggerInner = user.photoURL
         ? `<img src="${user.photoURL}" alt="" class="tts-trigger-img">`
         : `<span class="tts-trigger-initial">${initial}</span>`;
@@ -102,10 +103,13 @@ function injectAuthUI() {
               ${avatarLarge}
               <div class="tts-drop-info">
                 <span class="tts-drop-name">${name}</span>
-                ${whitelisted ? `<span class="tts-drop-badge">✓ Học viên</span>` : ''}
+                ${whitelisted ? `<span class="tts-drop-badge"><svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:3px"><polyline points="20 6 9 17 4 12"/></svg>Học viên</span>` : ''}
               </div>
             </div>
             <div class="tts-drop-divider"></div>
+            <a class="tts-drop-link" href="${root}exams/history.html">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:7px"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>Lịch sử làm bài
+            </a>
             <button class="tts-drop-logout" id="_ttsLogout">Đăng xuất</button>
           </div>
         </div>`;
@@ -229,7 +233,22 @@ const css = `
   color: #fff; padding: 2px 8px; border-radius: 10px;
 }
 
-.tts-drop-divider { height: 1px; background: var(--border, #e2e8f0); margin: 0 0 12px; }
+.tts-drop-divider { height: 1px; background: var(--border, #e2e8f0); margin: 0 0 8px; }
+
+.tts-drop-link {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 9px 12px;
+  color: var(--text-2, #475569);
+  border-radius: 9px;
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background .12s, color .12s;
+  margin-bottom: 4px;
+}
+.tts-drop-link:hover { background: var(--bg-hover, #f0f4ff); color: var(--primary, #1d6ff2); }
 
 .tts-drop-logout {
   width: 100%;
