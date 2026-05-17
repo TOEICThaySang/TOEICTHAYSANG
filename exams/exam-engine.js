@@ -600,19 +600,10 @@ function renderExamPage() {
   sheetOverlay.innerHTML = `
     <div class="answer-sheet">
       <div class="answer-sheet-head">
-        <div class="answer-sheet-head-title">Phiếu đáp án</div>
-        <div class="sheet-action-row" id="sheetActionRow">
-          <button class="sheet-action-btn sheet-action-flag" id="btnSheetFlag">
-            <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13" style="vertical-align:-1px;margin-right:4px"><path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"/></svg>Gắn cờ
-          </button>
-          <button class="sheet-action-btn sheet-action-skip" id="btnSheetSkip">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="13" height="13" style="vertical-align:-1px;margin-right:4px"><circle cx="12" cy="12" r="10"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Bỏ trống
-          </button>
-        </div>
+        <div class="answer-sheet-head-title">Review</div>
         <div class="answer-sheet-legend" id="sheetLegend">
           <div class="legend-item"><div class="legend-dot ld-answered"></div> Đã làm</div>
           <div class="legend-item"><div class="legend-dot ld-unanswered"></div> Chưa làm</div>
-          <div class="legend-item"><div class="legend-dot ld-current"></div> Đang làm</div>
           <div class="legend-item"><div class="legend-dot ld-flagged"></div> Gắn cờ</div>
         </div>
         <div class="sheet-filters" id="sheetFilters">
@@ -674,17 +665,6 @@ function renderExamPage() {
   el('sheetFilters').addEventListener('click', e=>{
     const btn=e.target.closest('.sheet-filter-btn'); if(!btn) return;
     state.sheetFilter=btn.dataset.filter; applySheetFilter();
-  });
-  el('btnSheetFlag').addEventListener('click', ()=>{
-    const qNums=getCurrentScreenQNums(); const qNum=state.scrollToQ||qNums[0]; if(!qNum) return;
-    state.flags[qNum]=!state.flags[qNum]; renderSheet(); saveProgress();
-  });
-  el('btnSheetSkip').addEventListener('click', ()=>{
-    const nextIdx=findNextUnansweredIdx(); if(nextIdx<0) return;
-    clearListeningSolution(state.currentIdx); state.currentIdx=nextIdx;
-    const sc=state.screens[nextIdx];
-    state.scrollToQ=sc.q?sc.q.q:sc.group?.questions[0]?.q;
-    renderScreen(state.currentIdx); renderSheet(); toggleSheet(false); saveProgress();
   });
   el('btnSubmit').addEventListener('click', showConfirmModal);
   el('confirmCancel').addEventListener('click', ()=>confirmOverlay.classList.remove('show'));
@@ -1292,21 +1272,18 @@ function renderScreen(idx) {
     left.appendChild(buildAudioBlock(g.mp3, sk));
     const p3SolKey='q'+g.questions[0].q;
     const p3AllQNums=g.questions.map(q=>q.q);
-    // ONE wrap + ONE action-row + ONE card for the whole group
-    const p3Wrap=make('div','q-block');
-    if (g.questions.some(q=>q.q===state.scrollToQ)) p3Wrap.dataset.autoq='1';
-    const {solBtn:p3Sol,flagBtn:p3Flag}=_buildButtons(g.questions[0].q,3,sk,showSol,showSol?p3AllQNums:null);
-    const p3AR=make('div','q-action-row');
-    if (p3Sol) p3AR.appendChild(p3Sol);
-    p3AR.appendChild(p3Flag);
-    p3Wrap.appendChild(p3AR);
-    const p3Card=make('div','q-card');
-    g.questions.forEach((q,i)=>{
-      if (i>0) p3Card.appendChild(make('div','q-divider'));
+    g.questions.forEach((q)=>{
+      const {solBtn:p3Sol,flagBtn:p3Flag}=_buildButtons(q.q,3,sk,showSol,showSol?p3AllQNums:null);
+      const p3Wrap=make('div','q-block');
+      if (q.q===state.scrollToQ) p3Wrap.dataset.autoq='1';
+      const p3AR=make('div','q-action-row');
+      if (p3Sol) p3AR.appendChild(p3Sol);
+      p3AR.appendChild(p3Flag);
+      p3Wrap.appendChild(p3AR);
+      const p3Card=make('div','q-card');
       const subBlock=make('div','q-sub-block');
       const titleRow=make('div','q-title-row');
       const numLbl=make('span','q-num-lbl',q.q+'.');
-      numLbl.addEventListener('click',()=>{ const rp=document.querySelector('.screen-right'); if(!rp) return; const pt=parseInt(getComputedStyle(rp).paddingTop)||0; rp.scrollTo({top:subBlock.getBoundingClientRect().top-rp.getBoundingClientRect().top+rp.scrollTop-pt,behavior:'smooth'}); });
       titleRow.appendChild(numLbl);
       const qCnt=make('div','q-content-col');
       if (q.enQ) qCnt.appendChild(make('div','q-text',q.enQ));
@@ -1318,9 +1295,9 @@ function renderScreen(idx) {
       if (isPractice&&!state.showSolution['q'+q.q]&&viOpts) optList.querySelectorAll('.opt-trans').forEach(el=>el.style.display='none');
       subBlock.appendChild(optList);
       p3Card.appendChild(subBlock);
+      p3Wrap.appendChild(p3Card);
+      right.appendChild(p3Wrap);
     });
-    p3Wrap.appendChild(p3Card);
-    right.appendChild(p3Wrap);
     if (showSol && g.script) {
       const { gameArea, setActive } = buildClozeGame(g.script,3,sk,p3SolKey,right,left);
       left.appendChild(gameArea);
@@ -1339,20 +1316,18 @@ function renderScreen(idx) {
     left.appendChild(buildAudioBlock(g.mp3, sk));
     const p4SolKey='q'+g.questions[0].q;
     const p4AllQNums=g.questions.map(q=>q.q);
-    const p4Wrap=make('div','q-block');
-    if (g.questions.some(q=>q.q===state.scrollToQ)) p4Wrap.dataset.autoq='1';
-    const {solBtn:p4Sol,flagBtn:p4Flag}=_buildButtons(g.questions[0].q,4,sk,showSol,showSol?p4AllQNums:null);
-    const p4AR=make('div','q-action-row');
-    if (p4Sol) p4AR.appendChild(p4Sol);
-    p4AR.appendChild(p4Flag);
-    p4Wrap.appendChild(p4AR);
-    const p4Card=make('div','q-card');
-    g.questions.forEach((q,i)=>{
-      if (i>0) p4Card.appendChild(make('div','q-divider'));
+    g.questions.forEach((q)=>{
+      const {solBtn:p4Sol,flagBtn:p4Flag}=_buildButtons(q.q,4,sk,showSol,showSol?p4AllQNums:null);
+      const p4Wrap=make('div','q-block');
+      if (q.q===state.scrollToQ) p4Wrap.dataset.autoq='1';
+      const p4AR=make('div','q-action-row');
+      if (p4Sol) p4AR.appendChild(p4Sol);
+      p4AR.appendChild(p4Flag);
+      p4Wrap.appendChild(p4AR);
+      const p4Card=make('div','q-card');
       const subBlock=make('div','q-sub-block');
       const titleRow=make('div','q-title-row');
       const numLbl=make('span','q-num-lbl',q.q+'.');
-      numLbl.addEventListener('click',()=>{ const rp=document.querySelector('.screen-right'); if(!rp) return; const pt=parseInt(getComputedStyle(rp).paddingTop)||0; rp.scrollTo({top:subBlock.getBoundingClientRect().top-rp.getBoundingClientRect().top+rp.scrollTop-pt,behavior:'smooth'}); });
       titleRow.appendChild(numLbl);
       const qCnt=make('div','q-content-col');
       if (q.enQ) qCnt.appendChild(make('div','q-text',q.enQ));
@@ -1364,9 +1339,9 @@ function renderScreen(idx) {
       if (isPractice&&!state.showSolution['q'+q.q]&&viOpts) optList.querySelectorAll('.opt-trans').forEach(el=>el.style.display='none');
       subBlock.appendChild(optList);
       p4Card.appendChild(subBlock);
+      p4Wrap.appendChild(p4Card);
+      right.appendChild(p4Wrap);
     });
-    p4Wrap.appendChild(p4Card);
-    right.appendChild(p4Wrap);
     if (showSol && g.script) {
       const { gameArea, setActive } = buildClozeGame(g.script,4,sk,p4SolKey,right,left);
       left.appendChild(gameArea);
@@ -1409,26 +1384,22 @@ function renderScreen(idx) {
   if (sc.type==='p6') {
     const g=sc.group;
     buildLeftTabs(left,g,sk,false,showSol);
-    const p6Wrap=make('div','q-block');
-    if (g.questions.some(q=>q.q===state.scrollToQ)) p6Wrap.dataset.autoq='1';
-    const p6Card=make('div','q-card');
-    g.questions.forEach((q,i)=>{
+    g.questions.forEach((q)=>{
       const qKey='q'+q.q;
       const transShown6=showSol&&!!state.showTrans[qKey];
-      if (i>0) p6Card.appendChild(make('div','q-divider'));
-      const subBlock=make('div','q-sub-block');
-      // internal action row
       const {solBtn:s6,transBtn:t6,flagBtn:f6}=_buildButtons(q.q,6,sk,showSol,null);
+      const p6Wrap=make('div','q-block');
+      if (q.q===state.scrollToQ) p6Wrap.dataset.autoq='1';
       const ar6=make('div','q-action-row');
       if (s6) ar6.appendChild(s6);
       if (t6) ar6.appendChild(t6);
       ar6.appendChild(f6);
-      subBlock.appendChild(ar6);
-      // title row (Part 6 has no separate question text — q number only)
+      p6Wrap.appendChild(ar6);
+      const p6Card=make('div','q-card');
+      const subBlock=make('div','q-sub-block');
       const titleRow6=make('div','q-title-row');
       titleRow6.appendChild(make('span','q-num-lbl',q.q+'.'));
       subBlock.appendChild(titleRow6);
-      // options
       const rawViTrans6=[q.viQ||'',...(q.viOpts||[])];
       const viTrans6=rawViTrans6.some(Boolean)?rawViTrans6:null;
       const notes6=q.noteOpts?.some(Boolean)?q.noteOpts:null;
@@ -1436,29 +1407,26 @@ function renderScreen(idx) {
       if (!transShown6) optList6.querySelectorAll('.opt-trans,.opt-note').forEach(el=>el.style.display='none');
       subBlock.appendChild(optList6);
       p6Card.appendChild(subBlock);
+      p6Wrap.appendChild(p6Card);
+      right.appendChild(p6Wrap);
     });
-    p6Wrap.appendChild(p6Card);
-    right.appendChild(p6Wrap);
   }
   if (sc.type==='p7') {
     const g=sc.group;
     buildLeftTabs(left,g,sk,true,showSol);
-    const p7Wrap=make('div','q-block');
-    if (g.questions.some(q=>q.q===state.scrollToQ)) p7Wrap.dataset.autoq='1';
-    const p7Card=make('div','q-card');
-    g.questions.forEach((q,i)=>{
+    g.questions.forEach((q)=>{
       const qKey='q'+q.q;
       const transShown7=showSol&&!!state.showTrans[qKey];
-      if (i>0) p7Card.appendChild(make('div','q-divider'));
-      const subBlock=make('div','q-sub-block');
-      // internal action row
       const {solBtn:s7,transBtn:t7,flagBtn:f7}=_buildButtons(q.q,7,sk,showSol,null);
+      const p7Wrap=make('div','q-block');
+      if (q.q===state.scrollToQ) p7Wrap.dataset.autoq='1';
       const ar7=make('div','q-action-row');
       if (s7) ar7.appendChild(s7);
       if (t7) ar7.appendChild(t7);
       ar7.appendChild(f7);
-      subBlock.appendChild(ar7);
-      // title row with question text
+      p7Wrap.appendChild(ar7);
+      const p7Card=make('div','q-card');
+      const subBlock=make('div','q-sub-block');
       const notes7raw=q.noteOpts?.some(Boolean)?q.noteOpts:null;
       const noteQ7=notes7raw?.[0]||null;
       const noteOpts7=notes7raw?.length>1?notes7raw.slice(1):null;
@@ -1470,15 +1438,14 @@ function renderScreen(idx) {
       titleRow7.appendChild(make('span','q-num-lbl',q.q+'.'));
       if (q7Content.children.length) titleRow7.appendChild(q7Content);
       subBlock.appendChild(titleRow7);
-      // options
       const viOpts7=q.viOpts?.some(Boolean)?q.viOpts:null;
       const optList7=buildOptionsAll(q.q,['A','B','C','D'],sk,null,viOpts7,noteOpts7?.some(Boolean)?noteOpts7:null);
       if (!transShown7) optList7.querySelectorAll('.opt-trans,.opt-note').forEach(el=>el.style.display='none');
       subBlock.appendChild(optList7);
       p7Card.appendChild(subBlock);
+      p7Wrap.appendChild(p7Card);
+      right.appendChild(p7Wrap);
     });
-    p7Wrap.appendChild(p7Card);
-    right.appendChild(p7Wrap);
   }
 
   // Cập nhật trạng thái nút mũi tên trên topbar
@@ -2503,7 +2470,18 @@ function applySheetFilter() {
 
 function toggleSheet(force) {
   const o=el('sheetOverlay'); if(!o) return;
+  const wasOpen=o.classList.contains('open');
   if(force===false) o.classList.remove('open'); else o.classList.toggle('open');
+  if(!wasOpen && o.classList.contains('open') && !state.finished) {
+    const curPart=state.screens[state.currentIdx]?.part;
+    const body=el('sheetBody');
+    if(curPart && body) {
+      requestAnimationFrame(()=>{
+        const sec=body.querySelector(`.sheet-part-section[data-part="${curPart}"]`);
+        if(sec){ const r=sec.getBoundingClientRect(),br=body.getBoundingClientRect(); body.scrollTop+=r.top-br.top-10; }
+      });
+    }
+  }
 }
 
 // ══════════════════════════════════════════════════════════════
@@ -2611,8 +2589,6 @@ function enterReviewMode(R) {
     `<div class="legend-item"><div class="legend-dot ld-wrong"></div> Sai</div>`+
     `<div class="legend-item"><div class="legend-dot ld-blank"></div> Bỏ trống</div>`+
     `<div class="legend-item"><div class="legend-dot ld-rev-flag"></div> Gắn cờ</div>`;
-  const actionRow=el('sheetActionRow');
-  if(actionRow) actionRow.style.display='none';
   const filters=el('sheetFilters');
   if(filters) filters.innerHTML=
     `<button class="sheet-filter-btn active" data-filter="all">Tất cả</button>`+

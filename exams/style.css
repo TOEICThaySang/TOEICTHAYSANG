@@ -583,7 +583,6 @@ body {
 }
 .legend-dot.ld-answered   { background: var(--navy); }
 .legend-dot.ld-unanswered { background: #f1f5f9; border: 1.5px solid #cbd5e1; }
-.legend-dot.ld-current    { background: #f59e0b; }
 .legend-dot.ld-flagged    { background: #7c3aed; }
 .legend-dot.ld-correct    { background: #22c55e; }
 .legend-dot.ld-wrong      { background: #ef4444; }
@@ -681,7 +680,11 @@ body {
 /* Trạng thái khi làm bài */
 .sheet-cell.cell-unanswered { background: #f8fafc; border-color: #dde1e7; color: #94a3b8; }
 .sheet-cell.cell-answered   { background: var(--navy); border-color: var(--navy); color: #fff; }
-.sheet-cell.cell-current    { background: #f59e0b; border-color: #f59e0b; color: #1a1a1a; box-shadow: 0 0 0 3px rgba(245,158,11,0.25); }
+@keyframes cell-pulse {
+  0%, 100% { box-shadow: 0 0 0 2px rgba(245,158,11,0.55); }
+  50%       { box-shadow: 0 0 0 5px rgba(245,158,11,0.15); }
+}
+.sheet-cell.cell-current    { background: #f59e0b; border-color: #f59e0b; color: #1a1a1a; animation: cell-pulse 1.4s ease-in-out infinite; }
 .sheet-cell.cell-flagged    { background: #7c3aed; border-color: #7c3aed; color: #fff; }
 
 /* Trạng thái khi review */
@@ -723,7 +726,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  padding: 16px 20px;
+  padding: 16px 20px 20px;
   gap: 14px;
   height: calc(100vh - 56px);
   overflow-y: auto;
@@ -738,7 +741,7 @@ body {
   padding: 20px 24px 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 14px;
   overflow-y: auto;
   height: calc(100vh - 56px);
   background: var(--bg);
