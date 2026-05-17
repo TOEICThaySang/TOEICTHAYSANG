@@ -717,6 +717,44 @@ body {
   min-height: calc(100vh - 56px);
 }
 .exam-screen.active { display: flex; }
+.exam-screen.game-active .screen-right,
+.exam-screen.game-active .screen-resizer { display: none; }
+.exam-screen.game-active .screen-left {
+  width: 100% !important;
+  align-items: center;
+  overflow-y: auto; /* cuộn chỉ khi card đã rộng tối đa mà vẫn cao */
+}
+.exam-screen.game-active .cloze-area,
+.exam-screen.game-active .typing-area {
+  width: fit-content; /* co lại vừa nội dung, không dư */
+  min-width: min(320px, calc(100% - 40px));
+  max-width: calc(100% - 40px); /* không vượt màn hình */
+  margin: 0;
+}
+
+/* Nav row — câu trước / câu sau */
+.game-nav-row {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 18px; padding-top: 14px;
+  border-top: 1px solid #e2e8f0;
+}
+.game-nav-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 16px; border-radius: 8px;
+  border: 1.5px solid #e2e8f0;
+  background: #f8fafc; color: #64748b;
+  font-size: 13px; font-weight: 500; cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+.game-nav-btn:hover:not(:disabled) { background: #e2e8f0; border-color: #cbd5e1; color: #334155; }
+.game-nav-btn:disabled { opacity: 0.32; cursor: default; }
+.game-nav-label {
+  font-size: 13px; color: #94a3b8; font-weight: 500; white-space: nowrap;
+}
+[data-theme="dark"] .game-nav-row { border-top-color: #334155; }
+[data-theme="dark"] .game-nav-btn { background: #1e293b; border-color: #334155; color: #94a3b8; }
+[data-theme="dark"] .game-nav-btn:hover:not(:disabled) { background: #334155; color: #e2e8f0; }
 
 /* Layout chia đôi */
 .screen-left {
@@ -1508,8 +1546,8 @@ body {
   background: #dcfce7;
 }
 .option-item.blank-correct {
-  border-color: #378ADD;
-  background: #E6F1FB;
+  border: 2px dashed var(--green);
+  background: var(--green-bg);
 }
 
 /* Hình tròn chữ cái */
@@ -1550,8 +1588,8 @@ body {
   color: #ffffff;
 }
 .option-item.blank-correct .opt-circle {
-  background: #378ADD;
-  border-color: #378ADD;
+  background: var(--green);
+  border-color: var(--green);
   color: #ffffff;
 }
 .opt-text {
@@ -1668,6 +1706,14 @@ body {
 .modal-btn.cancel:hover { background: #e2e8f0; }
 .modal-btn.confirm { background: var(--yellow); color: var(--navy); }
 .modal-btn.confirm:hover { background: var(--yellow-dark); }
+
+/* ── CONFIRM SUBMIT MODAL ── */
+.confirm-question { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+.confirm-blank-summary { font-size: 13px; color: #7c3aed; margin-bottom: 10px; }
+.confirm-blank-list { text-align: left; background: #fdf4ff; border: 1px solid #e9d5ff; border-radius: 10px; padding: 10px 14px; display: flex; flex-direction: column; gap: 6px; max-height: 200px; overflow-y: auto; }
+.confirm-blank-row { display: flex; gap: 10px; align-items: baseline; font-size: 13px; }
+.confirm-blank-part { font-weight: 700; color: #7c3aed; white-space: nowrap; min-width: 52px; }
+.confirm-blank-nums { color: var(--text-sub); line-height: 1.5; }
 
 /* ── TIẾP TỤC LÀM BÀI MODAL ── */
 .resume-modal-box { text-align: left; }
@@ -2466,7 +2512,7 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
 .cloze-area {
   position: relative;
   margin: 10px 12px 0;
-  padding: 28px 28px 24px;
+  padding: 24px 24px 20px;
   background: #ffffff;
   border: 1.5px solid #BFDBFE;
   border-radius: 20px;
@@ -2479,8 +2525,12 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
 }
 
 /* Menu button — góc trên phải card */
+/* Menu button + dropdown wrapper — positioned absolute in card corner */
+.cloze-menu-wrap {
+  position: relative;
+  flex-shrink: 0;
+}
 .cloze-menu-btn {
-  position: absolute; top: 12px; right: 12px;
   width: 32px; height: 32px; border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   background: #f1f5f9; border: 1px solid #e2e8f0;
@@ -2490,9 +2540,10 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
 }
 .cloze-menu-btn:hover { background: #e0e7ff; color: #6366f1; border-color: #818cf8; }
 
-/* Dropdown */
+/* Dropdown — opens below the menu button, right-aligned */
 .cloze-dropdown {
-  position: absolute; top: 52px; right: 10px;
+  position: absolute; top: calc(100% + 6px); right: 0;
+  transform: none;
   background: rgba(255,255,255,0.98);
   border: 1px solid #e2e8f0;
   border-radius: 12px;
@@ -2520,28 +2571,28 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
 .cloze-dropdown-quit { color: #94a3b8; }
 .cloze-dropdown-quit:hover { background: #fff5f5; color: #ef4444; }
 
-/* Top row — 2 nút căn giữa */
+/* Top row — nút điều khiển game */
 .cloze-top-row {
-  display: flex; align-items: center; justify-content: center;
-  gap: 12px; margin-bottom: 12px; margin-top: 4px;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: 10px; margin-bottom: 12px; margin-top: 4px;
 }
 .cloze-redo-btn {
   display: inline-flex; align-items: center;
-  padding: 7px 16px; border-radius: 999px;
+  height: 32px; padding: 0 14px; border-radius: 8px;
   border: 1.5px solid #818cf8;
   background: #e0e7ff; color: #6366f1;
   font-size: 13px; font-weight: 600;
   cursor: pointer; transition: background 0.18s, border-color 0.18s;
-  font-family: inherit;
+  font-family: inherit; white-space: nowrap;
 }
 .cloze-redo-btn:hover { background: #c7d2fe; border-color: #6366f1; }
 .cloze-score-pill {
   display: inline-flex; align-items: center;
-  padding: 7px 16px; border-radius: 999px;
+  height: 32px; padding: 0 14px; border-radius: 8px;
   border: 1.5px solid #6ee7b7;
   background: #d1fae5; color: #059669;
   font-size: 13px; font-weight: 600;
-  user-select: none; pointer-events: none;
+  user-select: none; pointer-events: none; white-space: nowrap;
 }
 
 /* Progress bar */
@@ -2559,10 +2610,23 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
 /* Text hiển thị trong game */
 .cloze-display { font-size: var(--ef); color: #1E293B; }
 .cloze-line {
-  display: flex; flex-wrap: wrap; align-items: center;
+  display: flex; flex-wrap: wrap; align-items: baseline;
   row-gap: 6px; column-gap: 5px; min-height: 2em;
 }
+/* Baseline anchor — ensures pill sits on the same baseline as surrounding text */
+.cloze-pill::before {
+  content: '\200b';
+  font-size: var(--ef);
+  line-height: 1;
+}
 .cloze-sentline { padding-left: 0; }
+.cloze-trail { margin-left: -5px; }
+.cloze-flow-sep {
+  display: inline-block; width: 0;
+  border-left: 1.5px solid #cbd5e1;
+  height: 0.9em; vertical-align: middle;
+  margin: 0 6px;
+}
 .cloze-fixed {
   display: inline-block;
   padding: 1px 8px; border-radius: 6px;
@@ -2571,66 +2635,41 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
 }
 .cloze-punct { margin-left: -4px; }
 
-/* Topbar game slot */
+/* Topbar game slot — 2 pill buttons */
 .topbar-game-slot {
-  position: relative;
-  display: flex;
-  align-items: center;
+  display: inline-flex; align-items: center; gap: 5px;
 }
-.topbar-game-btn {
-  display: flex; align-items: center; justify-content: center;
-  width: 34px; height: 34px;
-  border: none; border-radius: 8px;
+.tg-pill {
+  display: inline-flex; align-items: center;
+  height: 32px; padding: 0 9px;
+  border: none; border-radius: 16px;
   background: rgba(255,255,255,0.12);
   color: rgba(255,255,255,0.85);
-  cursor: pointer;
-  position: relative;
-  transition: background 0.15s, color 0.15s;
+  cursor: pointer; overflow: hidden;
+  max-width: 36px; white-space: nowrap;
+  transition: max-width 0.28s ease, background 0.2s, color 0.2s;
 }
-.topbar-game-btn:hover { background: rgba(255,255,255,0.22); }
-.topbar-game-btn.active { background: #FFD700; color: #1a1a2e; }
-.topbar-game-btn.active:hover { background: #f5ca00; }
-.tg-dot {
-  position: absolute;
-  top: -3px; right: -3px;
-  width: 8px; height: 8px;
-  border-radius: 50%;
-  background: #FFD700;
-  border: 1.5px solid #1e2a4a;
-  display: none;
+.tg-pill:hover { background: rgba(255,255,255,0.22); }
+.tg-pill-icon { display: inline-flex; align-items: center; flex-shrink: 0; }
+.tg-pill-label {
+  font-size: 12.5px; font-weight: 600;
+  overflow: hidden; max-width: 0; opacity: 0; margin-left: 0;
+  transition: max-width 0.28s ease, opacity 0.15s ease 0.08s, margin 0.28s ease;
 }
-.topbar-game-btn.active .tg-dot { display: block; background: #fff; }
-.topbar-game-dropdown {
-  position: absolute;
-  top: calc(100% + 8px);
-  left: 50%; transform: translateX(-50%);
-  background: #fff;
-  border: 1px solid #e2e8f0;
-  border-radius: 10px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
-  min-width: 210px;
-  z-index: 999;
-  overflow: hidden;
-  padding: 4px 0;
+.tg-pill-x {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 18px; height: 18px; border-radius: 50%;
+  cursor: pointer; flex-shrink: 0; user-select: none;
+  background: rgba(0,0,0,0.18); color: inherit;
+  overflow: hidden; max-width: 0; opacity: 0; margin-left: 0;
+  transition: max-width 0.28s ease, opacity 0.15s ease 0.08s, margin 0.28s ease, background 0.15s;
 }
-.topbar-game-item {
-  display: flex; align-items: center; gap: 9px;
-  padding: 9px 14px;
-  font-size: 13px; font-weight: 500;
-  color: #1e293b;
-  cursor: pointer;
-  transition: background 0.12s;
+.tg-pill-x:hover { background: rgba(0,0,0,0.3); }
+.tg-pill.active {
+  max-width: 200px; background: #FFD700; color: #1a1a2e;
 }
-.topbar-game-item:hover { background: #f1f5f9; }
-.topbar-game-item svg { flex-shrink: 0; color: #64748b; }
-.tgi-active {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: #FFD700;
-  margin-left: auto; flex-shrink: 0;
-}
-.topbar-game-quit { color: #7c3aed; }
-.topbar-game-quit svg { color: #7c3aed; }
-.topbar-game-quit:hover { background: #fef2f2; }
+.tg-pill.active .tg-pill-label { max-width: 130px; opacity: 1; margin-left: 7px; }
+.tg-pill.active .tg-pill-x    { max-width: 18px;  opacity: 1; margin-left: 6px; }
 
 /* Pill — pop fade reveal */
 .cloze-pill {
@@ -2659,8 +2698,8 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
 .cloze-pill-back {
   background: #fbbf24;
   border: 1px solid #f59e0b;
-  color: #78350f; font-weight: 700; font-size: calc(var(--ef) - 1px);
-  opacity: 0;
+  color: #78350f; font-weight: 400; font-size: var(--ef);
+  line-height: 1; opacity: 0;
 }
 @keyframes clozeReveal {
   from { opacity: 0; transform: scale(0.82); }
@@ -2687,9 +2726,150 @@ body.exam-wide-spacing .opt-text { line-height: 2.2; }
 @media (max-width: 768px) {
   .cloze-banner { padding: 8px 18px; font-size: 13px; }
   .cloze-area { padding: 18px 16px; border-radius: 14px; margin: 8px 8px 0; }
-  .cloze-redo-btn, .cloze-score-pill { padding: 6px 12px; font-size: 12px; }
+  .cloze-redo-btn, .cloze-score-pill, .typing-ctrl-btn { height: 28px; padding: 0 10px; font-size: 12px; }
   .cloze-top-row { gap: 8px; }
   .cloze-display { font-size: 13px; }
-  .cloze-pill { min-width: 44px; }
+  .cloze-pill { min-width: 2.5em; }
+}
 
+/* ══════════════════════════════════════════════════════
+   TYPING GAME — Điền Khuyết — Game 2
+══════════════════════════════════════════════════════ */
+.typing-hidden-input {
+  position: fixed; opacity: 0; pointer-events: none;
+  width: 1px; height: 1px; top: -9999px; left: -9999px;
+}
+/* Container — reuse cloze card styles */
+.typing-area {
+  background: #fff; border: 1.5px solid #e0e7ff;
+  border-radius: 18px; padding: 24px 24px 20px;
+  box-shadow: 0 2px 16px rgba(99,102,241,0.08);
+  margin-top: 10px; position: relative;
+  animation: clozeCardIn 0.3s ease;
+}
+
+/* Control buttons */
+.typing-ctrl-btn {
+  display: inline-flex; align-items: center;
+  height: 32px; padding: 0 14px; border-radius: 8px; border: 1.5px solid #c7d2fe;
+  background: #eef2ff; color: #4338ca; font-size: 13px; font-weight: 600;
+  cursor: pointer; transition: background 0.15s, border-color 0.15s;
+  white-space: nowrap; font-family: inherit;
+}
+.typing-ctrl-btn:hover { background: #e0e7ff; border-color: #a5b4fc; }
+
+/* VNI hint */
+.vni-modal {
+  display: none; position: fixed; inset: 0; z-index: 9999;
+  background: rgba(0,0,0,0.48);
+  align-items: center; justify-content: center;
+}
+.vni-modal.show { display: flex; }
+.vni-modal-card {
+  background: #fff; border-radius: 20px;
+  padding: 36px 40px 32px; max-width: 400px; width: 88%;
+  position: relative; text-align: center;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.22);
+  animation: vni-modal-in 0.18s ease-out;
+}
+@keyframes vni-modal-in {
+  from { opacity: 0; transform: scale(0.88); }
+  to   { opacity: 1; transform: scale(1); }
+}
+.vni-modal-icon { font-size: 38px; margin-bottom: 14px; }
+.vni-modal-msg {
+  font-size: 18px; font-weight: 600; color: #1e293b;
+  line-height: 1.55;
+}
+.vni-modal-msg strong { color: #7c3aed; }
+.vni-modal-close {
+  position: absolute; top: 12px; right: 14px;
+  background: none; border: none; cursor: pointer;
+  font-size: 24px; line-height: 1; color: #94a3b8;
+  padding: 2px 6px; border-radius: 6px;
+}
+.vni-modal-close:hover { color: #1e293b; background: #f1f5f9; }
+[data-theme="dark"] .vni-modal-card { background: #1e293b; }
+[data-theme="dark"] .vni-modal-msg  { color: #f1f5f9; }
+[data-theme="dark"] .vni-modal-close { color: #64748b; }
+[data-theme="dark"] .vni-modal-close:hover { color: #f1f5f9; background: #334155; }
+
+/* Display area */
+.typing-display {
+  font-size: var(--ef); line-height: 1.9; color: #1e293b;
+  margin-top: 12px;
+  display: flex; flex-direction: column; gap: 7px;
+}
+.typing-line { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px 5px; }
+/* Baseline anchor for typing pill — compensate gap so anchor takes zero visual space */
+.typing-pill::before {
+  content: '\200b';
+  font-size: var(--ef);
+  line-height: 1;
+  margin-right: -5px;
+}
+.typing-sentline { margin-top: 2px; }
+.typing-word  { color: #334155; }
+.typing-fixed { color: #64748b; font-weight: 500; }
+
+/* Pill (blank slot) */
+.typing-pill {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 3px; padding: 3px 8px; border-radius: 8px;
+  border: 1.5px solid #cbd5e1; background: #f8fafc;
+  cursor: pointer; min-height: 28px; min-width: 30px;
+  line-height: 1;
+  transition: border-color 0.15s, background 0.15s, box-shadow 0.15s;
+  vertical-align: middle; flex-shrink: 0;
+}
+.typing-pill.t-active {
+  border-color: #6366f1; background: #eef2ff;
+  box-shadow: 0 0 0 3px rgba(99,102,241,0.18);
+}
+.typing-pill.t-complete {
+  border-color: #22c55e; background: #dcfce7;
+  color: #15803d; font-weight: 400; font-size: var(--ef);
+  cursor: default;
+}
+.typing-pill.t-opened {
+  border-color: #f59e0b; background: #fef3c7;
+  color: #92400e; font-weight: 400; font-size: var(--ef);
+  cursor: default;
+}
+
+/* Individual char inside pill */
+.tchar {
+  display: inline-flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.tc-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #94a3b8; flex-shrink: 0;
+  transition: background 0.1s;
+}
+.tc-cur {
+  background: #6366f1;
+  animation: tc-blink 1s step-end infinite;
+}
+@keyframes tc-blink { 50% { opacity: 0.25; } }
+.tc-ok {
+  font-size: var(--ef); font-weight: 700; color: #16a34a;
+  line-height: 1; text-align: center;
+}
+.tc-err {
+  font-size: var(--ef); font-weight: 700; color: #dc2626;
+  line-height: 1; text-align: center;
+  animation: tc-shake 0.25s ease;
+}
+@keyframes tc-shake {
+  0%,100% { transform: translateX(0); }
+  33%      { transform: translateX(-3px); }
+  66%      { transform: translateX(3px); }
+}
+
+/* VNI warning shake */
+
+@media (max-width: 768px) {
+  .typing-area { padding: 18px 16px; border-radius: 14px; }
+  .typing-ctrl-btn { padding: 5px 10px; font-size: 12px; }
 }

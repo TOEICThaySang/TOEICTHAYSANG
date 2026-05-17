@@ -1,4 +1,4 @@
-/* ═══════════════════════════════════════════════════════════════
+﻿/* ═══════════════════════════════════════════════════════════════
    TOEICThaySang — exam-engine.js (ES Module)
    Auth: Google Sign-In → kiểm tra whitelist.js → vào làm bài
    Không dùng Firestore. Lịch sử lưu localStorage.
@@ -174,7 +174,7 @@ function enterReviewFromHistory(r) {
 let currentUser = null;
 let state = {
   mode: null, selectedParts: [], timeLimit: 0, timerMode: 'down',
-  screens: [], currentIdx: 0, answers: {}, flags: {}, lastRevealedQ: null, scrollToQ: null,
+  screens: [], currentIdx: 0, answers: {}, flags: {}, lastRevealedQ: null, scrollToQ: null, pendingGameMode: null,
   timerInterval: null, secondsLeft: 0,
   started: false, finished: false, startTime: null,
   showSolution: {}, showTrans: {}, showImg: {}, sheetFilter: 'all', leftTab: {}, videoQ: {},
@@ -444,8 +444,9 @@ function renderSelectPage() {
 
   btnStart.addEventListener('click', () => {
     if (btnStart.disabled) return;
-    const seconds = isFullTest() ? 120*60 : (timerMode === 'up' ? 0 : selMinutes*60);
-    startExam(curMode, selParts, seconds, timerMode === 'up' ? 'up' : 'down');
+    const full = isFullTest();
+    const seconds = full ? 120*60 : (timerMode === 'up' ? 0 : selMinutes*60);
+    startExam(curMode, selParts, seconds, full ? 'down' : (timerMode === 'up' ? 'up' : 'down'));
   });
 
   const saved = loadProgress();
@@ -587,13 +588,6 @@ function renderExamPage() {
     </div>`;
   document.body.appendChild(topbar);
 
-  document.addEventListener('click', e => {
-    const slot = el('topbarGameSlot');
-    if (slot && !slot.contains(e.target)) {
-      const dd = slot.querySelector('.topbar-game-dropdown');
-      if (dd) dd.style.display = 'none';
-    }
-  });
 
   const sheetOverlay = make('div','answer-sheet-overlay');
   sheetOverlay.id = 'sheetOverlay';
@@ -657,9 +651,7 @@ function renderExamPage() {
   document.body.appendChild(warningOverlay);
 
   el('btnSheet').addEventListener('click', ()=>toggleSheet());
-  el('btnNavPrev').addEventListener('click', ()=>{
-    if (state.currentIdx > 0) { clearListeningSolution(state.currentIdx); state.currentIdx--; renderScreen(state.currentIdx); renderSheet(); saveProgress(); }
-  });
+  el('btnNavPrev').addEventListener('click', goPrev);
   el('btnNavNext').addEventListener('click', goNext);
   sheetOverlay.addEventListener('click', e=>{ if(e.target===sheetOverlay) toggleSheet(false); });
   el('sheetFilters').addEventListener('click', e=>{
@@ -835,6 +827,14 @@ function goNext() {
   renderSheet();
   saveProgress();
 }
+function goPrev() {
+  if (state.currentIdx <= 0) return;
+  clearListeningSolution(state.currentIdx);
+  state.currentIdx--;
+  renderScreen(state.currentIdx);
+  renderSheet();
+  saveProgress();
+}
 
 function lytCache_save() {
   const body = el('examBody');
@@ -850,9 +850,24 @@ function lytCache_save() {
 }
 
 // ══════════════════════════════════════════════════════════════
-// CLOZE GAME — Nghe Khuyết (Part 1–4)
+// CLOZE GAME — Nghe Khuyết (Part 1–4)  /  TYPING GAME — Điền Khuyết
 // ══════════════════════════════════════════════════════════════
-const clozeState = {};
+const clozeState  = {};
+const typingState = {};
+let _syncTopbarPills = null;
+
+function typingNextBlankIdx(ts, fromIdx) {
+  const all = []; ts.blankedSet.forEach(i => all.push(i)); all.sort((a,b)=>a-b);
+  const inc = all.filter(i => !ts.opened.has(i) && (ts.progress[i]||'').length < ts.tokens[i].text.length);
+  if (!inc.length) return null;
+  const after = inc.find(i => i > fromIdx);
+  return after !== undefined ? after : inc[0];
+}
+function typingCountDone(ts) {
+  let n = 0;
+  ts.blankedSet.forEach(i => { const tok=ts.tokens[i]; if (ts.opened.has(i)||(ts.progress[i]||'').length===tok.text.length) n++; });
+  return n;
+}
 
 function clozeTokenize(text, partNum) {
   const tokens = [];
@@ -869,11 +884,12 @@ function clozeTokenize(text, partNum) {
         tokens.push({ type: 'space', text: ' ' });
         rest = rest.slice(sm[0].length);
       }
-      // Tách câu: dấu .?! + space + chữ hoa / dấu ngoặc
-      const sentences = rest.split(/(?<=[.?!])\s+(?=[A-Z("])/);
+      // Tránh tách câu tại viết tắt: Mr. Dr. St. Jr. Sr. Prof. Mt. vs. No.
+      const cleaned = rest.replace(/\b(Mr|Mrs|Dr|St|Jr|Sr|Prof|Mt|vs|No|Inc|Ltd)\./g, '$1\x01');
+      const sentences = cleaned.split(/(?<=[.?!])\s+(?=[A-Z("])/);
       sentences.forEach((sent, si) => {
         if (si > 0) tokens.push({ type: 'sentbr' });
-        clozeWords(sent, tokens);
+        clozeWords(sent.replace(/\x01/g, '.'), tokens);
       });
     } else {
       const om = rest.match(/^\(([A-D])\)\s*/);
@@ -885,23 +901,36 @@ function clozeTokenize(text, partNum) {
       clozeWords(rest, tokens);
     }
   });
+  // Loại nửa đầu contraction: "Isn" trước "'t", "She" trước "'s", v.v.
+  for (let i = 0; i < tokens.length - 1; i++) {
+    if (tokens[i].type === 'word' && /^[''''']/.test(tokens[i + 1].text ?? '')) {
+      tokens[i].eligible = false;
+    }
+  }
   return tokens;
 }
 
+// Thứ/tháng tiếng Anh viết hoa nhưng vẫn phải được ẩn để học sinh luyện nghe
+const CLOZE_DAY_MONTH = new Set([
+  'monday','tuesday','wednesday','thursday','friday','saturday','sunday',
+  'january','february','march','april','may','june','july','august','september','october','november','december'
+]);
+
 function clozeWords(text, tokens) {
-  const re = /\(\d+\)|[A-Za-z][A-Za-z''-]*|[ \t]+|[^\w\s]+/g;
+  const re = /\(\d+\)|[A-Za-z][A-Za-z'‘’-]*|[ \t]+|[^\w\s(]+|\(/g;
   let m;
   let firstWord = true;
   while ((m = re.exec(text)) !== null) {
     const t = m[0];
-    if (/^(d+)$/.test(t))      tokens.push({ type: 'fixed', text: t });
-    else if (/^[ 	]+$/.test(t))  tokens.push({ type: 'space', text: ' ' });
+    if (/^\d+$/.test(t)||/^\(\d+\)$/.test(t)) tokens.push({ type: 'fixed', text: t });
+    else if (/^[ \t]+$/.test(t))  tokens.push({ type: 'space', text: ' ' });
     else if (/^[A-Za-z]/.test(t)) {
-      const isProper = !firstWord && /^[A-Z]/.test(t);
-      tokens.push({ type: 'word', text: t, eligible: t.length > 2 && !isProper });
+      const isDayMonth = CLOZE_DAY_MONTH.has(t.toLowerCase());
+      const isProper   = !firstWord && /^[A-Z]/.test(t) && !isDayMonth;
+      tokens.push({ type: 'word', text: t, eligible: t.length > 2 && !isProper && !/['''’‘]/.test(t) });
       firstWord = false;
     }
-    else                           tokens.push({ type: 'punct', text: t });
+    else                           tokens.push({ type: 'punct', text: t, trail: /^[,\.!?;]/.test(t) });
   }
 }
 
@@ -942,25 +971,36 @@ function clozeSelectBlanks(tokens, pct, partNum) {
   } else if (remaining < 0) {
     // pct so low that can't give 1 to every line — give 1 to 'total' random lines
     const shuffledIdx = nonEmpty.map((_, i) => i).sort(() => Math.random() - 0.5);
-    const blanked = new Set(
-      shuffledIdx.slice(0, total).flatMap(i =>
-        nonEmpty[i].slice().sort(() => Math.random() - 0.5).slice(0, 1)
-      )
-    );
-    if (firstIdx >= 0) blanked.add(firstIdx);
+    const seenW = new Set();
+    const blanked = new Set();
+    shuffledIdx.slice(0, total).forEach(i => {
+      for (const idx of nonEmpty[i].slice().sort(() => Math.random() - 0.5)) {
+        const w = tokens[idx].text.toLowerCase();
+        if (!seenW.has(w)) { seenW.add(w); blanked.add(idx); break; }
+      }
+    });
+    if (firstIdx >= 0 && !seenW.has(tokens[firstIdx].text.toLowerCase())) blanked.add(firstIdx);
     return blanked;
   }
 
   // Pick random words within each line according to quota
   const blanked = new Set();
+  const seenWords = new Set(); // dedup: chỉ khuyết mỗi từ 1 lần
+  const addUniq = (idx) => {
+    const w = tokens[idx].text.toLowerCase();
+    if (seenWords.has(w)) return false;
+    seenWords.add(w); blanked.add(idx); return true;
+  };
   nonEmpty.forEach((group, i) => {
-    // For Part 2 first line: ensure firstIdx is picked, fill remaining quota randomly from rest
     if (partNum === 2 && i === 0 && firstIdx >= 0) {
-      blanked.add(firstIdx);
-      const rest = group.filter(idx => idx !== firstIdx);
-      rest.slice().sort(() => Math.random() - 0.5).slice(0, quotas[i] - 1).forEach(idx => blanked.add(idx));
+      addUniq(firstIdx);
+      const rest = group.filter(idx => idx !== firstIdx).slice().sort(() => Math.random() - 0.5);
+      let picked = 0;
+      for (const idx of rest) { if (picked >= quotas[i] - 1) break; if (addUniq(idx)) picked++; }
     } else {
-      group.slice().sort(() => Math.random() - 0.5).slice(0, quotas[i]).forEach(idx => blanked.add(idx));
+      const shuffled = group.slice().sort(() => Math.random() - 0.5);
+      let picked = 0;
+      for (const idx of shuffled) { if (picked >= quotas[i]) break; if (addUniq(idx)) picked++; }
     }
   });
   return blanked;
@@ -999,25 +1039,33 @@ function spawnRipple(pill) {
   r.addEventListener('animationend', () => r.remove(), { once: true });
 }
 
-function buildClozeDisplay(tokens, blankedSet, openedSet, onReveal) {
+function buildClozeDisplay(tokens, blankedSet, openedSet, onReveal, partNum) {
+  const flow = partNum >= 3; // Part 3/4: không xuống dòng, text chảy ngang
   const wrap = make('div', 'cloze-display');
   let line = make('div', 'cloze-line');
   wrap.appendChild(line);
+  let prevFixed = false;
   tokens.forEach((tok, idx) => {
     if (tok.type === 'br' || tok.type === 'sentbr') {
+      prevFixed = false;
+      if (flow) { if (tok.type==='br') line.appendChild(make('span','cloze-flow-sep','')); return; }
       line = make('div', 'cloze-line' + (tok.type === 'sentbr' ? ' cloze-sentline' : ''));
       wrap.appendChild(line); return;
     }
+    if (tok.type === 'space') return;
+    if (tok.type === 'fixed' && /^\(?\d+\)?$/.test(tok.text)) { prevFixed = true; return; }
+    if (prevFixed && tok.type === 'punct' && tok.trail) { prevFixed = false; return; }
+    prevFixed = false;
     if (tok.type === 'word' && blankedSet.has(idx)) {
-      const w = Math.max(44, tok.text.length * 10 + 10);
       const isOpen = openedSet.has(idx);
       const pill = make('span', 'cloze-pill' + (isOpen ? ' opened' : ''));
-      pill.style.width = w + 'px';
+      pill.style.width = Math.max(3, tok.text.length * 0.65 + 0.7) + 'em';
       const inner = make('span', 'cloze-pill-inner');
       const front = make('span', 'cloze-pill-front');
       const back  = make('span', 'cloze-pill-back',  isOpen ? tok.text : '');
       inner.appendChild(front); inner.appendChild(back); pill.appendChild(inner);
       if (!isOpen) pill.addEventListener('click', () => {
+        const _a = document.querySelector('audio'); if (_a && !_a.paused) _a.pause();
         openedSet.add(idx); back.textContent = tok.text;
         pill.classList.add('opened'); pill.style.cursor = 'default';
         spawnRipple(pill);
@@ -1025,8 +1073,7 @@ function buildClozeDisplay(tokens, blankedSet, openedSet, onReveal) {
       }, { once: true });
       line.appendChild(pill);
     } else {
-      if (tok.type === 'space') return; // column-gap handles word spacing
-      const cls = tok.type === 'fixed' ? 'cloze-fixed' : tok.type === 'punct' ? 'cloze-punct' : '';
+      const cls = tok.type === 'fixed' ? 'cloze-fixed' : tok.type === 'punct' ? ('cloze-punct' + (tok.trail ? ' cloze-trail' : '')) : '';
       line.appendChild(make('span', cls, tok.text));
     }
   });
@@ -1053,24 +1100,25 @@ function clozeUpdateScore(sk, opened, total) {
   if (pill) { const sp = pill.querySelector('span'); if (sp) sp.textContent = pct === 100 ? '🎉 Hoàn thành!' : `${opened} / ${total} ô đã mở`; }
 }
 
-function buildClozeGame(scriptText, partNum, sk, solKey, rightEl, leftEl) {
-  const cs = clozeState[sk] || (clozeState[sk] = { active: false, percent: 30, tokens: null, blankedSet: null, openedSet: null });
+function buildClozeGame(scriptText, partNum, sk, solKey, rightEl, leftEl, navInfo) {
+  const cs = clozeState[sk] || (clozeState[sk] = { active: false, percent: 50, tokens: null, blankedSet: null, openedSet: null });
   if (!cs.tokens) {
     cs.tokens     = clozeTokenize(scriptText, partNum);
     cs.blankedSet = clozeSelectBlanks(cs.tokens, cs.percent, partNum);
     cs.openedSet  = new Set();
   }
 
+  // Mutual exclusivity: không để cả 2 game cùng active
+  if (cs.active && typingState[sk]?.active) typingState[sk].active = false;
+
   const gameArea = make('div', 'cloze-area');
   gameArea.style.display = cs.active ? '' : 'none';
 
-  // Menu button — góc trên phải card
+  // Menu button + dropdown — góc trên phải card
   const IC_MENU = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>`;
   const menuBtn = make('button', 'cloze-menu-btn');
   menuBtn.innerHTML = IC_MENU;
-  gameArea.appendChild(menuBtn);
 
-  // Dropdown
   const PCT_OPTIONS  = [30, 50, 70, 100];
   const PCT_LABELS   = { 30: 'Khuyết 30%', 50: 'Khuyết 50%', 70: 'Khuyết 70%', 100: 'Khuyết tối đa' };
   const dropdown = make('div', 'cloze-dropdown');
@@ -1087,9 +1135,10 @@ function buildClozeGame(scriptText, partNum, sk, solKey, rightEl, leftEl) {
     return item;
   });
   dotItems.forEach(it => dropdown.appendChild(it));
-  gameArea.appendChild(dropdown);
+  const menuWrap = make('div','cloze-menu-wrap');
+  menuWrap.appendChild(menuBtn); menuWrap.appendChild(dropdown);
 
-  // Top row: 2 nút căn giữa (trên thanh tiến độ)
+  // Top row
   const IC_REDO  = `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:5px"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.5"/></svg>`;
   const IC_CHART = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="vertical-align:-1px;margin-right:5px"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`;
   const topRow   = make('div', 'cloze-top-row');
@@ -1105,17 +1154,30 @@ function buildClozeGame(scriptText, partNum, sk, solKey, rightEl, leftEl) {
   scorePill.innerHTML = IC_CHART + '<span>0 / 0 ô đã mở</span>';
   topRow.appendChild(redoBtn);
   topRow.appendChild(scorePill);
+  topRow.appendChild(menuWrap);
   gameArea.appendChild(topRow);
 
   // Thanh tiến độ
   const progressBar = buildClozeProgressBar(sk);
   gameArea.appendChild(progressBar);
 
+  // Nav row (câu trước / câu sau)
+  const IC_PREV = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>`;
+  const IC_NEXT = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>`;
+  const navRow = make('div','game-nav-row');
+  const prevBtn = make('button','game-nav-btn'); prevBtn.innerHTML = IC_PREV + 'Câu trước'; prevBtn.disabled = !!navInfo?.isFirst;
+  const navLabel = make('span','game-nav-label'); navLabel.textContent = navInfo?.qLabel ?? '';
+  const nextBtn = make('button','game-nav-btn'); nextBtn.innerHTML = 'Câu sau' + IC_NEXT; nextBtn.disabled = !!navInfo?.isLast;
+  prevBtn.addEventListener('click', () => { state.pendingGameMode = 'cloze'; goPrev(); });
+  nextBtn.addEventListener('click', () => { state.pendingGameMode = 'cloze'; goNext(); });
+  navRow.appendChild(prevBtn); navRow.appendChild(navLabel); navRow.appendChild(nextBtn);
+  gameArea.appendChild(navRow);
+
   let displayEl = null;
   const refresh = () => {
     if (displayEl) displayEl.remove();
-    displayEl = buildClozeDisplay(cs.tokens, cs.blankedSet, cs.openedSet, () => clozeUpdateScore(sk, cs.openedSet.size, cs.blankedSet.size));
-    gameArea.appendChild(displayEl);
+    displayEl = buildClozeDisplay(cs.tokens, cs.blankedSet, cs.openedSet, () => clozeUpdateScore(sk, cs.openedSet.size, cs.blankedSet.size), partNum);
+    gameArea.insertBefore(displayEl, navRow);
     clozeUpdateScore(sk, cs.openedSet.size, cs.blankedSet.size);
   };
   if (cs.active) refresh();
@@ -1124,6 +1186,8 @@ function buildClozeGame(scriptText, partNum, sk, solKey, rightEl, leftEl) {
     cs.active = on;
     gameArea.style.display = on ? '' : 'none';
     leftEl.classList.toggle('cloze-game-active', on);
+    const screenActive = on || !!typingState[sk]?.active;
+    leftEl.closest('.exam-screen')?.classList.toggle('game-active', screenActive);
     const scriptEl = leftEl.querySelector('[data-scriptsk]');
     if (scriptEl) scriptEl.style.display = (on ? 'none' : (state.showSolution[solKey] ? '' : 'none'));
     const imgEl = leftEl.querySelector('.exam-img-wrap') || leftEl.querySelector('.exam-img');
@@ -1142,7 +1206,270 @@ function buildClozeGame(scriptText, partNum, sk, solKey, rightEl, leftEl) {
   return { gameArea, setActive };
 }
 
-function buildTopbarGameBtn(sk, setActiveFn) {
+// ── TYPING GAME display ──
+function buildTypingDisplay(ts, onPillClick, partNum) {
+  const flow = partNum >= 3; // Part 3/4: không xuống dòng, text chảy ngang
+  const wrap = make('div','typing-display');
+  let line = make('div','typing-line'); wrap.appendChild(line);
+  let prevFixed = false;
+  ts.tokens.forEach((tok, idx) => {
+    if (tok.type==='br'||tok.type==='sentbr') {
+      prevFixed = false;
+      if (flow) { if (tok.type==='br') line.appendChild(make('span','cloze-flow-sep','')); return; }
+      line = make('div','typing-line'+(tok.type==='sentbr'?' typing-sentline':'')); wrap.appendChild(line); return;
+    }
+    if (tok.type==='space') return;
+    if (tok.type==='fixed' && /^\(?\d+\)?$/.test(tok.text)) { prevFixed = true; return; }
+    if (prevFixed && tok.type==='punct' && tok.trail) { prevFixed = false; return; }
+    prevFixed = false;
+    if (tok.type==='fixed'||tok.type==='punct') { line.appendChild(make('span','typing-fixed'+(tok.trail?' cloze-trail':''),tok.text)); return; }
+    if (!ts.blankedSet.has(idx)) { line.appendChild(make('span','typing-word',tok.text)); return; }
+
+    const word=tok.text, prog=ts.progress[idx]||'';
+    const isComplete=prog.length===word.length, isOpened=ts.opened.has(idx), isActive=ts.activeIdx===idx;
+    const pill=make('span','typing-pill'); pill.dataset.tidx=String(idx);
+
+    if (isOpened) {
+      pill.classList.add('t-opened'); pill.textContent=word;
+    } else if (isComplete) {
+      pill.classList.add('t-complete'); pill.textContent=word;
+    } else {
+      if (isActive) pill.classList.add('t-active');
+      for (let i=0;i<word.length;i++) {
+        const c=make('span','tchar');
+        if (i<prog.length) { c.classList.add('tc-ok'); c.textContent=prog[i]; }
+        else { c.classList.add('tc-dot'); if (isActive&&i===prog.length) c.classList.add('tc-cur'); }
+        pill.appendChild(c);
+      }
+      pill.addEventListener('click', ()=>onPillClick(idx));
+    }
+    line.appendChild(pill);
+  });
+  return wrap;
+}
+
+// ── TYPING GAME builder ──
+function buildTypingGame(scriptText, partNum, sk, solKey, rightEl, leftEl, navInfo) {
+  const ts = typingState[sk] || (typingState[sk] = {
+    active:false, percent:50, tokens:null, blankedSet:null, progress:{}, opened:new Set(), activeIdx:null, locked:false
+  });
+  if (!ts.tokens) {
+    ts.tokens    = clozeTokenize(scriptText, partNum);
+    ts.blankedSet= clozeSelectBlanks(ts.tokens, ts.percent, partNum);
+  }
+
+  const gameArea = make('div','typing-area');
+  gameArea.style.display = ts.active ? '' : 'none';
+
+  const hiddenInput = document.createElement('input');
+  hiddenInput.type='text'; hiddenInput.className='typing-hidden-input';
+  hiddenInput.setAttribute('autocomplete','off'); hiddenInput.setAttribute('autocorrect','off');
+  hiddenInput.setAttribute('autocapitalize','none'); hiddenInput.spellcheck=false;
+  gameArea.appendChild(hiddenInput);
+
+  const IC_MENU = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>`;
+  const IC_REDO = `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:5px"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-4.5"/></svg>`;
+  const IC_HINT = `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:5px"><line x1="9" y1="21" x2="15" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14z"/></svg>`;
+  const IC_OPEN = `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-1px;margin-right:5px"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
+  const IC_STAT = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" style="vertical-align:-1px;margin-right:5px"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`;
+
+  // Menu button + dropdown (% blanks)
+  const PCT_OPTIONS = [30, 50, 70, 100];
+  const PCT_LABELS  = { 30:'Khuyết 30%', 50:'Khuyết 50%', 70:'Khuyết 70%', 100:'Khuyết tối đa' };
+  const menuBtn  = make('button','cloze-menu-btn'); menuBtn.innerHTML=IC_MENU;
+  const dropdown = make('div','cloze-dropdown'); dropdown.style.display='none';
+  const pctItems = PCT_OPTIONS.map(pct => {
+    const item=make('div','cloze-dropdown-item'+(ts.percent===pct?' active':''));
+    item.innerHTML=`<span class="cloze-dot"></span>${PCT_LABELS[pct]}`;
+    item.addEventListener('click',()=>{
+      ts.percent=pct; ts.blankedSet=clozeSelectBlanks(ts.tokens,pct,partNum);
+      clearWrong();
+      ts.progress={}; ts.opened=new Set(); ts.activeIdx=null;
+      pctItems.forEach((it,i)=>it.classList.toggle('active',PCT_OPTIONS[i]===pct));
+      refresh(); dropdown.style.display='none';
+    });
+    return item;
+  });
+  pctItems.forEach(it=>dropdown.appendChild(it));
+  const menuWrap=make('div','cloze-menu-wrap');
+  menuWrap.appendChild(menuBtn); menuWrap.appendChild(dropdown);
+
+  const topRow  = make('div','cloze-top-row');
+  const redoBtn = make('button','cloze-redo-btn'); redoBtn.innerHTML=IC_REDO+'Chơi lại';
+  const hintBtn = make('button','typing-ctrl-btn'); hintBtn.innerHTML=IC_HINT+'Gợi ý (+1 ký tự)';
+  const openBtn = make('button','typing-ctrl-btn'); openBtn.innerHTML=IC_OPEN+'Mở từ';
+  const scorePill = make('div','cloze-score-pill'); scorePill.id='typingScorePill_'+sk;
+  scorePill.innerHTML=IC_STAT+`<span>0 / ${ts.blankedSet.size} từ</span>`;
+  topRow.appendChild(redoBtn); topRow.appendChild(hintBtn); topRow.appendChild(openBtn); topRow.appendChild(scorePill); topRow.appendChild(menuWrap);
+  gameArea.appendChild(topRow);
+
+  const progWrap=make('div','cloze-progress-wrap'); progWrap.id='typingProgress_'+sk;
+  const progTrack=make('div','cloze-progress-track'); const progFill=make('div','cloze-progress-fill');
+  progTrack.appendChild(progFill); progWrap.appendChild(progTrack); gameArea.appendChild(progWrap);
+
+  // VNI hint at bottom (inserted last, display stays above it)
+  let vniModalTimer=null;
+  const showVni=()=>{
+    let m=document.querySelector('.vni-modal');
+    if(!m){
+      m=document.createElement('div'); m.className='vni-modal';
+      m.innerHTML='<div class="vni-modal-card"><button class="vni-modal-close" aria-label="Đóng">×</button><div class="vni-modal-icon">⌨️</div><div class="vni-modal-msg">Đang bật bộ gõ tiếng Việt<br>Hãy tắt <strong>Unikey / VietKey</strong><br>trước khi gõ vào ô điền.</div></div>';
+      m.querySelector('.vni-modal-close').addEventListener('click',()=>m.classList.remove('show'));
+      m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('show');});
+      document.body.appendChild(m);
+    }
+    m.classList.add('show');
+    if(vniModalTimer)clearTimeout(vniModalTimer);
+    vniModalTimer=setTimeout(()=>{m.classList.remove('show');vniModalTimer=null;},5000);
+  };
+
+  // Nav row (câu trước / câu sau)
+  const IC_PREV2 = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>`;
+  const IC_NEXT2 = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>`;
+  const navRow = make('div','game-nav-row');
+  const prevBtn = make('button','game-nav-btn'); prevBtn.innerHTML = IC_PREV2 + 'Câu trước'; prevBtn.disabled = !!navInfo?.isFirst;
+  const navLabel = make('span','game-nav-label'); navLabel.textContent = navInfo?.qLabel ?? '';
+  const nextBtn = make('button','game-nav-btn'); nextBtn.innerHTML = 'Câu sau' + IC_NEXT2; nextBtn.disabled = !!navInfo?.isLast;
+  prevBtn.addEventListener('click', () => { state.pendingGameMode = 'typing'; goPrev(); });
+  nextBtn.addEventListener('click', () => { state.pendingGameMode = 'typing'; goNext(); });
+  navRow.appendChild(prevBtn); navRow.appendChild(navLabel); navRow.appendChild(nextBtn);
+  gameArea.appendChild(navRow);
+
+  let displayEl=null, wrongTimeout=null, wrongCursorEl=null, lastAcceptTime=0;
+  const clearWrong=()=>{
+    if(wrongTimeout){clearTimeout(wrongTimeout);wrongTimeout=null;}
+    if(wrongCursorEl?.isConnected){wrongCursorEl.classList.remove('tc-err');wrongCursorEl.classList.add('tc-dot','tc-cur');wrongCursorEl.textContent='';}
+    wrongCursorEl=null;
+  };
+
+  const pauseAudio=()=>{ const a=document.querySelector('audio'); if(a&&!a.paused) a.pause(); };
+
+  const updateScore=()=>{
+    const total=ts.blankedSet.size, done=typingCountDone(ts);
+    const pct=total>0?Math.round(done/total*100):0;
+    const fill=progWrap.querySelector('.cloze-progress-fill'); if(fill) fill.style.width=pct+'%';
+    const sp=scorePill.querySelector('span'); if(sp) sp.textContent=pct===100?'Hoàn thành!':done+' / '+total+' từ';
+  };
+
+  const refresh=()=>{
+    if(displayEl) displayEl.remove();
+    displayEl=buildTypingDisplay(ts,(clickedIdx)=>{
+      pauseAudio(); ts.activeIdx=clickedIdx; refresh(); hiddenInput.focus();
+    }, partNum);
+    gameArea.insertBefore(displayEl, navRow);
+    updateScore();
+  };
+
+  redoBtn.addEventListener('click',()=>{
+    clearWrong();
+    ts.blankedSet=clozeSelectBlanks(ts.tokens,ts.percent,partNum);
+    ts.progress={}; ts.opened=new Set(); ts.activeIdx=null; refresh();
+    const audio=document.querySelector('audio');
+    if(audio){audio.currentTime=0;audio.play().catch(()=>{});}
+  });
+  hintBtn.addEventListener('click',()=>{
+    clearWrong();
+    let idx=ts.activeIdx; if(idx===null){idx=typingNextBlankIdx(ts,-1);ts.activeIdx=idx;} if(idx===null) return;
+    const tok=ts.tokens[idx]; if(!tok||ts.opened.has(idx)) return;
+    const prog=ts.progress[idx]||'';
+    if(prog.length<tok.text.length){
+      ts.progress[idx]=tok.text.slice(0,prog.length+1);
+      if(ts.progress[idx].length===tok.text.length) ts.activeIdx=typingNextBlankIdx(ts,idx);
+    }
+    refresh(); hiddenInput.focus();
+  });
+  openBtn.addEventListener('click',()=>{
+    clearWrong();
+    let idx=ts.activeIdx; if(idx===null){idx=typingNextBlankIdx(ts,-1);ts.activeIdx=idx;} if(idx===null) return;
+    ts.opened.add(idx); ts.activeIdx=typingNextBlankIdx(ts,idx); refresh(); hiddenInput.focus();
+  });
+
+  menuBtn.addEventListener('click',e=>{
+    e.stopPropagation();
+    dropdown.style.display=dropdown.style.display==='none'?'':'none';
+  });
+  document.addEventListener('click',()=>{dropdown.style.display='none';},{capture:true,passive:true});
+
+  hiddenInput.addEventListener('keydown',e=>{
+    // Block IME composition events (e.g., Unikey composing Vietnamese)
+    if(e.isComposing){e.preventDefault();return;}
+    // Space/Arrow = điều khiển audio
+    if(e.key===' '||e.key==='ArrowLeft'||e.key==='ArrowRight'){
+      e.preventDefault();
+      const audio=document.querySelector('audio');
+      if(!audio) return;
+      if(e.key===' '){ if(audio.paused) audio.play().catch(()=>{}); else audio.pause(); }
+      else if(audio.duration){ audio.currentTime=Math.max(0,Math.min(audio.duration,audio.currentTime+(e.key==='ArrowLeft'?-3:3))); }
+      return;
+    }
+    if(e.key.length===1&&e.key.charCodeAt(0)>127){e.preventDefault();showVni();return;}
+    if(ts.activeIdx===null) return;
+    const _a=document.querySelector('audio'); if(_a&&!_a.paused) _a.pause();
+    const idx=ts.activeIdx,tok=ts.tokens[idx]; if(!tok||ts.opened.has(idx)) return;
+    const word=tok.text,prog=ts.progress[idx]||'';
+    if(e.key==='Backspace'){
+      e.preventDefault();
+      if(wrongCursorEl){clearWrong();refresh();return;} // xoá ký tự sai, không xoá ký tự đúng
+      // Bỏ qua Backspace do IME (Unikey) gửi ngay sau khi nhận ký tự đúng (< 120ms)
+      if(Date.now()-lastAcceptTime<120) return;
+      if(prog.length>0){ts.progress[idx]=prog.slice(0,-1);refresh();}
+      return;
+    }
+    if(e.key==='Tab'){clearWrong();const n=typingNextBlankIdx(ts,idx);if(n!==null){ts.activeIdx=n;refresh();}e.preventDefault();return;}
+    if(e.key.length!==1||e.ctrlKey||e.metaKey) return;
+    e.preventDefault();
+    const expected=word[prog.length];
+    if(e.key.toLowerCase()===expected.toLowerCase()){
+      clearWrong();
+      lastAcceptTime=Date.now();
+      ts.progress[idx]=prog+expected;
+      if(ts.progress[idx].length===word.length) ts.activeIdx=typingNextBlankIdx(ts,idx);
+      refresh();
+    } else {
+      clearWrong(); // xoá ký tự sai cũ (nếu có) trước khi hiện ký tự sai mới
+      const cursor=displayEl?.querySelector(`.typing-pill[data-tidx="${idx}"] .tc-cur`);
+      if(cursor){cursor.classList.remove('tc-dot','tc-cur');cursor.classList.add('tc-err');cursor.textContent=e.key;wrongCursorEl=cursor;}
+      wrongTimeout=setTimeout(()=>{wrongTimeout=null;clearWrong();},500);
+    }
+  });
+
+  hiddenInput.addEventListener('input',()=>{if(hiddenInput.value){hiddenInput.value='';showVni();}});
+
+  // Click pill → focus + activate; click anywhere else → deselect
+  gameArea.addEventListener('mousedown',e=>{
+    if(e.target===hiddenInput) return;
+    if(e.target.closest('.typing-pill:not(.t-complete):not(.t-opened)')){
+      setTimeout(()=>hiddenInput.focus(),0); return;
+    }
+    if(e.target.closest('button')) return;
+    ts.activeIdx=null;
+    clearWrong(); refresh();
+  });
+  // Click outside the game area entirely → also deselect
+  document.addEventListener('mousedown',e=>{
+    if(ts.activeIdx===null||!gameArea.isConnected) return;
+    if(!gameArea.contains(e.target)){
+      ts.activeIdx=null;
+      clearWrong(); refresh();
+    }
+  },{capture:true});
+
+  const anyOn=()=>!!clozeState[sk]?.active||!!typingState[sk]?.active;
+  const setActive=(on)=>{
+    ts.active=on; gameArea.style.display=on?'':'none';
+    leftEl.classList.toggle('cloze-game-active',on||!!clozeState[sk]?.active);
+    leftEl.closest('.exam-screen')?.classList.toggle('game-active',anyOn());
+    const scriptEl=leftEl.querySelector('[data-scriptsk]');
+    if(scriptEl) scriptEl.style.display=anyOn()?'none':(state.showSolution[solKey]?'':'none');
+    const imgEl=leftEl.querySelector('.exam-img-wrap')||leftEl.querySelector('.exam-img');
+    if(imgEl) imgEl.style.display=anyOn()?'none':'';
+    if(on){if(!displayEl) refresh(); hiddenInput.focus();}
+  };
+  if(ts.active){leftEl.classList.add('cloze-game-active');refresh();}
+  return {gameArea,setActive};
+}
+
+function buildTopbarGameBtn(sk, setActiveCloze, setActiveTyping) {
   let slot = el('topbarGameSlot');
   if (!slot) {
     slot = make('div', 'topbar-game-slot');
@@ -1153,59 +1480,57 @@ function buildTopbarGameBtn(sk, setActiveFn) {
   }
   slot.innerHTML = '';
 
-  const SVG_GP = `<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="5"/><line x1="6" y1="12" x2="10" y2="12"/><line x1="8" y1="10" x2="8" y2="14"/><circle cx="16" cy="10.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="18.5" cy="13" r="1.2" fill="currentColor" stroke="none"/></svg>`;
-  const SVG_HP = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>`;
-  const SVG_QT = `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+  const SVG_HP = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>`;
+  const SVG_KB = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="3"/><path d="M6 9h.01M10 9h.01M14 9h.01M18 9h.01M6 13h.01M10 13h.01M14 13h.01M18 13h.01M8 17h8"/></svg>`;
+  const SVG_X  = `<svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
 
-  const btn = make('button', 'topbar-game-btn');
-  btn.title = 'Game luyện nghe';
-  btn.innerHTML = SVG_GP + '<span class="tg-dot"></span>';
-
-  const dropdown = make('div', 'topbar-game-dropdown');
-  dropdown.style.display = 'none';
-
-  const clozeItem = make('div', 'topbar-game-item');
-  clozeItem.innerHTML = SVG_HP + '<span>Luyện nghe khuyết từ</span><span class="tgi-active"></span>';
-
-  const divider = make('div', 'cloze-dropdown-divider');
-  const quitRow = make('div', 'topbar-game-item topbar-game-quit');
-  quitRow.innerHTML = SVG_QT + '<span>Thoát game</span>';
-
-  dropdown.appendChild(clozeItem);
-  dropdown.appendChild(divider);
-  dropdown.appendChild(quitRow);
-
-  const sync = () => {
-    const on = !!clozeState[sk]?.active;
-    btn.classList.toggle('active', on);
-    clozeItem.querySelector('.tgi-active').style.display = on ? '' : 'none';
-    divider.style.display = on ? '' : 'none';
-    quitRow.style.display = on ? '' : 'none';
+  const makePill = (svg, label) => {
+    const pill = make('button', 'tg-pill');
+    const iconEl = make('span', 'tg-pill-icon'); iconEl.innerHTML = svg;
+    const labelEl = make('span', 'tg-pill-label'); labelEl.textContent = label;
+    const xEl = make('span', 'tg-pill-x'); xEl.innerHTML = SVG_X; xEl.title = 'Thoát game';
+    pill.appendChild(iconEl); pill.appendChild(labelEl); pill.appendChild(xEl);
+    return { pill, xEl };
   };
 
-  clozeItem.addEventListener('click', () => {
+  const { pill: pill1, xEl: x1 } = makePill(SVG_HP, 'Nghe khuyết');
+  const { pill: pill2, xEl: x2 } = makePill(SVG_KB, 'Điền khuyết');
+
+  const syncPills = () => {
+    pill1.classList.toggle('active', !!clozeState[sk]?.active);
+    pill2.classList.toggle('active', !!typingState[sk]?.active);
+  };
+  _syncTopbarPills = syncPills;
+
+  pill1.addEventListener('click', () => {
+    if (clozeState[sk]?.active) return;
+    if (typingState[sk]?.active && setActiveTyping) setActiveTyping(false);
     const audio = document.querySelector('audio');
     if (audio) { audio.pause(); audio.currentTime = 0; }
-    setActiveFn(true);
-    sync();
-    dropdown.style.display = 'none';
+    setActiveCloze(true); syncPills();
   });
+  x1.addEventListener('click', e => { e.stopPropagation(); setActiveCloze(false); syncPills(); });
 
-  quitRow.addEventListener('click', () => {
-    setActiveFn(false);
-    sync();
-    dropdown.style.display = 'none';
+  pill2.addEventListener('click', () => {
+    if (typingState[sk]?.active) return;
+    if (clozeState[sk]?.active) setActiveCloze(false);
+    const audio = document.querySelector('audio');
+    if (audio) { audio.pause(); audio.currentTime = 0; }
+    if (setActiveTyping) setActiveTyping(true); syncPills();
   });
+  x2.addEventListener('click', e => { e.stopPropagation(); if (setActiveTyping) setActiveTyping(false); syncPills(); });
 
-  btn.addEventListener('click', e => {
-    e.stopPropagation();
-    sync();
-    dropdown.style.display = dropdown.style.display === 'none' ? '' : 'none';
-  });
+  slot.appendChild(pill1); slot.appendChild(pill2);
+  syncPills();
+}
 
-  slot.appendChild(btn);
-  slot.appendChild(dropdown);
-  sync();
+function activatePendingGame(sC, sT) {
+  const mode = state.pendingGameMode;
+  if (!mode) return;
+  state.pendingGameMode = null;
+  if (mode === 'cloze') { sT(false); sC(true); }
+  else if (mode === 'typing') { sC(false); sT(true); }
+  if (_syncTopbarPills) _syncTopbarPills();
 }
 
 function renderScreen(idx) {
@@ -1222,6 +1547,10 @@ function renderScreen(idx) {
   const isTest     = state.mode==='test';
   const sk         = screenKey(sc);
   const showSol    = isPractice || state.finished;
+  const _qs = (sc.type==='p1'||sc.type==='p2') ? [sc.q.q] : (sc.group?.questions?.map(q=>q.q)||[]);
+  const _qLabel = _qs.length===1 ? `Câu ${_qs[0]}` : `Câu ${_qs[0]}–${_qs[_qs.length-1]}`;
+  const navInfo    = { isFirst: idx===0 || (isTest && [1,2,3,4].includes(sc.part)), isLast: idx>=state.screens.length-1, qLabel: _qLabel };
+  let _pendingActivate = null;
 
   const screenEl = make('div','exam-screen active');
   const left     = make('div','screen-left');
@@ -1236,17 +1565,18 @@ function renderScreen(idx) {
     right.appendChild(p1h);
     p1h._card.appendChild(buildOptionsAll(q.q,['A','B','C','D'],sk,null,null,null));
     if (showSol && q.script) {
-      const { gameArea, setActive } = buildClozeGame(q.script,1,sk,'q'+q.q,right,left);
-      left.appendChild(gameArea);
-      buildTopbarGameBtn(sk, setActive);
+      const { gameArea:g1, setActive:sC } = buildClozeGame(q.script,1,sk,'q'+q.q,right,left,navInfo);
+      const { gameArea:g2, setActive:sT } = buildTypingGame(q.script,1,sk,'q'+q.q,right,left,navInfo);
+      left.appendChild(g1); left.appendChild(g2);
+      buildTopbarGameBtn(sk, sC, sT); _pendingActivate = { sC, sT };
     }
     if (showSol && (q.script || q.trans)) {
       const sg = buildScriptBiGrid(q.script, q.trans, q.answer);
       sg.dataset.scriptsk = 'q'+q.q;
-      if (!state.showSolution['q'+q.q] || clozeState[sk]?.active) sg.style.display = 'none';
+      if (!state.showSolution['q'+q.q] || clozeState[sk]?.active || typingState[sk]?.active) sg.style.display = 'none';
       left.appendChild(sg);
     }
-    if (q.img) { const wrap=make('div','exam-img-wrap'); const img=make('img','exam-img'); img.src=q.img; img.alt=`Câu ${q.q}`; wrap.appendChild(img); if (clozeState[sk]?.active) wrap.style.display='none'; left.appendChild(wrap); }
+    if (q.img) { const wrap=make('div','exam-img-wrap'); const img=make('img','exam-img'); img.src=q.img; img.alt=`Câu ${q.q}`; wrap.appendChild(img); if (clozeState[sk]?.active||typingState[sk]?.active) wrap.style.display='none'; left.appendChild(wrap); }
   }
   if (sc.type==='p2') {
     const q=sc.q;
@@ -1256,14 +1586,15 @@ function renderScreen(idx) {
     right.appendChild(p2h);
     p2h._card.appendChild(buildOptionsAll(q.q,['A','B','C'],sk,null,null,null));
     if (showSol && q.script) {
-      const { gameArea, setActive } = buildClozeGame(q.script,2,sk,'q'+q.q,right,left);
-      left.appendChild(gameArea);
-      buildTopbarGameBtn(sk, setActive);
+      const { gameArea:g1, setActive:sC } = buildClozeGame(q.script,2,sk,'q'+q.q,right,left,navInfo);
+      const { gameArea:g2, setActive:sT } = buildTypingGame(q.script,2,sk,'q'+q.q,right,left,navInfo);
+      left.appendChild(g1); left.appendChild(g2);
+      buildTopbarGameBtn(sk, sC, sT); _pendingActivate = { sC, sT };
     }
     if (showSol && (q.script || q.trans)) {
       const sg = buildScriptBiGrid(q.script, q.trans, q.answer);
       sg.dataset.scriptsk = 'q'+q.q;
-      if (!state.showSolution['q'+q.q] || clozeState[sk]?.active) sg.style.display = 'none';
+      if (!state.showSolution['q'+q.q] || clozeState[sk]?.active || typingState[sk]?.active) sg.style.display = 'none';
       left.appendChild(sg);
     }
   }
@@ -1299,17 +1630,18 @@ function renderScreen(idx) {
       right.appendChild(p3Wrap);
     });
     if (showSol && g.script) {
-      const { gameArea, setActive } = buildClozeGame(g.script,3,sk,p3SolKey,right,left);
-      left.appendChild(gameArea);
-      buildTopbarGameBtn(sk, setActive);
+      const { gameArea:g1, setActive:sC } = buildClozeGame(g.script,3,sk,p3SolKey,right,left,navInfo);
+      const { gameArea:g2, setActive:sT } = buildTypingGame(g.script,3,sk,p3SolKey,right,left,navInfo);
+      left.appendChild(g1); left.appendChild(g2);
+      buildTopbarGameBtn(sk, sC, sT); _pendingActivate = { sC, sT };
     }
     if (showSol && (g.script || g.trans)) {
       const sg = buildScriptBiGrid(g.script, g.trans);
       sg.dataset.scriptsk = sk;
-      if (!state.showSolution[p3SolKey] || clozeState[sk]?.active) sg.style.display = 'none';
+      if (!state.showSolution[p3SolKey] || clozeState[sk]?.active || typingState[sk]?.active) sg.style.display = 'none';
       left.appendChild(sg);
     }
-    if (g.img) { const img=make('img','exam-img'); img.src=g.img; img.alt='Ảnh Part 3'; if (clozeState[sk]?.active) img.style.display='none'; left.appendChild(img); }
+    if (g.img) { const img=make('img','exam-img'); img.src=g.img; img.alt='Ảnh Part 3'; if (clozeState[sk]?.active||typingState[sk]?.active) img.style.display='none'; left.appendChild(img); }
   }
   if (sc.type==='p4') {
     const g=sc.group;
@@ -1343,17 +1675,18 @@ function renderScreen(idx) {
       right.appendChild(p4Wrap);
     });
     if (showSol && g.script) {
-      const { gameArea, setActive } = buildClozeGame(g.script,4,sk,p4SolKey,right,left);
-      left.appendChild(gameArea);
-      buildTopbarGameBtn(sk, setActive);
+      const { gameArea:g1, setActive:sC } = buildClozeGame(g.script,4,sk,p4SolKey,right,left,navInfo);
+      const { gameArea:g2, setActive:sT } = buildTypingGame(g.script,4,sk,p4SolKey,right,left,navInfo);
+      left.appendChild(g1); left.appendChild(g2);
+      buildTopbarGameBtn(sk, sC, sT); _pendingActivate = { sC, sT };
     }
     if (showSol && (g.script || g.trans)) {
       const sg = buildScriptBiGrid(splitIntoSentences(g.script), splitIntoSentences(g.trans));
       sg.dataset.scriptsk = sk;
-      if (!state.showSolution[p4SolKey] || clozeState[sk]?.active) sg.style.display = 'none';
+      if (!state.showSolution[p4SolKey] || clozeState[sk]?.active || typingState[sk]?.active) sg.style.display = 'none';
       left.appendChild(sg);
     }
-    if (g.img) { const img=make('img','exam-img'); img.src=g.img; img.alt='Ảnh Part 4'; if (clozeState[sk]?.active) img.style.display='none'; left.appendChild(img); }
+    if (g.img) { const img=make('img','exam-img'); img.src=g.img; img.alt='Ảnh Part 4'; if (clozeState[sk]?.active||typingState[sk]?.active) img.style.display='none'; left.appendChild(img); }
   }
   if (sc.type==='p5') {
     const q=sc.q;
@@ -1460,6 +1793,11 @@ function renderScreen(idx) {
   initResizer(screenEl, left, resizer);
   screenEl.appendChild(right);
   el('examBody').appendChild(screenEl);
+  if (_pendingActivate) activatePendingGame(_pendingActivate.sC, _pendingActivate.sT);
+  // Khôi phục game-active khi navigate bằng topbar arrow (không qua pendingGameMode)
+  if (!state.pendingGameMode && (clozeState[sk]?.active || typingState[sk]?.active)) {
+    screenEl.classList.add('game-active');
+  }
   state.scrollToQ = null;
   const newRight = document.querySelector('.screen-right');
   [document.querySelector('.screen-right'), document.querySelector('.screen-left')].forEach(panel => {
@@ -1484,9 +1822,16 @@ function renderScreen(idx) {
   const audio = document.querySelector('audio');
   if (audio && !state.finished) {
     if (localStorage.getItem('tts_autoplay') !== '0') audio.play().catch(()=>{});
-    if ([1,2,3,4].includes(sc.part) && idx < state.screens.length - 1) {
+    if ([1,2,3,4].includes(sc.part)) {
       audio.addEventListener('ended', () => {
-        if (state.currentIdx === idx) goNext();
+        if (state.currentIdx !== idx) return;
+        const gameOn = Object.values(clozeState).some(g => g.active) ||
+                       Object.values(typingState).some(g => g.active);
+        if (gameOn) {
+          audio.currentTime = 0; // tua về đầu, chờ user bấm phát lại
+        } else if (idx < state.screens.length - 1) {
+          goNext();
+        }
       }, { once: true });
     }
   }
@@ -1503,7 +1848,7 @@ function preloadNextImages(currentIdx) {
 }
 
 function preloadNextAudio(currentIdx) {
-  [1, 2].forEach(offset => {
+  [-2, -1, 1, 2].forEach(offset => {
     const next = state.screens[currentIdx + offset];
     if (!next || ![1,2,3,4].includes(next.part)) return;
     const url = next.q?.mp3 || next.group?.mp3;
@@ -2304,6 +2649,7 @@ function buildOptions(qNum, letters, sk, optsOverride) {
   if (!state.finished) {
     list.querySelectorAll('.option-item').forEach(item => {
       item.addEventListener('click', () => {
+        if (state.showSolution['q'+qNum]) return; // đã hiện đáp án → khoá
         state.answers[qNum] = item.dataset.letter;
         applyOptionColors(list, state.answers[qNum], correct, showSol);
         renderSheet(); saveProgress();
@@ -2526,11 +2872,34 @@ function handleKeydown(e) {
 // SUBMIT
 // ══════════════════════════════════════════════════════════════
 function showConfirmModal() {
-  const allQs=state.screens.flatMap(sc=>sc.q?[sc.q.q]:sc.group?sc.group.questions.map(q=>q.q):[]);
-  const answered=countAnswered(allQs), unanswered=allQs.length-answered;
-  const body=el('confirmBody');
-  if (body) body.innerHTML=`Tổng số câu: <b>${allQs.length}</b><br>Đã trả lời: <b>${answered}</b><br>
-    ${unanswered>0?`<span style="color:#7c3aed">Chưa trả lời: <b>${unanswered} câu</b></span>`:`<span style="color:#16a34a">Đã trả lời đủ tất cả câu!</span>`}`;
+  const body = el('confirmBody');
+  if (!body) { el('confirmOverlay').classList.add('show'); return; }
+
+  // Gom câu chưa trả lời theo part
+  const byPart = {};
+  state.screens.forEach(sc => {
+    const qNums = sc.q ? [sc.q.q] : sc.group ? sc.group.questions.map(q => q.q) : [];
+    qNums.forEach(qn => {
+      if (!state.answers[qn]) {
+        if (!byPart[sc.part]) byPart[sc.part] = [];
+        byPart[sc.part].push(qn);
+      }
+    });
+  });
+
+  const parts = Object.keys(byPart).sort((a,b) => a-b);
+  const totalBlank = parts.reduce((s, p) => s + byPart[p].length, 0);
+  let html = '<div class="confirm-question">Bạn đã sẵn sàng nộp bài?</div>';
+  if (parts.length) {
+    html += `<div class="confirm-blank-summary">Còn <b>${totalBlank} câu</b> chưa trả lời</div>`;
+    html += '<div class="confirm-blank-list">';
+    parts.forEach(p => {
+      html += `<div class="confirm-blank-row"><span class="confirm-blank-part">Part ${p}</span><span class="confirm-blank-nums">${byPart[p].join(', ')}</span></div>`;
+    });
+    html += '</div>';
+  }
+
+  body.innerHTML = html;
   el('confirmOverlay').classList.add('show');
 }
 
