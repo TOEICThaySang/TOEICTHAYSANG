@@ -912,7 +912,7 @@ body {
   text-align: center;
 }
 
-.video-lock-icon { font-size: 1.8rem; line-height: 1; }
+.video-lock-icon { line-height: 1; color: var(--border-mid, #cbd5e1); }
 
 .video-lock-text {
   font-size: 13px;

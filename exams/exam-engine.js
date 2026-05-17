@@ -1894,7 +1894,7 @@ function ytPostMsg(iframe, func, args=[]) {
 function buildVideoLock() {
   const wrap = make('div', 'video-lock');
   wrap.innerHTML = `
-    <div class="video-lock-icon">🔒</div>
+    <div class="video-lock-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
     <div class="video-lock-text">Video dành cho tài khoản đăng ký</div>
     <a class="video-lock-cta" href="https://www.facebook.com/toeicthaysangonline" target="_blank" rel="noopener">Nâng cấp để xem đầy đủ →</a>`;
   return wrap;
