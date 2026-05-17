@@ -13,67 +13,92 @@
 <script>const PATH_TO_ROOT = '../';</script>
 <script src="../nav.js"></script>
 <script type="module" src="../auth.js"></script>
-<div class="page-header">
-  <div class="container">
-    <div class="page-header-badge"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px;margin-right:5px"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>Luyện đề</div>
-    <h1>Luyện đề TOEIC ETS</h1>
-    <p>Đề thi ETS · Chuẩn format thi thật · Giải thích chi tiết từng câu</p>
-  </div>
-</div>
+
 <div class="page-body">
   <div class="container">
 
     <!-- Đề thi thử miễn phí -->
-    <div class="free-section">
-      <div class="free-section-label">
-        <span class="free-badge">Miễn phí</span>
-        Đề thi thử
-      </div>
-      <div class="exam-grid" id="gridThiThu">
-        <p class="exam-loading">Đang tải...</p>
-      </div>
+    <div class="free-box">
+      <div class="free-box-badge">🎁 Học thử miễn phí</div>
+      <div id="gridThiThu"><p class="exam-loading">Đang tải...</p></div>
     </div>
 
     <div class="section-divider"><span>Đề thi dành cho học viên</span></div>
 
-    <!-- Year switcher -->
-    <div class="year-switcher" role="tablist" aria-label="Chọn bộ đề">
-      <div class="year-card ets2023 active" id="ycTab2023"
+    <!-- Series tabs -->
+    <div class="series-tabs" role="tablist" aria-label="Chọn bộ đề">
+      <div class="series-tab ets2023 active" id="stTab2023"
            role="tab" aria-selected="true" tabindex="0" aria-controls="panel2023"
            onclick="switchYear('2023')">
-        <div class="yc-title">ETS 2023</div>
-        <div class="yc-sub">10 bài test · 200 câu · 120 phút</div>
+        <div class="st-name">ETS 2023</div>
+        <div class="st-sub">10 bài test · 200 câu · 120 phút</div>
       </div>
-      <div class="year-card ets2024" id="ycTab2024"
+      <div class="series-tab ets2024" id="stTab2024"
            role="tab" aria-selected="false" tabindex="-1" aria-controls="panel2024"
            onclick="switchYear('2024')">
-        <div class="yc-title">ETS 2024</div>
-        <div class="yc-sub">10 bài test · 200 câu · 120 phút</div>
+        <div class="st-name">ETS 2024</div>
+        <div class="st-sub">10 bài test · 200 câu · 120 phút</div>
       </div>
     </div>
 
     <!-- Exam panels -->
-    <div class="exam-panel panel-in" id="panel2023" role="tabpanel" aria-labelledby="ycTab2023">
+    <div class="exam-panel panel-in" id="panel2023" role="tabpanel" aria-labelledby="stTab2023">
       <div class="exam-grid" id="grid2023">
         <p class="exam-loading">Đang tải...</p>
       </div>
     </div>
-    <div class="exam-panel" id="panel2024" role="tabpanel" aria-labelledby="ycTab2024" hidden>
+    <div class="exam-panel" id="panel2024" role="tabpanel" aria-labelledby="stTab2024" hidden>
       <div class="exam-grid" id="grid2024">
         <p class="exam-loading">Đang tải...</p>
       </div>
     </div>
 
+    <!-- Upgrade banner — chỉ hiện nếu chưa mua -->
+    <div class="upgrade-banner" id="upgradeBanner" style="display:none">
+      <div class="ub-left">
+        <div class="ub-title">👑 Mở khoá 20 đề ETS 2023 &amp; 2024</div>
+        <div class="ub-sub">Học viên Thầy Sang · Truy cập không giới hạn</div>
+      </div>
+      <button class="ub-btn" onclick="location.href='../upgrade.html'">Đăng ký ngay</button>
+    </div>
+
   </div>
 </div>
+
 <script>
 const _ic = (sz,st,inner) => `<svg xmlns="http://www.w3.org/2000/svg" width="${sz}" height="${sz}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="${st}">${inner}</svg>`;
 const IX = {
   clipboard: _ic(13,'vertical-align:-1px;margin-right:4px','<path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/>'),
   trophy:    _ic(13,'vertical-align:-1px;margin-right:4px','<path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/>'),
   hourglass: _ic(13,'vertical-align:-1px;margin-right:4px','<path d="M5 22h14"/><path d="M5 2h14"/><path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"/><path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"/>'),
-  arrow:     _ic(11,'vertical-align:-1px;margin-left:4px','<line x1="5" y1="12" x2="19" y2="12"/><polyline points="13 6 19 12 13 18"/>'),
 };
+
+function renderFreeGrid(container, data, prefix) {
+  if (!data.length) { container.innerHTML = ''; return; }
+  container.innerHTML = data.map(exam => {
+    if (!exam.file) return '';
+    const histKey = 'hist_' + prefix + '_de' + exam.id;
+    const history = JSON.parse(localStorage.getItem(histKey) || '[]');
+    const best    = history.length
+      ? Math.max(...history.map(h => h.totalQ > 0 ? Math.round(h.totalCorrect / h.totalQ * 100) : 0))
+      : null;
+    return `
+      <div class="free-card" onclick="location.href='${prefix}/${exam.file}'"
+           role="button" tabindex="0" aria-label="${exam.title}">
+        <div class="free-card-num">${String(exam.id).padStart(2,'0')}</div>
+        <div class="free-card-body">
+          <div class="free-card-title">${exam.title}</div>
+          <div class="free-card-meta">${IX.clipboard}${exam.meta}${best !== null ? ` &nbsp;·&nbsp; ${IX.trophy}Tốt nhất: ${best}%` : ''}</div>
+        </div>
+        <button class="free-card-btn">Làm đề →</button>
+      </div>`;
+  }).join('');
+  container.querySelectorAll('.free-card').forEach(card => {
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
+    });
+  });
+}
 
 function renderGrid(grid, data, prefix, yearCls) {
   grid.innerHTML = data.map((exam, i) => {
@@ -86,7 +111,7 @@ function renderGrid(grid, data, prefix, yearCls) {
     let onclick, badgeHTML;
     if (exam.file) {
       onclick   = `location.href='${prefix}/${exam.file}'`;
-      badgeHTML = `<span class="exam-card-btn free">Làm đề${IX.arrow}</span>`;
+      badgeHTML = `<span class="exam-card-btn free">Làm đề →</span>`;
     } else {
       onclick   = `showToast('Đề đang được chuẩn bị...')`;
       badgeHTML = `<span class="exam-card-btn coming-soon">${IX.hourglass}Sắp ra</span>`;
@@ -102,12 +127,8 @@ function renderGrid(grid, data, prefix, yearCls) {
         <div class="exam-card-num">${String(exam.id).padStart(2, '0')}</div>
         <div class="exam-card-title">${exam.title}</div>
         <div class="exam-card-meta">${IX.clipboard}${exam.meta}</div>
-        ${best !== null
-          ? `<div class="exam-card-best">${IX.trophy}Tốt nhất: ${best}%</div>`
-          : ''}
-        <div class="exam-card-footer">
-          ${badgeHTML}
-        </div>
+        ${best !== null ? `<div class="exam-card-best">${IX.trophy}Tốt nhất: ${best}%</div>` : ''}
+        <div class="exam-card-footer">${badgeHTML}</div>
       </div>`;
   }).join('');
 
@@ -116,6 +137,16 @@ function renderGrid(grid, data, prefix, yearCls) {
       if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
     });
   });
+}
+
+function loadFreeSection(containerId, url, prefix) {
+  const container = document.getElementById(containerId);
+  fetch(url)
+    .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+    .then(data => renderFreeGrid(container, data, prefix))
+    .catch(() => {
+      container.innerHTML = `<p style="color:var(--danger);padding:12px 0">Không tải được đề thi thử.</p>`;
+    });
 }
 
 function loadSection(gridId, url, prefix, yearCls) {
@@ -129,8 +160,8 @@ function loadSection(gridId, url, prefix, yearCls) {
 }
 
 function switchYear(year) {
-  document.querySelectorAll('.year-card').forEach(c => {
-    const on = c.id === 'ycTab' + year;
+  document.querySelectorAll('.series-tab').forEach(c => {
+    const on = c.id === 'stTab' + year;
     c.classList.toggle('active', on);
     c.setAttribute('aria-selected', on);
     c.setAttribute('tabindex', on ? '0' : '-1');
@@ -140,7 +171,7 @@ function switchYear(year) {
     if (y === year) {
       panel.hidden = false;
       panel.classList.remove('panel-in');
-      void panel.offsetWidth; /* force reflow để re-trigger animation */
+      void panel.offsetWidth;
       panel.classList.add('panel-in');
     } else {
       panel.hidden = true;
@@ -148,22 +179,26 @@ function switchYear(year) {
   });
 }
 
-/* Keyboard navigation cho year tabs */
-document.querySelectorAll('.year-card').forEach(card => {
-  card.addEventListener('keydown', e => {
-    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); card.click(); }
+document.querySelectorAll('.series-tab').forEach(tab => {
+  tab.addEventListener('keydown', e => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); tab.click(); }
     if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
-      const other = card.id === 'ycTab2024' ? 'ycTab2023' : 'ycTab2024';
+      const other = tab.id === 'stTab2024' ? 'stTab2023' : 'stTab2024';
       const otherEl = document.getElementById(other);
-      otherEl.focus();
-      otherEl.click();
+      otherEl.focus(); otherEl.click();
     }
   });
 });
 
-loadSection('gridThiThu', 'thi-thu/lessons.json', 'thi-thu', 'thi-thu');
+loadFreeSection('gridThiThu', 'thi-thu/lessons.json', 'thi-thu');
 loadSection('grid2023', 'ets2023/lessons.json', 'ets2023', 'ets2023');
 loadSection('grid2024', 'ets2024/lessons.json', 'ets2024', 'ets2024');
+
+/* Upgrade banner: hiện nếu chưa mua */
+window._ttsAuthReady?.then(({ whitelisted }) => {
+  const b = document.getElementById('upgradeBanner');
+  if (b && !whitelisted) b.style.display = '';
+});
 </script>
 <script type="module">
 import { collection, query, where, getDocs }
