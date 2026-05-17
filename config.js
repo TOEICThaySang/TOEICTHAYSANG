@@ -28,6 +28,7 @@ const SITE = {
   /* Thêm mục sau: { label: '...', icon: '...', href: '...' } */
   nav: [
     { label: 'Luyện đề', icon: '📝', href: 'exams/index.html' },
+    { label: 'Lịch sử', icon: '📊', href: 'exams/history.html' },
   ],
 
   /* ─── FOOTER ─── */

@@ -106,9 +106,10 @@
         </li>`;
     }).join('');
 
-    /* Logo — chữ thuần */
+    /* Logo — ảnh + chữ */
     const logoHTML = `
       <a href="${r('index.html')}" class="nav-logo" aria-label="${SITE.name} — Trang chủ">
+        <img src="${r(SITE.logo)}" alt="" class="nav-logo-img" onerror="this.style.display='none'">
         <span class="nav-logo-fallback">${SITE.name}</span>
       </a>`;
 

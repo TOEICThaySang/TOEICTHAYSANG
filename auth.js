@@ -84,25 +84,25 @@ function injectAuthUI() {
     if (user) {
       const name    = user.displayName || user.email.split('@')[0];
       const initial = name[0].toUpperCase();
-      const avatar  = user.photoURL
+      const triggerInner = user.photoURL
+        ? `<img src="${user.photoURL}" alt="" class="tts-trigger-img">`
+        : `<span class="tts-trigger-initial">${initial}</span>`;
+      const avatarLarge = user.photoURL
         ? `<img class="tts-avatar" src="${user.photoURL}" alt="">`
         : `<div class="tts-avatar-fb">${initial}</div>`;
 
       wrap.innerHTML = `
         <div class="tts-user-menu">
-          <button class="tts-menu-btn" id="_ttsMenuBtn" aria-expanded="false" aria-label="Menu tài khoản">
-            <svg viewBox="0 0 16 12" width="16" height="12" fill="currentColor">
-              <rect y="0"  width="16" height="2" rx="1"/>
-              <rect y="5"  width="16" height="2" rx="1"/>
-              <rect y="10" width="16" height="2" rx="1"/>
-            </svg>
+          <button class="tts-avatar-trigger${whitelisted ? ' is-student' : ''}"
+                  id="_ttsMenuBtn" aria-expanded="false" aria-label="Menu tài khoản">
+            ${triggerInner}
           </button>
           <div class="tts-dropdown" id="_ttsDropdown">
             <div class="tts-drop-user">
-              ${avatar}
+              ${avatarLarge}
               <div class="tts-drop-info">
                 <span class="tts-drop-name">${name}</span>
-                ${whitelisted ? `<span class="tts-drop-badge">Học viên</span>` : ''}
+                ${whitelisted ? `<span class="tts-drop-badge">✓ Học viên</span>` : ''}
               </div>
             </div>
             <div class="tts-drop-divider"></div>
@@ -149,41 +149,56 @@ function injectAuthUI() {
 
 // ── CSS ──
 const css = `
-/* ── Nút hamburger (menu 3 gạch) ── */
+/* ── Avatar trigger ── */
 .tts-user-menu { position: relative; }
 
-.tts-menu-btn {
-  display: inline-flex;
+.tts-avatar-trigger {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  padding: 0;
+  border: 2.5px solid var(--border, #e2e8f0);
+  background: transparent;
+  cursor: pointer;
+  transition: transform .18s, box-shadow .18s, border-color .18s;
+  overflow: hidden;
+  display: flex;
   align-items: center;
   justify-content: center;
-  padding: 6px 10px;
-  border-radius: 8px;
-  border: 1.5px solid var(--border, #e2e8f0);
-  background: transparent;
-  color: var(--text-2, #475569);
-  cursor: pointer;
-  transition: all .14s;
-  white-space: nowrap;
+  flex-shrink: 0;
 }
-.tts-menu-btn:hover {
-  background: rgba(99,102,241,.08);
-  color: #6366f1;
-  border-color: rgba(99,102,241,.35);
-  transform: translateY(-1px);
+.tts-avatar-trigger.is-student {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 2.5px rgba(99,102,241,.2);
+}
+.tts-avatar-trigger:hover {
+  transform: scale(1.08);
+  box-shadow: 0 3px 12px rgba(0,0,0,.18);
+}
+.tts-trigger-img {
+  width: 100%; height: 100%;
+  object-fit: cover; display: block;
+}
+.tts-trigger-initial {
+  width: 100%; height: 100%;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: #fff;
+  font-size: 15px; font-weight: 800;
+  display: flex; align-items: center; justify-content: center;
 }
 
 /* ── Dropdown ── */
 .tts-dropdown {
   display: none;
   position: absolute;
-  top: calc(100% + 8px);
+  top: calc(100% + 10px);
   right: 0;
-  min-width: 200px;
+  min-width: 210px;
   background: var(--bg-card, #fff);
   border: 1.5px solid var(--border, #e2e8f0);
-  border-radius: 12px;
-  box-shadow: 0 8px 24px rgba(0,0,0,.13);
-  padding: 12px;
+  border-radius: 14px;
+  box-shadow: 0 8px 28px rgba(0,0,0,.14);
+  padding: 14px;
   z-index: 9000;
 }
 .tts-dropdown.open { display: block; }
@@ -192,41 +207,42 @@ const css = `
   display: flex;
   align-items: center;
   gap: 10px;
-  padding-bottom: 10px;
+  padding-bottom: 12px;
 }
 .tts-avatar {
-  width: 32px; height: 32px; border-radius: 50%; object-fit: cover; flex-shrink: 0;
+  width: 36px; height: 36px; border-radius: 50%; object-fit: cover; flex-shrink: 0;
 }
 .tts-avatar-fb {
-  width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+  width: 36px; height: 36px; border-radius: 50%; flex-shrink: 0;
   background: linear-gradient(135deg,#6366f1,#8b5cf6);
-  color: #fff; font-size: 13px; font-weight: 700;
+  color: #fff; font-size: 15px; font-weight: 700;
   display: flex; align-items: center; justify-content: center;
 }
-.tts-drop-info { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.tts-drop-info { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
 .tts-drop-name {
-  font-size: 14px; font-weight: 600; color: var(--text-1, #1e293b);
+  font-size: 13.5px; font-weight: 700; color: var(--text, #0f172a);
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
 .tts-drop-badge {
   font-size: 10px; font-weight: 700; white-space: nowrap; align-self: flex-start;
   background: linear-gradient(90deg,#6366f1,#8b5cf6);
-  color: #fff; padding: 2px 7px; border-radius: 10px;
+  color: #fff; padding: 2px 8px; border-radius: 10px;
 }
 
-.tts-drop-divider { height: 1px; background: var(--border, #e2e8f0); margin: 0 0 10px; }
+.tts-drop-divider { height: 1px; background: var(--border, #e2e8f0); margin: 0 0 12px; }
 
 .tts-drop-logout {
   width: 100%;
-  padding: 8px 12px;
+  padding: 9px 12px;
   background: transparent;
   color: var(--text-2, #475569);
   border: 1.5px solid var(--border, #e2e8f0);
-  border-radius: 8px;
+  border-radius: 9px;
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 600;
   cursor: pointer;
   transition: all .14s;
+  font-family: inherit;
 }
 .tts-drop-logout:hover { background: #fee2e2; color: #dc2626; border-color: #fca5a5; }
 
@@ -237,6 +253,7 @@ const css = `
   border: 1.5px solid #dadce0; border-radius: 8px;
   font-size: 13px; font-weight: 600; cursor: pointer; white-space: nowrap;
   box-shadow: 0 1px 3px rgba(0,0,0,.1); transition: box-shadow .14s, background .14s;
+  font-family: inherit;
 }
 .tts-btn-in:hover { box-shadow: 0 2px 8px rgba(0,0,0,.15); background: #f8f9fa; }
 

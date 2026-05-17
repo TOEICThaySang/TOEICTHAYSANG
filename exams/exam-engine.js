@@ -129,6 +129,7 @@ function getHistory(examId) {
   } catch(e) { return []; }
 }
 function saveHistory(R) {
+  if (window._ttsWhitelisted) return; // học viên → chỉ lưu Firestore
   try {
     const key  = 'hist_' + R.examId;
     const list = JSON.parse(localStorage.getItem(key) || '[]');
