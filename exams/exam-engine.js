@@ -1694,6 +1694,8 @@ function renderScreen(idx) {
     const transShown = showSol && !!state.showTrans['q'+q.q];
     if (solShown && q.videoUrl) {
       left.appendChild(buildVideoLoader(q.videoUrl, autoplayQ===q.q));
+    } else if (solShown) {
+      left.appendChild(buildVideoLock());
     } else { left.classList.add('empty'); }
     const p5Content = make('div','q-content-col');
     if (q.enQ) {
@@ -1889,6 +1891,15 @@ function ytPostMsg(iframe, func, args=[]) {
   try { iframe.contentWindow.postMessage(JSON.stringify({event:'command',func,args}), '*'); } catch(e) {}
 }
 
+function buildVideoLock() {
+  const wrap = make('div', 'video-lock');
+  wrap.innerHTML = `
+    <div class="video-lock-icon">🔒</div>
+    <div class="video-lock-text">Video dành cho tài khoản đăng ký</div>
+    <a class="video-lock-cta" href="https://www.facebook.com/toeicthaysangonline" target="_blank" rel="noopener">Nâng cấp để xem đầy đủ →</a>`;
+  return wrap;
+}
+
 function buildVideoLoader(url, activateNow) {
   const vid = extractYtVid(url);
 
@@ -2032,6 +2043,8 @@ function buildLeftTabs(left, g, sk, isP7, showSol) {
   const activeQ = g.questions.find(q=>q.q===activeQNum);
   if (activeQ && activeQ.videoUrl && activeTab === 'video') {
     videoPane.appendChild(buildVideoLoader(activeQ.videoUrl, true));
+  } else if (activeQ && !activeQ.videoUrl && activeTab === 'video') {
+    videoPane.appendChild(buildVideoLock());
   } else {
     videoPane.appendChild(make('div','video-placeholder',`Bấm ${IC.lightbulb}Xem video giải để xem video giải thích.`));
   }
@@ -2083,7 +2096,7 @@ function switchToVideoTab(sk, qNum) {
       if (q?.videoUrl) {
         videoPane.appendChild(buildVideoLoader(q.videoUrl, true));
       } else {
-        videoPane.appendChild(make('div','video-placeholder',`Bấm ${IC.lightbulb}Xem video giải để xem video giải thích.`));
+        videoPane.appendChild(buildVideoLock());
       }
     }
     state.videoQ[sk] = qNum;
