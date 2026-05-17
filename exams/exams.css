@@ -5,8 +5,9 @@
    ══════════════════════════════════════════════════════════ */
 
 /* ─── CSS vars theo năm (dùng cho cả year-card và exam-card) ─── */
-.ets2024 { --cA: #6366f1; --cB: #8b5cf6; --cBg: rgba(99,102,241,.09); }
-.ets2023 { --cA: #0ea5e9; --cB: #06b6d4; --cBg: rgba(14,165,233,.09); }
+.ets2024  { --cA: #6366f1; --cB: #8b5cf6; --cBg: rgba(99,102,241,.09); }
+.ets2023  { --cA: #0ea5e9; --cB: #06b6d4; --cBg: rgba(14,165,233,.09); }
+.thi-thu  { --cA: #16a34a; --cB: #22c55e; --cBg: rgba(22,163,74,.09);  }
 
 /* ══════════════════════════════════════════════════════════
    YEAR SWITCHER — 2 card tab nằm ngang
@@ -247,6 +248,52 @@
 /* ── Màn hình rất nhỏ < 360px ── */
 @media (max-width: 359px) {
   .exam-grid { grid-template-columns: 1fr; }
+}
+
+/* ══════════════════════════════════════════════════════════
+   FREE SECTION — đề thi thử miễn phí
+   ══════════════════════════════════════════════════════════ */
+.free-section { margin-bottom: 10px; }
+
+.free-section-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--text-2);
+  margin-bottom: 14px;
+}
+
+.free-badge {
+  display: inline-flex;
+  align-items: center;
+  background: #dcfce7;
+  color: #16a34a;
+  font-size: .68rem;
+  font-weight: 800;
+  padding: 3px 9px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+}
+
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 28px 0 32px;
+  color: var(--text-3);
+  font-size: .77rem;
+  font-weight: 600;
+  text-align: center;
+}
+.section-divider::before,
+.section-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--border);
 }
 
 /* ══════════════════════════════════════════════════════════

@@ -23,6 +23,19 @@
 <div class="page-body">
   <div class="container">
 
+    <!-- Đề thi thử miễn phí -->
+    <div class="free-section">
+      <div class="free-section-label">
+        <span class="free-badge">Miễn phí</span>
+        Đề thi thử
+      </div>
+      <div class="exam-grid" id="gridThiThu">
+        <p class="exam-loading">Đang tải...</p>
+      </div>
+    </div>
+
+    <div class="section-divider"><span>Đề thi dành cho học viên</span></div>
+
     <!-- Year switcher -->
     <div class="year-switcher" role="tablist" aria-label="Chọn bộ đề">
       <div class="year-card ets2023 active" id="ycTab2023"
@@ -148,6 +161,7 @@ document.querySelectorAll('.year-card').forEach(card => {
   });
 });
 
+loadSection('gridThiThu', 'thi-thu/lessons.json', 'thi-thu', 'thi-thu');
 loadSection('grid2023', 'ets2023/lessons.json', 'ets2023', 'ets2023');
 loadSection('grid2024', 'ets2024/lessons.json', 'ets2024', 'ets2024');
 </script>
