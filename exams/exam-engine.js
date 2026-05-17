@@ -138,7 +138,7 @@ function saveHistory(R) {
   } catch(e) {}
 }
 async function saveResultToFirestore(R) {
-  if (!currentUser) return;
+  if (!currentUser || !window._ttsWhitelisted) return;
   try {
     await addDoc(collection(db, 'results'), {
       uid: currentUser.uid, email: currentUser.email,

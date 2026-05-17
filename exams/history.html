@@ -137,8 +137,12 @@ function renderCards(entries) {
   container.innerHTML += `<div class="history-list">${cards}</div>`;
 }
 
+const SVG_CLOUD = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;vertical-align:-2px;margin-right:6px"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>`;
+const SVG_WARN  = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;vertical-align:-2px;margin-right:6px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>`;
+const SVG_USER  = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;vertical-align:-2px;margin-right:6px"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>`;
+
 if (whitelisted && user) {
-  container.innerHTML = `<div class="hist-info cloud"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;vertical-align:-2px;margin-right:6px"><path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"/></svg>Lịch sử lưu vĩnh viễn trên tài khoản — truy cập được từ bất kỳ thiết bị nào.</div>`;
+  container.innerHTML = `<div class="hist-info cloud">${SVG_CLOUD}Lịch sử được lưu vĩnh viễn trên tài khoản học viên — xem được trên mọi thiết bị.</div>`;
   try {
     const { collection, query, where, getDocs } =
       await import('https://www.gstatic.com/firebasejs/12.0.0/firebase-firestore.js');
@@ -159,8 +163,10 @@ if (whitelisted && user) {
   } catch(err) {
     container.innerHTML += `<p style="color:var(--danger);text-align:center;padding:20px 0">Không tải được lịch sử. Vui lòng thử lại.</p>`;
   }
+} else if (user && !whitelisted) {
+  container.innerHTML = `<div class="hist-info local">${SVG_WARN}Dữ liệu bài học của bạn được lưu cùng lịch sử trình duyệt.</div>`;
 } else {
-  container.innerHTML = `<div class="hist-info local"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;vertical-align:-2px;margin-right:6px"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>Lịch sử lưu cùng dữ liệu trình duyệt — xoá cache hoặc dùng thiết bị khác sẽ mất.${!user ? ' Đăng nhập và đăng ký khoá học để lưu vĩnh viễn.' : ''}</div>`;
+  container.innerHTML = `<div class="hist-info local">${SVG_USER}Đăng nhập để lưu lịch sử bài học vào trình duyệt.</div>`;
   const entries = [];
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i);
