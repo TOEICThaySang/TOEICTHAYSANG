@@ -26,7 +26,7 @@ const db   = getFirestore(fbApp);
 // ── GUARD: phải có EXAM_DATA ──
 if (typeof EXAM_DATA === 'undefined') {
   document.body.innerHTML =
-    '<div style="padding:40px;font-family:sans-serif;color:#dc2626">Lỗi: Không tìm thấy EXAM_DATA.</div>';
+    '<div style="padding:40px;font-family:sans-serif;color:#7c3aed">Lỗi: Không tìm thấy EXAM_DATA.</div>';
   throw new Error('EXAM_DATA missing');
 }
 const ED = EXAM_DATA;
@@ -256,7 +256,7 @@ function renderAuthGate(notRegistered) {
   card.innerHTML = `
     <div class="auth-lock-icon">${IC.books}</div>
     <div class="auth-title">TOEIC Thầy Sang</div>
-    <div class="auth-sub" ${notRegistered ? 'style="color:#dc2626;font-weight:600"' : ''}>
+    <div class="auth-sub" ${notRegistered ? 'style="color:#7c3aed;font-weight:600"' : ''}>
       ${notRegistered
         ? 'Tài khoản chưa đăng ký.<br>Liên hệ giáo viên để đăng ký luyện thi.'
         : 'Vui lòng đăng nhập để tiếp tục.'}
@@ -587,22 +587,38 @@ function renderExamPage() {
     </div>`;
   document.body.appendChild(topbar);
 
+  document.addEventListener('click', e => {
+    const slot = el('topbarGameSlot');
+    if (slot && !slot.contains(e.target)) {
+      const dd = slot.querySelector('.topbar-game-dropdown');
+      if (dd) dd.style.display = 'none';
+    }
+  });
+
   const sheetOverlay = make('div','answer-sheet-overlay');
   sheetOverlay.id = 'sheetOverlay';
   sheetOverlay.innerHTML = `
     <div class="answer-sheet">
       <div class="answer-sheet-head">
-        <div class="answer-sheet-head-title">Review đáp án</div>
-        <div class="answer-sheet-legend">
-          <div class="legend-item"><div class="legend-dot answered"></div> Đã chọn</div>
-          <div class="legend-item"><div class="legend-dot unanswered"></div> Bỏ trống</div>
-          <div class="legend-item">${IC.flagInline} Đánh dấu</div>
+        <div class="answer-sheet-head-title">Phiếu đáp án</div>
+        <div class="sheet-action-row" id="sheetActionRow">
+          <button class="sheet-action-btn sheet-action-flag" id="btnSheetFlag">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="13" height="13" style="vertical-align:-1px;margin-right:4px"><path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"/></svg>Gắn cờ
+          </button>
+          <button class="sheet-action-btn sheet-action-skip" id="btnSheetSkip">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="13" height="13" style="vertical-align:-1px;margin-right:4px"><circle cx="12" cy="12" r="10"/><line x1="8" y1="12" x2="16" y2="12"/></svg>Bỏ trống
+          </button>
+        </div>
+        <div class="answer-sheet-legend" id="sheetLegend">
+          <div class="legend-item"><div class="legend-dot ld-answered"></div> Đã làm</div>
+          <div class="legend-item"><div class="legend-dot ld-unanswered"></div> Chưa làm</div>
+          <div class="legend-item"><div class="legend-dot ld-current"></div> Đang làm</div>
+          <div class="legend-item"><div class="legend-dot ld-flagged"></div> Gắn cờ</div>
         </div>
         <div class="sheet-filters" id="sheetFilters">
           <button class="sheet-filter-btn active" data-filter="all">Tất cả</button>
-          <button class="sheet-filter-btn" data-filter="unanswered">Bỏ trống</button>
-          <button class="sheet-filter-btn" data-filter="wrong">Câu sai</button>
-          <button class="sheet-filter-btn" data-filter="flagged">Đánh dấu</button>
+          <button class="sheet-filter-btn" data-filter="unanswered">Chưa làm</button>
+          <button class="sheet-filter-btn" data-filter="flagged">Gắn cờ</button>
         </div>
       </div>
       <div class="answer-sheet-body" id="sheetBody"></div>
@@ -651,12 +667,24 @@ function renderExamPage() {
 
   el('btnSheet').addEventListener('click', ()=>toggleSheet());
   el('btnNavPrev').addEventListener('click', ()=>{
-    if (state.currentIdx > 0) { state.currentIdx--; renderScreen(state.currentIdx); renderSheet(); saveProgress(); }
+    if (state.currentIdx > 0) { clearListeningSolution(state.currentIdx); state.currentIdx--; renderScreen(state.currentIdx); renderSheet(); saveProgress(); }
   });
   el('btnNavNext').addEventListener('click', goNext);
   sheetOverlay.addEventListener('click', e=>{ if(e.target===sheetOverlay) toggleSheet(false); });
-  sheetOverlay.querySelectorAll('.sheet-filter-btn').forEach(btn=>{
-    btn.addEventListener('click',()=>{ state.sheetFilter=btn.dataset.filter; applySheetFilter(); });
+  el('sheetFilters').addEventListener('click', e=>{
+    const btn=e.target.closest('.sheet-filter-btn'); if(!btn) return;
+    state.sheetFilter=btn.dataset.filter; applySheetFilter();
+  });
+  el('btnSheetFlag').addEventListener('click', ()=>{
+    const qNums=getCurrentScreenQNums(); const qNum=state.scrollToQ||qNums[0]; if(!qNum) return;
+    state.flags[qNum]=!state.flags[qNum]; renderSheet(); saveProgress();
+  });
+  el('btnSheetSkip').addEventListener('click', ()=>{
+    const nextIdx=findNextUnansweredIdx(); if(nextIdx<0) return;
+    clearListeningSolution(state.currentIdx); state.currentIdx=nextIdx;
+    const sc=state.screens[nextIdx];
+    state.scrollToQ=sc.q?sc.q.q:sc.group?.questions[0]?.q;
+    renderScreen(state.currentIdx); renderSheet(); toggleSheet(false); saveProgress();
   });
   el('btnSubmit').addEventListener('click', showConfirmModal);
   el('confirmCancel').addEventListener('click', ()=>confirmOverlay.classList.remove('show'));
@@ -669,10 +697,10 @@ function renderExamPage() {
   el('exitOk').addEventListener('click', ()=>{ window.location.href = window.location.pathname; });
   document.addEventListener('keydown', handleKeydown);
 
+  renderSettingsPanel();
   renderScreen(state.currentIdx);
   renderSheet();
   if (!state.finished) startTimer();
-  renderSettingsPanel();
 }
 
 // ══════════════════════════════════════════════════════════════
@@ -812,8 +840,16 @@ function renderSettingsPanel() {
 // ══════════════════════════════════════════════════════════════
 // RENDER MÀN HÌNH
 // ══════════════════════════════════════════════════════════════
+function clearListeningSolution(idx) {
+  const sc = state.screens[idx];
+  if (!sc || ![1,2,3,4].includes(sc.part)) return;
+  const qNums = (sc.type==='p1'||sc.type==='p2') ? [sc.q.q] : (sc.group?.questions?.map(q=>q.q)||[]);
+  qNums.forEach(qn => { delete state.showSolution['q'+qn]; delete state.showTrans['q'+qn]; });
+}
+
 function goNext() {
   if (state.currentIdx >= state.screens.length - 1) return;
+  clearListeningSolution(state.currentIdx);
   state.currentIdx++;
   renderScreen(state.currentIdx);
   renderSheet();
@@ -873,18 +909,23 @@ function clozeTokenize(text, partNum) {
 }
 
 function clozeWords(text, tokens) {
-  const re = /\(\d+\)|[A-Za-z][A-Za-z'’-]*|[ \t]+|[^\w\s]+/g;
+  const re = /\(\d+\)|[A-Za-z][A-Za-z''-]*|[ \t]+|[^\w\s]+/g;
   let m;
+  let firstWord = true;
   while ((m = re.exec(text)) !== null) {
     const t = m[0];
-    if (/^\(\d+\)$/.test(t))      tokens.push({ type: 'fixed', text: t });
-    else if (/^[ \t]+$/.test(t))  tokens.push({ type: 'space', text: ' ' });
-    else if (/^[A-Za-z]/.test(t)) tokens.push({ type: 'word',  text: t, eligible: t.length > 2 });
+    if (/^(d+)$/.test(t))      tokens.push({ type: 'fixed', text: t });
+    else if (/^[ 	]+$/.test(t))  tokens.push({ type: 'space', text: ' ' });
+    else if (/^[A-Za-z]/.test(t)) {
+      const isProper = !firstWord && /^[A-Z]/.test(t);
+      tokens.push({ type: 'word', text: t, eligible: t.length > 2 && !isProper });
+      firstWord = false;
+    }
     else                           tokens.push({ type: 'punct', text: t });
   }
 }
 
-function clozeSelectBlanks(tokens, pct) {
+function clozeSelectBlanks(tokens, pct, partNum) {
   // Group eligible token indices by line (split at 'br' only, not 'sentbr')
   const lineGroups = [[]];
   tokens.forEach((t, i) => {
@@ -893,6 +934,9 @@ function clozeSelectBlanks(tokens, pct) {
   });
   const nonEmpty = lineGroups.filter(g => g.length > 0);
   if (!nonEmpty.length) return new Set();
+
+  // Part 2: always blank the first eligible token (question word is critical)
+  const firstIdx = partNum === 2 ? (nonEmpty[0]?.[0] ?? -1) : -1;
 
   const totalEligible = nonEmpty.reduce((s, g) => s + g.length, 0);
   const total = Math.min(
@@ -918,17 +962,26 @@ function clozeSelectBlanks(tokens, pct) {
   } else if (remaining < 0) {
     // pct so low that can't give 1 to every line — give 1 to 'total' random lines
     const shuffledIdx = nonEmpty.map((_, i) => i).sort(() => Math.random() - 0.5);
-    return new Set(
+    const blanked = new Set(
       shuffledIdx.slice(0, total).flatMap(i =>
         nonEmpty[i].slice().sort(() => Math.random() - 0.5).slice(0, 1)
       )
     );
+    if (firstIdx >= 0) blanked.add(firstIdx);
+    return blanked;
   }
 
   // Pick random words within each line according to quota
   const blanked = new Set();
   nonEmpty.forEach((group, i) => {
-    group.slice().sort(() => Math.random() - 0.5).slice(0, quotas[i]).forEach(idx => blanked.add(idx));
+    // For Part 2 first line: ensure firstIdx is picked, fill remaining quota randomly from rest
+    if (partNum === 2 && i === 0 && firstIdx >= 0) {
+      blanked.add(firstIdx);
+      const rest = group.filter(idx => idx !== firstIdx);
+      rest.slice().sort(() => Math.random() - 0.5).slice(0, quotas[i] - 1).forEach(idx => blanked.add(idx));
+    } else {
+      group.slice().sort(() => Math.random() - 0.5).slice(0, quotas[i]).forEach(idx => blanked.add(idx));
+    }
   });
   return blanked;
 }
@@ -1024,13 +1077,9 @@ function buildClozeGame(scriptText, partNum, sk, solKey, rightEl, leftEl) {
   const cs = clozeState[sk] || (clozeState[sk] = { active: false, percent: 30, tokens: null, blankedSet: null, openedSet: null });
   if (!cs.tokens) {
     cs.tokens     = clozeTokenize(scriptText, partNum);
-    cs.blankedSet = clozeSelectBlanks(cs.tokens, cs.percent);
+    cs.blankedSet = clozeSelectBlanks(cs.tokens, cs.percent, partNum);
     cs.openedSet  = new Set();
   }
-
-  const banner = make('div', 'cloze-banner');
-  banner.innerHTML = `🎮 <span>Luyện nghe khuyết từ</span>`;
-  banner.style.display = cs.active ? 'none' : '';
 
   const gameArea = make('div', 'cloze-area');
   gameArea.style.display = cs.active ? '' : 'none';
@@ -1050,7 +1099,7 @@ function buildClozeGame(scriptText, partNum, sk, solKey, rightEl, leftEl) {
     const item = make('div', 'cloze-dropdown-item' + (cs.percent === pct ? ' active' : ''));
     item.innerHTML = `<span class="cloze-dot"></span>${PCT_LABELS[pct]}`;
     item.addEventListener('click', () => {
-      cs.percent = pct; cs.blankedSet = clozeSelectBlanks(cs.tokens, pct); cs.openedSet = new Set();
+      cs.percent = pct; cs.blankedSet = clozeSelectBlanks(cs.tokens, pct, partNum); cs.openedSet = new Set();
       dotItems.forEach((it, i) => it.classList.toggle('active', PCT_OPTIONS[i] === pct));
       refresh();
       dropdown.style.display = 'none';
@@ -1058,9 +1107,6 @@ function buildClozeGame(scriptText, partNum, sk, solKey, rightEl, leftEl) {
     return item;
   });
   dotItems.forEach(it => dropdown.appendChild(it));
-  dropdown.appendChild(make('div', 'cloze-dropdown-divider'));
-  const quitItem = make('div', 'cloze-dropdown-item cloze-dropdown-quit', '← Nghỉ chơi');
-  dropdown.appendChild(quitItem);
   gameArea.appendChild(dropdown);
 
   // Top row: 2 nút căn giữa (trên thanh tiến độ)
@@ -1070,7 +1116,7 @@ function buildClozeGame(scriptText, partNum, sk, solKey, rightEl, leftEl) {
   const redoBtn  = make('button', 'cloze-redo-btn');
   redoBtn.innerHTML = IC_REDO + 'Chơi lại';
   redoBtn.addEventListener('click', () => {
-    cs.blankedSet = clozeSelectBlanks(cs.tokens, cs.percent); cs.openedSet = new Set(); refresh();
+    cs.blankedSet = clozeSelectBlanks(cs.tokens, cs.percent, partNum); cs.openedSet = new Set(); refresh();
     const audio = document.querySelector('audio');
     if (audio) { audio.currentTime = 0; audio.play().catch(() => {}); }
   });
@@ -1096,33 +1142,90 @@ function buildClozeGame(scriptText, partNum, sk, solKey, rightEl, leftEl) {
 
   const setActive = (on) => {
     cs.active = on;
-    banner.style.display   = on ? 'none' : '';
     gameArea.style.display = on ? '' : 'none';
     leftEl.classList.toggle('cloze-game-active', on);
     const scriptEl = leftEl.querySelector('[data-scriptsk]');
     if (scriptEl) scriptEl.style.display = (on ? 'none' : (state.showSolution[solKey] ? '' : 'none'));
-    const imgEl = leftEl.querySelector('.exam-img');
+    const imgEl = leftEl.querySelector('.exam-img-wrap') || leftEl.querySelector('.exam-img');
     if (imgEl) imgEl.style.display = on ? 'none' : '';
     if (on && !displayEl) refresh();
   };
 
   if (cs.active) leftEl.classList.add('cloze-game-active');
 
-  banner.addEventListener('click', () => {
-    const audio = document.querySelector('audio');
-    if (audio) { audio.pause(); audio.currentTime = 0; }
-    setActive(true);
-  });
   menuBtn.addEventListener('click', e => {
     e.stopPropagation();
     dropdown.style.display = dropdown.style.display === 'none' ? '' : 'none';
   });
-  quitItem.addEventListener('click', () => { dropdown.style.display = 'none'; setActive(false); });
-  document.addEventListener('click', e => {
-    if (!dropdown.contains(e.target)) dropdown.style.display = 'none';
+  document.addEventListener('click', () => { dropdown.style.display = 'none'; }, { capture: true, passive: true });
+
+  return { gameArea, setActive };
+}
+
+function buildTopbarGameBtn(sk, setActiveFn) {
+  let slot = el('topbarGameSlot');
+  if (!slot) {
+    slot = make('div', 'topbar-game-slot');
+    slot.id = 'topbarGameSlot';
+    const fab = el('settingsFab');
+    if (fab) fab.after(slot);
+    else return;
+  }
+  slot.innerHTML = '';
+
+  const SVG_GP = `<svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="5"/><line x1="6" y1="12" x2="10" y2="12"/><line x1="8" y1="10" x2="8" y2="14"/><circle cx="16" cy="10.5" r="1.2" fill="currentColor" stroke="none"/><circle cx="18.5" cy="13" r="1.2" fill="currentColor" stroke="none"/></svg>`;
+  const SVG_HP = `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3z"/><path d="M3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>`;
+  const SVG_QT = `<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+
+  const btn = make('button', 'topbar-game-btn');
+  btn.title = 'Game luyện nghe';
+  btn.innerHTML = SVG_GP + '<span class="tg-dot"></span>';
+
+  const dropdown = make('div', 'topbar-game-dropdown');
+  dropdown.style.display = 'none';
+
+  const clozeItem = make('div', 'topbar-game-item');
+  clozeItem.innerHTML = SVG_HP + '<span>Luyện nghe khuyết từ</span><span class="tgi-active"></span>';
+
+  const divider = make('div', 'cloze-dropdown-divider');
+  const quitRow = make('div', 'topbar-game-item topbar-game-quit');
+  quitRow.innerHTML = SVG_QT + '<span>Thoát game</span>';
+
+  dropdown.appendChild(clozeItem);
+  dropdown.appendChild(divider);
+  dropdown.appendChild(quitRow);
+
+  const sync = () => {
+    const on = !!clozeState[sk]?.active;
+    btn.classList.toggle('active', on);
+    clozeItem.querySelector('.tgi-active').style.display = on ? '' : 'none';
+    divider.style.display = on ? '' : 'none';
+    quitRow.style.display = on ? '' : 'none';
+  };
+
+  clozeItem.addEventListener('click', () => {
+    const audio = document.querySelector('audio');
+    if (audio) { audio.pause(); audio.currentTime = 0; }
+    setActiveFn(true);
+    sync();
+    dropdown.style.display = 'none';
   });
 
-  return { banner, gameArea };
+  quitRow.addEventListener('click', () => {
+    setActiveFn(false);
+    sync();
+    dropdown.style.display = 'none';
+  });
+
+  btn.addEventListener('click', e => {
+    e.stopPropagation();
+    sync();
+    dropdown.style.display = dropdown.style.display === 'none' ? '' : 'none';
+  });
+
+  slot.appendChild(btn);
+  slot.appendChild(dropdown);
+  sync();
 }
 
 function renderScreen(idx) {
@@ -1133,6 +1236,7 @@ function renderScreen(idx) {
   const examBody = el('examBody'); if (!examBody) return;
   lytCache_save();
   examBody.innerHTML = '';
+  const gameSlot = el('topbarGameSlot'); if (gameSlot) gameSlot.remove();
   const sc=state.screens[idx]; if (!sc) return;
   const isPractice = state.mode==='practice';
   const isTest     = state.mode==='test';
@@ -1147,11 +1251,14 @@ function renderScreen(idx) {
   if (sc.type==='p1') {
     const q=sc.q;
     left.appendChild(buildAudioBlock(q.mp3, sk));
-    right.appendChild(buildQHeader(q.q,1,sk,showSol));
-    right.appendChild(buildOptionsAll(q.q,['A','B','C','D'],sk,null,null,null));
+    const p1h=buildQHeader(q.q,1,sk,showSol);
+    if (q.q===state.scrollToQ) p1h.dataset.autoq='1';
+    right.appendChild(p1h);
+    p1h._card.appendChild(buildOptionsAll(q.q,['A','B','C','D'],sk,null,null,null));
     if (showSol && q.script) {
-      const { banner, gameArea } = buildClozeGame(q.script,1,sk,'q'+q.q,right,left);
-      left.appendChild(banner); left.appendChild(gameArea);
+      const { gameArea, setActive } = buildClozeGame(q.script,1,sk,'q'+q.q,right,left);
+      left.appendChild(gameArea);
+      buildTopbarGameBtn(sk, setActive);
     }
     if (showSol && (q.script || q.trans)) {
       const sg = buildScriptBiGrid(q.script, q.trans, q.answer);
@@ -1159,16 +1266,19 @@ function renderScreen(idx) {
       if (!state.showSolution['q'+q.q] || clozeState[sk]?.active) sg.style.display = 'none';
       left.appendChild(sg);
     }
-    if (q.img) { const img=make('img','exam-img'); img.src=q.img; img.alt=`Câu ${q.q}`; if (clozeState[sk]?.active) img.style.display='none'; left.appendChild(img); }
+    if (q.img) { const wrap=make('div','exam-img-wrap'); const img=make('img','exam-img'); img.src=q.img; img.alt=`Câu ${q.q}`; wrap.appendChild(img); if (clozeState[sk]?.active) wrap.style.display='none'; left.appendChild(wrap); }
   }
   if (sc.type==='p2') {
     const q=sc.q;
     left.appendChild(buildAudioBlock(q.mp3, sk));
-    right.appendChild(buildQHeader(q.q,2,sk,showSol));
-    right.appendChild(buildOptionsAll(q.q,['A','B','C'],sk,null,null,null));
+    const p2h=buildQHeader(q.q,2,sk,showSol);
+    if (q.q===state.scrollToQ) p2h.dataset.autoq='1';
+    right.appendChild(p2h);
+    p2h._card.appendChild(buildOptionsAll(q.q,['A','B','C'],sk,null,null,null));
     if (showSol && q.script) {
-      const { banner, gameArea } = buildClozeGame(q.script,2,sk,'q'+q.q,right,left);
-      left.appendChild(banner); left.appendChild(gameArea);
+      const { gameArea, setActive } = buildClozeGame(q.script,2,sk,'q'+q.q,right,left);
+      left.appendChild(gameArea);
+      buildTopbarGameBtn(sk, setActive);
     }
     if (showSol && (q.script || q.trans)) {
       const sg = buildScriptBiGrid(q.script, q.trans, q.answer);
@@ -1182,10 +1292,39 @@ function renderScreen(idx) {
     left.appendChild(buildAudioBlock(g.mp3, sk));
     const p3SolKey='q'+g.questions[0].q;
     const p3AllQNums=g.questions.map(q=>q.q);
-    g.questions.forEach((q)=>right.appendChild(buildGroupQBlock(q,3,showSol,sk,showSol,p3AllQNums)));
+    // ONE wrap + ONE action-row + ONE card for the whole group
+    const p3Wrap=make('div','q-block');
+    if (g.questions.some(q=>q.q===state.scrollToQ)) p3Wrap.dataset.autoq='1';
+    const {solBtn:p3Sol,flagBtn:p3Flag}=_buildButtons(g.questions[0].q,3,sk,showSol,showSol?p3AllQNums:null);
+    const p3AR=make('div','q-action-row');
+    if (p3Sol) p3AR.appendChild(p3Sol);
+    p3AR.appendChild(p3Flag);
+    p3Wrap.appendChild(p3AR);
+    const p3Card=make('div','q-card');
+    g.questions.forEach((q,i)=>{
+      if (i>0) p3Card.appendChild(make('div','q-divider'));
+      const subBlock=make('div','q-sub-block');
+      const titleRow=make('div','q-title-row');
+      const numLbl=make('span','q-num-lbl',q.q+'.');
+      numLbl.addEventListener('click',()=>{ const rp=document.querySelector('.screen-right'); if(!rp) return; const pt=parseInt(getComputedStyle(rp).paddingTop)||0; rp.scrollTo({top:subBlock.getBoundingClientRect().top-rp.getBoundingClientRect().top+rp.scrollTop-pt,behavior:'smooth'}); });
+      titleRow.appendChild(numLbl);
+      const qCnt=make('div','q-content-col');
+      if (q.enQ) qCnt.appendChild(make('div','q-text',q.enQ));
+      if (isPractice&&q.viQ) { const qtr=make('div','q-trans',escHtml(q.viQ)); qtr.dataset.vifor=String(q.q); if(!state.showSolution['q'+q.q]) qtr.style.display='none'; qCnt.appendChild(qtr); }
+      if (qCnt.children.length) titleRow.appendChild(qCnt);
+      subBlock.appendChild(titleRow);
+      const viOpts=(isPractice&&q.viOpts&&q.viOpts.some(Boolean))?q.viOpts:null;
+      const optList=buildOptionsAll(q.q,['A','B','C','D'],sk,null,viOpts,null);
+      if (isPractice&&!state.showSolution['q'+q.q]&&viOpts) optList.querySelectorAll('.opt-trans').forEach(el=>el.style.display='none');
+      subBlock.appendChild(optList);
+      p3Card.appendChild(subBlock);
+    });
+    p3Wrap.appendChild(p3Card);
+    right.appendChild(p3Wrap);
     if (showSol && g.script) {
-      const { banner, gameArea } = buildClozeGame(g.script,3,sk,p3SolKey,right,left);
-      left.appendChild(banner); left.appendChild(gameArea);
+      const { gameArea, setActive } = buildClozeGame(g.script,3,sk,p3SolKey,right,left);
+      left.appendChild(gameArea);
+      buildTopbarGameBtn(sk, setActive);
     }
     if (showSol && (g.script || g.trans)) {
       const sg = buildScriptBiGrid(g.script, g.trans);
@@ -1200,10 +1339,38 @@ function renderScreen(idx) {
     left.appendChild(buildAudioBlock(g.mp3, sk));
     const p4SolKey='q'+g.questions[0].q;
     const p4AllQNums=g.questions.map(q=>q.q);
-    g.questions.forEach((q)=>right.appendChild(buildGroupQBlock(q,4,showSol,sk,showSol,p4AllQNums)));
+    const p4Wrap=make('div','q-block');
+    if (g.questions.some(q=>q.q===state.scrollToQ)) p4Wrap.dataset.autoq='1';
+    const {solBtn:p4Sol,flagBtn:p4Flag}=_buildButtons(g.questions[0].q,4,sk,showSol,showSol?p4AllQNums:null);
+    const p4AR=make('div','q-action-row');
+    if (p4Sol) p4AR.appendChild(p4Sol);
+    p4AR.appendChild(p4Flag);
+    p4Wrap.appendChild(p4AR);
+    const p4Card=make('div','q-card');
+    g.questions.forEach((q,i)=>{
+      if (i>0) p4Card.appendChild(make('div','q-divider'));
+      const subBlock=make('div','q-sub-block');
+      const titleRow=make('div','q-title-row');
+      const numLbl=make('span','q-num-lbl',q.q+'.');
+      numLbl.addEventListener('click',()=>{ const rp=document.querySelector('.screen-right'); if(!rp) return; const pt=parseInt(getComputedStyle(rp).paddingTop)||0; rp.scrollTo({top:subBlock.getBoundingClientRect().top-rp.getBoundingClientRect().top+rp.scrollTop-pt,behavior:'smooth'}); });
+      titleRow.appendChild(numLbl);
+      const qCnt=make('div','q-content-col');
+      if (q.enQ) qCnt.appendChild(make('div','q-text',q.enQ));
+      if (isPractice&&q.viQ) { const qtr=make('div','q-trans',escHtml(q.viQ)); qtr.dataset.vifor=String(q.q); if(!state.showSolution['q'+q.q]) qtr.style.display='none'; qCnt.appendChild(qtr); }
+      if (qCnt.children.length) titleRow.appendChild(qCnt);
+      subBlock.appendChild(titleRow);
+      const viOpts=(isPractice&&q.viOpts&&q.viOpts.some(Boolean))?q.viOpts:null;
+      const optList=buildOptionsAll(q.q,['A','B','C','D'],sk,null,viOpts,null);
+      if (isPractice&&!state.showSolution['q'+q.q]&&viOpts) optList.querySelectorAll('.opt-trans').forEach(el=>el.style.display='none');
+      subBlock.appendChild(optList);
+      p4Card.appendChild(subBlock);
+    });
+    p4Wrap.appendChild(p4Card);
+    right.appendChild(p4Wrap);
     if (showSol && g.script) {
-      const { banner, gameArea } = buildClozeGame(g.script,4,sk,p4SolKey,right,left);
-      left.appendChild(banner); left.appendChild(gameArea);
+      const { gameArea, setActive } = buildClozeGame(g.script,4,sk,p4SolKey,right,left);
+      left.appendChild(gameArea);
+      buildTopbarGameBtn(sk, setActive);
     }
     if (showSol && (g.script || g.trans)) {
       const sg = buildScriptBiGrid(splitIntoSentences(g.script), splitIntoSentences(g.trans));
@@ -1220,74 +1387,98 @@ function renderScreen(idx) {
     if (solShown && q.videoUrl) {
       left.appendChild(buildVideoLoader(q.videoUrl, autoplayQ===q.q));
     } else { left.classList.add('empty'); }
-    right.appendChild(buildQHeader(q.q,5,sk,showSol));
+    const p5Content = make('div','q-content-col');
     if (q.enQ) {
       const ansWord = transShown ? extractAnswerWord(q) : null;
       const qtEl = make('div','q-text', buildP5QTextHtml(q.enQ, ansWord));
       qtEl.id = 'p5qt-' + q.q;
-      right.appendChild(qtEl);
+      p5Content.appendChild(qtEl);
     }
     if (showSol && q.transSent) {
       const tsEl = make('div','full-sent-vi', escHtml(q.transSent));
       if (!transShown) tsEl.style.display = 'none';
-      right.appendChild(tsEl);
+      p5Content.appendChild(tsEl);
     }
+    const p5h = buildQHeader(q.q,5,sk,showSol,null, p5Content.children.length ? p5Content : null);
+    if (q.q===state.scrollToQ) p5h.dataset.autoq='1';
+    right.appendChild(p5h);
     const optList5 = buildOptionsAll(q.q,['A','B','C','D'],sk,null,null,showSol?q.noteOpts:null);
     if (!transShown) optList5.querySelectorAll('.opt-note').forEach(el => el.style.display='none');
-    right.appendChild(optList5);
+    p5h._card.appendChild(optList5);
   }
   if (sc.type==='p6') {
     const g=sc.group;
     buildLeftTabs(left,g,sk,false,showSol);
-    g.questions.forEach(q=>{
+    const p6Wrap=make('div','q-block');
+    if (g.questions.some(q=>q.q===state.scrollToQ)) p6Wrap.dataset.autoq='1';
+    const p6Card=make('div','q-card');
+    g.questions.forEach((q,i)=>{
       const qKey='q'+q.q;
-      const solShown6  = showSol && !!state.showSolution[qKey];
-      const transShown6 = showSol && !!state.showTrans[qKey];
-      const qw=make('div','q-block'); qw.style.cssText='padding-bottom:8px';
-      if (q.q === state.scrollToQ) qw.dataset.autoq = '1';
-      qw.appendChild(buildQHeader(q.q,6,sk,showSol));
-      const rawViTrans6 = [q.viQ||'',...(q.viOpts||[])];
-      const viTrans6 = rawViTrans6.some(Boolean) ? rawViTrans6 : null;
-      const notes6   = q.noteOpts?.some(Boolean) ? q.noteOpts : null;
-      const optList6 = buildOptionsAll(q.q,['A','B','C','D'],sk,[q.enQ,...(q.enOpts||[])],viTrans6,notes6);
-      if (!transShown6) optList6.querySelectorAll('.opt-trans,.opt-note').forEach(el => el.style.display='none');
-      qw.appendChild(optList6);
-      right.appendChild(qw);
+      const transShown6=showSol&&!!state.showTrans[qKey];
+      if (i>0) p6Card.appendChild(make('div','q-divider'));
+      const subBlock=make('div','q-sub-block');
+      // internal action row
+      const {solBtn:s6,transBtn:t6,flagBtn:f6}=_buildButtons(q.q,6,sk,showSol,null);
+      const ar6=make('div','q-action-row');
+      if (s6) ar6.appendChild(s6);
+      if (t6) ar6.appendChild(t6);
+      ar6.appendChild(f6);
+      subBlock.appendChild(ar6);
+      // title row (Part 6 has no separate question text — q number only)
+      const titleRow6=make('div','q-title-row');
+      titleRow6.appendChild(make('span','q-num-lbl',q.q+'.'));
+      subBlock.appendChild(titleRow6);
+      // options
+      const rawViTrans6=[q.viQ||'',...(q.viOpts||[])];
+      const viTrans6=rawViTrans6.some(Boolean)?rawViTrans6:null;
+      const notes6=q.noteOpts?.some(Boolean)?q.noteOpts:null;
+      const optList6=buildOptionsAll(q.q,['A','B','C','D'],sk,[q.enQ,...(q.enOpts||[])],viTrans6,notes6);
+      if (!transShown6) optList6.querySelectorAll('.opt-trans,.opt-note').forEach(el=>el.style.display='none');
+      subBlock.appendChild(optList6);
+      p6Card.appendChild(subBlock);
     });
+    p6Wrap.appendChild(p6Card);
+    right.appendChild(p6Wrap);
   }
   if (sc.type==='p7') {
     const g=sc.group;
     buildLeftTabs(left,g,sk,true,showSol);
-    g.questions.forEach(q=>{
+    const p7Wrap=make('div','q-block');
+    if (g.questions.some(q=>q.q===state.scrollToQ)) p7Wrap.dataset.autoq='1';
+    const p7Card=make('div','q-card');
+    g.questions.forEach((q,i)=>{
       const qKey='q'+q.q;
-      const solShown7  = showSol && !!state.showSolution[qKey];
-      const transShown7 = showSol && !!state.showTrans[qKey];
-      const qw=make('div','q-block'); qw.style.cssText='padding-bottom:8px';
-      if (q.q === state.scrollToQ) qw.dataset.autoq = '1';
-      qw.appendChild(buildQHeader(q.q,7,sk,showSol));
-      if(q.enQ) qw.appendChild(make('div','q-text',q.enQ));
-      if(q.viQ) {
-        const qtr7 = make('div','q-trans',escHtml(q.viQ));
-        qtr7.dataset.vifor = String(q.q);
-        if(!transShown7) qtr7.style.display = 'none';
-        qw.appendChild(qtr7);
-      }
-      // noteOpts[0] = ghi chú câu hỏi; noteOpts[1..4] = ghi chú đáp án A/B/C/D
-      const notes7raw = q.noteOpts?.some(Boolean) ? q.noteOpts : null;
-      const noteQ7    = notes7raw?.[0] || null;
-      const noteOpts7 = notes7raw?.length > 1 ? notes7raw.slice(1) : null;
-      if (noteQ7) {
-        const qnote7 = make('div','q-note', escHtml(noteQ7));
-        qnote7.dataset.vifor = String(q.q);
-        if (!transShown7) qnote7.style.display = 'none';
-        qw.appendChild(qnote7);
-      }
-      const viOpts7 = q.viOpts?.some(Boolean) ? q.viOpts : null;
-      const optList7 = buildOptionsAll(q.q,['A','B','C','D'],sk,null,viOpts7, noteOpts7?.some(Boolean) ? noteOpts7 : null);
-      if (!transShown7) optList7.querySelectorAll('.opt-trans,.opt-note').forEach(el => el.style.display='none');
-      qw.appendChild(optList7);
-      right.appendChild(qw);
+      const transShown7=showSol&&!!state.showTrans[qKey];
+      if (i>0) p7Card.appendChild(make('div','q-divider'));
+      const subBlock=make('div','q-sub-block');
+      // internal action row
+      const {solBtn:s7,transBtn:t7,flagBtn:f7}=_buildButtons(q.q,7,sk,showSol,null);
+      const ar7=make('div','q-action-row');
+      if (s7) ar7.appendChild(s7);
+      if (t7) ar7.appendChild(t7);
+      ar7.appendChild(f7);
+      subBlock.appendChild(ar7);
+      // title row with question text
+      const notes7raw=q.noteOpts?.some(Boolean)?q.noteOpts:null;
+      const noteQ7=notes7raw?.[0]||null;
+      const noteOpts7=notes7raw?.length>1?notes7raw.slice(1):null;
+      const q7Content=make('div','q-content-col');
+      if(q.enQ) q7Content.appendChild(make('div','q-text',q.enQ));
+      if(q.viQ) { const qtr7=make('div','q-trans',escHtml(q.viQ)); qtr7.dataset.vifor=String(q.q); if(!transShown7) qtr7.style.display='none'; q7Content.appendChild(qtr7); }
+      if(noteQ7) { const qnote7=make('div','q-note',escHtml(noteQ7)); qnote7.dataset.vifor=String(q.q); if(!transShown7) qnote7.style.display='none'; q7Content.appendChild(qnote7); }
+      const titleRow7=make('div','q-title-row');
+      titleRow7.appendChild(make('span','q-num-lbl',q.q+'.'));
+      if (q7Content.children.length) titleRow7.appendChild(q7Content);
+      subBlock.appendChild(titleRow7);
+      // options
+      const viOpts7=q.viOpts?.some(Boolean)?q.viOpts:null;
+      const optList7=buildOptionsAll(q.q,['A','B','C','D'],sk,null,viOpts7,noteOpts7?.some(Boolean)?noteOpts7:null);
+      if (!transShown7) optList7.querySelectorAll('.opt-trans,.opt-note').forEach(el=>el.style.display='none');
+      subBlock.appendChild(optList7);
+      p7Card.appendChild(subBlock);
     });
+    p7Wrap.appendChild(p7Card);
+    right.appendChild(p7Wrap);
   }
 
   // Cập nhật trạng thái nút mũi tên trên topbar
@@ -1640,8 +1831,17 @@ function buildGroupQBlock(q, part, isPractice, sk, showSolBtn, groupQNums=null) 
   const solShown = isPractice && !!state.showSolution[qKey];
   const wrap = make('div','q-block'); wrap.style.cssText='padding-bottom:8px';
   if (q.q === state.scrollToQ) wrap.dataset.autoq = '1';
-  wrap.appendChild(buildQHeader(q.q,part,sk,showSolBtn,showSolBtn?groupQNums:null));
-  const qNumEl = wrap.querySelector('.q-number');
+  const qContent = make('div','q-content-col');
+  if (q.enQ) qContent.appendChild(make('div','q-text',q.enQ));
+  if (isPractice && q.viQ) {
+    const qtr = make('div','q-trans', escHtml(q.viQ));
+    qtr.dataset.vifor = String(q.q);
+    if (!solShown) qtr.style.display = 'none';
+    qContent.appendChild(qtr);
+  }
+  const header = buildQHeader(q.q,part,sk,showSolBtn,showSolBtn?groupQNums:null, qContent.children.length ? qContent : null);
+  wrap.appendChild(header);
+  const qNumEl = header.querySelector('.q-num-col') || header.querySelector('.q-number');
   if (qNumEl) {
     qNumEl.style.cursor = 'pointer';
     qNumEl.title = 'Cuộn lên đầu câu này';
@@ -1653,18 +1853,12 @@ function buildGroupQBlock(q, part, isPractice, sk, showSolBtn, groupQNums=null) 
       rightPanel.scrollTo({ top: targetTop, behavior: 'smooth' });
     });
   }
-  if (q.enQ) wrap.appendChild(make('div','q-text',q.enQ));
-  if (isPractice && q.viQ) {
-    const qtr = make('div','q-trans', escHtml(q.viQ));
-    qtr.dataset.vifor = String(q.q);
-    if (!solShown) qtr.style.display = 'none';
-    wrap.appendChild(qtr);
-  }
   const viOpts = (isPractice && q.viOpts && q.viOpts.some(Boolean)) ? q.viOpts : null;
   const optList = buildOptionsAll(q.q,['A','B','C','D'],sk,null,viOpts,null);
   if (isPractice && !solShown && viOpts) {
     optList.querySelectorAll('.opt-trans').forEach(el => el.style.display='none');
   }
+  optList.classList.add('options-indented');
   wrap.appendChild(optList);
   return wrap;
 }
@@ -1868,25 +2062,26 @@ function parseScriptOpts(script, trans) {
 const IC_SHOW = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`;
 const IC_HIDE = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>`;
 
-const IC_TRANS_SHOW = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>`;
-const IC_TRANS_HIDE = `<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><line x1="4" y1="4" x2="20" y2="20" stroke-width="2.5"/></svg>`;
+const IC_TRANS_SHOW = IC_SHOW;
+const IC_TRANS_HIDE = IC_HIDE;
 
-function buildQHeader(qNum, part, sk, showSolBtn, groupQNums=null) {
-  const wrap=make('div','q-header');
-  wrap.appendChild(make('div','q-number',String(qNum)));
+
+function _buildButtons(qNum, part, sk, showSolBtn, groupQNums) {
+  // ── Sol button ──
+  let solBtn = null;
+  let transBtn = null;
   if (showSolBtn) {
     const keys = groupQNums ? groupQNums.map(n=>'q'+n) : ['q'+qNum];
     const isShown = keys.every(k=>state.showSolution[k]);
     const solLabel = [1,2,3,4].includes(part) ? ['Đáp án + Script','Ẩn'] : ['Video giải','Ẩn'];
     const solHtml  = (shown) => shown ? `${IC_HIDE}<span>${solLabel[1]}</span>` : `${IC_SHOW}<span>${solLabel[0]}</span>`;
-    const solBtn=make('button','btn-solution',solHtml(isShown));
+    solBtn = make('button','btn-solution',solHtml(isShown));
     solBtn.dataset.solq = qNum;
     solBtn.addEventListener('click',()=>{
       const next=!keys.every(k=>state.showSolution[k]);
       keys.forEach(k=>state.showSolution[k]=next);
       state.lastRevealedQ = next ? qNum : null;
       if ([6,7].includes(part)) {
-        // Nếu mở câu mới, đóng câu đang mở trong cùng nhóm (radio button)
         if (next) {
           const groupQs = state.screens[state.currentIdx]?.group?.questions?.map(q=>q.q) || [];
           groupQs.forEach(otherQn => {
@@ -1896,19 +2091,18 @@ function buildQHeader(qNum, part, sk, showSolBtn, groupQNums=null) {
             if (otherBtn) otherBtn.innerHTML = solHtml(false);
           });
         }
-        // Toggle trực tiếp trên DOM — iframe không bị rebuild, video không reload
         solBtn.innerHTML = solHtml(next);
         if (next) {
           switchToVideoTab(sk, qNum);
-          const firstQNum  = keys[0].slice(1);
-          const qBlock     = document.querySelector(`[data-solq="${firstQNum}"]`)?.closest('.q-block');
+          const solBtnEl   = document.querySelector(`[data-solq="${keys[0].slice(1)}"]`);
+          const qTarget    = solBtnEl?.closest('.q-sub-block') ?? solBtnEl?.closest('.q-block');
           const rightPanel = document.querySelector('.screen-right');
-          if (qBlock && rightPanel) {
+          if (qTarget && rightPanel) {
             const padTop    = parseInt(getComputedStyle(rightPanel).paddingTop) || 0;
-            const targetTop = qBlock.getBoundingClientRect().top - rightPanel.getBoundingClientRect().top + rightPanel.scrollTop - padTop;
+            const targetTop = qTarget.getBoundingClientRect().top - rightPanel.getBoundingClientRect().top + rightPanel.scrollTop - padTop;
             rightPanel.scrollTo({ top: targetTop, behavior: 'smooth' });
           }
-        } else    switchToPassageTab(sk);
+        } else switchToPassageTab(sk);
       } else if ([1,2,3,4].includes(part)) {
         if ([3,4].includes(part)) {
           const sbWrap = document.querySelector(`[data-scriptsk="${sk}"]`);
@@ -1950,21 +2144,19 @@ function buildQHeader(qNum, part, sk, showSolBtn, groupQNums=null) {
         renderScreen(state.currentIdx);
       }
     });
-    wrap.appendChild(solBtn);
 
-    // Nút Đáp án — chỉ cho Part 5, 6, 7
+    // ── Trans button (Part 5/6/7) ──
     if ([5,6,7].includes(part)) {
       const isTransShown = !!state.showTrans['q'+qNum];
       const transHtml = (shown) => shown
         ? `${IC_TRANS_HIDE}<span>Ẩn</span>`
         : `${IC_TRANS_SHOW}<span>Đáp án + song ngữ</span>`;
-      const transBtn = make('button','btn-trans',transHtml(isTransShown));
+      transBtn = make('button','btn-trans',transHtml(isTransShown));
       transBtn.dataset.transq = qNum;
       transBtn.addEventListener('click', () => {
         const nextTrans = !state.showTrans['q'+qNum];
         state.showTrans['q'+qNum] = nextTrans;
         transBtn.innerHTML = transHtml(nextTrans);
-        // Chấm màu đúng/sai — result mode luôn giữ màu dù ẩn dịch
         const shouldColor = state.finished || nextTrans;
         const optList = document.querySelector(`.options-list[data-qlist="${qNum}"]`);
         if (optList) applyOptionColors(optList, state.answers[qNum], getQuestionData(qNum)?.q.answer, shouldColor);
@@ -1984,36 +2176,87 @@ function buildQHeader(qNum, part, sk, showSolBtn, groupQNums=null) {
           if (qnote) qnote.style.display = nextTrans ? '' : 'none';
           document.querySelectorAll(`.options-list[data-qlist="${qNum}"] .opt-trans,.options-list[data-qlist="${qNum}"] .opt-note`).forEach(el => el.style.display = nextTrans ? '' : 'none');
           if (nextTrans) {
-            const qBlock = document.querySelector(`[data-transq="${qNum}"]`)?.closest('.q-block');
+            const transBtnEl = document.querySelector(`[data-transq="${qNum}"]`);
+            const qTarget    = transBtnEl?.closest('.q-sub-block') ?? transBtnEl?.closest('.q-block');
             const rightPanel = document.querySelector('.screen-right');
-            if (qBlock && rightPanel) {
-              const padTop = parseInt(getComputedStyle(rightPanel).paddingTop) || 0;
-              const targetTop = qBlock.getBoundingClientRect().top - rightPanel.getBoundingClientRect().top + rightPanel.scrollTop - padTop;
+            if (qTarget && rightPanel) {
+              const padTop    = parseInt(getComputedStyle(rightPanel).paddingTop) || 0;
+              const targetTop = qTarget.getBoundingClientRect().top - rightPanel.getBoundingClientRect().top + rightPanel.scrollTop - padTop;
               rightPanel.scrollTo({ top: targetTop, behavior: 'smooth' });
             }
           }
         }
       });
-      wrap.appendChild(transBtn);
     }
   }
-  const flagBtn=make('button','q-flag-btn'+(state.flags[qNum]?' flagged':''));
-  flagBtn.innerHTML=`<svg viewBox="0 0 24 24"><path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"/></svg>`;
+
+  // ── Flag button ──
+  const flagBtn = make('button','q-flag-btn'+(state.flags[qNum]?' flagged':''));
+  flagBtn.innerHTML = `<svg viewBox="0 0 24 24"><path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"/></svg>`;
   if (!state.finished) flagBtn.addEventListener('click',()=>{ state.flags[qNum]=!state.flags[qNum]; flagBtn.classList.toggle('flagged',!!state.flags[qNum]); renderSheet(); saveProgress(); });
-  else flagBtn.style.pointerEvents='none';
-  wrap.appendChild(flagBtn); return wrap;
+  else flagBtn.style.pointerEvents = 'none';
+
+  return { solBtn, transBtn, flagBtn };
+}
+
+function buildQHeader(qNum, part, sk, showSolBtn, groupQNums=null, qContent=null) {
+  const { solBtn, transBtn, flagBtn } = _buildButtons(qNum, part, sk, showSolBtn, groupQNums);
+
+  const wrap = make('div','q-block');
+
+  // Action row (above card)
+  const actionRow = make('div','q-action-row');
+  if (solBtn)   actionRow.appendChild(solBtn);
+  if (transBtn) actionRow.appendChild(transBtn);
+  actionRow.appendChild(flagBtn);
+  wrap.appendChild(actionRow);
+
+  // Card
+  const card = make('div','q-card');
+  const titleRow = make('div','q-title-row');
+  const numLbl = make('span','q-num-lbl', qNum + '.');
+  numLbl.addEventListener('click', () => {
+    const rp = document.querySelector('.screen-right');
+    if (!rp) return;
+    const padTop = parseInt(getComputedStyle(rp).paddingTop)||0;
+    rp.scrollTo({ top: wrap.getBoundingClientRect().top - rp.getBoundingClientRect().top + rp.scrollTop - padTop, behavior:'smooth' });
+  });
+  titleRow.appendChild(numLbl);
+  if (qContent && qContent.children.length) titleRow.appendChild(qContent);
+  card.appendChild(titleRow);
+
+  wrap.appendChild(card);
+  wrap._card = card;
+  return wrap;
 }
 
 function applyOptionColors(list, chosen, correct, showSol) {
+  const IC_CHECK = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
+  const IC_X     = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+  const IC_DASH  = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/></svg>`;
   list.querySelectorAll('.option-item').forEach(it => {
     const lt = it.dataset.letter;
     it.className = 'option-item';
+    const circle = it.querySelector('.opt-circle');
     if (showSol && correct) {
-      if (lt === chosen && lt === correct)          it.classList.add('correct');
-      else if (lt === chosen && lt !== correct)     it.classList.add('wrong');
-      else if (lt === correct && chosen !== correct) it.classList.add('missed-correct');
+      if (lt === chosen && lt === correct) {
+        it.classList.add('correct');
+        if (circle) circle.innerHTML = IC_CHECK;
+      } else if (lt === chosen && lt !== correct) {
+        it.classList.add('wrong');
+        if (circle) circle.innerHTML = IC_X;
+      } else if (lt === correct && chosen && chosen !== correct) {
+        it.classList.add('missed-correct');
+        if (circle) circle.innerHTML = IC_CHECK;
+      } else if (lt === correct && !chosen) {
+        it.classList.add('blank-correct');
+        if (circle) circle.innerHTML = IC_DASH;
+      } else {
+        if (circle) circle.textContent = lt;
+      }
     } else {
       if (lt === chosen) it.classList.add('selected');
+      if (circle) circle.textContent = lt;
     }
   });
 }
@@ -2086,22 +2329,18 @@ function buildOptions(qNum, letters, sk, optsOverride) {
   letters.forEach((letter,i)=>{
     const item=make('div','option-item');
     item.dataset.q=qNum; item.dataset.letter=letter;
-    const sel=make('div','opt-select');
-    sel.appendChild(make('div','opt-radio'));
-    sel.appendChild(make('div','opt-label',letter+'.'));
-    item.appendChild(sel);
+    item.appendChild(make('div','opt-circle',letter));
     item.appendChild(make('div','opt-text',opts[i]||''));
     list.appendChild(item);
   });
   applyOptionColors(list, state.answers[qNum], correct, showSol);
   if (!state.finished) {
     list.querySelectorAll('.option-item').forEach(item => {
-      const select = () => {
+      item.addEventListener('click', () => {
         state.answers[qNum] = item.dataset.letter;
         applyOptionColors(list, state.answers[qNum], correct, showSol);
         renderSheet(); saveProgress();
-      };
-      item.querySelector('.opt-select').addEventListener('click', e => { e.stopPropagation(); select(); });
+      });
     });
   } else {
     list.style.pointerEvents = 'none';
@@ -2126,6 +2365,19 @@ function buildOptionsAll(qNum, letters, sk, optsOverride, viTrans, noteOpts) {
 // ══════════════════════════════════════════════════════════════
 // PHIẾU TÔ
 // ══════════════════════════════════════════════════════════════
+function getCurrentScreenQNums() {
+  const sc=state.screens[state.currentIdx]; if(!sc) return [];
+  return sc.q?[sc.q.q]:sc.group?sc.group.questions.map(q=>q.q):[];
+}
+function findNextUnansweredIdx() {
+  const n=state.screens.length;
+  for(let i=1;i<=n;i++){
+    const idx=(state.currentIdx+i)%n; const sc=state.screens[idx];
+    const qs=sc.q?[sc.q.q]:sc.group?sc.group.questions.map(q=>q.q):[];
+    if(qs.some(qn=>!state.answers[qn])) return idx;
+  }
+  return -1;
+}
 function buildPartStats(partScreens) {
   let correct=0, wrong=0, blank=0, flagged=0;
   partScreens.forEach(({sc})=>{
@@ -2148,23 +2400,22 @@ function buildPartStats(partScreens) {
 }
 
 function renderSheet() {
-  const body=el('sheetBody'); if (!body) return;
+  const body=el('sheetBody'); if(!body) return;
   body.innerHTML='';
-  const canReveal = state.finished || state.mode==='practice';
-  const hintText = canReveal
-    ? `${IC.lightbulb}Bấm "số câu" để hiện ngay bài giải câu đó!`
-    : '• Bấm số câu (Part 5–7) để nhảy đến câu hỏi';
-  body.appendChild(make('div','sheet-hint', hintText));
-  const isTest = state.mode==='test';
-  const currentPart = state.screens[state.currentIdx]?.part;
-  if (!state.openParts) state.openParts = new Set([currentPart]);
-  state.openParts.add(currentPart);
+  const isReview=state.finished;
+  const currentScreenQSet=new Set(getCurrentScreenQNums());
+
+  const flagBtn=el('btnSheetFlag');
+  if(flagBtn){
+    const qNum=state.scrollToQ||getCurrentScreenQNums()[0];
+    flagBtn.classList.toggle('active',!!state.flags[qNum]);
+  }
+
   const byPart={};
   state.screens.forEach((sc,idx)=>{ const p=sc.part; if(!byPart[p]) byPart[p]=[]; byPart[p].push({sc,idx}); });
+
   Object.keys(byPart).sort((a,b)=>a-b).forEach(p=>{
     const pNum=parseInt(p);
-    const isOpen=state.openParts.has(pNum);
-    const letters=pNum===2?['A','B','C']:['A','B','C','D'];
     const isListening=[1,2,3,4].includes(pNum);
     let cr=0,wr=0,bl=0,fl=0;
     byPart[p].forEach(({sc})=>{
@@ -2174,76 +2425,75 @@ function renderSheet() {
         if(state.flags[qn]) fl++;
       });
     });
+
     const section=make('div','sheet-part-section'); section.dataset.part=p;
-    const hdr=make('div','sheet-part-header'+(isOpen?' open':''));
+    const hdr=make('div','sheet-part-label');
     hdr.innerHTML=`<span class="sheet-part-name">Part ${p}</span>`+
-      `<span class="sheet-part-stats-inline">`+
-        `<span class="spsi-correct">${cr} đúng</span>`+
-        `<span class="spsi-sep">·</span>`+
-        `<span class="spsi-wrong">${wr} sai</span>`+
-        `<span class="spsi-sep">·</span>`+
-        `<span class="spsi-blank">${bl} trống</span>`+
-        (fl?`<span class="spsi-sep">·</span><span class="spsi-flag">${fl} ⚑</span>`:'')+
-      `</span>`+
-      `<svg class="sheet-chevron" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>`;
-    const bodyEl=make('div','sheet-part-body'); if(!isOpen) bodyEl.classList.add('collapsed');
+      (isReview?
+        `<span class="sheet-part-stats-inline">`+
+          `<span class="spsi-correct">${cr}✓</span><span class="spsi-sep">·</span>`+
+          `<span class="spsi-wrong">${wr}✗</span><span class="spsi-sep">·</span>`+
+          `<span class="spsi-blank">${bl}—</span>`+
+          (fl?`<span class="spsi-sep">·</span><span class="spsi-flag">${fl}⚑</span>`:'')+
+        `</span>`:'');
+
+    const grid=make('div','sheet-grid');
+
     byPart[p].forEach(({sc,idx})=>{
       const qNums=sc.q?[sc.q.q]:sc.group?sc.group.questions.map(q=>q.q):[];
       qNums.forEach(qNum=>{
-        const showSol=state.finished||(state.mode==='practice'&&!!state.showSolution['q'+qNum]);
         const qd=getQuestionData(qNum),correct=qd?qd.q.answer:null,chosen=state.answers[qNum];
-        const row=make('div','sheet-row');
-        row.dataset.answered=chosen?'true':'false';
-        row.dataset.result=chosen?(chosen===correct?'correct':'wrong'):'unanswered';
-        row.dataset.flagged=state.flags[qNum]?'true':'false';
-        if(isTest&&isListening) row.classList.add('no-jump');
-        else row.addEventListener('click',()=>{ state.currentIdx=idx; state.scrollToQ=qNum; renderScreen(state.currentIdx); renderSheet(); toggleSheet(false); });
-        const qnumEl=make('div','sheet-qnum',String(qNum));
-        if(canReveal) qnumEl.addEventListener('click',e=>{
-          e.stopPropagation(); state.currentIdx=idx; state.scrollToQ=qNum;
-          const part=sc.part;
-          if([3,4].includes(part)) qNums.forEach(qn=>{state.showSolution['q'+qn]=true;});
-          else state.showSolution['q'+qNum]=true;
-          if(part===5) state.lastRevealedQ=qNum;
-          else if([6,7].includes(part)){const sk=screenKey(sc);state.leftTab[sk]='video';state.videoQ[sk]=qNum;}
-          renderScreen(state.currentIdx); renderSheet(); toggleSheet(false);
-        });
-        row.appendChild(qnumEl);
-        const opts=make('div','sheet-opts');
-        letters.forEach(lt=>{ const opt=make('div','sheet-opt',lt);
-          if(showSol&&correct){ if(lt===chosen&&lt===correct) opt.classList.add('correct-ans'); else if(lt===chosen&&lt!==correct) opt.classList.add('wrong-ans'); else if(lt===correct&&chosen!==correct) opt.classList.add('missed-ans'); }
-          else { if(chosen===lt) opt.classList.add('chosen'); }
-          opts.appendChild(opt);
-        });
-        row.appendChild(opts);
-        const flag=make('div','sheet-flag'+(state.flags[qNum]?' flagged':''));
-        flag.innerHTML=`<svg viewBox="0 0 24 24"><path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"/></svg>`;
-        row.appendChild(flag); bodyEl.appendChild(row);
+        const isFlagged=!!state.flags[qNum];
+        const isCurrent=!isReview&&currentScreenQSet.has(qNum);
+
+        let cls='sheet-cell';
+        if(isReview){
+          cls+=!chosen?' cell-blank':chosen===correct?' cell-correct':' cell-wrong';
+          if(isFlagged) cls+=' cell-rev-flagged';
+        } else {
+          if(isCurrent)      cls+=' cell-current';
+          else if(isFlagged) cls+=' cell-flagged';
+          else if(chosen)    cls+=' cell-answered';
+          else               cls+=' cell-unanswered';
+        }
+        const noJump=state.mode==='test'&&isListening;
+        if(noJump) cls+=' no-jump';
+
+        const cell=make('div',cls,String(qNum));
+        cell.dataset.qnum=qNum;
+        cell.dataset.answered=chosen?'true':'false';
+        cell.dataset.result=chosen?(chosen===correct?'correct':'wrong'):'unanswered';
+        cell.dataset.flagged=isFlagged?'true':'false';
+
+        if(!noJump){
+          cell.addEventListener('click',()=>{
+            clearListeningSolution(state.currentIdx);
+            state.currentIdx=idx; state.scrollToQ=qNum;
+            renderScreen(state.currentIdx); renderSheet(); toggleSheet(false);
+          });
+        }
+        grid.appendChild(cell);
       });
     });
-    hdr.addEventListener('click',()=>{
-      const nowCollapsed=bodyEl.classList.toggle('collapsed');
-      hdr.classList.toggle('open',!nowCollapsed);
-      if(!nowCollapsed) state.openParts.add(pNum); else state.openParts.delete(pNum);
-    });
-    section.appendChild(hdr); section.appendChild(bodyEl); body.appendChild(section);
+
+    section.appendChild(hdr); section.appendChild(grid); body.appendChild(section);
   });
   applySheetFilter();
 }
 
 function applySheetFilter() {
   const f=state.sheetFilter||'all';
-  document.querySelectorAll('#sheetBody .sheet-row').forEach(row=>{
+  document.querySelectorAll('#sheetBody .sheet-cell').forEach(cell=>{
     let show=true;
-    if(f==='unanswered') show=row.dataset.answered==='false';
-    else if(f==='wrong')  show=row.dataset.result==='wrong';
-    else if(f==='flagged') show=row.dataset.flagged==='true';
-    row.style.display=show?'':'none';
+    if(f==='unanswered') show=cell.dataset.answered==='false';
+    else if(f==='wrong')  show=cell.dataset.result==='wrong';
+    else if(f==='flagged') show=cell.dataset.flagged==='true';
+    cell.style.display=show?'':'none';
   });
   document.querySelectorAll('#sheetBody .sheet-part-section').forEach(sec=>{
-    const hasVisible=Array.from(sec.querySelectorAll('.sheet-row')).some(r=>r.style.display!=='none');
+    const hasVisible=Array.from(sec.querySelectorAll('.sheet-cell')).some(c=>c.style.display!=='none');
     sec.style.display=hasVisible?'':'none';
-    if(f!=='all' && hasVisible){
+    if(f!=='all'&&hasVisible){
       sec.querySelector('.sheet-part-body')?.classList.remove('collapsed');
       sec.querySelector('.sheet-part-header')?.classList.add('open');
     }
@@ -2302,7 +2552,7 @@ function showConfirmModal() {
   const answered=countAnswered(allQs), unanswered=allQs.length-answered;
   const body=el('confirmBody');
   if (body) body.innerHTML=`Tổng số câu: <b>${allQs.length}</b><br>Đã trả lời: <b>${answered}</b><br>
-    ${unanswered>0?`<span style="color:#dc2626">Chưa trả lời: <b>${unanswered} câu</b></span>`:`<span style="color:#16a34a">Đã trả lời đủ tất cả câu!</span>`}`;
+    ${unanswered>0?`<span style="color:#7c3aed">Chưa trả lời: <b>${unanswered} câu</b></span>`:`<span style="color:#16a34a">Đã trả lời đủ tất cả câu!</span>`}`;
   el('confirmOverlay').classList.add('show');
 }
 
@@ -2354,58 +2604,29 @@ function enterReviewMode(R) {
     label.style.cssText='font-size:13px;color:rgba(255,255,255,0.7);order:-1';
     topRight.insertBefore(label, topRight.firstChild);
   }
-  const leg=document.querySelector('.answer-sheet-legend');
-  if (leg) leg.innerHTML=`
-    <div class="legend-item"><div class="legend-dot correct"></div> Đúng</div>
-    <div class="legend-item"><div class="legend-dot wrong"></div> Sai</div>
-    <div class="legend-item"><div class="legend-dot missed"></div> Bỏ trống (đáp án đúng)</div>
-    <div class="legend-item">${IC.flagInline} Đánh dấu</div>`;
-  window._fullReview = function() {
-    renderScreen(state.currentIdx);
-    renderSheetReview();
-  };
-  window._selectPage = function() { renderSelectPage(); };
+  state.sheetFilter='all';
+  const leg=el('sheetLegend');
+  if(leg) leg.innerHTML=
+    `<div class="legend-item"><div class="legend-dot ld-correct"></div> Đúng</div>`+
+    `<div class="legend-item"><div class="legend-dot ld-wrong"></div> Sai</div>`+
+    `<div class="legend-item"><div class="legend-dot ld-blank"></div> Bỏ trống</div>`+
+    `<div class="legend-item"><div class="legend-dot ld-rev-flag"></div> Gắn cờ</div>`;
+  const actionRow=el('sheetActionRow');
+  if(actionRow) actionRow.style.display='none';
+  const filters=el('sheetFilters');
+  if(filters) filters.innerHTML=
+    `<button class="sheet-filter-btn active" data-filter="all">Tất cả</button>`+
+    `<button class="sheet-filter-btn" data-filter="unanswered">Bỏ trống</button>`+
+    `<button class="sheet-filter-btn" data-filter="wrong">Câu sai</button>`+
+    `<button class="sheet-filter-btn" data-filter="flagged">Gắn cờ</button>`;
+  window._fullReview=function(){ renderScreen(state.currentIdx); renderSheet(); };
+  window._selectPage=function(){ renderSelectPage(); };
 
-  renderSheetReview();
+  renderSheet();
   renderScreen(state.currentIdx);
 }
 
-function renderSheetReview() {
-  const body=el('sheetBody'); if (!body) return;
-  body.innerHTML='';
-  const byPart={};
-  state.screens.forEach((sc,idx)=>{ const p=sc.part; if(!byPart[p]) byPart[p]=[]; byPart[p].push({sc,idx}); });
-  Object.keys(byPart).sort((a,b)=>a-b).forEach(p=>{
-    body.appendChild(make('div','answer-sheet-part-label',`Part ${p}`));
-    body.appendChild(buildPartStats(byPart[p]));
-    const letters=parseInt(p)===2?['A','B','C']:['A','B','C','D'];
-    byPart[p].forEach(({sc,idx})=>{
-      const qNums=sc.q?[sc.q.q]:sc.group?sc.group.questions.map(q=>q.q):[];
-      qNums.forEach(qNum=>{
-        const qd=getQuestionData(qNum),correct=qd?qd.q.answer:null,chosen=state.answers[qNum];
-        const row=make('div','sheet-row');
-        row.dataset.answered = chosen ? 'true' : 'false';
-        row.dataset.result = chosen ? (chosen===correct?'correct':'wrong') : 'unanswered';
-        row.dataset.flagged = state.flags[qNum] ? 'true' : 'false';
-        row.addEventListener('click',()=>{ state.currentIdx=idx; renderScreen(state.currentIdx); toggleSheet(false); });
-        row.appendChild(make('div','sheet-qnum',String(qNum)));
-        const opts=make('div','sheet-opts');
-        letters.forEach(lt=>{
-          const opt=make('div','sheet-opt',lt);
-          if      (lt===chosen && lt===correct)      opt.classList.add('correct-ans');
-          else if (lt===chosen && lt!==correct)      opt.classList.add('wrong-ans');
-          else if (lt===correct && chosen!==correct) opt.classList.add('missed-ans');
-          opts.appendChild(opt);
-        });
-        row.appendChild(opts);
-        const flag=make('div','sheet-flag'+(state.flags[qNum]?' flagged':''));
-        flag.innerHTML=`<svg viewBox="0 0 24 24"><path d="M14.4 6L14 4H5v17h2v-7h5.6l.4 2h7V6z"/></svg>`;
-        row.appendChild(flag); body.appendChild(row);
-      });
-    });
-  });
-  applySheetFilter();
-}
+function renderSheetReview() { renderSheet(); }
 
 // ══════════════════════════════════════════════════════════════
 // KHỞI ĐỘNG
